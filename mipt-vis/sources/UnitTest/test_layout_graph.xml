@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<graph>
+	<node id="65" x="666" y="797" width="15" height="15" real="0"/>
+	<node id="64" x="473" y="699" width="15" height="15" real="0"/>
+	<node id="63" x="288" y="601" width="15" height="15" real="0"/>
+	<node id="62" x="129" y="405" width="15" height="15" real="0"/>
+	<node id="61" x="60" y="503" width="15" height="15" real="0"/>
+	<node id="60" x="1031" y="601" width="15" height="15" real="0"/>
+	<node id="59" x="100" y="503" width="15" height="15" real="0"/>
+	<node id="58" x="974" y="503" width="15" height="15" real="0"/>
+	<node id="57" x="49" y="405" width="15" height="15" real="0"/>
+	<node id="56" x="137" y="307" width="15" height="15" real="0"/>
+	<node id="55" x="177" y="307" width="15" height="15" real="0"/>
+	<node id="54" x="203" y="209" width="15" height="15" real="0"/>
+	<node id="53" x="163" y="209" width="15" height="15" real="0"/>
+	<node id="52" x="57" y="307" width="15" height="15" real="0"/>
+	<node id="51" x="860" y="405" width="15" height="15" real="0"/>
+	<node id="50" x="89" y="405" width="15" height="15" real="0"/>
+	<node id="49" x="369" y="209" width="15" height="15" real="0"/>
+	<node id="48" x="1157" y="797" width="15" height="15" real="0"/>
+	<node id="47" x="97" y="307" width="15" height="15" real="0"/>
+	<node id="46" x="687" y="307" width="15" height="15" real="0"/>
+	<node id="45" x="-3" y="209" width="15" height="15" real="0"/>
+	<node id="44" x="238" y="111" width="15" height="15" real="0"/>
+	<node id="43" x="278" y="111" width="15" height="15" real="0"/>
+	<node id="42" x="358" y="7" width="15" height="15" real="0"/>
+	<node id="17" x="186" y="496" width="106" height="28" real="1" label="" color="green" shape="rectangle"/>
+	<node id="16" x="215" y="398" width="106" height="28" real="1" label="" color="green" shape="rectangle"/>
+	<node id="15" x="559" y="692" width="106" height="28" real="1" label="" color="green" shape="rectangle"/>
+	<node id="14" x="158" y="104" width="106" height="28" real="1" label="" color="green" shape="rectangle"/>
+	<node id="13" x="83" y="202" width="106" height="28" real="1" label="e" color="green" shape="rectangle"/>
+	<node id="12" x="685" y="692" width="106" height="28" real="1" label="de" color="green" shape="rectangle"/>
+	<node id="11" x="602" y="594" width="106" height="28" real="1" label="ode" color="green" shape="rectangle"/>
+	<node id="0" x="490" y="104" width="106" height="28" real="1" label="n0" color="red" shape="ellipse"/>
+	<node id="1" x="455" y="202" width="106" height="28" real="1" label="n1" color="red" shape="rectangle"/>
+	<node id="2" x="1034" y="692" width="106" height="28" real="1" label="n2" color="red" shape="rectangle"/>
+	<node id="3" x="1077" y="790" width="106" height="28" real="1" label="n3" color="red" shape="rectangle"/>
+	<node id="4" x="1182" y="888" width="106" height="28" real="1" label="n4" color="red" shape="rectangle"/>
+	<node id="5" x="1056" y="888" width="106" height="28" real="1" label="n5" color="red" shape="rectangle"/>
+	<node id="6" x="951" y="790" width="106" height="28" real="1" label="n6" color="red" shape="rectangle"/>
+	<node id="7" x="810" y="888" width="106" height="28" real="1" label="n7" color="red" shape="ellipse"/>
+	<node id="8" x="364" y="104" width="106" height="28" real="1" label="n10" color="red" shape="rectangle"/>
+	<node id="9" x="289" y="202" width="106" height="28" real="1" label="n9" color="red" shape="ellipse"/>
+	<node id="10" x="263" y="300" width="106" height="28" real="1" label="n9" color="red" shape="ellipse"/>
+	<edge id="75" from="65" to="7" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="74" from="64" to="65" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="73" from="63" to="64" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="72" from="62" to="17" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="71" from="61" to="63" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="70" from="60" to="2" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="69" from="59" to="11" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="68" from="58" to="60" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="67" from="57" to="61" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="66" from="56" to="62" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="65" from="55" to="16" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="64" from="54" to="55" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="63" from="53" to="56" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="62" from="52" to="57" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="61" from="51" to="58" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="60" from="50" to="59" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="59" from="49" to="8" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="58" from="48" to="2" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="57" from="47" to="50" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="56" from="46" to="51" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="55" from="45" to="52" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="54" from="44" to="53" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="53" from="43" to="54" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="52" from="42" to="8" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="51" from="42" to="43" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="50" from="42" to="44" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="49" from="42" to="0" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="48" from="42" to="14" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="47" from="14" to="45" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="42" from="1" to="46" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="40" from="13" to="47" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="31" from="4" to="48" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="29" from="10" to="49" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="18" from="11" to="12" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="16" from="14" to="13" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="15" from="11" to="15" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="14" from="11" to="2" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="13" from="17" to="11" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="12" from="16" to="17" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="11" from="10" to="16" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="9" from="9" to="10" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="8" from="8" to="9" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="7" from="0" to="1" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="5" from="2" to="3" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="4" from="3" to="4" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="3" from="3" to="5" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="2" from="2" to="6" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="1" from="6" to="7" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<style name="default" penColor="#000000" penWidth="2" brush="#008b8b"/>
+	<style name="Solid" penColor="#000000" penWidth="0"/>
+	<style name="solid" penColor="#000000" penWidth="0"/>
+</graph>

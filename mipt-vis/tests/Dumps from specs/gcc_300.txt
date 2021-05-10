@@ -1,0 +1,3700 @@
+After Building the Control Flow:
+IL0 PRINT (FLOW GRAPH):
+
+BBLOCK 0:
+(an entry bblock)
+preds:
+succs: 1
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3303   0 entry extern SI32  main( (SI32) argc_1015_V$3ed, (P32 *)argv_1015_V$3ee );
+3305   7 filename.1015_V$3f0 = 0(I32);
+3306   8 flag_print_mem.1015_V$3f1 = 0(SI32);
+3307   9 version_flag.1015_V$3f2 = 0(SI32);
+3311  10 save_argc_V$16 = argc_1015_V$3ed;
+3312  11 save_argv_V$17 = argv_1015_V$3ee;
+3314  12 flag_omit_frame_pointer_V$55 = 1(SI32);
+3316  13  ( (SI32) t0 ) = strlen{ic=STRLEN}( (void *)*((P32.SI8*) argv_1015_V$3ee) );  [UNIX_ABI]
+3316  14 p.1015_V$3f3 = *((P32.SI8*) argv_1015_V$3ee) + t0;
+
+
+BBLOCK 1:
+preds: 3 0
+succs: 2 4
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3317 414 L414:
+3317 412 if ( p.1015_V$3f3 != *((P32.SI8*) argv_1015_V$3ee) )
+
+
+BBLOCK 2:
+preds: 1
+succs: 3 4
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3317 415 if ( EXPR_CONV.SI8.SI32(*((SI8*) (p.1015_V$3f3 + -1(SI32)))) != 47(SI32) )
+
+
+BBLOCK 3:
+preds: 2
+succs: 1
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3322  15 p.1015_V$3f3 = p.1015_V$3f3 - 1(I32);
+3317 413 goto L414;
+
+
+BBLOCK 4:
+preds: 2 1
+succs: 5
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3323  17 progname_V$15 = p.1015_V$3f3;
+3331  18  ( (SI32) t1 ) = getrlimit{ic=GETRLIMIT}( (SI32) 3(SI32), (rlimit_R_V$3 *)&rlim.1016_V$3f6 );  [UNIX_ABI]
+
+
+BBLOCK 5:
+preds: 4
+succs: 6
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3332  19 rlim_cur_V$3f4_2.34 = rlim_max_V$3f5_2.33;
+3333  20  ( (SI32) t2 ) = setrlimit{ic=SETRLIMIT}( (SI32) 3(SI32), (rlimit_R_V$3 *)&rlim.1016_V$3f6 );  [UNIX_ABI]
+
+
+BBLOCK 6:
+preds: 5
+succs: 7
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3337  21  ( (void *)t3 ) = signal{ic=SIGNAL}( (SI32) 8(SI32), (void *)raddr(float_signal)(P32) );  [UNIX_ABI]
+
+
+BBLOCK 7:
+preds: 6
+succs: 8
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3340  22  ( (void *)t4 ) = signal{ic=SIGNAL}( (SI32) 13(SI32), (void *)raddr(pipe_closed)(P32) );  [UNIX_ABI]
+
+
+BBLOCK 8:
+preds: 7
+succs: 9
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3343  23 decl_printable_name_V$3a = raddr(decl_name)(P32);
+3344  24 lang_expand_expr_V$3b = raddr(do_abort)(P32);
+3345  25 interim_eh_hook_V$3d = raddr(interim_eh)(P32);
+3348  26 flag_signed_char_V$44 = 1(SI32);
+3356  27 i.1015_V$3ef = 1(SI32);
+
+
+BBLOCK 9:
+preds: 23 8
+succs: 10 24
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3356 422 L422:
+3356 420 if ( i.1015_V$3ef < argc_1015_V$3ed )
+
+
+BBLOCK 10:
+preds: 9
+succs: 22 11
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3358  45  ( (SI32) t9 ) = strcmp{ic=STRCMP}( (void *)*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))), (void *)&.L_2__STRING.317_V$3f9 );  [UNIX_ABI]
+3358  46 if ( t9 == 0(SI32) )
+
+
+BBLOCK 11:
+preds: 10
+succs: 12 23
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3362  44 if ( EXPR_CONV.SI8.SI32(*((SI8*) *((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))))) == 45(SI32) )
+
+
+BBLOCK 12:
+preds: 11
+succs: 13 23
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3362 419 if ( EXPR_CONV.SI8.SI32(*((SI8*) (*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) + 1(SI32)))) == 79(SI32) )
+
+
+BBLOCK 13:
+preds: 12
+succs: 14
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3365  29 p.1019_V$3f7 = *((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) + 2(SI32);
+
+
+BBLOCK 14:
+preds: 19 13
+succs: 15 20
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3368  38 L38:
+3368  35 t6 = EXPR_CONV.SI8.SI32(*((SI8*) p.1019_V$3f7));
+3368  36 c.1019_V$3f8 = t6;
+3368  37 t7 = t6;
+3368  34 p.1019_V$3f7 = p.1019_V$3f7 + 1(I32);
+3368  40 if ( t7 != 0(SI32) )
+
+
+BBLOCK 15:
+preds: 14
+succs: 18 16
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3369  33 if ( c.1019_V$3f8 < 48(SI32) )
+
+
+BBLOCK 16:
+preds: 15
+succs: 17 19
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3369 416 if ( c.1019_V$3f8 > 57(SI32) )
+
+
+BBLOCK 17:
+preds: 18 16
+succs: 20
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3370 418 L418:
+3370  30 goto L1;
+
+
+BBLOCK 18:
+preds: 15
+succs: 17
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3370 417 goto L418;
+
+
+BBLOCK 19:
+preds: 16
+succs: 14
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3368  39 goto L38;
+
+
+BBLOCK 20:
+preds: 17 14
+succs: 21 23
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3371   1 L1:
+3371  43 if ( c.1019_V$3f8 == 0(SI32) )
+
+
+BBLOCK 21:
+preds: 20
+succs: 23
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3372  41  ( (SI32) t8 ) = atoi{ic=ATOI}( (SI8 *)*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) + 2(SI32) );  [UNIX_ABI]
+3372  42 optimize_V$35 = t8;
+
+
+BBLOCK 22:
+preds: 10
+succs: 23
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3360  28 optimize_V$35 = 1(SI32);
+
+
+BBLOCK 23:
+preds: 22 21 20 12 11
+succs: 9
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3356  47 i.1015_V$3ef = i.1015_V$3ef + 1(SI32);
+3356 421 goto L422;
+
+
+BBLOCK 24:
+preds: 9
+succs: 26 25
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3376  49 optimize_V$35 = 3(SI32);
+3378 423 if ( optimize_V$35 == 0(SI32) )
+
+
+BBLOCK 25:
+preds: 24
+succs: 27
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3378 424 obey_regdecls_V$42 = 0(SI32);
+
+
+BBLOCK 26:
+preds: 24
+succs: 27
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3378  50 obey_regdecls_V$42 = 1(SI32);
+
+
+BBLOCK 27:
+preds: 26 25
+succs: 28 29
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3379  53 if ( optimize_V$35 == 0(SI32) )
+
+
+BBLOCK 28:
+preds: 27
+succs: 29
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3381  51 flag_no_inline_V$5e = 1(SI32);
+3382  52 warn_inline_V$85 = 0(SI32);
+
+
+BBLOCK 29:
+preds: 28 27
+succs: 30 31
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3385  58 if ( optimize_V$35 >= 1(SI32) )
+
+
+BBLOCK 30:
+preds: 29
+succs: 31
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3387  54 flag_defer_pop_V$4a = 1(SI32);
+3388  55 flag_thread_jumps_V$4f = 1(SI32);
+3390  56 flag_delayed_branch_V$62 = 1(SI32);
+3393  57 flag_omit_frame_pointer_V$55 = 1(SI32);
+
+
+BBLOCK 31:
+preds: 30 29
+succs: 32 33
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3397  67 if ( optimize_V$35 >= 2(SI32) )
+
+
+BBLOCK 32:
+preds: 31
+succs: 33
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3399  59 flag_cse_follow_jumps_V$4c = 1(SI32);
+3400  60 flag_cse_skip_blocks_V$4d = 1(SI32);
+3401  61 flag_expensive_optimizations_V$4e = 1(SI32);
+3402  62 flag_strength_reduce_V$50 = 1(SI32);
+3403  63 flag_rerun_cse_after_loop_V$5b = 1(SI32);
+3405  64 flag_force_mem_V$48 = 1(SI32);
+3407  65 flag_schedule_insns_V$68 = 1(SI32);
+3408  66 flag_schedule_insns_after_reload_V$69 = 1(SI32);
+
+
+BBLOCK 33:
+preds: 32 31
+succs: 34 35
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3412  69 if ( optimize_V$35 >= 3(SI32) )
+
+
+BBLOCK 34:
+preds: 33
+succs: 35
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3414  68 flag_inline_functions_V$5c = 1(SI32);
+
+
+BBLOCK 35:
+preds: 34 33
+succs: 36
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3423  70 init_reg_sets(  );  [UNIX_ABI]
+
+
+BBLOCK 36:
+preds: 35
+succs: 37
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3425  71 target_flags_V$5 = 0(SI32);
+3426  72 set_target_switch( (SI8 *)&.L_2__STRING.236_V$1d4 );  [UNIX_ABI]
+
+
+BBLOCK 37:
+preds: 36
+succs: 38
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3428  73 i.1015_V$3ef = 1(SI32);
+
+
+BBLOCK 38:
+preds: 254 37
+succs: 39 255
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3428 502 L502:
+3428 500 if ( i.1015_V$3ef < argc_1015_V$3ed )
+
+
+BBLOCK 39:
+preds: 38
+succs: 40
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3433  74 j.1024_V$3fa = 0(SI32);
+
+
+BBLOCK 40:
+preds: 43 39
+succs: 41 44
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3433 427 L427:
+3433 425 if ( lang_options_V$77[j.1024_V$3fa] != 0(I32) )
+
+
+BBLOCK 41:
+preds: 40
+succs: 42 43
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3435  76  ( (SI32) t10 ) = strlen{ic=STRLEN}( (void *)lang_options_V$77[j.1024_V$3fa] );  [UNIX_ABI]
+3434  77  ( (SI32) t11 ) = strncmp{ic=STRNCMP}( (void *)*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))), (void *)lang_options_V$77[j.1024_V$3fa], (SI32) t10 );  [UNIX_ABI]
+3434  78 if ( t11 == 0(SI32) )
+
+
+BBLOCK 42:
+preds: 41
+succs: 44
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3436  75 goto L2;
+
+
+BBLOCK 43:
+preds: 41
+succs: 40
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3433  79 j.1024_V$3fa = j.1024_V$3fa + 1(SI32);
+3433 426 goto L427;
+
+
+BBLOCK 44:
+preds: 42 40
+succs: 253 45
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3437   2 L2:
+3437 339 if ( lang_options_V$77[j.1024_V$3fa] != 0(I32) )
+
+
+BBLOCK 45:
+preds: 44
+succs: 47 46
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3441 338 if ( EXPR_CONV.SI8.SI32(*((SI8*) *((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))))) == 45(SI32) )
+
+
+BBLOCK 46:
+preds: 45
+succs: 48
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3831 498 goto L499;
+
+
+BBLOCK 47:
+preds: 45
+succs: 51 48
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3441 497 if ( EXPR_CONV.SI8.SI32(*((SI8*) (*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) + 1(SI32)))) != 0(SI32) )
+
+
+BBLOCK 48:
+preds: 47 46
+succs: 50 49
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3831 499 L499:
+3831 337 if ( EXPR_CONV.SI8.SI32(*((SI8*) *((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))))) == 43(SI32) )
+
+
+BBLOCK 49:
+preds: 48
+succs: 254
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3834 336 filename.1015_V$3f0 = *((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32)));
+
+
+BBLOCK 50:
+preds: 48
+succs: 254
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3832 335 error( (SI8 *)&.L_2__STRING.318_V$3fe, (SI8 *)*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) );  [UNIX_ABI]
+
+
+BBLOCK 51:
+preds: 47
+succs: 52 53
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3443  82 str.1025_V$3fb = *((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) + 1(SI32);
+3444  84 if ( EXPR_CONV.SI8.SI32(*((SI8*) str.1025_V$3fb)) == 89(SI32) )
+
+
+BBLOCK 52:
+preds: 51
+succs: 53
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3445  83 str.1025_V$3fb = str.1025_V$3fb + 1(I32);
+
+
+BBLOCK 53:
+preds: 52 51
+succs: 252 54
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3447 334 if ( EXPR_CONV.SI8.SI32(*((SI8*) str.1025_V$3fb)) == 109(SI32) )
+
+
+BBLOCK 54:
+preds: 53
+succs: 251 55
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3449 332  ( (SI32) t50 ) = strcmp{ic=STRCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.339_V$41d );  [UNIX_ABI]
+3449 333 if ( t50 == 0(SI32) )
+
+
+BBLOCK 55:
+preds: 54
+succs: 204 56
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3453 585 t63 = EXPR_CONV.SI8.SI32(*((SI8*) str.1025_V$3fb));
+3453 586 if ( t63 == 100(SI32) )
+
+
+BBLOCK 56:
+preds: 55
+succs: 203 57
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3453 587 if ( t63 == 102(SI32) )
+
+
+BBLOCK 57:
+preds: 56
+succs: 194 58
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3453 588 if ( t63 == 79(SI32) )
+
+
+BBLOCK 58:
+preds: 57
+succs: 193 59
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3583 327  ( (SI32) t49 ) = strcmp{ic=STRCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.338_V$41c );  [UNIX_ABI]
+3583 328 if ( t49 == 0(SI32) )
+
+
+BBLOCK 59:
+preds: 58
+succs: 192 60
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3585 325  ( (SI32) t48 ) = strcmp{ic=STRCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.337_V$41b );  [UNIX_ABI]
+3585 326 if ( t48 == 0(SI32) )
+
+
+BBLOCK 60:
+preds: 59
+succs: 191 61
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3587 323  ( (SI32) t47 ) = strcmp{ic=STRCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.336_V$41a );  [UNIX_ABI]
+3587 324 if ( t47 == 0(SI32) )
+
+
+BBLOCK 61:
+preds: 60
+succs: 190 62
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3589 321  ( (SI32) t46 ) = strcmp{ic=STRCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.335_V$419 );  [UNIX_ABI]
+3589 322 if ( t46 == 0(SI32) )
+
+
+BBLOCK 62:
+preds: 61
+succs: 189 63
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3591 319  ( (SI32) t45 ) = strcmp{ic=STRCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.267_V$35e );  [UNIX_ABI]
+3591 320 if ( t45 == 0(SI32) )
+
+
+BBLOCK 63:
+preds: 62
+succs: 187 64
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3593 317  ( (SI32) t44 ) = strcmp{ic=STRCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.334_V$418 );  [UNIX_ABI]
+3593 318 if ( t44 == 0(SI32) )
+
+
+BBLOCK 64:
+preds: 63
+succs: 147 65
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3602 316 if ( EXPR_CONV.SI8.SI32(*((SI8*) str.1025_V$3fb)) == 87(SI32) )
+
+
+BBLOCK 65:
+preds: 64
+succs: 144 66
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3671 314  ( (SI32) t43 ) = strcmp{ic=STRCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.333_V$417 );  [UNIX_ABI]
+3671 315 if ( t43 == 0(SI32) )
+
+
+BBLOCK 66:
+preds: 65
+succs: 143 67
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3678 312  ( (SI32) t42 ) = strcmp{ic=STRCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.332_V$416 );  [UNIX_ABI]
+3678 313 if ( t42 == 0(SI32) )
+
+
+BBLOCK 67:
+preds: 66
+succs: 81 68
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3686 311 if ( EXPR_CONV.SI8.SI32(*((SI8*) str.1025_V$3fb)) == 103(SI32) )
+
+
+BBLOCK 68:
+preds: 67
+succs: 80 69
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3814 309  ( (SI32) t41 ) = strcmp{ic=STRCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.331_V$415 );  [UNIX_ABI]
+3814 310 if ( t41 == 0(SI32) )
+
+
+BBLOCK 69:
+preds: 68
+succs: 76 70
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3818 308 if ( EXPR_CONV.SI8.SI32(*((SI8*) str.1025_V$3fb)) == 71(SI32) )
+
+
+BBLOCK 70:
+preds: 69
+succs: 72 71
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3823 306  ( (SI32) t40 ) = strncmp{ic=STRNCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.330_V$414, (SI32) 8(SI32) );  [UNIX_ABI]
+3823 307 if ( t40 == 0(SI32) )
+
+
+BBLOCK 71:
+preds: 70
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3829 305 error( (SI8 *)&.L_2__STRING.318_V$3fe, (SI8 *)*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) );  [UNIX_ABI]
+
+
+BBLOCK 72:
+preds: 70
+succs: 74 73
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3825 298 flag_gen_aux_info_V$5f = 1(SI32);
+3826 303 if ( EXPR_CONV.SI8.SI32(*((SI8*) (str.1025_V$3fb + 8(SI32)))) != 0(SI32) )
+
+
+BBLOCK 73:
+preds: 72
+succs: 75
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3826 299 t38 = i.1015_V$3ef + 1(SI32);
+3826 300 i.1015_V$3ef = t38;
+3826 302 t39 = *((P32.SI8*) (argv_1015_V$3ee + t38 * 4(I32)));
+
+
+BBLOCK 74:
+preds: 72
+succs: 75
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3826 301 t39 = str.1025_V$3fb + 8(SI32);
+
+
+BBLOCK 75:
+preds: 74 73
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3826 304 aux_info_file_name_V$60 = t39;
+
+
+BBLOCK 76:
+preds: 69
+succs: 78 77
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3820 290 g_switch_set_V$31 = 1(SI32);
+3821 295 if ( EXPR_CONV.SI8.SI32(*((SI8*) (str.1025_V$3fb + 1(SI32)))) != 0(SI32) )
+
+
+BBLOCK 77:
+preds: 76
+succs: 79
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3821 291 t35 = i.1015_V$3ef + 1(SI32);
+3821 292 i.1015_V$3ef = t35;
+3821 294 t36 = *((P32.SI8*) (argv_1015_V$3ee + t35 * 4(I32)));
+
+
+BBLOCK 78:
+preds: 76
+succs: 79
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3821 293 t36 = str.1025_V$3fb + 1(SI32);
+
+
+BBLOCK 79:
+preds: 78 77
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3821 296  ( (SI32) t37 ) = atoi{ic=ATOI}( (SI8 *)t36 );  [UNIX_ABI]
+3821 297 g_switch_value_V$30 = t37;
+
+
+BBLOCK 80:
+preds: 68
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3816 287 t34 = i.1015_V$3ef + 1(SI32);
+3816 288 i.1015_V$3ef = t34;
+3816 289 asm_file_name_V$2f = *((P32.SI8*) (argv_1015_V$3ee + t34 * 4(I32)));
+
+
+BBLOCK 81:
+preds: 67
+succs: 82
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3688 221 p.1044_V$405 = str.1025_V$3fb + 1(SI32);
+
+
+BBLOCK 82:
+preds: 85 81
+succs: 83 87
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3693 481 L481:
+3693 479 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1044_V$405)) != 0(SI32) )
+
+
+BBLOCK 83:
+preds: 82
+succs: 86 84
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3693 482 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1044_V$405)) < 48(SI32) )
+
+
+BBLOCK 84:
+preds: 83
+succs: 85 87
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3693 483 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1044_V$405)) > 57(SI32) )
+
+
+BBLOCK 85:
+preds: 86 84
+succs: 82
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3694 485 L485:
+3694 222 p.1044_V$405 = p.1044_V$405 + 1(I32);
+3693 480 goto L481;
+
+
+BBLOCK 86:
+preds: 83
+succs: 85
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3694 484 goto L485;
+
+
+BBLOCK 87:
+preds: 84 82
+succs: 88
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3695 224 len.1044_V$407 = EXPR_CONV.SI32.I32(p.1044_V$405 - str.1025_V$3fb);
+3696 225 q.1044_V$406 = p.1044_V$405;
+
+
+BBLOCK 88:
+preds: 91 87
+succs: 89 93
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3697 488 L488:
+3697 486 if ( EXPR_CONV.SI8.SI32(*((SI8*) q.1044_V$406)) != 0(SI32) )
+
+
+BBLOCK 89:
+preds: 88
+succs: 90 92
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3697 573 if ( EXPR_CONV.SI8.SI32(*((SI8*) q.1044_V$406)) >= 48(SI32) )
+
+
+BBLOCK 90:
+preds: 89
+succs: 91 92
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3697 574 if ( EXPR_CONV.SI8.SI32(*((SI8*) q.1044_V$406)) <= 57(SI32) )
+
+
+BBLOCK 91:
+preds: 90
+succs: 88
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3698 226 q.1044_V$406 = q.1044_V$406 + 1(I32);
+3697 487 goto L488;
+
+
+BBLOCK 92:
+preds: 90 89
+succs: 93
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3697 553 L553:
+
+
+BBLOCK 93:
+preds: 92 88
+succs: 95 94
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3699 231 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1044_V$405)) != 0(SI32) )
+
+
+BBLOCK 94:
+preds: 93
+succs: 96
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3702 230 level.1044_V$408 = 2(I32);
+
+
+BBLOCK 95:
+preds: 93
+succs: 96
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3700 228  ( (SI32) t23 ) = atoi{ic=ATOI}( (SI8 *)p.1044_V$405 );  [UNIX_ABI]
+3700 229 level.1044_V$408 = EXPR_CONV.SI32.I32(t23);
+
+
+BBLOCK 96:
+preds: 95 94
+succs: 101 97
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3703 235 if ( EXPR_CONV.SI8.SI32(*((SI8*) q.1044_V$406)) != 0(SI32) )
+
+
+BBLOCK 97:
+preds: 96
+succs: 98 102
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3703 491 if ( level.1044_V$408 > 3(I32) )
+
+
+BBLOCK 98:
+preds: 101 97
+succs: 99
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3705 493 L493:
+3705 232 warning( (SI8 *)&.L_2__STRING.321_V$40a, (SI8 *)str.1025_V$3fb );  [UNIX_ABI]
+
+
+BBLOCK 99:
+preds: 98
+succs: 100
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3707 233 warning( (SI8 *)&.L_2__STRING.322_V$40c );  [UNIX_ABI]
+
+
+BBLOCK 100:
+preds: 99
+succs: 102
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3708 234 level.1044_V$408 = 0(I32);
+
+
+BBLOCK 101:
+preds: 96
+succs: 98
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3705 492 goto L493;
+
+
+BBLOCK 102:
+preds: 100 97
+succs: 103 107
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3717 237  ( (SI32) t24 ) = strncmp{ic=STRNCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.323_V$40d, (SI32) EXPR_CONV.I32.SI32(len.1044_V$407) );  [UNIX_ABI]
+3717 238 if ( t24 == 0(SI32) )
+
+
+BBLOCK 103:
+preds: 102
+succs: 105 104
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3718 494 if ( (target_flags_V$5 & 16(SI32)) != 0(SI32) )
+
+
+BBLOCK 104:
+preds: 103
+succs: 106
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3718 496 t61 = 2(SI32);
+
+
+BBLOCK 105:
+preds: 103
+succs: 106
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3718 495 t61 = 3(SI32);
+
+
+BBLOCK 106:
+preds: 105 104
+succs: 107
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3718 236 write_symbols_V$32 = EXPR_CONV.SI32.I32(t61);
+
+
+BBLOCK 107:
+preds: 106 102
+succs: 114 108
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3749 248 if ( write_symbols_V$32 != 0(I32) )
+
+
+BBLOCK 108:
+preds: 107
+succs: 113 109
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3751 246  ( (SI32) t27 ) = strncmp{ic=STRNCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.325_V$40f, (SI32) EXPR_CONV.I32.SI32(len.1044_V$407) );  [UNIX_ABI]
+3751 247 if ( t27 == 0(SI32) )
+
+
+BBLOCK 109:
+preds: 108
+succs: 112 110
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3753 244  ( (SI32) t26 ) = strncmp{ic=STRNCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.323_V$40d, (SI32) EXPR_CONV.I32.SI32(len.1044_V$407) );  [UNIX_ABI]
+3753 245 if ( t26 == 0(SI32) )
+
+
+BBLOCK 110:
+preds: 109
+succs: 111 114
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3755 242  ( (SI32) t25 ) = strncmp{ic=STRNCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.324_V$40e, (SI32) EXPR_CONV.I32.SI32(len.1044_V$407) );  [UNIX_ABI]
+3755 243 if ( t25 == 0(SI32) )
+
+
+BBLOCK 111:
+preds: 110
+succs: 114
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3756 241 write_symbols_V$32 = 3(I32);
+
+
+BBLOCK 112:
+preds: 109
+succs: 114
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3754 240 write_symbols_V$32 = 3(I32);
+
+
+BBLOCK 113:
+preds: 108
+succs: 114
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3752 239 write_symbols_V$32 = 3(I32);
+
+
+BBLOCK 114:
+preds: 113 112 111 110 107
+succs: 116 115
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3761 271 if ( write_symbols_V$32 == 3(I32) )
+
+
+BBLOCK 115:
+preds: 114
+succs: 119
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3761 270 goto L267;
+
+
+BBLOCK 116:
+preds: 114
+succs: 118 117
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3761 266  ( (SI32) t30 ) = strncmp{ic=STRNCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.323_V$40d, (SI32) EXPR_CONV.I32.SI32(len.1044_V$407) );  [UNIX_ABI]
+3761 269 if ( t30 == 0(SI32) )
+
+
+BBLOCK 117:
+preds: 116
+succs: 119
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3761 268 goto L267;
+
+
+BBLOCK 118:
+preds: 116
+succs: 130 119
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3762 265 if ( len.1044_V$407 >= 2(I32) )
+
+
+BBLOCK 119:
+preds: 118 117 115
+succs: 121 120
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3761 267 L267:
+3764 264 if ( write_symbols_V$32 == 3(I32) )
+
+
+BBLOCK 120:
+preds: 119
+succs: 122
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3764 263 goto L262;
+
+
+BBLOCK 121:
+preds: 119
+succs: 129 122
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3764 260  ( (SI32) t29 ) = strcmp{ic=STRCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.326_V$410 );  [UNIX_ABI]
+3764 261 if ( t29 == 0(SI32) )
+
+
+BBLOCK 122:
+preds: 121 120
+succs: 124 123
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3764 262 L262:
+3766 259 if ( write_symbols_V$32 == 3(I32) )
+
+
+BBLOCK 123:
+preds: 122
+succs: 127
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3766 258 goto L255;
+
+
+BBLOCK 124:
+preds: 122
+succs: 126 125
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3767 254  ( (SI32) t28 ) = strncmp{ic=STRNCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.324_V$40e, (SI32) EXPR_CONV.I32.SI32(len.1044_V$407) );  [UNIX_ABI]
+3767 257 if ( t28 == 0(SI32) )
+
+
+BBLOCK 125:
+preds: 124
+succs: 127
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3767 256 goto L255;
+
+
+BBLOCK 126:
+preds: 124
+succs: 128 127
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3767 253 if ( len.1044_V$407 >= 2(I32) )
+
+
+BBLOCK 127:
+preds: 126 125 123
+succs: 131
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3767 255 L255:
+3770 252 use_gnu_debug_info_extensions_V$34 = 1(SI32);
+
+
+BBLOCK 128:
+preds: 126
+succs: 131
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3768 251 use_gnu_debug_info_extensions_V$34 = 0(SI32);
+
+
+BBLOCK 129:
+preds: 121
+succs: 131
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3765 250 use_gnu_debug_info_extensions_V$34 = 1(SI32);
+
+
+BBLOCK 130:
+preds: 118
+succs: 131
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3763 249 use_gnu_debug_info_extensions_V$34 = 1(SI32);
+
+
+BBLOCK 131:
+preds: 130 129 128 127
+succs: 138 132
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3773 281 if ( write_symbols_V$32 != 0(I32) )
+
+
+BBLOCK 132:
+preds: 131
+succs: 137 133
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3775 279  ( (SI32) t33 ) = strncmp{ic=STRNCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.325_V$40f, (SI32) EXPR_CONV.I32.SI32(len.1044_V$407) );  [UNIX_ABI]
+3775 280 if ( t33 == 0(SI32) )
+
+
+BBLOCK 133:
+preds: 132
+succs: 136 134
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3777 277  ( (SI32) t32 ) = strncmp{ic=STRNCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.328_V$412, (SI32) EXPR_CONV.I32.SI32(len.1044_V$407) );  [UNIX_ABI]
+3777 278 if ( t32 == 0(SI32) )
+
+
+BBLOCK 134:
+preds: 133
+succs: 135 138
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3779 275  ( (SI32) t31 ) = strncmp{ic=STRNCMP}( (void *)str.1025_V$3fb, (void *)&.L_2__STRING.327_V$411, (SI32) EXPR_CONV.I32.SI32(len.1044_V$407) );  [UNIX_ABI]
+3779 276 if ( t31 == 0(SI32) )
+
+
+BBLOCK 135:
+preds: 134
+succs: 138
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3780 274 write_symbols_V$32 = 2(I32);
+
+
+BBLOCK 136:
+preds: 133
+succs: 138
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3778 273 write_symbols_V$32 = 2(I32);
+
+
+BBLOCK 137:
+preds: 132
+succs: 138
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3776 272 write_symbols_V$32 = 2(I32);
+
+
+BBLOCK 138:
+preds: 137 136 135 134 131
+succs: 142 139
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3806 286 if ( write_symbols_V$32 == 0(I32) )
+
+
+BBLOCK 139:
+preds: 138
+succs: 141 140
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3809 285 if ( level.1044_V$408 == 0(I32) )
+
+
+BBLOCK 140:
+preds: 139
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3812 284 debug_info_level_V$33 = level.1044_V$408;
+
+
+BBLOCK 141:
+preds: 139
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3810 283 write_symbols_V$32 = 0(I32);
+
+
+BBLOCK 142:
+preds: 138
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3807 282 warning( (SI8 *)&.L_2__STRING.329_V$413, (SI8 *)str.1025_V$3fb );  [UNIX_ABI]
+
+
+BBLOCK 143:
+preds: 66
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3683 220 profile_block_flag_V$3f = 1(SI32);
+
+
+BBLOCK 144:
+preds: 65
+succs: 146 145
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3673 219 if ( output_bytecode_V$39 == 0(SI32) )
+
+
+BBLOCK 145:
+preds: 144
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3676 218 error( (SI8 *)&.L_2__STRING.288_V$37a );  [UNIX_ABI]
+
+
+BBLOCK 146:
+preds: 144
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3674 217 profile_flag_V$3e = 1(SI32);
+
+
+BBLOCK 147:
+preds: 64
+succs: 148
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3604 179 p.1032_V$3ff = str.1025_V$3fb + 1(SI32);
+3605 180 found.1032_V$400 = 0(SI32);
+3611 181 j.1024_V$3fa = 0(SI32);
+
+
+BBLOCK 148:
+preds: 160 147
+succs: 149 161
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3611 465 L465:
+3611 463 if ( found.1032_V$400 == 0(SI32) )
+
+
+BBLOCK 149:
+preds: 148
+succs: 150 161
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3611 466 if ( EXPR_CONV.SI32.I32(j.1024_V$3fa) < 8(I32) )
+
+
+BBLOCK 150:
+preds: 149
+succs: 151 152
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3615 184  ( (SI32) t17 ) = strcmp{ic=STRCMP}( (void *)p.1032_V$3ff, (void *)string_V$8b_2.37[j.1024_V$3fa] );  [UNIX_ABI]
+3615 185 if ( t17 == 0(SI32) )
+
+
+BBLOCK 151:
+preds: 150
+succs: 152
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3617 182 *((SI32*) variable_V$8c_2.36[j.1024_V$3fa]) = on_value_V$8d_2.35[j.1024_V$3fa];
+3620 183 found.1032_V$400 = 1(SI32);
+
+
+BBLOCK 152:
+preds: 151 150
+succs: 153 160
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3622 190 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1032_V$3ff)) == 110(SI32) )
+
+
+BBLOCK 153:
+preds: 152
+succs: 154 160
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3622 462 if ( EXPR_CONV.SI8.SI32(*((SI8*) (p.1032_V$3ff + 1(SI32)))) == 111(SI32) )
+
+
+BBLOCK 154:
+preds: 153
+succs: 155 160
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3622 461 if ( EXPR_CONV.SI8.SI32(*((SI8*) (p.1032_V$3ff + 2(SI32)))) == 45(SI32) )
+
+
+BBLOCK 155:
+preds: 154
+succs: 156 160
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3623 188  ( (SI32) t18 ) = strcmp{ic=STRCMP}( (void *)p.1032_V$3ff + 3(SI32), (void *)string_V$8b_2.37[j.1024_V$3fa] );  [UNIX_ABI]
+3623 189 if ( t18 == 0(SI32) )
+
+
+BBLOCK 156:
+preds: 155
+succs: 158 157
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3625 459 if ( on_value_V$8d_2.35[j.1024_V$3fa] == 0(SI32) )
+
+
+BBLOCK 157:
+preds: 156
+succs: 159
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3625 460 *((SI32*) variable_V$8c_2.36[j.1024_V$3fa]) = 0(SI32);
+
+
+BBLOCK 158:
+preds: 156
+succs: 159
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3625 186 *((SI32*) variable_V$8c_2.36[j.1024_V$3fa]) = 1(SI32);
+
+
+BBLOCK 159:
+preds: 158 157
+succs: 160
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3626 187 found.1032_V$400 = 1(SI32);
+
+
+BBLOCK 160:
+preds: 159 155 154 153 152
+succs: 148
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3613 191 j.1024_V$3fa = j.1024_V$3fa + 1(SI32);
+3611 464 goto L465;
+
+
+BBLOCK 161:
+preds: 149 148
+succs: 250 162
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3630 216 if ( found.1032_V$400 != 0(SI32) )
+
+
+BBLOCK 162:
+preds: 161
+succs: 176 163
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3632 214  ( (SI32) t22 ) = strncmp{ic=STRNCMP}( (void *)p.1032_V$3ff, (void *)&.L_2__STRING.320_V$404, (SI32) 9(SI32) );  [UNIX_ABI]
+3632 215 if ( t22 == 0(SI32) )
+
+
+BBLOCK 163:
+preds: 162
+succs: 165 164
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3650 212  ( (SI32) t21 ) = strncmp{ic=STRNCMP}( (void *)p.1032_V$3ff, (void *)&.L_2__STRING.319_V$403, (SI32) 12(SI32) );  [UNIX_ABI]
+3650 213 if ( t21 == 0(SI32) )
+
+
+BBLOCK 164:
+preds: 163
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3669 211 error( (SI8 *)&.L_2__STRING.318_V$3fe, (SI8 *)*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) );  [UNIX_ABI]
+
+
+BBLOCK 165:
+preds: 163
+succs: 166
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3652 202 endp.1039_V$402 = p.1032_V$3ff + 12(SI32);
+
+
+BBLOCK 166:
+preds: 173 165
+succs: 167 174
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3654 478 L478:
+3654 476 if ( EXPR_CONV.SI8.SI32(*((SI8*) endp.1039_V$402)) != 0(SI32) )
+
+
+BBLOCK 167:
+preds: 166
+succs: 169 168
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3656 575 if ( EXPR_CONV.SI8.SI32(*((SI8*) endp.1039_V$402)) >= 48(SI32) )
+
+
+BBLOCK 168:
+preds: 167
+succs: 170
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3660 577 goto L578;
+
+
+BBLOCK 169:
+preds: 167
+succs: 172 170
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3656 576 if ( EXPR_CONV.SI8.SI32(*((SI8*) endp.1039_V$402)) <= 57(SI32) )
+
+
+BBLOCK 170:
+preds: 169 168
+succs: 171
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3660 578 L578:
+3660 204 error( (SI8 *)&.L_2__STRING.318_V$3fe, (SI8 *)*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) );  [UNIX_ABI]
+
+
+BBLOCK 171:
+preds: 170
+succs: 175
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3661 205 goto L5;
+
+
+BBLOCK 172:
+preds: 169
+succs: 173
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3657 203 endp.1039_V$402 = endp.1039_V$402 + 1(I32);
+3656 547 goto L546;
+
+
+BBLOCK 173:
+preds: 172
+succs: 166
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3656 546 L546:
+3654 477 goto L478;
+
+
+BBLOCK 174:
+preds: 166
+succs: 175
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3664 208 warn_larger_than_V$83 = 1(SI32);
+3665 209  ( (SI32) t20 ) = atoi{ic=ATOI}( (SI8 *)str.1025_V$3fb + 13(SI32) );  [UNIX_ABI]
+3665 210 larger_than_size_V$84 = EXPR_CONV.SI32.I32(t20);
+
+
+BBLOCK 175:
+preds: 174 171
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3666   5 L5:
+
+
+BBLOCK 176:
+preds: 162
+succs: 177
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3634 193 endp.1036_V$401 = p.1032_V$3ff + 9(SI32);
+
+
+BBLOCK 177:
+preds: 184 176
+succs: 178 185
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3636 472 L472:
+3636 470 if ( EXPR_CONV.SI8.SI32(*((SI8*) endp.1036_V$401)) != 0(SI32) )
+
+
+BBLOCK 178:
+preds: 177
+succs: 180 179
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3638 579 if ( EXPR_CONV.SI8.SI32(*((SI8*) endp.1036_V$401)) >= 48(SI32) )
+
+
+BBLOCK 179:
+preds: 178
+succs: 181
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3642 581 goto L582;
+
+
+BBLOCK 180:
+preds: 178
+succs: 183 181
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3638 580 if ( EXPR_CONV.SI8.SI32(*((SI8*) endp.1036_V$401)) <= 57(SI32) )
+
+
+BBLOCK 181:
+preds: 180 179
+succs: 182
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3642 582 L582:
+3642 195 error( (SI8 *)&.L_2__STRING.318_V$3fe, (SI8 *)*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) );  [UNIX_ABI]
+
+
+BBLOCK 182:
+preds: 181
+succs: 186
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3643 196 goto L4;
+
+
+BBLOCK 183:
+preds: 180
+succs: 184
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3639 194 endp.1036_V$401 = endp.1036_V$401 + 1(I32);
+3638 542 goto L541;
+
+
+BBLOCK 184:
+preds: 183
+succs: 177
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3638 541 L541:
+3636 471 goto L472;
+
+
+BBLOCK 185:
+preds: 177
+succs: 186
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3646 199 warn_id_clash_V$81 = 1(SI32);
+3647 200  ( (SI32) t19 ) = atoi{ic=ATOI}( (SI8 *)str.1025_V$3fb + 10(SI32) );  [UNIX_ABI]
+3647 201 id_clash_len_V$82 = EXPR_CONV.SI32.I32(t19);
+
+
+BBLOCK 186:
+preds: 185 182
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3648   4 L4:
+
+
+BBLOCK 187:
+preds: 63
+succs: 188 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3595 176 extra_warnings_V$79 = 1(SI32);
+3599 178 if ( warn_uninitialized_V$7c != 1(SI32) )
+
+
+BBLOCK 188:
+preds: 187
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3600 177 warn_uninitialized_V$7c = 2(SI32);
+
+
+BBLOCK 189:
+preds: 62
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3592 175 inhibit_warnings_V$78 = 1(SI32);
+
+
+BBLOCK 190:
+preds: 61
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3590 174 version_flag.1015_V$3f2 = 1(SI32);
+
+
+BBLOCK 191:
+preds: 60
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3588 173 quiet_flag_V$43 = 1(SI32);
+
+
+BBLOCK 192:
+preds: 59
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3586 170 t16 = 1(SI32);
+3586 171 pedantic_V$40 = t16;
+3586 172 flag_pedantic_errors_V$67 = t16;
+
+
+BBLOCK 193:
+preds: 58
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3584 169 pedantic_V$40 = 1(SI32);
+
+
+BBLOCK 194:
+preds: 57
+succs: 195
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3575 164 p.1030_V$3fd = str.1025_V$3fb + 1(SI32);
+
+
+BBLOCK 195:
+preds: 198 194
+succs: 196 200
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3576 456 L456:
+3576 454 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1030_V$3fd)) != 0(SI32) )
+
+
+BBLOCK 196:
+preds: 195
+succs: 197 199
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3576 583 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1030_V$3fd)) >= 48(SI32) )
+
+
+BBLOCK 197:
+preds: 196
+succs: 198 199
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3576 584 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1030_V$3fd)) <= 57(SI32) )
+
+
+BBLOCK 198:
+preds: 197
+succs: 195
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3577 165 p.1030_V$3fd = p.1030_V$3fd + 1(I32);
+3576 455 goto L456;
+
+
+BBLOCK 199:
+preds: 197 196
+succs: 200
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3576 534 L534:
+
+
+BBLOCK 200:
+preds: 199 195
+succs: 202 201
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3578 168 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1030_V$3fd)) == 0(SI32) )
+
+
+BBLOCK 201:
+preds: 200
+succs: 202
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3581 167 error( (SI8 *)&.L_2__STRING.318_V$3fe, (SI8 *)*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) );  [UNIX_ABI]
+
+
+BBLOCK 202:
+preds: 201 200
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3573 530 goto L527;
+
+
+BBLOCK 203:
+preds: 56
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3531 529 goto L527;
+
+
+BBLOCK 204:
+preds: 55
+succs: 205
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3455  89 p.1027_V$3fc = str.1025_V$3fb + 1(SI32);
+
+
+BBLOCK 205:
+preds: 248 204
+succs: 206 249
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3456 453 L453:
+3456 451 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1027_V$3fc)) != 0(SI32) )
+
+
+BBLOCK 206:
+preds: 205
+succs: 207 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3457 161 t15 = EXPR_CONV.SI8.SI32(*((SI8*) p.1027_V$3fc));
+3457 160 p.1027_V$3fc = p.1027_V$3fc + 1(I32);
+3457 428 t60 = t15;
+3457 449 if ( t60 - 74(SI32) <= 47(SI32) )
+
+
+BBLOCK 207:
+preds: 206
+succs: 222 247 226 240 238 208 212 214 216 218 220 210 224 228 230 232 234 236 245 242
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3457 450 igoto ( __1.TAG.65_0[(t60 - 74(SI32))] );
+
+
+BBLOCK 208:
+preds: 207
+succs: 209
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3460 429 tag_anchor ( tag(..1.65_0.TAG.061)(P32));
+
+
+BBLOCK 209:
+preds: 208
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3460  91 combine_dump_V$26 = 1(SI32);
+3461  92 dbr_sched_dump_V$2c = 1(SI32);
+3462  93 flow_dump_V$25 = 1(SI32);
+3463  94 global_reg_dump_V$29 = 1(SI32);
+3464  95 jump_opt_dump_V$21 = 1(SI32);
+3465  96 jump2_opt_dump_V$2b = 1(SI32);
+3466  97 local_reg_dump_V$28 = 1(SI32);
+3467  98 loop_dump_V$23 = 1(SI32);
+3468  99 rtl_dump_V$1f = 1(SI32);
+3469 100 cse_dump_V$22 = 1(SI32);
+3469 101 cse2_dump_V$24 = 1(SI32);
+3470 102 sched_dump_V$27 = 1(SI32);
+3471 103 sched2_dump_V$2a = 1(SI32);
+3472 104 stack_reg_dump_V$2e = 1(SI32);
+3473 105 goto L3;
+
+
+BBLOCK 210:
+preds: 207
+succs: 211
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3475 430 tag_anchor ( tag(..1.65_0.TAG.06b)(P32));
+
+
+BBLOCK 211:
+preds: 210
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3475 107 stack_reg_dump_V$2e = 1(SI32);
+3476 108 goto L3;
+
+
+BBLOCK 212:
+preds: 207
+succs: 213
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3478 431 tag_anchor ( tag(..1.65_0.TAG.063)(P32));
+
+
+BBLOCK 213:
+preds: 212
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3478 110 combine_dump_V$26 = 1(SI32);
+3479 111 goto L3;
+
+
+BBLOCK 214:
+preds: 207
+succs: 215
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3481 432 tag_anchor ( tag(..1.65_0.TAG.064)(P32));
+
+
+BBLOCK 215:
+preds: 214
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3481 113 dbr_sched_dump_V$2c = 1(SI32);
+3482 114 goto L3;
+
+
+BBLOCK 216:
+preds: 207
+succs: 217
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3484 433 tag_anchor ( tag(..1.65_0.TAG.066)(P32));
+
+
+BBLOCK 217:
+preds: 216
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3484 116 flow_dump_V$25 = 1(SI32);
+3485 117 goto L3;
+
+
+BBLOCK 218:
+preds: 207
+succs: 219
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3487 434 tag_anchor ( tag(..1.65_0.TAG.067)(P32));
+
+
+BBLOCK 219:
+preds: 218
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3487 119 global_reg_dump_V$29 = 1(SI32);
+3488 120 goto L3;
+
+
+BBLOCK 220:
+preds: 207
+succs: 221
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3490 435 tag_anchor ( tag(..1.65_0.TAG.06a)(P32));
+
+
+BBLOCK 221:
+preds: 220
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3490 122 jump_opt_dump_V$21 = 1(SI32);
+3491 123 goto L3;
+
+
+BBLOCK 222:
+preds: 207
+succs: 223
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3493 436 tag_anchor ( tag(..1.65_0.TAG.04a)(P32));
+
+
+BBLOCK 223:
+preds: 222
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3493 125 jump2_opt_dump_V$2b = 1(SI32);
+3494 126 goto L3;
+
+
+BBLOCK 224:
+preds: 207
+succs: 225
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3496 437 tag_anchor ( tag(..1.65_0.TAG.06c)(P32));
+
+
+BBLOCK 225:
+preds: 224
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3496 128 local_reg_dump_V$28 = 1(SI32);
+3497 129 goto L3;
+
+
+BBLOCK 226:
+preds: 207
+succs: 227
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3499 438 tag_anchor ( tag(..1.65_0.TAG.04c)(P32));
+
+
+BBLOCK 227:
+preds: 226
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3499 131 loop_dump_V$23 = 1(SI32);
+3500 132 goto L3;
+
+
+BBLOCK 228:
+preds: 207
+succs: 229
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3502 439 tag_anchor ( tag(..1.65_0.TAG.06d)(P32));
+
+
+BBLOCK 229:
+preds: 228
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3502 134 flag_print_mem.1015_V$3f1 = 1(SI32);
+3503 135 goto L3;
+
+
+BBLOCK 230:
+preds: 207
+succs: 231
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3505 440 tag_anchor ( tag(..1.65_0.TAG.070)(P32));
+
+
+BBLOCK 231:
+preds: 230
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3505 137 flag_print_asm_name_V$2d = 1(SI32);
+3506 138 goto L3;
+
+
+BBLOCK 232:
+preds: 207
+succs: 233
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3508 441 tag_anchor ( tag(..1.65_0.TAG.072)(P32));
+
+
+BBLOCK 233:
+preds: 232
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3508 140 rtl_dump_V$1f = 1(SI32);
+3509 141 goto L3;
+
+
+BBLOCK 234:
+preds: 207
+succs: 235
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3511 442 tag_anchor ( tag(..1.65_0.TAG.073)(P32));
+
+
+BBLOCK 235:
+preds: 234
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3511 143 cse_dump_V$22 = 1(SI32);
+3512 144 goto L3;
+
+
+BBLOCK 236:
+preds: 207
+succs: 237
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3514 443 tag_anchor ( tag(..1.65_0.TAG.074)(P32));
+
+
+BBLOCK 237:
+preds: 236
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3514 146 cse2_dump_V$24 = 1(SI32);
+3515 147 goto L3;
+
+
+BBLOCK 238:
+preds: 207
+succs: 239
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3517 444 tag_anchor ( tag(..1.65_0.TAG.053)(P32));
+
+
+BBLOCK 239:
+preds: 238
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3517 149 sched_dump_V$27 = 1(SI32);
+3518 150 goto L3;
+
+
+BBLOCK 240:
+preds: 207
+succs: 241
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3520 445 tag_anchor ( tag(..1.65_0.TAG.052)(P32));
+
+
+BBLOCK 241:
+preds: 240
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3520 152 sched2_dump_V$2a = 1(SI32);
+3521 153 goto L3;
+
+
+BBLOCK 242:
+preds: 207
+succs: 243
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3523 446 tag_anchor ( tag(..1.65_0.TAG.079)(P32));
+
+
+BBLOCK 243:
+preds: 242
+succs: 244
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3523 155  ( (SI32) t14 ) = set_yydebug( (SI32) 1(SI32) );  [UNIX_ABI]
+
+
+BBLOCK 244:
+preds: 243
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3524 156 goto L3;
+
+
+BBLOCK 245:
+preds: 207
+succs: 246
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3527 447 tag_anchor ( tag(..1.65_0.TAG.078)(P32));
+
+
+BBLOCK 246:
+preds: 245
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3527 158 rtl_dump_and_exit_V$20 = 1(SI32);
+3528 159 goto L3;
+
+
+BBLOCK 247:
+preds: 207
+succs: 248
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3457 448 tag_anchor ( tag(..1.65_0.TAG.DEFAULT)(P32));
+
+
+BBLOCK 248:
+preds: 247 246 244 241 239 237 235 233 231 229 227 225 223 221 219 217 215 213 211 209 206
+succs: 205
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3530   3 L3:
+3456 452 goto L453;
+
+
+BBLOCK 249:
+preds: 205
+succs: 250
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3453 528 goto L527;
+
+
+BBLOCK 250:
+preds: 249 203 202 193 192 191 190 189 188 187 186 175 164 161 146 145 143 142 141 140 80 79 75 71
+succs: 254
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3453 527 L527:
+
+
+BBLOCK 251:
+preds: 54
+succs: 254
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3451  86 t13 = i.1015_V$3ef + 1(SI32);
+3451  87 i.1015_V$3ef = t13;
+3451  88 dump_base_name_V$1e = *((P32.SI8*) (argv_1015_V$3ee + t13 * 4(I32)));
+
+
+BBLOCK 252:
+preds: 53
+succs: 254
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3448  85 set_target_switch( (SI8 *)str.1025_V$3fb + 1(SI32) );  [UNIX_ABI]
+
+
+BBLOCK 253:
+preds: 44
+succs: 254
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3440  81  ( (SI32) t12 ) = lang_decode_option( (SI8 *)*((P32.SI8*) (argv_1015_V$3ee + i.1015_V$3ef * 4(I32))) );  [UNIX_ABI]
+
+
+BBLOCK 254:
+preds: 253 252 251 250 50 49
+succs: 38
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3428 340 i.1015_V$3ef = i.1015_V$3ef + 1(SI32);
+3428 501 goto L502;
+
+
+BBLOCK 255:
+preds: 38
+succs: 256 257
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3839 343 if ( output_bytecode_V$39 != 0(SI32) )
+
+
+BBLOCK 256:
+preds: 255
+succs: 257
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3843 342 fatal( (SI8 *)&.L_2__STRING.340_V$41e );  [UNIX_ABI]
+
+
+BBLOCK 257:
+preds: 256 255
+succs: 258 260
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3849 348 if ( optimize_V$35 == 0(SI32) )
+
+
+BBLOCK 258:
+preds: 257
+succs: 259 260
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3853 344 flag_no_inline_V$5e = 1(SI32);
+3854 345 warn_inline_V$85 = 0(SI32);
+3859 347 if ( warn_uninitialized_V$7c == 1(SI32) )
+
+
+BBLOCK 259:
+preds: 258
+succs: 260
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3860 346 warning( (SI8 *)&.L_2__STRING.341_V$420 );  [UNIX_ABI]
+
+
+BBLOCK 260:
+preds: 259 258 257
+succs: 261 264
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3864 353 if ( write_symbols_V$32 == 3(I32) )
+
+
+BBLOCK 261:
+preds: 260
+succs: 262 264
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3865 351  ( (SI32) t51 ) = strcmp{ic=STRCMP}( (void *)language_string_V$12, (void *)&.L_2__STRING.343_V$423 );  [UNIX_ABI]
+3865 352 if ( t51 == 0(SI32) )
+
+
+BBLOCK 262:
+preds: 261
+succs: 263
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3867 349 warning( (SI8 *)&.L_2__STRING.342_V$422 );  [UNIX_ABI]
+
+
+BBLOCK 263:
+preds: 262
+succs: 264
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3868 350 write_symbols_V$32 = 0(I32);
+
+
+BBLOCK 264:
+preds: 296 263 261 260
+succs: 265 266
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 515 L515:
+3874 355 if ( (target_flags_V$5 & 3(SI32)) == 0(SI32) )
+
+
+BBLOCK 265:
+preds: 264
+succs: 266
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 354 target_flags_V$5 = target_flags_V$5 | 3(SI32);
+
+
+BBLOCK 266:
+preds: 265 264
+succs: 267 268
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 358 if ( (target_flags_V$5 & 3(SI32)) == 2(SI32) )
+
+
+BBLOCK 267:
+preds: 266
+succs: 268
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 356 target_flags_V$5 = target_flags_V$5 | 2048(SI32);
+3874 357 target_flags_V$5 = target_flags_V$5 & -1025(SI32);
+
+
+BBLOCK 268:
+preds: 267 266
+succs: 270 269
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 503 if ( (target_flags_V$5 & 3(SI32)) == 3(SI32) )
+
+
+BBLOCK 269:
+preds: 268
+succs: 271
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 505 t62 = 0(SI32);
+
+
+BBLOCK 270:
+preds: 268
+succs: 271
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 504 t62 = 2(SI32);
+
+
+BBLOCK 271:
+preds: 270 269
+succs: 272 273
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 359 m88k_cpu_V$4 = EXPR_CONV.SI32.I32(t62);
+3874 361 if ( (target_flags_V$5 & 128(SI32)) != 0(SI32) )
+
+
+BBLOCK 272:
+preds: 271
+succs: 273
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 360 flag_pic_V$64 = 2(SI32);
+
+
+BBLOCK 273:
+preds: 272 271
+succs: 274 275
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 363 if ( (target_flags_V$5 & 768(SI32)) == 768(SI32) )
+
+
+BBLOCK 274:
+preds: 273
+succs: 275
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 362 error( (SI8 *)&.L_2__STRING.344_V$426 );  [UNIX_ABI]
+
+
+BBLOCK 275:
+preds: 274 273
+succs: 277 276
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 371 if ( (target_flags_V$5 & 16(SI32)) != 0(SI32) )
+
+
+BBLOCK 276:
+preds: 275
+succs: 281
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 369 target_flags_V$5 = target_flags_V$5 | 32(SI32);
+3874 370 target_flags_V$5 = target_flags_V$5 & -17(SI32);
+
+
+BBLOCK 277:
+preds: 275
+succs: 278
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 364 i.1052_V$424 = 0(SI32);
+
+
+BBLOCK 278:
+preds: 279 277
+succs: 279 280
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 508 L508:
+3874 506 if ( i.1052_V$424 < 64(SI32) )
+
+
+BBLOCK 279:
+preds: 278
+succs: 278
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 365 reg_names_V$7[i.1052_V$424] = reg_names_V$7[i.1052_V$424] - 1(I32);
+3874 366 i.1052_V$424 = i.1052_V$424 + 1(SI32);
+3874 507 goto L508;
+
+
+BBLOCK 280:
+preds: 278
+succs: 281
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 368 m88k_pound_sign_V$0 = &.L_2__STRING.345_V$427;
+
+
+BBLOCK 281:
+preds: 280 276
+succs: 282 295
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 384 if ( m88k_short_data_V$1 != 0(I32) )
+
+
+BBLOCK 282:
+preds: 281
+succs: 283
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 372 p.1056_V$428 = m88k_short_data_V$1;
+
+
+BBLOCK 283:
+preds: 290 282
+succs: 284 291
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 514 L514:
+3874 512 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1056_V$428)) != 0(SI32) )
+
+
+BBLOCK 284:
+preds: 283
+succs: 286 285
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 569 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1056_V$428)) >= 48(SI32) )
+
+
+BBLOCK 285:
+preds: 284
+succs: 287
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 571 goto L572;
+
+
+BBLOCK 286:
+preds: 284
+succs: 289 287
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 570 if ( EXPR_CONV.SI8.SI32(*((SI8*) p.1056_V$428)) <= 57(SI32) )
+
+
+BBLOCK 287:
+preds: 286 285
+succs: 288
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 572 L572:
+3874 374 error( (SI8 *)&.L_2__STRING.346_V$42a, (SI8 *)m88k_short_data_V$1 );  [UNIX_ABI]
+
+
+BBLOCK 288:
+preds: 287
+succs: 291
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 375 goto L6;
+
+
+BBLOCK 289:
+preds: 286
+succs: 290
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 373 p.1056_V$428 = p.1056_V$428 + 1(I32);
+3874 566 goto L565;
+
+
+BBLOCK 290:
+preds: 289
+succs: 283
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 565 L565:
+3874 513 goto L514;
+
+
+BBLOCK 291:
+preds: 288 283
+succs: 292 293
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874   6 L6:
+3874 378  ( (SI32) t52 ) = atoi{ic=ATOI}( (SI8 *)m88k_short_data_V$1 );  [UNIX_ABI]
+3874 379 m88k_gp_threshold_V$3 = EXPR_CONV.SI32.I32(t52);
+3874 381 if ( m88k_gp_threshold_V$3 > 2147483647(I32) )
+
+
+BBLOCK 292:
+preds: 291
+succs: 293
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 380 error( (SI8 *)&.L_2__STRING.347_V$42c, (SI8 *)m88k_short_data_V$1 );  [UNIX_ABI]
+
+
+BBLOCK 293:
+preds: 292 291
+succs: 294 295
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 383 if ( flag_pic_V$64 != 0(SI32) )
+
+
+BBLOCK 294:
+preds: 293
+succs: 295
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 382 error( (SI8 *)&.L_2__STRING.348_V$42d, (SI8 *)m88k_short_data_V$1 );  [UNIX_ABI]
+
+
+BBLOCK 295:
+preds: 294 293 281
+succs: 296 297
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 516 if ( 0(SI32) )
+
+
+BBLOCK 296:
+preds: 295
+succs: 264
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3874 517 goto L515;
+
+
+BBLOCK 297:
+preds: 295
+succs: 298 299
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3879 388 if ( flag_unroll_all_loops_V$52 != 0(SI32) )
+
+
+BBLOCK 298:
+preds: 297
+succs: 299
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3880 387 flag_unroll_loops_V$51 = 1(SI32);
+
+
+BBLOCK 299:
+preds: 298 297
+succs: 300 301
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3885 391 if ( flag_unroll_loops_V$51 != 0(SI32) )
+
+
+BBLOCK 300:
+preds: 299
+succs: 301
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3887 389 flag_strength_reduce_V$50 = 1(SI32);
+3888 390 flag_rerun_cse_after_loop_V$5b = 1(SI32);
+
+
+BBLOCK 301:
+preds: 300 299
+succs: 302 307
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3903 397 if ( version_flag.1015_V$3f2 != 0(SI32) )
+
+
+BBLOCK 302:
+preds: 301
+succs: 303
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3905 392  ( (SI32) t53 ) = fprintf{ic=FPRINTF}( (_IO_FILE_R_V$0 *)stderr_V$a, (SI8 *)&.L_2__STRING.349_V$42e, (SI8 *)language_string_V$12, (SI8 *)version_string_V$11 );  [UNIX_ABI]
+
+
+BBLOCK 303:
+preds: 302
+succs: 304
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3907 393  ( (SI32) t54 ) = fprintf{ic=FPRINTF}( (_IO_FILE_R_V$0 *)stderr_V$a, (SI8 *)&.L_2__STRING.350_V$42f, (SI8 *)&.L_2__STRING.351_V$430, (SI8 *)&.L_2__STRING.352_V$431 );  [UNIX_ABI]
+
+
+BBLOCK 304:
+preds: 303
+succs: 305
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3913 394  ( (SI32) t55 ) = fprintf{ic=FPRINTF}( (_IO_FILE_R_V$0 *)stderr_V$a, (SI8 *)&.L_2__STRING.353_V$433, (SI8 *)&.L_2__STRING.354_V$434 );  [UNIX_ABI]
+
+
+BBLOCK 305:
+preds: 304
+succs: 306 307
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3917 396 if ( quiet_flag_V$43 == 0(SI32) )
+
+
+BBLOCK 306:
+preds: 305
+succs: 307
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3918 395 print_switch_values(  );  [UNIX_ABI]
+
+
+BBLOCK 307:
+preds: 306 305 301
+succs: 308
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3921 398 compile_file( (SI8 *)filename.1015_V$3f0 );  [UNIX_ABI]
+
+
+BBLOCK 308:
+preds: 307
+succs: 309 313
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3924 404 if ( flag_print_mem.1015_V$3f1 != 0(SI32) )
+
+
+BBLOCK 309:
+preds: 308
+succs: 310
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3926 399  ( (void *)t56 ) = sbrk{ic=SBRK}( (SI32) 0(SI32) );  [UNIX_ABI]
+
+
+BBLOCK 310:
+preds: 309
+succs: 311
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3926 400 lim.1060_V$435 = t56;
+3928 401  ( (SI32) t57 ) = fprintf{ic=FPRINTF}( (_IO_FILE_R_V$0 *)stderr_V$a, (SI8 *)&.L_2__STRING.355_V$436, (SI32) lim.1060_V$435 - &environ_V$10 );  [UNIX_ABI]
+
+
+BBLOCK 311:
+preds: 310
+succs: 312
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3930 402  ( (SI32) t58 ) = fflush{ic=FFLUSH}( (_IO_FILE_R_V$0 *)stderr_V$a );  [UNIX_ABI]
+
+
+BBLOCK 312:
+preds: 311
+succs: 313
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3935 403  ( (SI32) t59 ) = system{ic=SYSTEM}( (SI8 *)&.L_2__STRING.356_V$437 );  [UNIX_ABI]
+
+
+BBLOCK 313:
+preds: 312 308
+succs: 314 315
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3940 406 if ( errorcount_V$36 != 0(SI32) )
+
+
+BBLOCK 314:
+preds: 313
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3941 405 exit{ic=EXIT}( (SI32) 33(SI32) );  [UNIX_ABI]
+
+
+BBLOCK 315:
+preds: 313
+succs: 316 317
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3942 408 if ( sorrycount_V$38 != 0(SI32) )
+
+
+BBLOCK 316:
+preds: 315
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3943 407 exit{ic=EXIT}( (SI32) 33(SI32) );  [UNIX_ABI]
+
+
+BBLOCK 317:
+preds: 315
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3944 409 exit{ic=EXIT}( (SI32) 0(SI32) );  [UNIX_ABI]
+
+
+BBLOCK 318:
+preds:
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3945 410 return ( (SI32) 0(SI32) );
+
+
+BBLOCK 319:
+preds:
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+3946 411 return ;
+
+
+Root Context C0.1 {
+} C0.1

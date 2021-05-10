@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "icdv", "icdv\icdv.vcproj", "{8F405C53-237B-4A32-BF12-26D54530B9BF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "autodoc", "autodoc\autodoc.vcproj", "{9EAFC232-52CE-4195-95EC-2F5B94E71F66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F405C53-237B-4A32-BF12-26D54530B9BF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8F405C53-237B-4A32-BF12-26D54530B9BF}.Debug|Win32.Build.0 = Debug|Win32
+		{8F405C53-237B-4A32-BF12-26D54530B9BF}.Release|Win32.ActiveCfg = Release|Win32
+		{8F405C53-237B-4A32-BF12-26D54530B9BF}.Release|Win32.Build.0 = Release|Win32
+		{9EAFC232-52CE-4195-95EC-2F5B94E71F66}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9EAFC232-52CE-4195-95EC-2F5B94E71F66}.Debug|Win32.Build.0 = Debug|Win32
+		{9EAFC232-52CE-4195-95EC-2F5B94E71F66}.Release|Win32.ActiveCfg = Release|Win32
+		{9EAFC232-52CE-4195-95EC-2F5B94E71F66}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

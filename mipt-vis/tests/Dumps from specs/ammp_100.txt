@@ -1,0 +1,1280 @@
+After Building the Control Flow:
+IL0 PRINT (FLOW GRAPH):
+
+BBLOCK 0:
+(an entry bblock)
+preds:
+succs: 1 2
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 665   0 entry extern void  main( (_IO_FILE_R_V$0 *)where_911_V$8d, (SI32) res_mod_911_V$8e );
+ 669   5 a.911_V$8f = first_V$0;
+ 670   6 iatom.911_V$96 = 0(SI32);
+ 671   8 if ( a.911_V$8f == 0(I32) )
+
+
+BBLOCK 1:
+preds: 0
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 671   7 return ;
+
+
+BBLOCK 2:
+preds: 0
+succs: 3 5
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 672  11 if ( res_mod_911_V$8e == 0(SI32) )
+
+
+BBLOCK 3:
+preds: 2
+succs: 4
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 674   9 aaerror( (SI8 *)&.L_2__STRING.6_V$98 );  [UNIX_ABI]
+
+
+BBLOCK 4:
+preds: 3
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 675  10 return ;
+
+
+BBLOCK 5:
+preds: 58 2
+succs: 6 59
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 677 166 L166:
+ 677 164 if ( a.911_V$8f->next_V$1d != a.911_V$8f )
+
+
+BBLOCK 6:
+preds: 5
+succs: 7 8
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 679  13 if ( a.911_V$8f->next_V$1d == 0(I32) )
+
+
+BBLOCK 7:
+preds: 6
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 679  12 return ;
+
+
+BBLOCK 8:
+preds: 6
+succs: 9
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 680  14 iatom.911_V$96 = iatom.911_V$96 + 1(SI32);
+ 682  15 ires.911_V$95 = a.911_V$8f->serial_V$18 / res_mod_911_V$8e;
+ 683  16 np.911_V$90 = &a.911_V$8f->name_V$20;
+
+
+BBLOCK 9:
+preds: 12 8
+succs: 10 13
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 684  23 L23:
+ 684  22  ( (SI32) t0 ) = strcmp{ic=STRCMP}( (SI8 *)np.911_V$90, (SI8 *)&.L_2__STRING.7_V$9a );  [UNIX_ABI]
+ 684  25 if ( t0 == 0(SI32) )
+
+
+BBLOCK 10:
+preds: 9
+succs: 11 12
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 685  17 a.911_V$8f = a.911_V$8f->next_V$1d;
+ 686  19 if ( a.911_V$8f->next_V$1d == 0(I32) )
+
+
+BBLOCK 11:
+preds: 10
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 686  18 return ;
+
+
+BBLOCK 12:
+preds: 10
+succs: 9
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 686  20 ires.911_V$95 = a.911_V$8f->serial_V$18 / res_mod_911_V$8e;
+ 687  21 np.911_V$90 = &a.911_V$8f->name_V$20;
+ 684  24 goto L23;
+
+
+BBLOCK 13:
+preds: 9
+succs: 14
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 688  26 i.911_V$94 = 0(SI32);
+
+
+BBLOCK 14:
+preds: 32 13
+succs: 15 33
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 688 157 L157:
+ 688 155 if ( i.911_V$94 < 5(SI32) )
+
+
+BBLOCK 15:
+preds: 14
+succs: 17 16
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 689  46 if ( EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) != 46(SI32) )
+
+
+BBLOCK 16:
+preds: 15
+succs: 33
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 692  44 resid.911_V$92[i.911_V$94] = 0(SI8);
+ 692  45 goto L1;
+
+
+BBLOCK 17:
+preds: 15
+succs: 19 18
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690  42  ( (P32 *)t6 ) = __ctype_b_loc{ic=_CTYPE_B_LOC}(  );  [UNIX_ABI]
+ 690  43 if ( (EXPR_CONV.I16.SI32(*((I16*) (*((P32.I16*) t6) + EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) * 2(I32)))) & 512(SI32)) != 0(SI32) )
+
+
+BBLOCK 18:
+preds: 17
+succs: 30
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 691  41 resid.911_V$92[i.911_V$94] = *((SI8*) np.911_V$90);
+
+
+BBLOCK 19:
+preds: 17
+succs: 21 20
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690  39 if ( 0(SI32) != 0(SI32) )
+
+
+BBLOCK 20:
+preds: 19
+succs: 29
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690  37  ( (P32 *)t5 ) = __ctype_toupper_loc{ic=_CTYPE_TOUPPER_LOC}(  );  [UNIX_ABI]
+ 690  38 __res.918_V$9b = *((SI32*) (*((P32.SI32*) t5) + EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) * 4(I32)));
+
+
+BBLOCK 21:
+preds: 19
+succs: 23 22
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690  35  ( (SI32) t4 ) = __builtin_constant_p{ic=_BUILTIN_CONSTANT_P}( (SI32) EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) );  [UNIX_ABI]
+ 690  36 if ( t4 != 0(SI32) )
+
+
+BBLOCK 22:
+preds: 21
+succs: 29
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690  33  ( (SI32) t3 ) = toupper{ic=TOUPPER}( (SI32) EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) );  [UNIX_ABI]
+ 690  34 __res.918_V$9b = t3;
+
+
+BBLOCK 23:
+preds: 21
+succs: 27 24
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690  27 __c.920_V$9c = EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90));
+ 690  31 if ( __c.920_V$9c < -128(SI32) )
+
+
+BBLOCK 24:
+preds: 23
+succs: 26 25
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690 152 if ( __c.920_V$9c > 255(SI32) )
+
+
+BBLOCK 25:
+preds: 24
+succs: 28
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690  28  ( (P32 *)t1 ) = __ctype_toupper_loc{ic=_CTYPE_TOUPPER_LOC}(  );  [UNIX_ABI]
+ 690  30 t2 = *((SI32*) (*((P32.SI32*) t1) + __c.920_V$9c * 4(I32)));
+
+
+BBLOCK 26:
+preds: 27 24
+succs: 28
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690 154 L154:
+ 690  29 t2 = __c.920_V$9c;
+
+
+BBLOCK 27:
+preds: 23
+succs: 26
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690 153 goto L154;
+
+
+BBLOCK 28:
+preds: 26 25
+succs: 29
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690  32 __res.918_V$9b = t2;
+
+
+BBLOCK 29:
+preds: 28 22 20
+succs: 30
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 690  40 resid.911_V$92[i.911_V$94] = EXPR_CONV.SI32.SI8(__res.918_V$9b);
+
+
+BBLOCK 30:
+preds: 29 18
+succs: 31 32
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 693  48 if ( EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) == 0(SI32) )
+
+
+BBLOCK 31:
+preds: 30
+succs: 33
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 693  47 goto L1;
+
+
+BBLOCK 32:
+preds: 30
+succs: 14
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 694  49 np.911_V$90 = np.911_V$90 + 1(I32);
+ 688  50 i.911_V$94 = i.911_V$94 + 1(SI32);
+ 688 156 goto L157;
+
+
+BBLOCK 33:
+preds: 31 16 14
+succs: 34 35
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 696   1 L1:
+ 696  53 if ( EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) == 46(SI32) )
+
+
+BBLOCK 34:
+preds: 33
+succs: 35
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 696  52 np.911_V$90 = np.911_V$90 + 1(I32);
+
+
+BBLOCK 35:
+preds: 34 33
+succs: 36
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 697  54 i.911_V$94 = 0(SI32);
+
+
+BBLOCK 36:
+preds: 54 35
+succs: 37 55
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 697 163 L163:
+ 697 161 if ( i.911_V$94 < 5(SI32) )
+
+
+BBLOCK 37:
+preds: 36
+succs: 39 38
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 698  74 if ( EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) != 46(SI32) )
+
+
+BBLOCK 38:
+preds: 37
+succs: 55
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 701  72 atid.911_V$93[i.911_V$94] = 0(SI8);
+ 701  73 goto L2;
+
+
+BBLOCK 39:
+preds: 37
+succs: 41 40
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699  70  ( (P32 *)t12 ) = __ctype_b_loc{ic=_CTYPE_B_LOC}(  );  [UNIX_ABI]
+ 699  71 if ( (EXPR_CONV.I16.SI32(*((I16*) (*((P32.I16*) t12) + EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) * 2(I32)))) & 512(SI32)) != 0(SI32) )
+
+
+BBLOCK 40:
+preds: 39
+succs: 52
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 700  69 atid.911_V$93[i.911_V$94] = *((SI8*) np.911_V$90);
+
+
+BBLOCK 41:
+preds: 39
+succs: 43 42
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699  67 if ( 0(SI32) != 0(SI32) )
+
+
+BBLOCK 42:
+preds: 41
+succs: 51
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699  65  ( (P32 *)t11 ) = __ctype_toupper_loc{ic=_CTYPE_TOUPPER_LOC}(  );  [UNIX_ABI]
+ 699  66 __res.926_V$9d = *((SI32*) (*((P32.SI32*) t11) + EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) * 4(I32)));
+
+
+BBLOCK 43:
+preds: 41
+succs: 45 44
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699  63  ( (SI32) t10 ) = __builtin_constant_p{ic=_BUILTIN_CONSTANT_P}( (SI32) EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) );  [UNIX_ABI]
+ 699  64 if ( t10 != 0(SI32) )
+
+
+BBLOCK 44:
+preds: 43
+succs: 51
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699  61  ( (SI32) t9 ) = toupper{ic=TOUPPER}( (SI32) EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) );  [UNIX_ABI]
+ 699  62 __res.926_V$9d = t9;
+
+
+BBLOCK 45:
+preds: 43
+succs: 49 46
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699  55 __c.928_V$9e = EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90));
+ 699  59 if ( __c.928_V$9e < -128(SI32) )
+
+
+BBLOCK 46:
+preds: 45
+succs: 48 47
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699 158 if ( __c.928_V$9e > 255(SI32) )
+
+
+BBLOCK 47:
+preds: 46
+succs: 50
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699  56  ( (P32 *)t7 ) = __ctype_toupper_loc{ic=_CTYPE_TOUPPER_LOC}(  );  [UNIX_ABI]
+ 699  58 t8 = *((SI32*) (*((P32.SI32*) t7) + __c.928_V$9e * 4(I32)));
+
+
+BBLOCK 48:
+preds: 49 46
+succs: 50
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699 160 L160:
+ 699  57 t8 = __c.928_V$9e;
+
+
+BBLOCK 49:
+preds: 45
+succs: 48
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699 159 goto L160;
+
+
+BBLOCK 50:
+preds: 48 47
+succs: 51
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699  60 __res.926_V$9d = t8;
+
+
+BBLOCK 51:
+preds: 50 44 42
+succs: 52
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 699  68 atid.911_V$93[i.911_V$94] = EXPR_CONV.SI32.SI8(__res.926_V$9d);
+
+
+BBLOCK 52:
+preds: 51 40
+succs: 53 54
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 702  76 if ( EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) == 0(SI32) )
+
+
+BBLOCK 53:
+preds: 52
+succs: 55
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 702  75 goto L2;
+
+
+BBLOCK 54:
+preds: 52
+succs: 36
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 703  77 np.911_V$90 = np.911_V$90 + 1(I32);
+ 697  78 i.911_V$94 = i.911_V$94 + 1(SI32);
+ 697 162 goto L163;
+
+
+BBLOCK 55:
+preds: 53 38 36
+succs: 57 56
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 711   2 L2:
+ 711  82 if ( EXPR_CONV.SI8.SI32(atid.911_V$93[0(SI32)]) == 72(SI32) )
+
+
+BBLOCK 56:
+preds: 55
+succs: 58
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 716  81  ( (SI32) t14 ) = fprintf{ic=FPRINTF}( (_IO_FILE_R_V$0 *)where_911_V$8d, (SI8 *)&.L_2__STRING.9_V$a2, (SI32) iatom.911_V$96, (SI8 *)&atid.911_V$93[0(SI32)], (SI8 *)&resid.911_V$92[0(SI32)], (SI32) ires.911_V$95, (F64) a.911_V$8f->x_V$12, (F64) a.911_V$8f->y_V$13, (F64) a.911_V$8f->z_V$14, (F64) 1.0000000000000000e+000=0x3ff00000,0x00000000(F64), (F64) 1.0000000000000000e+001=0x40240000,0x00000000(F64) );  [UNIX_ABI]
+
+
+BBLOCK 57:
+preds: 55
+succs: 58
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 712  80  ( (SI32) t13 ) = fprintf{ic=FPRINTF}( (_IO_FILE_R_V$0 *)where_911_V$8d, (SI8 *)&.L_2__STRING.8_V$a0, (SI32) iatom.911_V$96, (SI8 *)&atid.911_V$93[0(SI32)], (SI32) 32(SI32), (SI8 *)&resid.911_V$92[0(SI32)], (SI32) ires.911_V$95, (F64) a.911_V$8f->x_V$12, (F64) a.911_V$8f->y_V$13, (F64) a.911_V$8f->z_V$14, (F64) 1.0000000000000000e+000=0x3ff00000,0x00000000(F64), (F64) 1.0000000000000000e+001=0x40240000,0x00000000(F64) );  [UNIX_ABI]
+
+
+BBLOCK 58:
+preds: 57 56
+succs: 5
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 720  83 a.911_V$8f = a.911_V$8f->next_V$1d;
+ 677 165 goto L166;
+
+
+BBLOCK 59:
+preds: 5
+succs: 60 61
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 722  86 if ( a.911_V$8f->next_V$1d == 0(I32) )
+
+
+BBLOCK 60:
+preds: 59
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 722  85 return ;
+
+
+BBLOCK 61:
+preds: 59
+succs: 62 107
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 723  87 iatom.911_V$96 = iatom.911_V$96 + 1(SI32);
+ 724  88 ires.911_V$95 = a.911_V$8f->serial_V$18 / res_mod_911_V$8e;
+ 725  89 np.911_V$90 = &a.911_V$8f->name_V$20;
+ 726 147  ( (SI32) t29 ) = strcmp{ic=STRCMP}( (SI8 *)np.911_V$90, (SI8 *)&.L_2__STRING.7_V$9a );  [UNIX_ABI]
+ 726 148 if ( t29 != 0(SI32) )
+
+
+BBLOCK 62:
+preds: 61
+succs: 63
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 728  90 i.911_V$94 = 0(SI32);
+
+
+BBLOCK 63:
+preds: 81 62
+succs: 64 82
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 728 172 L172:
+ 728 170 if ( i.911_V$94 < 5(SI32) )
+
+
+BBLOCK 64:
+preds: 63
+succs: 66 65
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 729 110 if ( EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) != 46(SI32) )
+
+
+BBLOCK 65:
+preds: 64
+succs: 82
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 732 108 resid.911_V$92[i.911_V$94] = 0(SI8);
+ 732 109 goto L3;
+
+
+BBLOCK 66:
+preds: 64
+succs: 68 67
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730 106  ( (P32 *)t20 ) = __ctype_b_loc{ic=_CTYPE_B_LOC}(  );  [UNIX_ABI]
+ 730 107 if ( (EXPR_CONV.I16.SI32(*((I16*) (*((P32.I16*) t20) + EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) * 2(I32)))) & 512(SI32)) != 0(SI32) )
+
+
+BBLOCK 67:
+preds: 66
+succs: 79
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 731 105 resid.911_V$92[i.911_V$94] = *((SI8*) np.911_V$90);
+
+
+BBLOCK 68:
+preds: 66
+succs: 70 69
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730 103 if ( 0(SI32) != 0(SI32) )
+
+
+BBLOCK 69:
+preds: 68
+succs: 78
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730 101  ( (P32 *)t19 ) = __ctype_toupper_loc{ic=_CTYPE_TOUPPER_LOC}(  );  [UNIX_ABI]
+ 730 102 __res.935_V$a3 = *((SI32*) (*((P32.SI32*) t19) + EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) * 4(I32)));
+
+
+BBLOCK 70:
+preds: 68
+succs: 72 71
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730  99  ( (SI32) t18 ) = __builtin_constant_p{ic=_BUILTIN_CONSTANT_P}( (SI32) EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) );  [UNIX_ABI]
+ 730 100 if ( t18 != 0(SI32) )
+
+
+BBLOCK 71:
+preds: 70
+succs: 78
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730  97  ( (SI32) t17 ) = toupper{ic=TOUPPER}( (SI32) EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) );  [UNIX_ABI]
+ 730  98 __res.935_V$a3 = t17;
+
+
+BBLOCK 72:
+preds: 70
+succs: 76 73
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730  91 __c.937_V$a4 = EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90));
+ 730  95 if ( __c.937_V$a4 < -128(SI32) )
+
+
+BBLOCK 73:
+preds: 72
+succs: 75 74
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730 167 if ( __c.937_V$a4 > 255(SI32) )
+
+
+BBLOCK 74:
+preds: 73
+succs: 77
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730  92  ( (P32 *)t15 ) = __ctype_toupper_loc{ic=_CTYPE_TOUPPER_LOC}(  );  [UNIX_ABI]
+ 730  94 t16 = *((SI32*) (*((P32.SI32*) t15) + __c.937_V$a4 * 4(I32)));
+
+
+BBLOCK 75:
+preds: 76 73
+succs: 77
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730 169 L169:
+ 730  93 t16 = __c.937_V$a4;
+
+
+BBLOCK 76:
+preds: 72
+succs: 75
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730 168 goto L169;
+
+
+BBLOCK 77:
+preds: 75 74
+succs: 78
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730  96 __res.935_V$a3 = t16;
+
+
+BBLOCK 78:
+preds: 77 71 69
+succs: 79
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 730 104 resid.911_V$92[i.911_V$94] = EXPR_CONV.SI32.SI8(__res.935_V$a3);
+
+
+BBLOCK 79:
+preds: 78 67
+succs: 80 81
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 733 112 if ( EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) == 0(SI32) )
+
+
+BBLOCK 80:
+preds: 79
+succs: 82
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 733 111 goto L3;
+
+
+BBLOCK 81:
+preds: 79
+succs: 63
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 734 113 np.911_V$90 = np.911_V$90 + 1(I32);
+ 728 114 i.911_V$94 = i.911_V$94 + 1(SI32);
+ 728 171 goto L172;
+
+
+BBLOCK 82:
+preds: 80 65 63
+succs: 83 84
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 736   3 L3:
+ 736 117 if ( EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) == 46(SI32) )
+
+
+BBLOCK 83:
+preds: 82
+succs: 84
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 736 116 np.911_V$90 = np.911_V$90 + 1(I32);
+
+
+BBLOCK 84:
+preds: 83 82
+succs: 85
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 737 118 i.911_V$94 = 0(SI32);
+
+
+BBLOCK 85:
+preds: 103 84
+succs: 86 104
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 737 178 L178:
+ 737 176 if ( i.911_V$94 < 5(SI32) )
+
+
+BBLOCK 86:
+preds: 85
+succs: 88 87
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 738 138 if ( EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) != 46(SI32) )
+
+
+BBLOCK 87:
+preds: 86
+succs: 104
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 741 136 atid.911_V$93[i.911_V$94] = 0(SI8);
+ 741 137 goto L4;
+
+
+BBLOCK 88:
+preds: 86
+succs: 90 89
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 134  ( (P32 *)t26 ) = __ctype_b_loc{ic=_CTYPE_B_LOC}(  );  [UNIX_ABI]
+ 739 135 if ( (EXPR_CONV.I16.SI32(*((I16*) (*((P32.I16*) t26) + EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) * 2(I32)))) & 512(SI32)) != 0(SI32) )
+
+
+BBLOCK 89:
+preds: 88
+succs: 101
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 740 133 atid.911_V$93[i.911_V$94] = *((SI8*) np.911_V$90);
+
+
+BBLOCK 90:
+preds: 88
+succs: 92 91
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 131 if ( 0(SI32) != 0(SI32) )
+
+
+BBLOCK 91:
+preds: 90
+succs: 100
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 129  ( (P32 *)t25 ) = __ctype_toupper_loc{ic=_CTYPE_TOUPPER_LOC}(  );  [UNIX_ABI]
+ 739 130 __res.943_V$a5 = *((SI32*) (*((P32.SI32*) t25) + EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) * 4(I32)));
+
+
+BBLOCK 92:
+preds: 90
+succs: 94 93
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 127  ( (SI32) t24 ) = __builtin_constant_p{ic=_BUILTIN_CONSTANT_P}( (SI32) EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) );  [UNIX_ABI]
+ 739 128 if ( t24 != 0(SI32) )
+
+
+BBLOCK 93:
+preds: 92
+succs: 100
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 125  ( (SI32) t23 ) = toupper{ic=TOUPPER}( (SI32) EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) );  [UNIX_ABI]
+ 739 126 __res.943_V$a5 = t23;
+
+
+BBLOCK 94:
+preds: 92
+succs: 98 95
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 119 __c.945_V$a6 = EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90));
+ 739 123 if ( __c.945_V$a6 < -128(SI32) )
+
+
+BBLOCK 95:
+preds: 94
+succs: 97 96
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 173 if ( __c.945_V$a6 > 255(SI32) )
+
+
+BBLOCK 96:
+preds: 95
+succs: 99
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 120  ( (P32 *)t21 ) = __ctype_toupper_loc{ic=_CTYPE_TOUPPER_LOC}(  );  [UNIX_ABI]
+ 739 122 t22 = *((SI32*) (*((P32.SI32*) t21) + __c.945_V$a6 * 4(I32)));
+
+
+BBLOCK 97:
+preds: 98 95
+succs: 99
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 175 L175:
+ 739 121 t22 = __c.945_V$a6;
+
+
+BBLOCK 98:
+preds: 94
+succs: 97
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 174 goto L175;
+
+
+BBLOCK 99:
+preds: 97 96
+succs: 100
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 124 __res.943_V$a5 = t22;
+
+
+BBLOCK 100:
+preds: 99 93 91
+succs: 101
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 739 132 atid.911_V$93[i.911_V$94] = EXPR_CONV.SI32.SI8(__res.943_V$a5);
+
+
+BBLOCK 101:
+preds: 100 89
+succs: 102 103
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 742 140 if ( EXPR_CONV.SI8.SI32(*((SI8*) np.911_V$90)) == 0(SI32) )
+
+
+BBLOCK 102:
+preds: 101
+succs: 104
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 742 139 goto L4;
+
+
+BBLOCK 103:
+preds: 101
+succs: 85
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 743 141 np.911_V$90 = np.911_V$90 + 1(I32);
+ 737 142 i.911_V$94 = i.911_V$94 + 1(SI32);
+ 737 177 goto L178;
+
+
+BBLOCK 104:
+preds: 102 87 85
+succs: 106 105
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 751   4 L4:
+ 751 146 if ( EXPR_CONV.SI8.SI32(atid.911_V$93[0(SI32)]) == 72(SI32) )
+
+
+BBLOCK 105:
+preds: 104
+succs: 107
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 756 145  ( (SI32) t28 ) = fprintf{ic=FPRINTF}( (_IO_FILE_R_V$0 *)where_911_V$8d, (SI8 *)&.L_2__STRING.9_V$a2, (SI32) iatom.911_V$96, (SI8 *)&atid.911_V$93[0(SI32)], (SI8 *)&resid.911_V$92[0(SI32)], (SI32) ires.911_V$95, (F64) a.911_V$8f->x_V$12, (F64) a.911_V$8f->y_V$13, (F64) a.911_V$8f->z_V$14, (F64) 1.0000000000000000e+000=0x3ff00000,0x00000000(F64), (F64) 1.0000000000000000e+001=0x40240000,0x00000000(F64) );  [UNIX_ABI]
+
+
+BBLOCK 106:
+preds: 104
+succs: 107
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 752 144  ( (SI32) t27 ) = fprintf{ic=FPRINTF}( (_IO_FILE_R_V$0 *)where_911_V$8d, (SI8 *)&.L_2__STRING.8_V$a0, (SI32) iatom.911_V$96, (SI8 *)&atid.911_V$93[0(SI32)], (SI32) 32(SI32), (SI8 *)&resid.911_V$92[0(SI32)], (SI32) ires.911_V$95, (F64) a.911_V$8f->x_V$12, (F64) a.911_V$8f->y_V$13, (F64) a.911_V$8f->z_V$14, (F64) 1.0000000000000000e+000=0x3ff00000,0x00000000(F64), (F64) 1.0000000000000000e+001=0x40240000,0x00000000(F64) );  [UNIX_ABI]
+
+
+BBLOCK 107:
+preds: 106 105 61
+succs: 108
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 760 149  ( (SI32) t30 ) = fprintf{ic=FPRINTF}( (_IO_FILE_R_V$0 *)where_911_V$8d, (SI8 *)&.L_2__STRING.10_V$a7 );  [UNIX_ABI]
+
+
+BBLOCK 108:
+preds: 107
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 761 150 return ;
+
+
+BBLOCK 109:
+preds:
+succs:
+exec: 0
+prob: 50
+context: C0.1, attr:
+
+
+ 761 151 return ;
+
+
+Root Context C0.1 {
+} C0.1

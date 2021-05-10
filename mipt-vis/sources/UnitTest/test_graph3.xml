@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<graph>
+	<node id="11" x="933" y="695" width="106" height="24" real="1" label="" color="green" shape="rectangle"/>
+	<node id="10" x="897" y="1002" width="106" height="24" real="1" label="e" color="green" shape="rectangle"/>
+	<node id="9" x="960" y="626" width="106" height="24" real="1" label="de" color="green" shape="rectangle"/>
+	<node id="8" x="967" y="746" width="106" height="24" real="1" label="ode" color="green" shape="rectangle"/>
+	<node id="5" x="769" y="862" width="106" height="24" real="1" label="" color="green" shape="rectangle" style="outer"/>
+	<node id="4" x="565" y="689" width="106" height="24" real="1" label="" color="green" shape="rectangle" style="innermost"/>
+	<node id="3" x="768" y="798" width="106" height="24" real="1" label="" color="green" shape="rectangle" style="innermost"/>
+	<node id="2" x="661" y="745" width="106" height="24" real="1" label="e" color="green" shape="rectangle" style="innermost"/>
+	<node id="1" x="669" y="635" width="106" height="24" real="1" label="de" color="green" shape="rectangle" style="innermost"/>
+	<node id="0" x="656" y="530" width="106" height="24" real="1" label="ode" color="green" shape="rectangle" style="outer"/>
+	<node id="6" x="654" y="462" width="106" height="24" real="1" label="ode" color="green" shape="rectangle"/>
+	<node id="7" x="814" y="941" width="106" height="24" real="1" label="de" color="green" shape="rectangle"/>
+	<edge id="15" from="11" to="8" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="14" from="9" to="11" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="13" from="7" to="10" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="12" from="8" to="7" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="11" from="9" to="8" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="10" from="6" to="9" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="9" from="3" to="5" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="8" from="3" to="1" label="" prob="1" thickness="1" color="" style="back">
+	</edge>
+	<edge id="7" from="4" to="2" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="6" from="1" to="4" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="5" from="2" to="3" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="4" from="1" to="2" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="3" from="0" to="1" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="2" from="6" to="0" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="1" from="5" to="7" label="" prob="1" thickness="1" color="" style="Solid">
+	</edge>
+	<edge id="0" from="5" to="0" label="" prob="1" thickness="1" color="" style="back">
+	</edge>
+	<style name="default" brush="lightGreen" penColor="black" penWidth="0"/>
+	<style name="outer" brush="cyan" penColor="black" penWidth="2"/>
+	<style name="innermost" brush="pink" penColor="black" penWidth="2"/>
+	<style name="Solid" brush="black" penColor="black" penWidth="0"/>
+	<style name="back" brush="red" penColor="red" penWidth="2"/>
+</graph>

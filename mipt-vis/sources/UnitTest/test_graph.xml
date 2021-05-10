@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<graph>
+	<node id="11" x="605" y="334" width="15" height="15" real="0"/>
+	<node id="10" x="672" y="379" width="15" height="15" real="0"/>
+	<node id="9" x="462" y="287" width="15" height="15" real="0"/>
+	<node id="8" x="353" y="312" width="15" height="15" real="0"/>
+	<node id="7" x="324" y="30" width="106" height="24" real="1" style="block" label="n0" color="red" shape="ellipse" textPriv=""/>
+  <node id="6" x="338" y="108" width="106" height="24" real="1" style="dark" label="n1" color="red" shape="rectangle" textPriv=""/>
+  <node id="5" x="398" y="212" width="106" height="24" real="1" style="hyp" label="n2" color="red" shape="rectangle" textPriv=""/>
+	<node id="4" x="628" y="291" width="106" height="24" real="1" label="n3" color="red" shape="rectangle" textPriv=""/>
+	<node id="3" x="443" y="354" width="106" height="24" real="1" label="n4" color="red" shape="rectangle" textPriv=""/>
+	<node id="2" x="451" y="450" width="106" height="24" real="1" label="n5" color="red" shape="rectangle" textPriv=""/>
+	<node id="1" x="163" y="293" width="106" height="24" real="1" label="n6" color="red" shape="rectangle" textPriv=""/>
+	<node id="0" x="153" y="453" width="106" height="24" real="1" label="n7" color="red" shape="ellipse" textPriv=""/>
+	<edge id="12" from="7" to="6" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="11" from="6" to="5" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="10" from="5" to="4" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="9" from="11" to="3" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="8" from="4" to="11" label="simple edge" prob="100" thickness="10" color="green">
+	</edge>
+	<edge id="7" from="10" to="2" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="6" from="4" to="10" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="5" from="5" to="1" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="4" from="1" to="0" label="simple edge" prob="100" thickness="10" color="green" style="solid">
+	</edge>
+	<edge id="3" from="9" to="5" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="2" from="3" to="9" label="back edge" prob="99" thickness="9" color="red" style="solid">
+	</edge>
+	<edge id="1" from="8" to="5" label="" prob="1" thickness="1" color="" style="solid">
+	</edge>
+	<edge id="0" from="2" to="8" label="back edge" prob="99" thickness="9" color="red" style="solid">
+	</edge>
+  <edge id="0" from="2" to="2" label="mesh edge" prob="99" thickness="9" color="red" style="solid">
+  </edge>
+  <style/>
+  <style name="hyp" brush="yellow" penColor="green"/>
+  <style name="dark" brush="grey"/>
+  <style name="solid" brush="yellow" penColor="gray" penWidth="2"/>
+</graph>
