@@ -4,9 +4,16 @@
  */
 
 #include "gui_impl.h"
+/* wrong
 #include<QtGui/QAction>
 #include<QtGui/QMenu>
 #include<QtGui/QMenu>
+*/
+#include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QDockWidget>
+#include <QtWidgets/QGraphicsSceneContextMenuEvent>
+#include <QtWidgets/QGraphicsTextItem>
 
 /**
  * Init NodeProperties
@@ -20,12 +27,22 @@ NodeProperties::NodeProperties (StyleSheet* style_sheet_) :node_style_sheet_priv
 /**
  * Constructor of GuiNode class
  */
+#if 0
 GuiNode::GuiNode(  QString * text, GuiGraph * graph_p, int _id, StyleSheet* node_style_sheet_priv,
         QGraphicsItem * parent, QGraphicsScene * scene):
 		NodeProperties (node_style_sheet_priv),
 	    node_text(),
         adjust_priv(0),
         QGraphicsTextItem( parent, scene),
+        NodeAux( static_cast<GraphAux *> ( graph_p), _id)
+#endif
+
+GuiNode::GuiNode(  QString * text, GuiGraph * graph_p, int _id, StyleSheet* node_style_sheet_priv,
+        QGraphicsItem * parent, QGraphicsScene * scene):
+		NodeProperties (node_style_sheet_priv),
+	    node_text(),
+        adjust_priv(0),
+        QGraphicsTextItem( parent ),
         NodeAux( static_cast<GraphAux *> ( graph_p), _id)
 {
 	QGraphicsItem::setCursor( Qt::ArrowCursor);
@@ -203,7 +220,7 @@ void GuiNode::setNodeText( const QString & str)
  */
 void GuiNode::textChange()
 {
-    QByteArray strByteArray = getNodeText().toAscii();
+    QByteArray strByteArray = getNodeText().toLatin1();
     char *strChar;
     strChar = ( char*) calloc( strByteArray.size(),sizeof( char));
     if ( strChar==NULL) return;
@@ -225,7 +242,7 @@ void GuiNode::writeByXmlWriter( xmlTextWriterPtr writer)
 	if ( textPriv()) xmlTextWriterWriteAttribute( writer, BAD_CAST "textPriv", BAD_CAST textPriv());
 
 	if (0 != nodeStName().compare ("default", Qt::CaseInsensitive))
-		xmlTextWriterWriteAttribute( writer, BAD_CAST "style", BAD_CAST nodeStName().toAscii().data());
+		xmlTextWriterWriteAttribute( writer, BAD_CAST "style", BAD_CAST nodeStName().toLatin1 ().data());
 }
 
 /**

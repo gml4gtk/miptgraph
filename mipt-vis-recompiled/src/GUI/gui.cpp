@@ -14,3 +14,14 @@ bool showScene( int argc, char * argv[], QApplication *app)
     app->exec();
     return true;
 }
+
+int main(int argc, char **argv)
+{
+    bool status = 0;
+    QApplication app( argc, argv);
+    GuiGraph * graph = new GuiGraph();
+    /** Test Scene with nodes */
+    if (1) status = showScene( argc, argv, &app);
+    /* status = showGraph( argc, argv, &app); */
+    return 0;
+}

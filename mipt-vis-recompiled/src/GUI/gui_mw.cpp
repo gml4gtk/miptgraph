@@ -9,6 +9,17 @@
 #include "../Parser/parser_iface.h"
 #include <QtWidgets/QGraphicsSceneMouseEvent>
 #include <QtWidgets/QDockWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QStatusBar>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QListWidget>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QMessageBox>
 
 
 /**
@@ -50,10 +61,13 @@ void MainWindow::load()
 {
 	closeOldDocks();
 
+ /* this is gon in qt5
 	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
+ */
+QTextCodec::codecForName("utf-8");
     current_file = QFileDialog::getOpenFileName( this, tr( "Open File"), ".", tr( "XML (*.xml);;All files(*.*)")); 
     if ( current_file.isEmpty()) return;
-    QByteArray cur_file = current_file.toAscii();
+    QByteArray cur_file = current_file.toLatin1();
     char *file;
     file = (char*) calloc( cur_file.size(), sizeof(char));
     if (file==NULL) return;
@@ -89,7 +103,7 @@ void MainWindow::save()
 
     current_file = QFileDialog::getSaveFileName( this, tr("Save File"), "", tr("XML (*.xml);;All files(*.*)")); 
     if ( current_file.isEmpty()) return;
-    QByteArray cur_file = current_file.toAscii();
+    QByteArray cur_file = current_file.toLatin1();
     char *file;
     file = ( char*) calloc( cur_file.size(), sizeof( char));
     if ( file==NULL) return;

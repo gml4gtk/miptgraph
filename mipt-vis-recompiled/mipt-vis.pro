@@ -27,3 +27,5 @@ OBJECTS_DIR = build
 UI_DIR = build
 MOC_DIR = build
 RCC_DIR = build
+QT += widgets
+LIBS += -L/usr/lib/x86_64-linux-gnu -lxml2

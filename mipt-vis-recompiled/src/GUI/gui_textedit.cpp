@@ -23,7 +23,7 @@ void GuiTextEdit::mousePressEvent( QMouseEvent * mouseEvent)
 	QString str = cursor.selectedText();
 	if ( !str.isEmpty())
 	{
-		QByteArray byteArr = str.toAscii();
+		QByteArray byteArr = str.toLatin1();
 		int i = 0, num = -1;
 		while (( i < byteArr.size())&&(( byteArr.at(i) < '0')||( byteArr.at(i)> '9' ))) i++;
 		if ( i<byteArr.size())

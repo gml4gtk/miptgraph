@@ -77,10 +77,16 @@ class DumpInfo
 	Functions funcs;
 
 public:
+	/*
 	Function * addFunction( string & name = string("main"));
 	Function * getFunction( string & name = string("main"));
 	BBlock * addBBlock( int number, int line, string & name = string("main"), BBlock * bb = 0);
 	BBlock * getBBlock( int num, string & name = string("main"));
+	*/
+	Function * addFunction( string & name );
+	Function * getFunction( string & name );
+	BBlock * addBBlock( int number, int line, string & name , BBlock * bb = 0);
+	BBlock * getBBlock( int num, string & name );
 	ParserGraph * getGraph( const char *fname = NULL);
 	list < string> & getFunctionList();
 };

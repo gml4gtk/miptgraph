@@ -20,7 +20,7 @@ string Gcc_parser::fnName(string &in)
 		if ( g4.indexIn( regexp.cap( 2)) != -1)
 			return "main";
 
-		return regexp.cap( 2).toAscii().constData();
+		return regexp.cap( 2).toLatin1().constData();
 		/* QString::toStdString() method crashes on my computer */
 	}
 		else

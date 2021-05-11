@@ -4,9 +4,10 @@
 * Copyright (C) 2009 MiptVis
 */
 
-#include <Qt/QQueue.h>
-#include <Qt/QStack.h>
+#include <QtCore/QQueue>
+#include <QtCore/QStack>
 #include <QtCore/QTime>
+#include <QtCore/QPoint>
 #include <math.h>
 #include "layout_iface.h"
 
@@ -178,7 +179,8 @@ void GraphAux::iterateGravity()
 }
 QPointF attractForce (NodeAux* from, int frmass, NodeAux* to)
 {
-	QPoint dsti = from->dist (to->coor());
+	QPoint ds = to->coor();
+	QPoint dsti = from->dist (ds);
 	QPointF dst(dsti.x(), dsti.y());
 	qreal lensq = lenSq (dsti);
 	if (lensq < minDist*minDist) lensq = minDist*minDist;
@@ -191,7 +193,8 @@ QPointF attractForce (NodeAux* from, int frmass, NodeAux* to)
 }
 QPointF repulseForce (NodeAux* from, int frmass, NodeAux* to)
 {
-	QPoint dsti = from->dist (to->coor());
+	QPoint ds = to->coor();
+	QPoint dsti = from->dist (ds);
 	QPointF dst(dsti.x(), dsti.y());
 	qreal lensq = lenSq (dsti);
 	if (lensq < minDist*minDist) lensq = minDist*minDist;

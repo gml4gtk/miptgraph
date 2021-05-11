@@ -5,11 +5,11 @@
 
 
 #include "parser.h"
-#include <QtGui/QWidget>
-#include <QtGui/QFileDialog>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QFileDialog>
 #include <QtCore/QObject>
-#include <QtGui/QMessageBox>
-#include <QtGui/QInputDialog>
+#include <QtWidgets/QMessageBox>
+#include <QtWidgets/QInputDialog>
 
 
 /**
@@ -123,6 +123,12 @@ ParserGraph * Function::getGraph()
 /**
  * Dump info class methods
  */
+	/*
+	Function * addFunction( string & name = string("main"));
+	Function * getFunction( string & name = string("main"));
+	BBlock * addBBlock( int number, int line, string & name = string("main"), BBlock * bb = 0);
+	BBlock * getBBlock( int num, string & name = string("main"));
+	*/
 
 Function * DumpInfo::addFunction( string & name)
 {
@@ -210,9 +216,9 @@ bool convertDumpToXml( QWidget * parent)
 		"", parent->tr( "All files(*.*)")); 
     if ( file.isEmpty()) return false;
 
-	Utils::out( "Parsing file %s", file.toAscii().constData());
+	Utils::out( "Parsing file %s", file.toLatin1().constData());
 
-	ct = Parser::getCompilerType( file.toAscii().constData());
+	ct = Parser::getCompilerType( file.toLatin1().constData());
 	if ( ct == GCC)
 	{
 		Utils::out( "Gcc compiler detected");
@@ -237,7 +243,7 @@ bool convertDumpToXml( QWidget * parent)
 
 	try
 	{
-		P->parseFile( file.toAscii().constData());
+		P->parseFile( file.toLatin1().constData());
 
 		QStringList items;
 		list < string> functions;
@@ -252,7 +258,7 @@ bool convertDumpToXml( QWidget * parent)
 		item = QInputDialog::getItem( parent, parent->tr("Select function"),
 			parent->tr("Function:"), items, 0, false, &ok);
 		if (ok && !item.isEmpty())
-			gr = P->getGraph( item.toAscii().constData());
+			gr = P->getGraph( item.toLatin1().constData());
 		else
 			return false;
 	}
@@ -262,10 +268,10 @@ bool convertDumpToXml( QWidget * parent)
 		return false;
 	}
 
-	Utils::out( "%s successfuly parsed", file.toAscii().constData());
+	Utils::out( "%s successfuly parsed", file.toLatin1().constData());
 
 	file += "_";
-	file += item.toAscii().constData();
+	file += item.toLatin1().constData();
 	file += ".xml";
 
 	file = QFileDialog::getSaveFileName( parent, parent->tr( "Save XML"),
@@ -273,8 +279,8 @@ bool convertDumpToXml( QWidget * parent)
 
 	if ( !file.isEmpty())
 	{
-		gr->writeToXml( file.toAscii().constData());
-		Utils::out( "Dump %s wrote", file.toAscii().constData());
+		gr->writeToXml( file.toLatin1().constData());
+		Utils::out( "Dump %s wrote", file.toLatin1().constData());
 
 		QMessageBox msgBox;
 		QString msg = parent->tr( "The dump of function \"")

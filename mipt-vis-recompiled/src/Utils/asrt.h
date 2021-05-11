@@ -69,7 +69,7 @@ inline void assert( bool asrt)
 /*    return assert< int>( asrt);*/
 }
 #endif
-
+#undef assert
 #define assert(var) /**/
 
 #endif

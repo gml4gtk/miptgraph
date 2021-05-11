@@ -1,5 +1,5 @@
 #include "gui_style_sheet.h"
-#include "libXml/tree.h"
+#include "libxml/tree.h"
 
 /*
  * constructor
@@ -67,14 +67,14 @@ void Style::loadFromXmlNode (xmlNode * a_node)
  */
 void Style::writeByXmlWriter( xmlTextWriterPtr writer)
 {
-	xmlTextWriterWriteAttribute( writer, BAD_CAST "name", BAD_CAST name_priv.toAscii().data());
+	xmlTextWriterWriteAttribute( writer, BAD_CAST "name", BAD_CAST name_priv.toLatin1().data());
 	if (pen.brush().style() != Qt::NoBrush)
 	{
-		xmlTextWriterWriteAttribute( writer, BAD_CAST "penColor", BAD_CAST pen.color().name().toAscii().data());
+		xmlTextWriterWriteAttribute( writer, BAD_CAST "penColor", BAD_CAST pen.color().name().toLatin1().data());
 		xmlTextWriterWriteFormatAttribute( writer, BAD_CAST "penWidth", "%d", BAD_CAST pen.width());
 	}
 	if (brush.style() != Qt::NoBrush)
-		xmlTextWriterWriteAttribute( writer, BAD_CAST "brush", BAD_CAST brush.color().name().toAscii().data());
+		xmlTextWriterWriteAttribute( writer, BAD_CAST "brush", BAD_CAST brush.color().name().toLatin1().data());
 }
 
 /*

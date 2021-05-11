@@ -26,7 +26,7 @@ string  Icc_parser::isFnName(std::string &in)
 
 	regexp.setPattern( icc_patt_fnname);
 	if ( regexp.indexIn( str, 0) != -1)
-		return regexp.cap( 1).toAscii().constData();
+		return regexp.cap( 1).toLatin1().constData();
 	else
 		return "";
 }

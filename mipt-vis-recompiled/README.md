@@ -17,3 +17,10 @@ This needs libxml2 assuming the include files are in /usr/include/libxml2
 This setting can be changed in mipt-vis.pro file then run qmake again
 
 Todo: more updates on the source are needed
+
+Also see the mipt-vis original source for the unittest and sample data
+
+![screenshot](./screenshot.png)
+
+
+<span>🇳🇱</span>

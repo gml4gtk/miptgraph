@@ -4,7 +4,11 @@
  */
 #include "gui_view.h"
 #include <QtCore/QDebug>
+/*
 #include <QtGui/QGraphicsScene>
+#include <QtGui/QWheelEvent>
+*/
+#include <QtWidgets/QGraphicsScene>
 #include <QtGui/QWheelEvent>
 #include <math.h>
 
