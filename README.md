@@ -11,3 +11,4 @@ This can be used as a small C++ graph labrary
 
 See also the directory mipt-vis and icdv
 
+The directory mipt-vis-recompiled has updated source to compile mipt-vis with qt5 on Linux
