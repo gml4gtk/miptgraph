@@ -1,0 +1,21 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>logo.ico</file>
+    <file>Edit.ico</file>
+    <file>Synchronize.ico</file>
+    <file>Find.ico</file>
+    <file>Open.ico</file>
+    <file>Save.ico</file>
+    <file>LogOut.ico</file>
+    <file>Information.ico</file>
+    <file>New.ico</file>
+    <file>ZoomIn.ico</file>
+    <file>ZoomOut.ico</file>
+    <file>Download.ico</file>
+    <file>Print.ico</file>
+    <file>closetab.png</file>
+    <file>previous.png</file>
+    <file>next.png</file>
+    <file>wrap.png</file>
+</qresource>
+</RCC>

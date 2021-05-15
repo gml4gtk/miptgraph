@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DMIPT_VIS_VER_MAJ=1 -DMIPT_VIS_VER_MIN=0 -DMIPT_VIS_VER_PAT=0 -DQT_NO_DEBUG -DQT_GUI_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -Isrc -isystem /usr/include/libxml2 -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -Ibuild -isystem /usr/include/libdrm -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+DEFINES       = -DMIPT_VIS_VER_MAJ=1 -DMIPT_VIS_VER_MIN=0 -DMIPT_VIS_VER_PAT=0 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+CFLAGS        = -pipe -O2 -Wall -W -Wall -fdiagnostics-show-option -Wno-format -Wno-parentheses -Wno-sign-compare -Wno-uninitialized -Wno-unused-variable -Wno-unused-function -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -O2 -Wall -W -Wall -fdiagnostics-show-option -Wno-format -Wno-parentheses -Wno-sign-compare -Wno-uninitialized -Wno-unused-variable -Wno-unused-function -D_REENTRANT -fPIC $(DEFINES)
+INCPATH       = -I. -Isrc -isystem /usr/include/libxml2 -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -Ibuild -isystem /usr/include/libdrm -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -38,7 +38,7 @@ DISTNAME      = mipt-vis-1.0.0
 DISTDIR = /home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/build/mipt-vis-1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1
-LIBS          = $(SUBLIBS) -lQt5Gui -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/usr/lib/x86_64-linux-gnu -lxml2 -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -189,6 +189,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/moc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/opengl.prf \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/uic.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/thread.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf \
@@ -348,6 +349,7 @@ Makefile: mipt-vis.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.con
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/moc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/opengl.prf \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/uic.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/thread.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf \
@@ -356,6 +358,7 @@ Makefile: mipt-vis.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.con
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		mipt-vis.pro \
+		/usr/lib/x86_64-linux-gnu/libQt5Widgets.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Gui.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Core.prl
 	$(QMAKE) -o Makefile mipt-vis.pro
@@ -441,6 +444,7 @@ src/application.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/moc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/opengl.prf:
+/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/uic.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/thread.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf:
@@ -449,6 +453,7 @@ src/application.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 mipt-vis.pro:
+/usr/lib/x86_64-linux-gnu/libQt5Widgets.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Gui.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Core.prl:
 qmake: FORCE
@@ -497,7 +502,7 @@ compiler_moc_predefs_make_all: build/moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) build/moc_predefs.h
 build/moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
-	g++ -pipe -O2 -Wall -W -dM -E -o build/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+	g++ -pipe -O2 -Wall -W -Wall -fdiagnostics-show-option -Wno-format -Wno-parentheses -Wno-sign-compare -Wno-uninitialized -Wno-unused-variable -Wno-unused-function -dM -E -o build/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: build/moc_gui_graph.cpp build/moc_gui_mw.cpp build/moc_gui_node.cpp build/moc_gui_textedit.cpp build/moc_gui_view.cpp
 compiler_moc_header_clean:
@@ -526,11 +531,12 @@ build/moc_gui_graph.cpp: src/Layout/layout_iface.h \
 		src/GUI/gui_graph.h \
 		build/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/src -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/GUI/gui_graph.h -o build/moc_gui_graph.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/src -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/GUI/gui_graph.h -o build/moc_gui_graph.cpp
 
 build/moc_gui_mw.cpp: src/GUI/gui_impl.h \
 		src/GUI/gui_iface.h \
 		src/GUI/predecls.h \
+		src/GUI/direct.h \
 		src/Utils/utils_iface.h \
 		src/Utils/misc.h \
 		src/Utils/asrt.h \
@@ -561,7 +567,7 @@ build/moc_gui_mw.cpp: src/GUI/gui_impl.h \
 		src/GUI/gui_mw.h \
 		build/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/src -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/GUI/gui_mw.h -o build/moc_gui_mw.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/src -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/GUI/gui_mw.h -o build/moc_gui_mw.cpp
 
 build/moc_gui_node.cpp: src/Layout/layout_iface.h \
 		src/Layout/layout_predecls.h \
@@ -587,11 +593,12 @@ build/moc_gui_node.cpp: src/Layout/layout_iface.h \
 		src/GUI/gui_node.h \
 		build/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/src -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/GUI/gui_node.h -o build/moc_gui_node.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/src -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/GUI/gui_node.h -o build/moc_gui_node.cpp
 
 build/moc_gui_textedit.cpp: src/GUI/gui_impl.h \
 		src/GUI/gui_iface.h \
 		src/GUI/predecls.h \
+		src/GUI/direct.h \
 		src/Utils/utils_iface.h \
 		src/Utils/misc.h \
 		src/Utils/asrt.h \
@@ -622,11 +629,12 @@ build/moc_gui_textedit.cpp: src/GUI/gui_impl.h \
 		src/GUI/gui_textedit.h \
 		build/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/src -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/GUI/gui_textedit.h -o build/moc_gui_textedit.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/src -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/GUI/gui_textedit.h -o build/moc_gui_textedit.cpp
 
 build/moc_gui_view.cpp: src/GUI/gui_impl.h \
 		src/GUI/gui_iface.h \
 		src/GUI/predecls.h \
+		src/GUI/direct.h \
 		src/Utils/utils_iface.h \
 		src/Utils/misc.h \
 		src/Utils/asrt.h \
@@ -657,12 +665,14 @@ build/moc_gui_view.cpp: src/GUI/gui_impl.h \
 		src/GUI/gui_view.h \
 		build/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/src -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/GUI/gui_view.h -o build/moc_gui_view.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled -I/home/gold/misc/src/mipt-vis-compiler-graph/mipt-vis-recompiled/src -I/usr/include/libxml2 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/GUI/gui_view.h -o build/moc_gui_view.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
+compiler_uic_make_all:
+compiler_uic_clean:
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
@@ -739,6 +749,7 @@ build/enode.o: src/Analysis/enode.cpp src/Analysis/analysis_impl.h \
 build/gui.o: src/GUI/gui.cpp src/GUI/gui_impl.h \
 		src/GUI/gui_iface.h \
 		src/GUI/predecls.h \
+		src/GUI/direct.h \
 		src/Utils/utils_iface.h \
 		src/Utils/misc.h \
 		src/Utils/asrt.h \
@@ -771,6 +782,7 @@ build/gui.o: src/GUI/gui.cpp src/GUI/gui_impl.h \
 build/gui_edge.o: src/GUI/gui_edge.cpp src/GUI/gui_impl.h \
 		src/GUI/gui_iface.h \
 		src/GUI/predecls.h \
+		src/GUI/direct.h \
 		src/Utils/utils_iface.h \
 		src/Utils/misc.h \
 		src/Utils/asrt.h \
@@ -803,6 +815,7 @@ build/gui_edge.o: src/GUI/gui_edge.cpp src/GUI/gui_impl.h \
 build/gui_graph.o: src/GUI/gui_graph.cpp src/GUI/gui_impl.h \
 		src/GUI/gui_iface.h \
 		src/GUI/predecls.h \
+		src/GUI/direct.h \
 		src/Utils/utils_iface.h \
 		src/Utils/misc.h \
 		src/Utils/asrt.h \
@@ -836,6 +849,7 @@ build/gui_mw.o: src/GUI/gui_mw.cpp src/GUI/gui_mw.h \
 		src/GUI/gui_impl.h \
 		src/GUI/gui_iface.h \
 		src/GUI/predecls.h \
+		src/GUI/direct.h \
 		src/Utils/utils_iface.h \
 		src/Utils/misc.h \
 		src/Utils/asrt.h \
@@ -868,6 +882,7 @@ build/gui_mw.o: src/GUI/gui_mw.cpp src/GUI/gui_mw.h \
 build/gui_node.o: src/GUI/gui_node.cpp src/GUI/gui_impl.h \
 		src/GUI/gui_iface.h \
 		src/GUI/predecls.h \
+		src/GUI/direct.h \
 		src/Utils/utils_iface.h \
 		src/Utils/misc.h \
 		src/Utils/asrt.h \
@@ -904,6 +919,7 @@ build/gui_textedit.o: src/GUI/gui_textedit.cpp src/GUI/gui_textedit.h \
 		src/GUI/gui_impl.h \
 		src/GUI/gui_iface.h \
 		src/GUI/predecls.h \
+		src/GUI/direct.h \
 		src/Utils/utils_iface.h \
 		src/Utils/misc.h \
 		src/Utils/asrt.h \
@@ -936,6 +952,7 @@ build/gui_view.o: src/GUI/gui_view.cpp src/GUI/gui_view.h \
 		src/GUI/gui_impl.h \
 		src/GUI/gui_iface.h \
 		src/GUI/predecls.h \
+		src/GUI/direct.h \
 		src/Utils/utils_iface.h \
 		src/Utils/misc.h \
 		src/Utils/asrt.h \

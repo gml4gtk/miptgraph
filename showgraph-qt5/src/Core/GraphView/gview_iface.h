@@ -1,0 +1,111 @@
+/**
+ * @file: gview_iface.h 
+ * Graph view classes interface
+ * @defgroup GUI Graphical User Interface 
+ * @author Boris Shurygin
+ *
+ * Graphical part of ShowGraph is arranged around MainWindow wich has 
+ * GraphView as a center widget.
+ */
+/**
+ * Graph view implementation.
+ * Copyright (c) 2009, Boris Shurygin
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ * 
+ * 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+#pragma once
+#ifndef GVIEW_IFACE_H
+#define GVIEW_IFACE_H
+
+/**
+ * Debug assert for graph library
+ */
+#if !defined(GVIEW_ASSERTD)
+#    define GVIEW_ASSERTD(cond, what) ASSERT_XD(cond, "GUI", what)
+#endif
+
+/** Predeclarations */
+class GGraph;
+class GNode;
+class GEdge;
+class NodeItem;
+class EdgeItem;
+class GraphView;
+class StyleEdit;
+
+#include <QtGui>
+#include <QList>
+#include <QGraphicsItem>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QDebug>
+#include <QWheelEvent>
+#include <QtWidgets/QProgressDialog>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDoubleSpinBox>
+#include <QtWidgets/QStyleOptionGraphicsItem>
+#include <QtWidgets/QGraphicsSceneMouseEvent>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QColorDialog>
+
+
+#include "../Graph/graph_iface.h"
+#include "../Layout/layout_iface.h"
+
+/**
+ * Subclasses of QGraphicsItem types
+ */
+enum { 
+    TypeNode = QGraphicsItem::UserType + 1, /** Node item */
+    TypeEdge = QGraphicsItem::UserType + 2, /** Edge item */
+    TypeEdgeControl = QGraphicsItem::UserType + 3,/** EdgeControl item */
+    TypeEdgeHelper = QGraphicsItem::UserType + 4 /** Edge helper item */
+};
+
+/** Max opacity level for items in graph view */
+const qreal MAX_OPACITY = 6;
+
+/**
+ * Exception type for graph errors
+ * @ingroup GUIGraph
+ */
+class GGraphError
+{
+public:
+    /** No message constructor */
+    GGraphError(){};
+    /** Message-based constructor*/
+    GGraphError( QString str): msg_priv( str){};
+    /** Get message */
+    inline QString message()
+    {
+        return msg_priv;
+    }
+private:
+    /** Error message */
+    QString msg_priv;
+};
+
+#include "navigation.h"
+#include "visible_edge.h"
+#include "gstyle.h"
+#include "edge_item.h"
+#include "node_item.h"
+#include "edge_helper.h"
+#include "graph_view.h"
+#include "style_edit.h"
+
+#endif /* GVIEW_IFACE_H */
