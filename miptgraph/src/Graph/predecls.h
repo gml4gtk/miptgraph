@@ -23,7 +23,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-/** 
+/**
  * @file: predecls.h
  */
 #ifndef GRAPH_PREDECLS_H

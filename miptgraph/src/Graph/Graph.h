@@ -23,7 +23,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-/** 
+/**
  * @file: Graph.h
  */
 #ifndef GRAPH_GRAPH_H

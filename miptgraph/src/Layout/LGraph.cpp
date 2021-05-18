@@ -55,9 +55,8 @@ void LGraph::Layout(unsigned int number_of_iterations,
 
     InitPos(order);
     InitCoordinates(order);
-#ifdef DEBUG
     printf("Crossings:%d\n", countCrossing(order));
-#endif
+    return;
 }
 
 void LGraph::InitRank()

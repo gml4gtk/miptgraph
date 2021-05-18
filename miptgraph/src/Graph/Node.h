@@ -23,7 +23,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-/** 
+/**
  * @file: Node.h
  */
 #ifndef GRAPH_NODE_H

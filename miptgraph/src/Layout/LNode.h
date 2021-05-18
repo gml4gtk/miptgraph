@@ -74,7 +74,7 @@ public:
 
     void SetContent(const std::string& source)
     {
-//        content.clear();
+        //        content.clear();
         content += source;
     }
 

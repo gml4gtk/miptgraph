@@ -23,13 +23,15 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-/** 
+/**
  * @file: Node.cpp
  */
+
 #include "predecls.h"
-#include "Node.h"
+/* */
 #include "Edge.h"
 #include "Graph.h"
+#include "Node.h"
 
 void Node::Dump()
 {

@@ -48,7 +48,7 @@ public:
         maxrank = 0;
         order = NULL;
     }
-    /// Replacing revert eages from the ReverceEdges list.
+    /// Replacing revert edges from the ReverseEdges list.
     void ReverseReverseEdges(list<pEdge>& ReverseEdges);
 
     int getMaxrank() { return maxrank; }

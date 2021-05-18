@@ -55,3 +55,5 @@ public:
 };
 
 #endif // LAYOUT_ORDERING_H
+
+/* end. */

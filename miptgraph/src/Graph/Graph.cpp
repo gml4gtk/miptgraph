@@ -23,7 +23,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-/** 
+/**
  * @file: Graph.cpp
  */
 #include "predecls.h"
@@ -33,6 +33,7 @@ void Graph::Dump()
 {
     list<pNode>::iterator node_iter;
     list<pEdge>::iterator edge_iter;
+
 
     printf("Dumping graph\n");
     printf("Nodes:\n");
@@ -294,7 +295,7 @@ void Graph::CreateSingleEntry()
             }
         }
     }
-
+    delete root;
     delete dfs;
     delete isused;
     delete root_node_list;

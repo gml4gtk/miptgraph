@@ -23,7 +23,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-/** 
+/**
  * @file: Edge.h
  */
 #ifndef GRAPH_EDGE_H
@@ -35,8 +35,9 @@
  */
 class Edge {
     pGraph m_graph;
-    pNode m_from, m_to;
-    int m_id;
+    pNode m_from; // from node
+    pNode m_to; // to node
+    int m_id; // uniq number
 
 protected:
     /// Ctor
@@ -80,3 +81,5 @@ public:
 };
 
 #endif
+
+/* end. */

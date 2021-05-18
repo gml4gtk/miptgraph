@@ -49,9 +49,9 @@ includemg_HEADERS = \
 	Layout.h
 
 indent:
-	clang-format -style=WebKit -i *.cpp *.h
+	clang-format -style=WebKit -i *.cpp
 
-clean:
+cleaner:
 	rm -v -f -r -d .deps
 	rm -v -f -r -d .libs
 	rm -v -f *.o

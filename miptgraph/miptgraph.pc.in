@@ -1,0 +1,4 @@
+Name: @PACKAGE_NAME@
+Description: C++ Mipt Graph Layout Library
+URL: @PACKAGE_URL@
+Version: @PACKAGE_VERSION@

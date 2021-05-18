@@ -48,7 +48,7 @@ includemg_HEADERS = \
 indent:
 	clang-format -style=WebKit -i *.cpp *.h
 
-clean:
+cleaner:
 	rm -v -f -r -d .deps
 	rm -v -f -r -d .libs
 	rm -v -f *.o
