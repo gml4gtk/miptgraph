@@ -46,7 +46,7 @@ includemg_HEADERS = \
 	predecls.h
 
 indent:
-	clang-format -style=WebKit -i *.cpp *.h
+	clang-format -style=WebKit -i *.cpp
 
 cleaner:
 	rm -v -f -r -d .deps

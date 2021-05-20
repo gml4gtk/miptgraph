@@ -35,9 +35,17 @@
  * pointer to the graph that the node relates to, and unique id.
  */
 class Node {
+
+    /// node belong to this graph
     pGraph m_graph;
+
+    /// incoming edges to this node
     list<pEdge> m_in_edges_list;
+
+    /// outgoing edges from this node
     list<pEdge> m_out_edges_list;
+
+    /// uniq node number
     int m_id;
 
 protected:
@@ -47,11 +55,13 @@ public:
     /// Get node id
     int id() { return m_id; }
 
+    /// get incoming edges
     list<pEdge>* in_edges_list()
     {
         return &m_in_edges_list;
     }
 
+    /// get outgoing edges
     list<pEdge>* out_edges_list()
     {
         return &m_out_edges_list;
@@ -63,3 +73,5 @@ public:
     friend class Graph;
 };
 #endif
+
+/* end. */

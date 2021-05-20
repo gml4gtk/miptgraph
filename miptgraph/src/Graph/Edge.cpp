@@ -29,27 +29,56 @@
 
 #include "predecls.h"
 
+/**
+ * Create new edge between two pNode's
+ * the edge gets uniq number
+ * the edge is added to graph edgelist
+ * the edge is added as outgoing edge of from node
+ * the edge is added as incoming edge of to node
+ * \sa AddEdge
+ */
 Edge::Edge(pNode from, pNode to)
     : m_from(from)
     , m_to(to)
 {
     assert(from);
     assert(to);
+
+    // graph where edge is must be same in from/to node
+    // todo this can turned into a feature
     assert(from->m_graph == to->m_graph);
 
+    // edge is not reversed by default
     reverse = false;
+
+    // get graph of edge based on from node
     pGraph pg = from->m_graph;
+
+    // graph must be defined
     assert(pg);
 
+    // give edge uniq number in this graph
     m_id = pg->next_edge_id;
-    pg->m_total_edges_num++;
+
+    // update edge id counter
     pg->next_edge_id++;
+
+    // update number of edges in this graph
+    pg->m_total_edges_num++;
+
+    // push on edges list
     pg->m_edges_list.push_back(this);
 
+    // set graph of edge
     m_graph = pg;
 
+    // add edge to outgoing edges ot from node
     from->m_out_edges_list.push_back(this);
+
+    // add edge to incoming edges of to node
     to->m_in_edges_list.push_back(this);
+
+    return;
 };
 
 void Edge::Reverse()
@@ -68,14 +97,22 @@ void Edge::Reverse()
     m_from->m_in_edges_list.remove(this);
 
     reverse = true;
+
+    return;
 }
 
 void Edge::Dump()
 {
-    printf("Edge id %d: %d->%d rev= %d\n", m_id, m_from->m_id, m_to->m_id, reverse);
+
+    printf("Edge id %d: %d->%d rev=%d\n", m_id, m_from->m_id, m_to->m_id, reverse);
+
+    return;
 };
 
 void Edge::Print()
 {
+
     printf("%d->%d", m_from->m_id, m_to->m_id);
+
+    return;
 };

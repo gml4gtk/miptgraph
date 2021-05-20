@@ -33,10 +33,11 @@
 #include "Graph.h"
 #include "Node.h"
 
+/// print node info
 void Node::Dump()
 {
     list<pEdge>::iterator edge_iter;
-    printf("Node %d:\n", m_id);
+    printf("Node id %d:\n", m_id);
     printf("  In  edges:");
     for (edge_iter = m_in_edges_list.begin();
          edge_iter != m_in_edges_list.end();
@@ -54,14 +55,27 @@ void Node::Dump()
         pe->Print();
     }
     printf("\n");
+
+    return;
 }
 
+/// add node to graph
 Node::Node(pGraph graph)
 {
     assert(graph);
+
+    /// node belongs to this graph
     m_graph = graph;
+
+    /// set node uniq number
     m_id = graph->next_node_id;
+
+    /// update graph node amount and numbering
     graph->m_total_nodes_num++;
     graph->next_node_id++;
+
+    /// add node to graph
     graph->m_nodes_list.push_back(this);
+
+    return;
 }

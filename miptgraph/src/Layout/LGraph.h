@@ -110,7 +110,7 @@ public:
     int countCrossingOnRank(Ordering* order, int rank);
 
     /**
-   * The initial (horisontal)ordering.
+   * The initial (horizontal)ordering.
    * Should be called after InitRank().
    */
     vector<vector<pLNode>> InitOrder();
@@ -125,3 +125,5 @@ public:
 };
 
 #endif
+
+/* end. */

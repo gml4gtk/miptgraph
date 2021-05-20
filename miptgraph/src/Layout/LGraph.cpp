@@ -34,28 +34,49 @@ void LGraph::Layout(unsigned int number_of_iterations,
     int transpose_range)
 {
     list<pEdge> ReverseEdges;
+
+    /* avoid crash when graph has no nodes */
+    if (m_total_nodes_num == 0) {
+        return;
+    }
+
+    /* nothing to layout if there are no edges */
+    if (m_total_edges_num == 0) {
+        return;
+    }
+
     FindReverseEdges(ReverseEdges);
+
     ReverseReverseEdges(ReverseEdges);
+
     InitRank();
+
     list<pEdge> LongEdges;
     FindLongEdges(LongEdges);
+
     AddDummyNodes(LongEdges);
+
     ReverseEdges.clear();
+
     order = new Ordering();
     order->order_vector = InitOrder();
 
     // Number of iterations.
     layouted = true;
+
     for (unsigned int i = 0; i < number_of_iterations; i++) {
         WeightedMedianHeuristic(i);
-        // TODO(Kuzmich(svatoslav1)): make transpose faster. It is too slow for now
-        if (do_transpose)
+        /// swap nodes at this level, can be slow.
+        if (do_transpose) {
             Transpose(i + transpose_range);
+        }
     }
 
     InitPos(order);
     InitCoordinates(order);
+
     printf("Crossings:%d\n", countCrossing(order));
+
     return;
 }
 
@@ -154,6 +175,7 @@ void LGraph::WeightedMedianHeuristic(int iter)
     }
 }
 
+/* todo crashes at 2 graph at once */
 int LGraph::countCrossing(Ordering* order)
 {
     int crossing = 0;

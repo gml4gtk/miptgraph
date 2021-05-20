@@ -1,0 +1,107 @@
+
+Layout test started..
+Crossings:5
+after layout of graph 1 with dummy nodes and changed edges
+Dumping graph
+Nodes:
+Node 0:
+  In  edges:
+  Out edges: 0->1 0->3 0->10
+Node 1:
+  In  edges: 0->1
+  Out edges: 1->5 1->7 1->6 1->5 1->15 1->16
+Node 2:
+  In  edges: 6->2 5->2 11->2
+  Out edges:
+Node 3:
+  In  edges: 0->3
+  Out edges: 3->12
+Node 4:
+  In  edges: 9->4 13->4 14->4
+  Out edges:
+Node 5:
+  In  edges: 1->5 1->5
+  Out edges: 5->8 5->2
+Node 6:
+  In  edges: 1->6
+  Out edges: 6->9 6->2
+Node 7:
+  In  edges: 1->7
+  Out edges: 7->14
+Node 8:
+  In  edges: 5->8 15->8
+  Out edges:
+Node 9:
+  In  edges: 6->9 16->9
+  Out edges: 9->4
+Node 10:
+  In  edges: 0->10
+  Out edges: 10->11
+Node 11:
+  In  edges: 10->11
+  Out edges: 11->2
+Node 12:
+  In  edges: 3->12
+  Out edges: 12->13
+Node 13:
+  In  edges: 12->13
+  Out edges: 13->4
+Node 14:
+  In  edges: 7->14
+  Out edges: 14->4
+Node 15:
+  In  edges: 1->15
+  Out edges: 15->8
+Node 16:
+  In  edges: 1->16
+  Out edges: 16->9
+Edges:
+Edge id 0: 0->1 rev=0
+Edge id 2: 0->3 rev=0
+Edge id 3: 1->5 rev=0
+Edge id 4: 6->2 rev=1
+Edge id 5: 5->2 rev=1
+Edge id 8: 9->4 rev=1
+Edge id 9: 5->8 rev=0
+Edge id 10: 6->9 rev=0
+Edge id 12: 1->7 rev=0
+Edge id 13: 1->6 rev=0
+Edge id 14: 1->5 rev=0
+Edge id 16: 0->10 rev=0
+Edge id 17: 10->11 rev=0
+Edge id 18: 11->2 rev=0
+Edge id 19: 3->12 rev=0
+Edge id 20: 12->13 rev=0
+Edge id 21: 13->4 rev=0
+Edge id 22: 7->14 rev=1
+Edge id 23: 14->4 rev=1
+Edge id 24: 1->15 rev=0
+Edge id 25: 15->8 rev=0
+Edge id 26: 1->16 rev=0
+Edge id 27: 16->9 rev=0
+graph 1 maxrank = 4
+Crossings:0
+after layout of graph 2 with dummy nodes and changed edges
+Dumping graph
+Nodes:
+Node 0:
+  In  edges:
+  Out edges: 0->1 0->2 0->3
+Node 1:
+  In  edges: 0->1
+  Out edges:
+Node 2:
+  In  edges: 0->2
+  Out edges:
+Node 3:
+  In  edges: 0->3
+  Out edges: 3->4
+Node 4:
+  In  edges: 3->4
+  Out edges:
+Edges:
+Edge id 0: 0->1 rev=0
+Edge id 1: 0->2 rev=0
+Edge id 2: 0->3 rev=0
+Edge id 3: 3->4 rev=0
+graph 2 maxrank = 2

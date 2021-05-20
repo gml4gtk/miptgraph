@@ -1,0 +1,4 @@
+- graph.cpp destroy() edges todo
+- graph.cpp creategraphwith single node todo
+- fixed: layout() crashes in countcrossings if there are no nodes
+- layout() if there are nodes, but no edges todo

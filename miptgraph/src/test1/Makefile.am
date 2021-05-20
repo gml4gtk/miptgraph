@@ -21,9 +21,15 @@
 
 all: libs
 	make test1
+	make test2
 
+# generate svg image data
 test1:
 	$(CXX) test1.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test1
+
+# run two graph layout at once
+test2:
+	$(CXX) test2.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test2
 
 libs: graphlib layoutlib
 
@@ -38,8 +44,10 @@ indent:
 
 clean:
 	rm -v -f test1
+	rm -v -f test2
 
 cleaner:
+	make clean
 	rm -v -f -r -d .deps
 	rm -v -f -r -d .libs
 	rm -v -f *.o
@@ -47,4 +55,5 @@ cleaner:
 	rm -v -f *.la
 	rm -v -f Makefile
 	rm -v -f Makefile.in
-	rm -v -f test1
+
+# end.

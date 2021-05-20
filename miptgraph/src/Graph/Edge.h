@@ -34,10 +34,10 @@
  * An edge has two Nodes as its end points, pointer to graph that the edge relates to, and unique id.
  */
 class Edge {
-    pGraph m_graph;
+    pGraph m_graph; // graph where edge belongs to
     pNode m_from; // from node
     pNode m_to; // to node
-    int m_id; // uniq number
+    int m_id; // uniq number in this graph
 
 protected:
     /// Ctor
@@ -47,33 +47,61 @@ protected:
     bool reverse;
 
 public:
+
+    /**
+     * Get reversed direction of edge
+     * \return true if edge is reversed
+     */
     bool IsReverse()
     {
         return reverse;
     }
 
+    /**
+     * Set bool edge has reversed direction
+     */
     void SetReverse(bool is_reverse)
     {
         reverse = is_reverse;
     }
 
+    /**
+     * swap direction of edge
+     */
     void Reverse();
-    /// Get m_graph
+
+    /**
+     * Get pGraph pointer of graph where edge is
+     * \return graph of edge
+     */
     pGraph graph() { return m_graph; }
 
-    /// Get edge id
+    /**
+     * Get uniq edge number
+     * \return int edge number
+     */
     int id() { return m_id; }
 
-    /// Get pointer to edge start node
+    /**
+     * Get pNode pointer to edge start node
+     * \return from-node of edge
+     */
     pNode from() { return m_from; }
 
-    /// Get pointer to edge end node
+    /**
+     * Get pNode pointer to edge end node
+     * \return to-node of edge
+     */
     pNode to() { return m_to; }
 
-    /// Print info about the edge
+    /**
+     * Print info about the edge
+     */
     virtual void Dump();
 
-    /// Concise version of Dump
+    /**
+     * Print short info about the edge
+     */
     virtual void Print();
 
     friend class Node;
