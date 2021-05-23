@@ -98,6 +98,15 @@ pNode Graph::AddNode()
     return new_node;
 }
 
+/**
+ * increase count of dummy nodes
+ */
+void Graph::AddDummyNode()
+{
+    m_total_dummynodes_num++;
+    return;
+}
+
 pEdge Graph::AddEdge(pNode from, pNode to)
 {
     pEdge new_edge = new Edge(from, to);
@@ -435,6 +444,17 @@ void Graph::CreateSingleEntry()
     delete dfs;
     delete isused;
     delete root_node_list;
+}
+
+/**
+ * set uniq graph id as int number
+ */
+void Graph::Setid(int id)
+{
+
+    m_id = id;
+
+    return;
 }
 
 /* end. */

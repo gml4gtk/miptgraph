@@ -5,7 +5,14 @@ GNU GPL Free C++ directed graph layout library
 This are example test programs using the library, run make to generate them  
 Also: make clean..
 
-Ouput of test1.cpp is this:  
+test1.cpp create graph and layout and generate svg image data  
+test2.cpp create multiple graph at once and run layout  
+test3.cpp create graph with a cycle and run layout  
+
+Added features:
+graph Setid(int number) to set uniq id number of graph for use  
+
+Example ouput of test1.cpp is this:  
 Layout test started..  
 Dumping graph  
 Nodes:  

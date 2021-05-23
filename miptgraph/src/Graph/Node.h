@@ -29,45 +29,72 @@
 #ifndef GRAPH_NODE_H
 #define GRAPH_NODE_H
 
-/// Class for representation of nodes
 /**
+ * Class for representation of nodes
  * A node has two lists of incoming to it and outgoing from it edges,
  * pointer to the graph that the node relates to, and unique id.
  */
 class Node {
 
-    /// node belong to this graph
+    /**
+     * node belong to this graph
+     */
     pGraph m_graph;
 
-    /// incoming edges to this node
+    /**
+     * incoming edges to this node
+     */
     list<pEdge> m_in_edges_list;
 
-    /// outgoing edges from this node
+    /**
+     * outgoing edges from this node
+     */
     list<pEdge> m_out_edges_list;
 
-    /// uniq node number
+    /**
+     * number of self-edges at this node
+     */
+    int m_selfedges;
+
+    /**
+     * uniq node number
+     */
     int m_id;
 
 protected:
     Node(pGraph graph);
 
 public:
-    /// Get node id
+
+    /**
+     * Get uniq node id
+     */
     int id() { return m_id; }
 
-    /// get incoming edges
+    /**
+     * get nuber of self-edgs at this node
+     */
+    int nselfedges () { return m_selfedges; }
+
+    /**
+     * Get incoming edges
+     */
     list<pEdge>* in_edges_list()
     {
         return &m_in_edges_list;
     }
 
-    /// get outgoing edges
+    /**
+     * Get outgoing edges
+     */
     list<pEdge>* out_edges_list()
     {
         return &m_out_edges_list;
     }
 
-    /// Print info about the node
+    /**
+     * Print info about the node
+     */
     virtual void Dump();
     friend class Edge;
     friend class Graph;

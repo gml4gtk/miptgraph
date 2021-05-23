@@ -33,8 +33,9 @@
 int LNode::Rank()
 {
     // If rank is determined before..
-    if (rank >= 0)
+    if (rank >= 0) {
         return rank;
+    }
 
     assert(!we_were_here);
     // If node has no incoming edges rank defines as 0
@@ -62,10 +63,11 @@ double
 LNode::Median(Ordering order, bool direction)
 {
     vector<int> list;
-    if (direction == MEDIAN_IN)
+    if (direction == MEDIAN_IN) {
         list = order.AdjInPositions(this);
-    else
+    } else {
         list = order.AdjOutPositions(this);
+    }
 
     int size = list.size();
     int m = size / 2;
@@ -86,7 +88,8 @@ LNode::Median(Ordering order, bool direction)
     double right = (double)list[size - 1] - (double)list[m];
 
     median = (double)((double)list[m - 1] * right + (double)list[m] * left) / (left + right);
-    return 0.0;
+
+    return median; // 0.0;
 }
 
 bool LNode::IsAdjacentToNode(pLNode node)
@@ -94,8 +97,9 @@ bool LNode::IsAdjacentToNode(pLNode node)
     for (list<pEdge>::iterator edge_iter = out_edges_list()->begin();
          edge_iter != out_edges_list()->end();
          edge_iter++) {
-        if ((pLNode)((*edge_iter)->to()) == node)
+        if ((pLNode)((*edge_iter)->to()) == node) {
             return true;
+        }
     }
     return false;
 }

@@ -30,10 +30,10 @@
 #ifndef LAYOUT_ORDERING_H
 #define LAYOUT_ORDERING_H
 
-/// Class for representation horisontal order of nodes in each rank
 /**
- *	Ordering contains vector of ranks.
- *  Each rank contain ordered list of the nodes.
+ * Class for representation horisontal order of nodes in each rank
+ * Ordering contains vector of ranks.
+ * Each rank contain ordered list of the nodes.
  */
 
 class Ordering {

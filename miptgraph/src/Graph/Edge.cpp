@@ -63,44 +63,71 @@ Edge::Edge(pNode from, pNode to)
     // update edge id counter
     pg->next_edge_id++;
 
-    // update number of edges in this graph
-    pg->m_total_edges_num++;
-
-    // push on edges list
-    pg->m_edges_list.push_back(this);
-
     // set graph of edge
     m_graph = pg;
 
-    // add edge to outgoing edges ot from node
-    from->m_out_edges_list.push_back(this);
+    if (from->id() == to->id()) {
+        // this is a self-edge and not in the edges list
 
-    // add edge to incoming edges of to node
-    to->m_in_edges_list.push_back(this);
+        // update number of edges in this graph
+        pg->m_total_selfedges_num++;
+
+        // push on selfedges list
+        pg->m_selfedges_list.push_back(this);
+
+        // incr. number of self-edges at this node
+        from->m_selfedges++;
+
+    } else {
+        // regular edge
+
+        // update number of edges in this graph
+        pg->m_total_edges_num++;
+
+        // push on edges list
+        pg->m_edges_list.push_back(this);
+
+        // add edge to outgoing edges ot from node
+        from->m_out_edges_list.push_back(this);
+
+        // add edge to incoming edges of to node
+        to->m_in_edges_list.push_back(this);
+    }
 
     return;
 };
 
+/**
+ * reverse edge direction
+ * set reverse to true
+ * swap from/to node and in/out edges
+ */
 void Edge::Reverse()
 {
     pNode temp_node;
 
-    // Swaping from<->to nodes for the edges;
+    // Swap from<->to nodes for the edges;
     temp_node = m_to;
     m_to = m_from;
     m_from = temp_node;
 
-    // Swaping in<->out edges for the nodes;
+    // Swap in<->out edges for the nodes;
     m_to->m_in_edges_list.push_back(this);
     m_from->m_out_edges_list.push_back(this);
+
+    // todo. after this out edges are deleted. oke?
     m_to->m_out_edges_list.remove(this);
     m_from->m_in_edges_list.remove(this);
 
+    // edge is reversed
     reverse = true;
 
     return;
 }
 
+/**
+ * Print edge info
+ */
 void Edge::Dump()
 {
 
@@ -109,6 +136,9 @@ void Edge::Dump()
     return;
 };
 
+/**
+ * Print short edge info
+ */
 void Edge::Print()
 {
 

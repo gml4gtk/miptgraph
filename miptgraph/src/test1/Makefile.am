@@ -22,6 +22,7 @@
 all: libs
 	make test1
 	make test2
+	make test3
 
 # generate svg image data
 test1:
@@ -30,6 +31,10 @@ test1:
 # run two graph layout at once
 test2:
 	$(CXX) test2.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test2
+
+# graph with a cycle
+test3:
+	$(CXX) test3.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test3
 
 libs: graphlib layoutlib
 
@@ -45,6 +50,8 @@ indent:
 clean:
 	rm -v -f test1
 	rm -v -f test2
+	rm -v -f test3
+	rm -v -f *.output
 
 cleaner:
 	make clean

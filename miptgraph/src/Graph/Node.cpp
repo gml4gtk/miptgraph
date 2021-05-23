@@ -33,7 +33,9 @@
 #include "Graph.h"
 #include "Node.h"
 
-/// print node info
+/**
+ * print node info with in/out edges
+ */
 void Node::Dump()
 {
     list<pEdge>::iterator edge_iter;
@@ -43,35 +45,45 @@ void Node::Dump()
          edge_iter != m_in_edges_list.end();
          edge_iter++) {
         pEdge pe = *edge_iter;
-        printf(" ");
-        pe->Print();
+        if (pe) {
+            printf(" ");
+            pe->Print();
+        }
     }
+
     printf("\n  Out edges:");
+
     for (edge_iter = m_out_edges_list.begin();
          edge_iter != m_out_edges_list.end();
          edge_iter++) {
         pEdge pe = *edge_iter;
-        printf(" ");
-        pe->Print();
+        if (pe) {
+            printf(" ");
+            pe->Print();
+        }
     }
     printf("\n");
 
     return;
 }
 
-/// add node to graph
+/**
+ * add node to graph
+ */
 Node::Node(pGraph graph)
 {
     assert(graph);
 
-    /// node belongs to this graph
+    // node belongs to this graph
     m_graph = graph;
 
-    /// set node uniq number
+    // set node uniq number
     m_id = graph->next_node_id;
 
-    /// update graph node amount and numbering
+    // update graph node amount
     graph->m_total_nodes_num++;
+
+    /// update next node number
     graph->next_node_id++;
 
     /// add node to graph
@@ -79,3 +91,5 @@ Node::Node(pGraph graph)
 
     return;
 }
+
+/* end. */

@@ -2,3 +2,15 @@
 - graph.cpp creategraphwith single node todo
 - fixed: layout() crashes in countcrossings if there are no nodes
 - layout() if there are nodes, but no edges todo
+- edge between nodes in different graph can be a feature
+- fixed: added way to set and get uniq id number of graph
+- fixed: added test with cycle in the graph
+- fixed: add support for self-edges at a node added in node, edge, graph
+- edge reverse() to/from edges of nodes is oke?
+- in ~LEdge delete composite edges
+- in breaklongedge, n<0 todo
+- fixed: in Lgraph WeightedMedianHeuristic() must be <= t crossings documented
+- fixed: added dummy node count in graph
+- add interface code to use it from plain c
+- in split edge longedges composite edges list in every sub edges todo why needed?
+- fixed: self-edges check added in ledge.h

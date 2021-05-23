@@ -24,6 +24,7 @@
 SUBDIRS = . Graph Layout test1
 
 cleaner:
+	rm -v -f *.output
 	rm -v -f Makefile
 	rm -v -f Makefile.in
 

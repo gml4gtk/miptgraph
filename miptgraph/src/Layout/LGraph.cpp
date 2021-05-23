@@ -137,14 +137,25 @@ bool ComparePointer(pLNode node1, pLNode node2)
     return node1->getMedian() < node2->getMedian();
 }
 
+/**
+ * scan graph and calculate barycenter values
+ * then sort the new node order and check
+ * if edge crossings reduced.
+ */
 void LGraph::WeightedMedianHeuristic(int iter)
 {
-    if (!layouted)
+
+    if (!layouted) {
         Layout(0, 0, 0);
+    }
 
     Ordering temp_order;
+
     temp_order.order_vector = order->order_vector;
+
+    // go from top to bottom or revesed
     if (iter % 2 == 0) {
+        // scan from top to bottom of drawing
         for (unsigned int r = 1; r <= maxrank; r++) {
             for (unsigned int i = 0; i < temp_order.order_vector[r].size(); i++) {
                 temp_order.order_vector[r][i]->median = temp_order.order_vector[r][i]->Median(*order, MEDIAN_IN);
@@ -155,6 +166,7 @@ void LGraph::WeightedMedianHeuristic(int iter)
                 ComparePointer);
         }
     } else {
+        // scan from bottom to top of drawing
         for (int r = maxrank - 1; r >= 0; r--) {
             for (unsigned int i = 0; i < temp_order.order_vector[r].size(); i++) {
                 temp_order.order_vector[r][i]->median = temp_order.order_vector[r][i]->Median(*order, MEDIAN_OUT);
@@ -164,26 +176,50 @@ void LGraph::WeightedMedianHeuristic(int iter)
                 ComparePointer);
         }
     }
+
+    // give nodes x pos based on pos in temp_order
     InitPos(&temp_order);
+
+    // count edge crossings in whole graph
     int cross_temp_order = countCrossing(&temp_order);
 
+    // give nodes x pos based on pos in order
     InitPos(order);
+
+    // count edge crossings in whole graph
     int cross_order = countCrossing(order);
 
+    // if edge crossings reduced, set order to temp_order
+    // different order can have same amount of edge crossings
+    // using <= is needed to keep the layout moving
+    // this must be <= to get best results of the barycenter
     if (cross_temp_order <= cross_order) {
         order->order_vector = temp_order.order_vector;
+        printf("edge crossings reduced from %d to %d\n", cross_order, cross_temp_order);
+    } else {
+        // did not improve, keep graph unchanged
+        printf("edge crossings did not reduce from current %d to %d\n", cross_order, cross_temp_order);
     }
+
+    return;
 }
 
-/* todo crashes at 2 graph at once */
+/**
+ * Count edge crossings of the whole graph
+ */
 int LGraph::countCrossing(Ordering* order)
 {
     int crossing = 0;
-    for (unsigned int rank = 0; rank < maxrank - 1; rank++)
+    // count crossings at every level
+    for (unsigned int rank = 0; rank < maxrank - 1; rank++) {
         crossing += countCrossingOnRank(order, rank);
+    }
     return crossing;
 }
 
+/**
+ * Count edge crossings between rank level rank and rank+1
+ */
 int LGraph::countCrossingOnRank(Ordering* order, int rank)
 {
     int crossing = 0;
@@ -205,18 +241,25 @@ int LGraph::countCrossingOnRank(Ordering* order, int rank)
 
             int cmp2 = ((pLNode)edge_list[i]->from())->pos - ((pLNode)edge_list[j]->from())->pos;
 
-            if ((cmp1 > 0 && cmp2 < 0) || (cmp1 < 0 && cmp2 > 0))
+            if ((cmp1 > 0 && cmp2 < 0) || (cmp1 < 0 && cmp2 > 0)) {
                 crossing++;
+            }
         }
     }
     return crossing;
 }
 
+/**
+ * Give nodes initial x position based on index in order
+ */
 void LGraph::InitPos(Ordering* order)
 {
-    for (unsigned int rank = 0; rank <= maxrank; rank++)
-        for (unsigned int i = 0; i < order->order_vector[rank].size(); i++)
+    for (unsigned int rank = 0; rank <= maxrank; rank++) {
+        for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
             order->order_vector[rank][i]->pos = i;
+        }
+    }
+    return;
 }
 
 void LGraph::InitCoordinates(Ordering* order,
@@ -232,24 +275,27 @@ void LGraph::InitCoordinates(Ordering* order,
     // Calculating wide of each rank.
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
         for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
-            if (!order->order_vector[rank][i]->dummy)
+            if (!order->order_vector[rank][i]->dummy) {
                 wides[rank] += normalwide;
-            else
+            } else {
                 wides[rank] += dummywide;
+            }
         }
-        if (wides[rank] > maxwide)
+        if (wides[rank] > maxwide) {
             maxwide = wides[rank];
+        }
     }
 
     // Centering graph
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
         for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
-            if (i == 0)
+            if (i == 0) {
                 order->order_vector[rank][i]->x = (maxwide / 2) - (wides[rank] / 2) + 20;
-            else if (!order->order_vector[rank][i]->dummy)
+            } else if (!order->order_vector[rank][i]->dummy) {
                 order->order_vector[rank][i]->x = order->order_vector[rank][i - 1]->x + normalwide;
-            else
+            } else {
                 order->order_vector[rank][i]->x = order->order_vector[rank][i - 1]->x + dummywide;
+            }
 
             order->order_vector[rank][i]->y = rank * vertical_size;
         }
@@ -258,8 +304,9 @@ void LGraph::InitCoordinates(Ordering* order,
 
 void LGraph::Transpose(int max)
 {
-    if (!layouted)
+    if (!layouted) {
         Layout(0, 0, 0);
+    }
 
     bool improved = true;
 
@@ -268,7 +315,7 @@ void LGraph::Transpose(int max)
         while (improved) {
             improved = false;
             for (unsigned int r = 1; r < order->order_vector.size(); r++) {
-                for (unsigned int i = 0; order->order_vector[r].size() > j && i < order->order_vector[r].size() - (j + 1);
+                for (unsigned int i = 0; (order->order_vector[r].size() > j) && (i < order->order_vector[r].size() - (j + 1));
                      i++) {
                     pLNode v = order->order_vector[r][i];
                     pLNode w = order->order_vector[r][i + j];

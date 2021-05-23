@@ -56,3 +56,5 @@ typedef Edge* pEdge;
 #include "Node.h"
 
 #endif
+
+/* end. */

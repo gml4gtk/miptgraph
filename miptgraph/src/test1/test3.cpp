@@ -42,19 +42,12 @@ int main(int argc, char* argv[])
     }
     printf("\nLayout test started..\n");
 
-    LGraph g;
     LGraph g2;
 
-    int len = 10;
-    pLNode* p = new pLNode[len];
+    g2.Setid(2);
 
     int len2 = 5;
     pLNode* p2 = new pLNode[len2];
-
-    // Creating a new graph
-    for (int i = 0; i < len; i++) {
-        p[i] = (pLNode)g.AddNode();
-    }
 
     // Creating a new graph
     for (int i = 0; i < len2; i++) {
@@ -62,39 +55,25 @@ int main(int argc, char* argv[])
         printf("added node in g2 p2[%d] with id %d\n", i, p2[i]->id());
     }
 
-    // Performing some transformations
-    /* nodes in graph 1 are 0..9 */
-    g.AddEdge(p[0], p[1]);
-    g.AddEdge(p[0], p[2]);
-    g.AddEdge(p[0], p[3]);
-    g.AddEdge(p[1], p[5]);
-    g.AddEdge(p[2], p[6]);
-    g.AddEdge(p[2], p[5]);
-    g.AddEdge(p[3], p[4]);
-    g.AddEdge(p[4], p[7]);
-    g.AddEdge(p[4], p[9]);
-    g.AddEdge(p[5], p[8]);
-    g.AddEdge(p[6], p[9]);
-    g.AddEdge(p[1], p[8]);
-    g.AddEdge(p[1], p[7]);
-    g.AddEdge(p[1], p[6]);
-    g.AddEdge(p[1], p[5]);
-    g.AddEdge(p[1], p[9]);
-
-    g2.Setid(2);
-
     pLEdge ee;
 
     /* nodes in graph 2 are 0..4 */
+
+    /* 0->1 */
     ee = (pLEdge)g2.AddEdge(p2[0], p2[1]);
     printf("added edge in g2 with id %d between node %d and node %d with id %d\n", g2.id(), ee->from()->id(), ee->to()->id(), ee->id());
 
-    ee = (pLEdge)g2.AddEdge(p2[0], p2[2]);
+    /* cycle 1->2->3->1 */
+    ee = (pLEdge)g2.AddEdge(p2[1], p2[2]);
     printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
 
-    ee = (pLEdge)g2.AddEdge(p2[0], p2[3]);
+    ee = (pLEdge)g2.AddEdge(p2[2], p2[3]);
     printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
 
+    ee = (pLEdge)g2.AddEdge(p2[3], p2[1]);
+    printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
+
+    /* 3->4 */
     ee = (pLEdge)g2.AddEdge(p2[3], p2[4]);
     printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
 
@@ -112,13 +91,8 @@ int main(int argc, char* argv[])
     * and transpose_range > 1 to improve crossings
     */
 
-    /* layout graph 1 */
-    g.Layout(5, true, 2);
-
-    printf("after layout of graph 1 with dummy nodes and changed edges\n");
-    g.Dump();
-
-    printf("graph 1 maxrank = %i\n", g.getMaxrank());
+    printf("before layout\n");
+    g2.Dump();
 
     /* layout graph 2 */
     g2.Layout(5, true, 2);
@@ -126,23 +100,12 @@ int main(int argc, char* argv[])
     printf("after layout of graph 2 with dummy nodes and changed edges\n");
     g2.Dump();
 
-    printf("graph 2 maxrank = %i\n", g2.getMaxrank());
-
-    /// graph with no nodes should not crash
-    LGraph g3;
-
-    /* layout graph 3 */
-    g3.Layout(5, true, 2);
-
-    printf("after layout of graph 3 with dummy nodes and changed edges\n");
-    g3.Dump();
-
-    // Clean up
-    g.Destroy();
-    delete[] p;
+    printf("edge 3->1 should be reversed via dummy node 5\ngraph 2 maxrank = %i\n", g2.getMaxrank());
 
     g2.Destroy();
     delete[] p2;
 
     return (0);
 }
+
+/* end. */

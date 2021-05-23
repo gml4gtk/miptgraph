@@ -30,46 +30,80 @@
 #ifndef LAYOUT_EDGE_H
 #define LAYOUT_EDGE_H
 
-/// Edge with Layout methods
-/** TODO(Lega) : improve docs.
+/**
+ * Edge with Layout methods
  *
  * This class contains one new variable: reverse
  * And method BreakLongEdge() for better drawing long edges
  */
 class LEdge : public Edge {
+
+
 private:
+    /**
+     * composite edges
+     * this is a edge which is split from long edge
+     * every split edge has complete list of the split edges
+     */
     list<pLEdge>* m_composite_edges;
+
+    /**
+     * set to tru if this is a split edge
+     */
     bool composite;
 
 public:
+
+    /**
+     * get composite edges list
+     */
     const list<pLEdge>* composite_edges() { return m_composite_edges; }
 
+    /**
+     * create edge with defaults
+     */
     LEdge(pLNode from, pLNode to)
         : Edge((pNode)from, (pNode)to)
     {
+	if (from->id() == to->id()) {
+	    // this is a self-edge
+	}
         composite = false;
         reverse = false;
         m_composite_edges = NULL;
     }
 
-    // TODO(Lega): this function produces a lot of memory leaks
-    // and segfault at the end of execution. Try to fix it.
     ~LEdge();
 
     friend class LGraph;
     friend class LNode;
 
     /**
-   *  Lond edge is one with length(L) more than one rank.
-   *	This method makes L-1 dummy nodes and L edges between them
-   *  to do this edge shorter
-   */
+     * Long edge is one with length(L) more than one rank.
+     * This method makes L-1 dummy nodes and L edges between them
+     */
     void BreakLongEdge();
+
+    /**
+     * print composite edges
+     * this is a edge which is split from long edge
+     */
     void CompositeEdgesDump();
 
+    /**
+     * return bool true if there are composite edges
+     * this is a edge which is split from long edge
+     */
     bool Composite() { return composite; }
 
+    /**
+     * set edge as composite edge
+     * this is a edge which is split from long edge
+     */
     void SetComposite(bool is_composite) { composite = is_composite; }
+
 };
 
 #endif
+
+/* end. */

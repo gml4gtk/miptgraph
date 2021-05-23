@@ -34,11 +34,13 @@ Ordering::AdjInPositions(pLNode node)
 {
     vector<int> positions;
     int rank = node->Rank();
-    if (rank > 0)
+    if (rank > 0) {
         for (unsigned int i = 0; i < order_vector[rank - 1].size(); i++) {
-            if (order_vector[rank - 1][i]->IsAdjacentToNode(node))
+            if (order_vector[rank - 1][i]->IsAdjacentToNode(node)) {
                 positions.push_back(i);
+            }
         }
+    }
     return positions;
 }
 
@@ -47,11 +49,13 @@ Ordering::AdjOutPositions(pLNode node)
 {
     vector<int> positions;
     unsigned int rank = node->Rank();
-    if (rank < order_vector.size())
+    if (rank < order_vector.size()) {
         for (unsigned int i = 0; i < order_vector[rank + 1].size(); i++) {
-            if (node->IsAdjacentToNode(order_vector[rank + 1][i]))
+            if (node->IsAdjacentToNode(order_vector[rank + 1][i])) {
                 positions.push_back(i);
+            }
         }
+    }
     return positions;
 }
 
@@ -67,4 +71,6 @@ void Ordering::Dump()
         }
         printf("\n");
     }
+
+    return;
 }

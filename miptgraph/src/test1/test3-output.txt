@@ -1,0 +1,67 @@
+
+Layout test started..
+added node in g2 p2[0] with id 0
+added node in g2 p2[1] with id 1
+added node in g2 p2[2] with id 2
+added node in g2 p2[3] with id 3
+added node in g2 p2[4] with id 4
+added edge in g2 with id 2 between node 0 and node 1 with id 0
+added edge in g2 between node 1 and node 2 with id 1
+added edge in g2 between node 2 and node 3 with id 2
+added edge in g2 between node 3 and node 1 with id 3
+added edge in g2 between node 3 and node 4 with id 4
+before layout
+Dumping graph
+Nodes:
+Node id 0:
+  In  edges:
+  Out edges: 0->1
+Node id 1:
+  In  edges: 0->1 3->1
+  Out edges: 1->2
+Node id 2:
+  In  edges: 1->2
+  Out edges: 2->3
+Node id 3:
+  In  edges: 2->3
+  Out edges: 3->1 3->4
+Node id 4:
+  In  edges: 3->4
+  Out edges:
+Edges:
+Edge id 0: 0->1 rev=0
+Edge id 1: 1->2 rev=0
+Edge id 2: 2->3 rev=0
+Edge id 3: 3->1 rev=0
+Edge id 4: 3->4 rev=0
+Crossings:0
+after layout of graph 2 with dummy nodes and changed edges
+Dumping graph
+Nodes:
+Node id 0:
+  In  edges:
+  Out edges: 0->1
+Node id 1:
+  In  edges: 0->1
+  Out edges: 1->2 1->5
+Node id 2:
+  In  edges: 1->2
+  Out edges: 2->3
+Node id 3:
+  In  edges: 2->3 5->3
+  Out edges: 3->4
+Node id 4:
+  In  edges: 3->4
+  Out edges:
+Node id 5:
+  In  edges: 1->5
+  Out edges: 5->3
+Edges:
+Edge id 0: 0->1 rev=0
+Edge id 1: 1->2 rev=0
+Edge id 2: 2->3 rev=0
+Edge id 4: 3->4 rev=0
+Edge id 5: 1->5 rev=1
+Edge id 6: 5->3 rev=1
+edge 3->1 should be reversed via dummy node 5
+graph 2 maxrank = 4

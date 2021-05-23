@@ -59,6 +59,9 @@ private:
     double x;
     double y;
 
+    pNode origfrom;
+    pNode origto;
+
 public:
     // True, if it's an entry node.
     bool entry;
@@ -112,6 +115,8 @@ public:
         median = 0;
         we_were_here = false;
         dummy = false;
+	origfrom = NULL;
+	origto = NULL;
     }
     friend class LEdge;
     friend class LGraph;
@@ -122,3 +127,5 @@ protected:
 };
 
 #endif
+
+/* end. */
