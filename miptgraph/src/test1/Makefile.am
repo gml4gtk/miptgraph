@@ -23,6 +23,7 @@ all: libs
 	make test1
 	make test2
 	make test3
+	make test4
 
 # generate svg image data
 test1:
@@ -35,6 +36,10 @@ test2:
 # graph with a cycle
 test3:
 	$(CXX) test3.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test3
+
+# graph with no edges
+test4:
+	$(CXX) test4.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test4
 
 libs: graphlib layoutlib
 
@@ -51,6 +56,7 @@ clean:
 	rm -v -f test1
 	rm -v -f test2
 	rm -v -f test3
+	rm -v -f test4
 	rm -v -f *.output
 
 cleaner:

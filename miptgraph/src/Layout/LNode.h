@@ -46,8 +46,20 @@
 
 class LNode : public Node {
 private:
+
+    /**
+     * veritcal relative y rank level in the graph
+     */
     int rank;
+
+    /**
+     * horizontal relative x position in a rank level
+     */
     int pos;
+
+    /**
+     * median average value of node depending on linkage with nodes upper and lower
+     */
     double median;
 
     /// Flag for the LNode::Rank()
@@ -59,7 +71,14 @@ private:
     double x;
     double y;
 
+    /**
+     * if a dummy node this is the from node of the edge the dummy node belongs to
+     */
     pNode origfrom;
+
+    /**
+     * if a dummy node this is the to node of the edge the dummy node belongs to
+     */
     pNode origto;
 
 public:
@@ -118,6 +137,9 @@ public:
 	origfrom = NULL;
 	origto = NULL;
     }
+
+    ~LNode();
+
     friend class LEdge;
     friend class LGraph;
 

@@ -1,0 +1,51 @@
+
+Layout test started..
+added node in g2 p2[0] with id 0
+added node in g2 p2[1] with id 1
+added node in g2 p2[2] with id 2
+added node in g2 p2[3] with id 3
+added node in g2 p2[4] with id 4
+added edge in g2 with id 2 between node 0 and node 0 with id 0
+before layout
+Dumping graph
+Nodes:
+Node id 0: (1 self-edges)
+  In  edges:
+  Out edges:
+Node id 1: (0 self-edges)
+  In  edges:
+  Out edges:
+Node id 2: (0 self-edges)
+  In  edges:
+  Out edges:
+Node id 3: (0 self-edges)
+  In  edges:
+  Out edges:
+Node id 4: (0 self-edges)
+  In  edges:
+  Out edges:
+Edges:
+after layout of graph 2 with dummy nodes and changed edges
+Dumping graph
+Nodes:
+Node id 0: (1 self-edges)
+  In  edges:
+  Out edges:
+Node id 1: (0 self-edges)
+  In  edges:
+  Out edges:
+Node id 2: (0 self-edges)
+  In  edges:
+  Out edges:
+Node id 3: (0 self-edges)
+  In  edges:
+  Out edges:
+Node id 4: (0 self-edges)
+  In  edges:
+  Out edges:
+Edges:
+node id 0 is at position (20,0)
+node id 1 is at position (70,0)
+node id 2 is at position (120,0)
+node id 3 is at position (170,0)
+node id 4 is at position (220,0)

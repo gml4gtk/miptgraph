@@ -39,7 +39,7 @@
 void Node::Dump()
 {
     list<pEdge>::iterator edge_iter;
-    printf("Node id %d:\n", m_id);
+    printf("Node id %d: (%d self-edges)\n", m_id, nselfedges());
     printf("  In  edges:");
     for (edge_iter = m_in_edges_list.begin();
          edge_iter != m_in_edges_list.end();

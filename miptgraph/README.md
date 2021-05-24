@@ -55,6 +55,8 @@ Python, minimize edge crossings ![mincrossings](https://github.com/GeneSchroer/M
 Python, GPL, python drawing ![python-sugiyama](https://github.com/KadaB/sugiyama)  
 Python, GPL, python graph ![granndalf](https://github.com/bdcht/grandalf)  
 Python, BSD, maybe grakel ![grakel](https://github.com/ysig/GraKeL)  
+Python, reduce edge crossings ![datavis](https://github.com/terana/data-visualisation)  
+Python, mipt graph layout course ![miptcourse](https://github.com/pekashy/data-viz)  
 elm, sugiyama drawing ![elm](https://github.com/stil4m/sugiyama)  
 typescript, sugiyama drawing ![sugiyama-typescript](https://github.com/Michaeladze/sugiyama)  
 typescript, sugiyama, ![sugiyama-typescript](https://github.com/Michaeladze/graph)  

@@ -103,3 +103,9 @@ bool LNode::IsAdjacentToNode(pLNode node)
     }
     return false;
 }
+
+LNode::~LNode()
+{
+}
+
+/* end. */

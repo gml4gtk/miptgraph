@@ -56,3 +56,6 @@ cleaner:
 	rm -v -f *.la
 	rm -v -f Makefile
 	rm -v -f Makefile.in
+	rm -v -f *.scallgraph.gv
+
+# end.

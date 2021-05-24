@@ -46,6 +46,12 @@ AM_SILENT_RULES([no])
 # Checks for header files.
 AC_CHECK_HEADERS([stdlib.h])
 
+# add here compile flags
+#CFLAGS="$CFLAGS -fplugin=$HOME/scallgraph_plugin.so.0.0.0"
+CFLAGS="$CFLAGS -Wall -Wextra"
+
+AC_SUBST(CFLAGS)
+
 # Checks for programs.
 AC_PROG_CXX
 AC_PROG_CC
@@ -59,6 +65,21 @@ LT_INIT
 # Checks for typedefs, structures, and compiler characteristics.
 AC_CHECK_HEADER_STDBOOL
 AC_TYPE_SIZE_T
+
+# compilation date in config.h
+CONFIG_DATE=`date +"%a %x %Y"`
+
+AC_SUBST(CONFIG_DATE)
+
+AC_DEFINE_UNQUOTED(COMPILE_DATE, ["$CONFIG_DATE"], [Year, month and day this program is compiled.])
+
+# short system name in config.h
+CONFIG_UNAME=`uname -s`
+
+AC_SUBST(CONFIG_UNAME)
+
+AC_DEFINE_UNQUOTED(COMPILE_UNAME, ["$CONFIG_UNAME"], [System where this is compiled.])
+
 
 
 AC_COPYRIGHT([
@@ -99,3 +120,4 @@ Configuration:
   Config LIBS		"${LIBS}"
   Config PACKAGE_CFLAGS	"$PACKAGE_CFLAGS"
 ])
+

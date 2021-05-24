@@ -51,5 +51,6 @@ libtoolize --force --copy
 automake --add-missing --copy --foreign
 autoconf
 ./configure
+make clean
 
 # end.

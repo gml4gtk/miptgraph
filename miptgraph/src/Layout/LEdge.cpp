@@ -152,6 +152,7 @@ LEdge::~LEdge()
         }
         delete temp_list;
     }
+    return;
 }
 
 /* end. */

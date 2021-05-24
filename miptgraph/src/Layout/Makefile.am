@@ -37,7 +37,7 @@ libmiptgraphlayout_la_SOURCES = \
 AM_LDFLAGS = $(LT_LDFLAGS)
 
 # Here list all include flags, relative to this "srcdir" directory.
-AM_CPPFLAGS = $(MIPTGRAPHLLIB_CFLAGS)
+AM_CPPFLAGS = $(CFLAGS)
 
 # Here list all the header files that are required by a user of the library,
 includemgdir = $(includedir)/miptgraph
@@ -59,3 +59,4 @@ cleaner:
 	rm -v -f *.la
 	rm -v -f Makefile
 	rm -v -f Makefile.in
+	rm -v -f *.scallgraph.gv

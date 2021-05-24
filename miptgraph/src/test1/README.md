@@ -8,6 +8,7 @@ Also: make clean..
 test1.cpp create graph and layout and generate svg image data  
 test2.cpp create multiple graph at once and run layout  
 test3.cpp create graph with a cycle and run layout  
+test4.cpp create graph with nodes but no edges
 
 Added features:
 graph Setid(int number) to set uniq id number of graph for use  

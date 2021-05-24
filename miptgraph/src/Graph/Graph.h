@@ -149,6 +149,11 @@ public:
     int id() { return m_id; }
 
     /**
+     * get number of real nodes in graph without dummy nodes
+     */
+    int nrealnodes() { return (m_total_nodes_num - m_total_dummynodes_num); }
+
+    /**
      * get number of nodes in graph including dummy nodes
      */
     int nnodes() { return m_total_nodes_num; }

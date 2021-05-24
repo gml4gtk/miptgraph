@@ -64,7 +64,7 @@ void Ordering::Dump()
     for (unsigned int rank = 0; rank < order_vector.size(); rank++) {
         printf("rank = %d\n", rank);
         for (unsigned int i = 0; i < order_vector[rank].size(); i++) {
-            printf("%d(%d,%d) ",
+            printf("%d(%f,%f) ",
                 order_vector[rank][i]->id(),
                 order_vector[rank][i]->getX(),
                 order_vector[rank][i]->getY());

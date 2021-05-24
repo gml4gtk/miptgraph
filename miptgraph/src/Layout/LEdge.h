@@ -66,7 +66,7 @@ public:
         : Edge((pNode)from, (pNode)to)
     {
 	if (from->id() == to->id()) {
-	    // this is a self-edge
+	    // this is a self-edge handled in edge creation
 	}
         composite = false;
         reverse = false;
@@ -105,5 +105,7 @@ public:
 };
 
 #endif
+
+/* end. */
 
 /* end. */

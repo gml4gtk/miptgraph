@@ -29,50 +29,92 @@
 
 #include "Layout.h"
 
-void LGraph::Layout(unsigned int number_of_iterations,
+/**
+ * determine layout
+ * \param number_of_iterations how many times
+ * \param do_transpose if true do phase-II
+ * \param transpose_range how many nodes to swap
+ */
+void LGraph::Layout(unsigned long int number_of_iterations,
     bool do_transpose,
     int transpose_range)
 {
     list<pEdge> ReverseEdges;
 
-    /* avoid crash when graph has no nodes */
+    if (layouted == true) {
+        // todo graph is already layouted
+    }
+
+    // avoid crash when graph has no nodes
     if (m_total_nodes_num == 0) {
+        // The graph is layouted
+        layouted = true;
         return;
     }
 
-    /* nothing to layout if there are no edges */
+    // nothing to layout if there are no edges but there can be self-edges at nodes
     if (m_total_edges_num == 0) {
+        // special layout mode to set the single nodes
+        // The graph is layouted
+        layouted = true;
+        // create array for node ordering in the levels
+        order = new Ordering();
+        // create node lists of every rank level
+        order->order_vector = InitOrder();
+        // give nodes relative x position
+        InitPos(order);
+        // center graph and give nodes absolute node position
+        InitCoordinates(order);
+        // there are zero crossings
+        maxrank = 0;
         return;
     }
 
+    // find cycles in the graph, reverse few edges if needed, set vertical rank level of nodes
     FindReverseEdges(ReverseEdges);
 
+    // change all reversed edges back into normal direction
     ReverseReverseEdges(ReverseEdges);
 
+    // get how many rank y levels there are in the graph
     InitRank();
 
+    // list for longer edges to split
     list<pEdge> LongEdges;
+
+    // add long edges to list
     FindLongEdges(LongEdges);
 
+    // split long edges in short edges connected with dummy nodes
     AddDummyNodes(LongEdges);
 
+    // free list of reversed edges
     ReverseEdges.clear();
 
+    // create array for node ordering in the levels
     order = new Ordering();
+
+    // create node lists of every rank level
     order->order_vector = InitOrder();
 
-    // Number of iterations.
+    // The graph is layouted
     layouted = true;
 
+    // improve edge crossings
     for (unsigned int i = 0; i < number_of_iterations; i++) {
+        // relative x position nodes on median value
         WeightedMedianHeuristic(i);
-        /// swap nodes at this level, can be slow.
+        // swap nodes at all levels optional
+        // Ususal is to swap nodes with same barycenter value
         if (do_transpose) {
             Transpose(i + transpose_range);
         }
     }
 
+    // give nodes relative x position
     InitPos(order);
+
+    // center graph and give nodes absolute node position
     InitCoordinates(order);
 
     printf("Crossings:%d\n", countCrossing(order));
@@ -80,60 +122,96 @@ void LGraph::Layout(unsigned int number_of_iterations,
     return;
 }
 
+/**
+ * get how many rank y levels there are in the graph
+ */
 void LGraph::InitRank()
 {
     // Calculating the rank for all Nodes
     for (list<pNode>::iterator node_iter = nodes_list()->begin();
          node_iter != nodes_list()->end();
          node_iter++) {
+        // get rank level of this node
         unsigned int rank = ((LNode*)(*node_iter))->Rank();
-        if (rank > maxrank)
+        if (rank > maxrank) {
             maxrank = rank;
+        }
     }
+    return;
 }
 
+/**
+ * create list of nodes in every rank level
+ */
 vector<vector<pLNode>>
 LGraph::InitOrder()
 {
     vector<vector<pLNode>> order(maxrank + 1);
+    // scan all nodes
     for (list<pNode>::iterator node_iter = nodes_list()->begin();
          node_iter != nodes_list()->end();
          node_iter++) {
+        // add node at rank level to list of nodes at that rank level
         order[((pLNode)(*node_iter))->Rank()].push_back((pLNode)(*node_iter));
     }
     return order;
 }
 
+/**
+ * change all reversed edges into normal direction edge
+ */
 void LGraph::ReverseReverseEdges(list<pEdge>& ReverseEdges)
 {
+    // all reversed edges as normal direction edge
     for (list<pEdge>::iterator edge_iter = ReverseEdges.begin();
          edge_iter != ReverseEdges.end();
-         edge_iter++)
+         edge_iter++) {
         ((pLEdge)(*edge_iter))->Reverse();
+    }
+    return;
 }
 
+/**
+ * find edges which are longer then 1 vertical rank level
+ */
 void LGraph::FindLongEdges(list<pEdge>& LongEdges)
 {
+    // scan all edges
     for (list<pEdge>::iterator edge_iter = edges_list()->begin();
          edge_iter != edges_list()->end();
          edge_iter++) {
-        if (((pLNode)(*edge_iter)->to())->Rank() - ((pLNode)(*edge_iter)->from())->Rank() > 1)
+        // check for wrong value
+        if (((pLNode)(*edge_iter)->to())->Rank() - ((pLNode)(*edge_iter)->from())->Rank() < 0) {
+            // todo
+            printf("%s() shouldnothappen\n", __func__);
+        }
+        // check if edge is too long
+        if (((pLNode)(*edge_iter)->to())->Rank() - ((pLNode)(*edge_iter)->from())->Rank() > 1) {
+            // this is a edge spanning multiple levels
             LongEdges.push_back(*edge_iter);
+        }
     }
+    return;
 }
 
+/**
+ * split long edges with dummy nodes
+ */
 void LGraph::AddDummyNodes(list<pEdge>& LongEdges)
 {
+    // scan all edges, skip self-edges
     for (list<pEdge>::iterator edge_iter = LongEdges.begin();
          edge_iter != LongEdges.end();
          edge_iter++) {
         ((pLEdge)(*edge_iter))->BreakLongEdge();
     }
+    return;
 }
 
-/// Comparator to work with pointers
+// Comparator to work with pointers
 bool ComparePointer(pLNode node1, pLNode node2)
 {
+    // todo should be fabs(x-y)<0.1
     return node1->getMedian() < node2->getMedian();
 }
 
@@ -145,7 +223,8 @@ bool ComparePointer(pLNode node1, pLNode node2)
 void LGraph::WeightedMedianHeuristic(int iter)
 {
 
-    if (!layouted) {
+    // todo force a layout
+    if (layouted == false) {
         Layout(0, 0, 0);
     }
 
@@ -157,10 +236,11 @@ void LGraph::WeightedMedianHeuristic(int iter)
     if (iter % 2 == 0) {
         // scan from top to bottom of drawing
         for (unsigned int r = 1; r <= maxrank; r++) {
+            // get median barycenter value for every node at this level
             for (unsigned int i = 0; i < temp_order.order_vector[r].size(); i++) {
                 temp_order.order_vector[r][i]->median = temp_order.order_vector[r][i]->Median(*order, MEDIAN_IN);
             }
-            /// Sort temp_order using ComparePointer comparator
+            // Sort temp_order using ComparePointer comparator on the barycenter value of the nodes
             sort(temp_order.order_vector[r].begin(),
                 temp_order.order_vector[r].end(),
                 ComparePointer);
@@ -168,9 +248,11 @@ void LGraph::WeightedMedianHeuristic(int iter)
     } else {
         // scan from bottom to top of drawing
         for (int r = maxrank - 1; r >= 0; r--) {
+            // get median barycenter value for every node at this level
             for (unsigned int i = 0; i < temp_order.order_vector[r].size(); i++) {
                 temp_order.order_vector[r][i]->median = temp_order.order_vector[r][i]->Median(*order, MEDIAN_OUT);
             }
+            // Sort temp_order using ComparePointer comparator on the barycenter value of the nodes
             sort(temp_order.order_vector[r].begin(),
                 temp_order.order_vector[r].end(),
                 ComparePointer);
@@ -209,10 +291,19 @@ void LGraph::WeightedMedianHeuristic(int iter)
  */
 int LGraph::countCrossing(Ordering* order)
 {
-    int crossing = 0;
+    int crossing = 0; // total number of crossings returned
+    int rankcrossing = 0; // crossings at this rank level
+    int maxcrossing = 0; // max. crossings at certain level
+    int maxcrossingrank = 0; // level with most crossings
+
     // count crossings at every level
     for (unsigned int rank = 0; rank < maxrank - 1; rank++) {
-        crossing += countCrossingOnRank(order, rank);
+        rankcrossing = countCrossingOnRank(order, rank);
+        if (rankcrossing > maxcrossing) {
+            maxcrossing = rankcrossing;
+            maxcrossingrank = rank;
+        }
+        crossing += rankcrossing;
     }
     return crossing;
 }
@@ -224,9 +315,12 @@ int LGraph::countCrossingOnRank(Ordering* order, int rank)
 {
     int crossing = 0;
 
-    // Making list of all edges betwen rank and rank+1
+    // Making list of all outgoing edges between rank and rank+1 level
     vector<pLEdge> edge_list;
+
+    // scan node at this rank level
     for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
+        // select the outgoing edges at a node
         for (list<pEdge>::iterator edge_iter = order->order_vector[rank][i]->out_edges_list()->begin();
              edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
              edge_iter++) {
@@ -234,18 +328,24 @@ int LGraph::countCrossingOnRank(Ordering* order, int rank)
         }
     }
 
+    // scan the edges in just created edge list
     for (unsigned int i = 0; i < edge_list.size(); i++) {
+        // scan the next edges after current edge
         for (unsigned int j = i + 1; j < edge_list.size(); j++) {
             // Criterion of crossing edge_list[i] and edge_list[j]
+            // check relative position of to nodes in edge
             int cmp1 = ((pLNode)edge_list[i]->to())->pos - ((pLNode)edge_list[j]->to())->pos;
-
+            // check relative position of from nodes in edge
             int cmp2 = ((pLNode)edge_list[i]->from())->pos - ((pLNode)edge_list[j]->from())->pos;
 
+            // cmp1 is delto to pos, cmp2 is delta from pos
             if ((cmp1 > 0 && cmp2 < 0) || (cmp1 < 0 && cmp2 > 0)) {
+                // edges did cross
                 crossing++;
             }
         }
     }
+
     return crossing;
 }
 
@@ -254,14 +354,24 @@ int LGraph::countCrossingOnRank(Ordering* order, int rank)
  */
 void LGraph::InitPos(Ordering* order)
 {
+    // scan all vertical rank levels
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
+        // scan all nodes at this level
         for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
+            // give node relative x position based on position in order
             order->order_vector[rank][i]->pos = i;
         }
     }
     return;
 }
 
+/**
+ * set nodes at final (x,y) position in this level
+ * \param normalwide is x size for a node
+ * \param dummy wide is x sie for a dummy node
+ * \param vertical_size is y distance between y rank levels
+ * \todo this must be more flexible done
+ */
 void LGraph::InitCoordinates(Ordering* order,
     int normalwide,
     int dummywide,
@@ -274,13 +384,18 @@ void LGraph::InitCoordinates(Ordering* order,
 
     // Calculating wide of each rank.
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
+        // scan nodes at this level
         for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
-            if (!order->order_vector[rank][i]->dummy) {
+            // adjust xsize depending on node type
+            if (order->order_vector[rank][i]->dummy == false) {
+                // regular node
                 wides[rank] += normalwide;
             } else {
+                // dummy node
                 wides[rank] += dummywide;
             }
         }
+        // check if this level is wider
         if (wides[rank] > maxwide) {
             maxwide = wides[rank];
         }
@@ -288,65 +403,102 @@ void LGraph::InitCoordinates(Ordering* order,
 
     // Centering graph
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
+        // check all nodes in this level rank
         for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
             if (i == 0) {
+                // put first node
                 order->order_vector[rank][i]->x = (maxwide / 2) - (wides[rank] / 2) + 20;
-            } else if (!order->order_vector[rank][i]->dummy) {
+            } else if (order->order_vector[rank][i]->dummy == false) {
+                // regular node
                 order->order_vector[rank][i]->x = order->order_vector[rank][i - 1]->x + normalwide;
             } else {
+                // dummy node
                 order->order_vector[rank][i]->x = order->order_vector[rank][i - 1]->x + dummywide;
             }
-
+            // y spacing
             order->order_vector[rank][i]->y = rank * vertical_size;
         }
     }
+
+    return;
 }
 
-void LGraph::Transpose(int max)
+/**
+ * try different graph lyouts to find the one with lowest edge crossings
+ * \param maxtry try limited number of times
+ */
+void LGraph::Transpose(unsigned long int maxtry)
 {
-    if (!layouted) {
+    // check
+    if (layouted == false) {
+        // shouldnothappen, do a nop layout
         Layout(0, 0, 0);
     }
 
     bool improved = true;
 
-    for (int j = 1; j < max; j++) {
+    for (unsigned long int j = 1; j < maxtry; j++) {
         improved = true;
+        // try another layout
         while (improved) {
             improved = false;
+            // scan all rank levels
             for (unsigned int r = 1; r < order->order_vector.size(); r++) {
-                for (unsigned int i = 0; (order->order_vector[r].size() > j) && (i < order->order_vector[r].size() - (j + 1));
+                // scan nodes at levels
+                for (unsigned long int i = 0; (order->order_vector[r].size() > j) && (i < order->order_vector[r].size() - (j + 1));
                      i++) {
+                    // get nodes
                     pLNode v = order->order_vector[r][i];
                     pLNode w = order->order_vector[r][i + j];
+                    // Give nodes initial x position based on index in order
                     InitPos(order);
+                    // count crossings between level r and r+1, and level r-1 and r
                     int cross0 = countCrossingOnRank(order, r) + countCrossingOnRank(order, r - 1);
+                    // change node positions
                     v->pos += j;
                     w->pos -= j;
+                    // after node swapping count crossings between level r and r+1, and level r-1 and r
                     int cross1 = countCrossingOnRank(order, r) + countCrossingOnRank(order, r - 1);
+                    // check if reduced crossings, use < and not <= here
                     if (cross1 < cross0) {
+                        // swapping nodes improved edge crossings
                         improved = true;
+                        // put nodes at new locations
                         order->order_vector[r][i] = w;
                         order->order_vector[r][i + j] = v;
                     }
+                    // end of nodes at level
                 }
             }
+            // end of rank levels
         }
+        // end of maxtry
     }
+
+    return;
 }
 
+/**
+ * free node
+ */
 void LGraph::FreeNode(pNode p)
 {
     assert(p != NULL);
-    delete (pLNode)p;
+    delete (pLNode)p; // todo warning here
 }
 
+/**
+ * free edge
+ */
 void LGraph::FreeEdge(pEdge p)
 {
     assert(p != NULL);
-    delete (pLEdge)p;
+    delete (pLEdge)p; // todo warning here
 }
 
+/**
+ * create new real node
+ */
 pLNode
 LGraph::AddNode()
 {
@@ -354,9 +506,14 @@ LGraph::AddNode()
     return new_node;
 }
 
+/**
+ * add edge between from and to nodes
+ */
 pLEdge
 LGraph::AddEdge(pNode from, pNode to)
 {
     pLEdge new_edge = new LEdge((pLNode)from, (pLNode)to);
     return new_edge;
 }
+
+/* end. */

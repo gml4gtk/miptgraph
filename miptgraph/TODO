@@ -14,3 +14,7 @@
 - add interface code to use it from plain c
 - in split edge longedges composite edges list in every sub edges todo why needed?
 - fixed: self-edges check added in ledge.h
+- lgraph InitCoordinates should be flexible in node sizes and y level rank spacing
+- fixed: test a no-edges graph
+- fixed: special layout mode if there are no edges
+- add tree layout mode if it is tree data that can be done faster

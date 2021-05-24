@@ -1,6 +1,12 @@
 /* config.h.  Generated from config.h.in by configure.  */
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* Year, month and day this program is compiled. */
+#define COMPILE_DATE "Mon 05/24/21 2021"
+
+/* System where this is compiled. */
+#define COMPILE_UNAME "Linux"
+
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
 
@@ -38,7 +44,7 @@
 #define LT_OBJDIR ".libs/"
 
 /* Name of package */
-#define PACKAGE "gml4gtk.tar.gz"
+#define PACKAGE "miptgraph.tar.gz"
 
 /* Define to the address where bug reports for this package should be sent. */
 #define PACKAGE_BUGREPORT "mooigraph@gmail.com"
@@ -50,7 +56,7 @@
 #define PACKAGE_STRING "miptgraph 1.0"
 
 /* Define to the one symbol short name of this package. */
-#define PACKAGE_TARNAME "gml4gtk.tar.gz"
+#define PACKAGE_TARNAME "miptgraph.tar.gz"
 
 /* Define to the home page for this package. */
 #define PACKAGE_URL "https://notabug.org/mooigraph/miptgraph"

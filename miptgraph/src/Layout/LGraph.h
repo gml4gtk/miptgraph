@@ -37,86 +37,125 @@
 
 class LGraph : public Graph {
 private:
-    unsigned int maxrank;
+    unsigned int maxrank; // number of y levels
 
     bool layouted; // Are the graph already layouted.
-    Ordering* order;
+    Ordering* order; // horizontal node ordering
 
 public:
+
+    /**
+     * create graph
+     */
     LGraph()
     {
         maxrank = 0;
         order = NULL;
     }
-    /// Replacing revert edges from the ReverseEdges list.
+
+    /**
+     * Replacing revert edges from the ReverseEdges list.
+     */
     void ReverseReverseEdges(list<pEdge>& ReverseEdges);
 
+    /**
+     * get number of vertical y levels
+     */
     int getMaxrank() { return maxrank; }
 
     /**
-   * This main Layout function do whole procedure of LAYOUT:
-   * 1. Reversing "Reverse" edges
-   * 2. Initing Rank for all nodes
-   * 3. Find and breaks "long" edges
-   * 4. Makes ordering (horisontal placement)
-   * 5. ...
-   */
-    void Layout(unsigned int number_of_iterations = 3,
+     * This main Layout function do whole procedure of LAYOUT:
+     * 1. Reversing "Reverse" edges
+     * 2. Initing Rank for all nodes
+     * 3. Find and breaks "long" edges
+     * 4. Makes ordering (horizontal placement)
+     * 5. Place node at absolute positions
+     */
+    void Layout(unsigned long int number_of_iterations = 3,
         bool do_transpose = true,
         int transpose_range = -1);
 
     /**
-   * Init Rank value for each node.
-   *
-   * rank = 0 for "head" nodes;
-   * rank = max(rank(adj_nodes)) for others.
-   */
+     * Init Rank value for each node.
+     *
+     * rank = 0 for "head" nodes;
+     * rank = max(rank(adj_nodes)) for others.
+     */
     virtual void InitRank();
 
-    /// Breaks all "long" edges.
+    /**
+     * Breaks all "long" edges with dummy nodes
+     */
     void AddDummyNodes(list<pEdge>& LongEdges);
 
-    /// Finds all "long" edges in graph and puts it to the LondEdges list.
+    /**
+     * Finds all "long" edges in graph and puts it to the LondEdges list.
+     */
     void FindLongEdges(list<pEdge>& LongEdges);
 
-    /// Init pos value for each node using order.
+    /**
+     * Init pos value for each node using order.
+     */
     void InitPos(Ordering* order);
 
-    /// Init coordiates for each node.
+    /**
+     * Init coordiates for each node.
+     * \todo this should be flexible
+     */
     void InitCoordinates(Ordering* order,
         int normalwide = 50,
         int dummywide = 25,
         int vertical_size = 80);
 
     /**
-   * The weighted median heuristic for reducing edge crossings.
-   * At each rank a vertex is assigned a median based on the adjacent
-   * vertices on the previous rank. Then, the vertices in the rank are
-   * sorted by their medians.
-   */
+     * The weighted median heuristic for reducing edge crossings.
+     * At each rank a vertex is assigned a median based on the adjacent
+     * vertices on the previous rank. Then, the vertices in the rank are
+     * sorted by their medians.
+    */
     void WeightedMedianHeuristic(int iter);
 
     /**
-   * The transposition heuristic for reducing edge crossings.
-   * Transpose repeatedly exchanges adjacent vertices on the
-   * same rank if this decreases the number of crossings.
-   */
-    void Transpose(int max);
+     * The transposition heuristic for reducing edge crossings.
+     * Transpose repeatedly exchanges adjacent vertices on the
+     * same rank if this decreases the number of crossings.
+     */
+    void Transpose(unsigned long int maxtry);
 
-    /// Calculate all edges crossings in the whole graph.
+    /**
+     * Calculate all edges crossings in the whole graph.
+     */
     int countCrossing(Ordering* order);
 
-    /// Calculate all crossings between rank an rank+1.
+    /**
+     * Calculate all crossings between rank an rank+1.
+     */
     int countCrossingOnRank(Ordering* order, int rank);
 
     /**
-   * The initial (horizontal)ordering.
-   * Should be called after InitRank().
-   */
+     * The initial (horizontal)ordering.
+     * Should be called after InitRank().
+     */
     vector<vector<pLNode>> InitOrder();
+
+    /**
+     * add real node
+     */
     virtual pLNode AddNode();
+
+    /**
+     * add edge
+     */
     virtual pLEdge AddEdge(pNode from, pNode to);
+
+    /**
+     * free node
+     */
     virtual void FreeNode(pNode p);
+
+    /**
+     * free edge
+     */
     virtual void FreeEdge(pEdge p);
 
     friend class LEdge;
