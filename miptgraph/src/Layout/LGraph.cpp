@@ -39,7 +39,8 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     bool do_transpose,
     int transpose_range)
 {
-    list<pEdge> ReverseEdges;
+    bool changed = false;
+    list<pEdge> ReverseEdges; // edges which are reversed
 
     if (layouted == true) {
         // todo graph is already layouted
@@ -71,7 +72,12 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     }
 
     // find cycles in the graph, reverse few edges if needed, set vertical rank level of nodes
-    FindReverseEdges(ReverseEdges);
+    changed = FindReverseEdges(ReverseEdges);
+
+    if (changed == true) {
+        // number of reversed edges changed
+        printf("Reversed edges changed to %d\n", nreversededges());
+    }
 
     // change all reversed edges back into normal direction
     ReverseReverseEdges(ReverseEdges);
@@ -127,6 +133,7 @@ void LGraph::Layout(unsigned long int number_of_iterations,
  */
 void LGraph::InitRank()
 {
+    maxrank = 0;
     // Calculating the rank for all Nodes
     for (list<pNode>::iterator node_iter = nodes_list()->begin();
          node_iter != nodes_list()->end();
@@ -208,10 +215,26 @@ void LGraph::AddDummyNodes(list<pEdge>& LongEdges)
     return;
 }
 
-// Comparator to work with pointers
+/**
+ * Comparator to work with pointers to pLNode
+ * comparing the median values and called from stable_sort()
+ */
 bool ComparePointer(pLNode node1, pLNode node2)
 {
-    // todo should be fabs(x-y)<0.1
+    double median1 = node1->getMedian();
+    double median2 = node2->getMedian();
+    double diff = median1 - median2;
+    // numbers close to 0 are same as 0
+    if (diff > -0.1) {
+        return true;
+    }
+    if (diff >= 0) {
+        return true;
+    }
+    if (diff < 0) {
+        return false;
+    }
+    // old and not used
     return node1->getMedian() < node2->getMedian();
 }
 
@@ -219,6 +242,7 @@ bool ComparePointer(pLNode node1, pLNode node2)
  * scan graph and calculate barycenter values
  * then sort the new node order and check
  * if edge crossings reduced.
+ * using stable_sort() keeps the elements with same value unchanged
  */
 void LGraph::WeightedMedianHeuristic(int iter)
 {
@@ -241,7 +265,7 @@ void LGraph::WeightedMedianHeuristic(int iter)
                 temp_order.order_vector[r][i]->median = temp_order.order_vector[r][i]->Median(*order, MEDIAN_IN);
             }
             // Sort temp_order using ComparePointer comparator on the barycenter value of the nodes
-            sort(temp_order.order_vector[r].begin(),
+            stable_sort(temp_order.order_vector[r].begin(),
                 temp_order.order_vector[r].end(),
                 ComparePointer);
         }
@@ -253,7 +277,7 @@ void LGraph::WeightedMedianHeuristic(int iter)
                 temp_order.order_vector[r][i]->median = temp_order.order_vector[r][i]->Median(*order, MEDIAN_OUT);
             }
             // Sort temp_order using ComparePointer comparator on the barycenter value of the nodes
-            sort(temp_order.order_vector[r].begin(),
+            stable_sort(temp_order.order_vector[r].begin(),
                 temp_order.order_vector[r].end(),
                 ComparePointer);
         }
@@ -404,6 +428,8 @@ void LGraph::InitCoordinates(Ordering* order,
     // Centering graph
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
         // check all nodes in this level rank
+        // wides[rank] is the x size of this rank
+        // maxwide is largest x size of the drawing
         for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
             if (i == 0) {
                 // put first node
@@ -429,10 +455,10 @@ void LGraph::InitCoordinates(Ordering* order,
  */
 void LGraph::Transpose(unsigned long int maxtry)
 {
-    // check
+    // check this todo
     if (layouted == false) {
         // shouldnothappen, do a nop layout
-        Layout(0, 0, 0);
+        Layout(0, false, 0);
     }
 
     bool improved = true;

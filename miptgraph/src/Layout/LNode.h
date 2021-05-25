@@ -30,30 +30,28 @@
 #ifndef LAYOUT_NODE_H
 #define LAYOUT_NODE_H
 
-/// Extention of class Node for layout
 /**
+ * Extention of class Node for layout
  * This node class contains new variable:
- *		rank   - vertical relative position of node in the graph
- *		pos    - horisontal relative position
- *		median - temp value to calculate pos
+ * rank   - vertical relative position of node in the graph
+ * pos    - horisontal relative position
+ * median - temp value to calculate pos
  * Also there is some methods:
  *      Rank() to calculate rank
  *      Median() to calculate median
- *      IsAdjacentToNode is test for adjesent of 2 nodes
+ *      IsAdjacentToNode is test for adjacent of 2 nodes
  */
-
-//#include <QString>
 
 class LNode : public Node {
 private:
 
     /**
-     * veritcal relative y rank level in the graph
+     * vertical relative y rank level in the graph or -1 if undefined
      */
     int rank;
 
     /**
-     * horizontal relative x position in a rank level
+     * horizontal relative x position in a rank level or -1 if undefined
      */
     int pos;
 
@@ -62,14 +60,31 @@ private:
      */
     double median;
 
-    /// Flag for the LNode::Rank()
+    /**
+     * Flag for the LNode::Rank()
+     */
     bool we_were_here;
 
+    /**
+     * if true this is a dummy node
+     */
     bool dummy;
 
-    // Coordinates for drawing
+    /**
+     * final Coordinates for drawing or -1 if undefined
+     */
     double x;
     double y;
+
+    /**
+     * node x size for label text
+     */
+    int nxsize;
+
+    /**
+     * node y size for label text
+     */
+    int nysize;
 
     /**
      * if a dummy node this is the from node of the edge the dummy node belongs to
@@ -82,70 +97,86 @@ private:
     pNode origto;
 
 public:
-    // True, if it's an entry node.
+
+    /**
+     * if True, if it's an entry node without incoming edges
+     */
     bool entry;
 
-    // Number
-    unsigned int uBlkId;
-    list<unsigned int> m_preds_lst;
-    list<unsigned int> m_succs_lst;
-    list<unsigned int> m_exec_lst;
-    list<unsigned int> m_prob_lst;
-
-    const std::string* Content() { return &content; }
-
-    void SetContent(const std::string& source)
-    {
-        //        content.clear();
-        content += source;
-    }
-
+    /**
+     * return true if this is a dummy node
+     */
     bool IsDummy() { return dummy; }
 
+    /**
+     * return final x coord
+     */
     double getX() { return x; }
+
+    /**
+     * return final y coord
+     */
     double getY() { return y; }
 
-    /// Calculate node rank
+    /**
+     * Calculate node rank
+     */
     int Rank();
 
+    /**
+     * get barycenter value
+     */
     double getMedian() { return median; }
+
+    /**
+     * get relative x postion
+     */
     int getPos() { return pos; }
 
     /** Calculate weighed median for the node.
-   * The median value of a vertex is defined as the median position of the
-   *adjacent vertices if that is uniquely defined. Otherwise, it is interpolated
-   *between the two median positions using a measure of tightness. Generally,
-   *the weighted median is biased toward the side where vertices are more
-   *closely packed.
-   *
-   * If direction == true then funcrion calculate IN MEDIAN
-   *	if false then OUT MEDIAN
-   */
+     * The median value of a vertex is defined as the median position of the
+     * adjacent vertices if that is uniquely defined. Otherwise, it is interpolated
+     * between the two median positions using a measure of tightness. Generally,
+     * the weighted median is biased toward the side where vertices are more
+     * closely packed.
+     *
+     * If direction == true then funcrion calculate IN MEDIAN
+     * if false then OUT MEDIAN
+     */
     double Median(Ordering order, bool direction);
 
-    /// Return true if node is adjacent to this node
+    /**
+     * Return true if node is adjacent to this node
+     */
     bool IsAdjacentToNode(pLNode node);
 
+    /**
+     * create node with defaults
+     */
     LNode(pLGraph pg)
         : Node((pGraph)pg)
     {
-        x = y = -1;
-        rank = -1;
-        median = 0;
+        x = -1; // no x coord
+	y = -1; // no y coord
+	nxsize = 50; // default node x size
+	nysize = 50; // default node y size
+        rank = -1; // no rank
+	pos = -1; // no x pos
+        median = 0; // no barycenter value
         we_were_here = false;
-        dummy = false;
-	origfrom = NULL;
-	origto = NULL;
+        dummy = false; // this is a real node
+	entry = false; // not startnode
+	origfrom = NULL; // edge point
+	origto = NULL; // edge point
     }
 
-    ~LNode();
+    virtual ~LNode();
 
     friend class LEdge;
     friend class LGraph;
 
 protected:
-    // Content of basic block.
-    std::string content;
+
 };
 
 #endif

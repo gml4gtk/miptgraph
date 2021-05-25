@@ -38,6 +38,10 @@ indent:
 	cd src/test1 && make indent
 
 #
+distclean:
+	make cleaner
+
+#
 cleaner:
 	cd src && make cleaner
 	cd src/Graph && make cleaner

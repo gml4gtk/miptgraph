@@ -19,11 +19,19 @@
 #  */
 #
 
+# make test programs depending on lib
 all: libs
 	make test1
 	make test2
 	make test3
 	make test4
+
+# generate output files
+output:
+	./test1 >test1-output.txt
+	./test2 >test2-output.txt
+	./test3 >test3-output.txt
+	./test4 >test4-output.txt
 
 # generate svg image data
 test1:

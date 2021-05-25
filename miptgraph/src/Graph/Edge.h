@@ -29,8 +29,8 @@
 #ifndef GRAPH_EDGE_H
 #define GRAPH_EDGE_H
 
-/// Class for representation of edges
 /**
+ * Class for representation of edges
  * An edge has two Nodes as its end points, pointer to graph that the edge relates to, and unique id.
  */
 class Edge {
@@ -40,10 +40,14 @@ class Edge {
     int m_id; // uniq number in this graph
 
 protected:
-    /// Ctor
+    /**
+     * Ctor
+     */
     Edge(pNode from, pNode to);
 
-    // flag is true if we alredy revert this edge for layout.
+    /**
+     * flag is true if already revert this edge for layout.
+     */
     bool reverse;
 
 public:
@@ -103,6 +107,8 @@ public:
      * Print short info about the edge
      */
     virtual void Print();
+
+    ~Edge () { }
 
     friend class Node;
     friend class Graph;

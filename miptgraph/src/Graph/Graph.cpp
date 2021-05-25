@@ -29,12 +29,15 @@
 #include "predecls.h"
 #include <assert.h>
 
+/**
+ * print graph data
+ */
 void Graph::Dump()
 {
     list<pNode>::iterator node_iter;
     list<pEdge>::iterator edge_iter;
 
-    printf("Dumping graph\n");
+    printf("Dumping graph id:%d (%d nodes, %d real nodes, %d dummy nodes, %d edges, %d selfedges %d reversed edges)\n", id(), nnodes(), nrealnodes(), ndummynodes(), nedges(), nselfedges(), nreversededges());
     printf("Nodes:\n");
     for (node_iter = m_nodes_list.begin();
          node_iter != m_nodes_list.end();
@@ -46,6 +49,7 @@ void Graph::Dump()
         }
     }
 
+    // edge list does not have self edges
     printf("Edges:\n");
     for (edge_iter = m_edges_list.begin();
          edge_iter != m_edges_list.end();
@@ -60,19 +64,28 @@ void Graph::Dump()
     return;
 }
 
+/**
+ * free node
+ */
 void Graph::FreeNode(pNode p)
 {
     assert(p != NULL);
     delete (pNode)p;
 }
 
+/**
+ * free edge
+ */
 void Graph::FreeEdge(pEdge p)
 {
     assert(p != NULL);
     delete (pEdge)p;
 }
 
-/* todo */
+/**
+ * clear graph
+ * \todo check
+ */
 void Graph::Destroy()
 {
     //    list<pNode>::iterator node_iter;
@@ -92,6 +105,9 @@ void Graph::Destroy()
     return;
 }
 
+/**
+ * create node
+ */
 pNode Graph::AddNode()
 {
     pNode new_node = new Node(this);
@@ -107,16 +123,24 @@ void Graph::AddDummyNode()
     return;
 }
 
+/**
+ * create edge
+ */
 pEdge Graph::AddEdge(pNode from, pNode to)
 {
     pEdge new_edge = new Edge(from, to);
     return new_edge;
 }
 
-/* delete node and it in/out edges */
+/**
+ * delete node and it in/out edges
+ */
 void Graph::DeleteNode(pNode p)
 {
     bool found = false;
+
+    // todo if dummy node, update graph dummy node count
+
     /* clear incoming edges */
     while (!p->m_in_edges_list.empty()) {
         found = DeleteEdge(p->m_in_edges_list.front()->m_from, p);
@@ -143,40 +167,60 @@ void Graph::DeleteNode(pNode p)
     return;
 }
 
-/* remove edge between node from and node to */
+/**
+ * remove edge between node from and node to
+ */
 bool Graph::DeleteEdge(pNode from, pNode to)
 {
     assert(from && from->m_graph == this);
     assert(to && to->m_graph == this);
 
+    // delete self edge if specified
+    if (from->id() == to->id()) {
+        // this is a self edge
+        if (from->nselfedges() <= 0) {
+            // shouldnothappen
+            from->m_selfedges = 0;
+            return false;
+        }
+        from->m_selfedges--;
+        // update in graph data
+        if (from->m_graph->m_total_selfedges_num > 0) {
+            from->m_graph->m_total_selfedges_num--;
+        }
+        return true;
+    }
+
     list<pEdge>::iterator edge_iter;
 
-    /* scan edge list */
+    // scan edge list
     for (edge_iter = m_edges_list.begin();
          edge_iter != m_edges_list.end();
          edge_iter++) {
         pEdge pe = *edge_iter;
-        /* if this is edge with from/to number */
+        // if this is edge with from/to number
         if (pe->m_from == from && pe->m_to == to) {
             m_edges_list.erase(edge_iter);
-            /* remove as outgoing edge at from node */
+            // remove as outgoing edge at from node
             pe->m_from->m_out_edges_list.remove(pe);
-            /* remove as incoming edge at to node */
+            // remove as incoming edge at to node
             pe->m_to->m_in_edges_list.remove(pe);
             pe->m_from = NULL;
             pe->m_to = NULL;
             m_total_edges_num--;
             FreeEdge(pe);
-            /* edge is found and deleted */
+            // edge is found and deleted
             return true;
         }
     }
 
-    /* return false if edge not found. */
+    // return false if edge not found.
     return false;
 }
 
-/* return false if some integrity error of graph data */
+/**
+ * return false if some integrity error of graph data
+ */
 bool Graph::Verify(void)
 {
     /* error if no nodes, but there are edges. */
@@ -304,11 +348,13 @@ bool Graph::Verify(void)
         }
     }
 
-    /* graph data is correct */
+    // graph data is correct
     return true;
 }
 
-/* run dfs to assing node t vertical rank level */
+/**
+ * run dfs to assing node dfs number
+ */
 void Graph::DFS(pNode node,
     map<pNode, bool>* isused,
     map<pNode, int>* dfs,
@@ -316,21 +362,21 @@ void Graph::DFS(pNode node,
 {
 
     if ((*isused)[node] == true) {
-        /* return if node has already set */
+        // return if node has already set
         return;
     }
 
     (*isused)[node] = true;
 
-    /* set rank level */
+    // set dfs count
     (*dfs)[node] = ++(*num);
 
-    /* follow outgoing edges of this node */
+    // follow outgoing edges of this node
     for (list<pEdge>::iterator edge_iter = node->m_out_edges_list.begin();
          edge_iter != node->m_out_edges_list.end();
          edge_iter++) {
-        /* if to edge is not done, recurse */
-        if (!(*isused)[(*edge_iter)->m_to]) {
+        // if to edge is not done, recurse
+        if (((*isused)[(*edge_iter)->m_to]) == false) {
             DFS((*edge_iter)->m_to, isused, dfs, num);
         }
     }
@@ -338,20 +384,25 @@ void Graph::DFS(pNode node,
     return;
 }
 
-/* return true if there are revesed edges */
+/**
+ * return true if revesed edges count changed
+ * find cycles in the graph and reverse edge
+ */
 bool Graph::FindReverseEdges(list<pEdge>& ReverseEdges)
 {
-    map<pNode, int>* dfs = new map<pNode, int>;
-    map<pNode, bool>* isused = new map<pNode, bool>;
-    int num = 0; // Current node is nul.
+    map<pNode, int>* dfs = new map<pNode, int>; // dfs count numbers
+    map<pNode, bool>* isused = new map<pNode, bool>; // dfs flags
+    int num = 0; // Current dfs counter is 0
     size_t count_rev_edges = ReverseEdges.size();
 
+    // clear dfs
     for (list<pNode>::iterator node_iter = m_nodes_list.begin();
          node_iter != m_nodes_list.end();
          node_iter++) {
         (*dfs)[*node_iter] = 0;
     }
 
+    // clear used
     for (list<pNode>::iterator node_iter = m_nodes_list.begin();
          node_iter != m_nodes_list.end();
          node_iter++) {
@@ -370,22 +421,27 @@ bool Graph::FindReverseEdges(list<pEdge>& ReverseEdges)
 
     delete isused;
 
+    // detect cycles
     for (list<pEdge>::iterator edge_iter = m_edges_list.begin();
          edge_iter != m_edges_list.end();
          edge_iter++) {
 
         if ((*dfs)[(*edge_iter)->m_to] < (*dfs)[(*edge_iter)->m_from]) {
+            // this is a cycle
             ReverseEdges.push_back((*edge_iter));
         }
     }
 
     delete dfs;
 
+    // total number of reversed edges without self-edges
+    m_total_reversededges_num = ReverseEdges.size();
+
     if (ReverseEdges.size() == count_rev_edges) {
-        return false; // No reverse edges found.
+        return false; // No changes
     }
 
-    /* reversed edges found. */
+    /* reversed edges changed  */
     return true;
 }
 

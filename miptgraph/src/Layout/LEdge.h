@@ -73,7 +73,7 @@ public:
         m_composite_edges = NULL;
     }
 
-    ~LEdge();
+    virtual ~LEdge();
 
     friend class LGraph;
     friend class LNode;
@@ -105,7 +105,5 @@ public:
 };
 
 #endif
-
-/* end. */
 
 /* end. */

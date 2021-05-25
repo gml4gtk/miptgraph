@@ -96,6 +96,7 @@ public:
      * Print info about the node
      */
     virtual void Dump();
+
     friend class Edge;
     friend class Graph;
 };

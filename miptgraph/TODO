@@ -18,3 +18,11 @@
 - fixed: test a no-edges graph
 - fixed: special layout mode if there are no edges
 - add tree layout mode if it is tree data that can be done faster
+- in ledge CompositeEdgesDump() etc to remove
+- graph::destroy() todo
+- fixed: delete self edges
+- double spacing for same edge 1->2 1->2
+- edge labels
+- placement in variable raster, prio algo
+- fixed: changed to stable_sort() in layout.cpp
+- fixed: added count of reversed edges

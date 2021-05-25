@@ -91,6 +91,11 @@ protected:
     int m_total_selfedges_num;
 
     /**
+     * total number of reversed edges without self-edges
+     */
+    int m_total_reversededges_num;
+
+    /**
      * serial number for uniq node id
      */
     int next_node_id;
@@ -139,6 +144,7 @@ public:
         , m_total_dummynodes_num(0)
         , m_total_edges_num(0)
         , m_total_selfedges_num(0)
+        , m_total_reversededges_num(0)
         , next_node_id(0)
         , next_edge_id(0)
 	, m_id(0) {};
@@ -167,6 +173,11 @@ public:
      * get number of edges in graph without self-edges
      */
     int nedges() { return m_total_edges_num; }
+
+    /**
+     * get number of reversed edges in graph without self-edges
+     */
+    int nreversededges() { return m_total_reversededges_num; }
 
     /**
      * get number of self-edges in graph
