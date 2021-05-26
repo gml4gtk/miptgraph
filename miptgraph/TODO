@@ -7,18 +7,19 @@
 - fixed: added test with cycle in the graph
 - fixed: add support for self-edges at a node added in node, edge, graph
 - edge reverse() to/from edges of nodes is oke?
-- in ~LEdge delete composite edges
+- fixed: in ~LEdge delete composite edges
 - in breaklongedge, n<0 todo
 - fixed: in Lgraph WeightedMedianHeuristic() must be <= t crossings documented
 - fixed: added dummy node count in graph
-- add interface code to use it from plain c
-- in split edge longedges composite edges list in every sub edges todo why needed?
+- fixed: add interface code to use it from plain c
+- fixed: added cmiptgraph.h for use with c source
+- fixed: in split edge longedges composite edges list in every sub edges todo why needed?
 - fixed: self-edges check added in ledge.h
 - lgraph InitCoordinates should be flexible in node sizes and y level rank spacing
 - fixed: test a no-edges graph
 - fixed: special layout mode if there are no edges
 - add tree layout mode if it is tree data that can be done faster
-- in ledge CompositeEdgesDump() etc to remove
+- fixed: in ledge CompositeEdgesDump() etc to remove
 - graph::destroy() todo
 - fixed: delete self edges
 - double spacing for same edge 1->2 1->2
@@ -28,5 +29,6 @@
 - fixed: added count of reversed edges
 - fixed: composite edges lists removed
 - node xy size to add
-- fixed: bool layouted into int layouted
+- fixed: bool layouted changed into int layouted
 - re-layout should be possible after layout
+- fixed: horizontal edge bool added and counter

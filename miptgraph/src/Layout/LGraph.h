@@ -39,7 +39,7 @@ class LGraph : public Graph {
 private:
 
     /**
-     * number of y levels
+     * max y level, number of levels is (maxrank+1)
      */
     unsigned int maxrank;
 

@@ -26,6 +26,7 @@ all: libs
 	make test3
 	make test4
 	make test5
+	make test6
 
 # generate output files
 output:
@@ -34,6 +35,7 @@ output:
 	./test3 >test3-output.txt
 	./test4 >test4-output.txt
 	./test5 >test5-output.txt
+	./test6 >test6-output.txt
 
 # generate svg image data
 test1:
@@ -55,6 +57,11 @@ test4:
 test5:
 	$(CXX) test5.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test5
 
+# run c++ from c
+test6:
+	$(CC) -I. -I.. test6.c -c -o test6.o
+	$(CXX) test6.o ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test6
+
 libs: graphlib layoutlib
 
 graphlib:
@@ -72,6 +79,7 @@ clean:
 	rm -v -f test3
 	rm -v -f test4
 	rm -v -f test5
+	rm -v -f test6
 	rm -v -f *.output
 
 cleaner:

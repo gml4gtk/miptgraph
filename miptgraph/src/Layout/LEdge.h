@@ -60,6 +60,7 @@ public:
 	}
         composite = false;
         reverse = false;
+	hedge = false;
     }
 
     virtual ~LEdge();

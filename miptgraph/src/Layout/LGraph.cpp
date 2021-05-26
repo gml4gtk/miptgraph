@@ -87,7 +87,7 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     // change all reversed edges back into normal direction
     ReverseReverseEdges(ReverseEdges);
 
-    // get how many rank y levels there are in the graph
+    // get max rank y level in the graph
     InitRank();
 
     // list for longer edges to split
@@ -198,21 +198,33 @@ void LGraph::ReverseReverseEdges(list<pEdge>& ReverseEdges)
  */
 void LGraph::FindLongEdges(list<pEdge>& LongEdges)
 {
+    int nhedges = 0;
+    int delta = 0;
     // scan all edges
     for (list<pEdge>::iterator edge_iter = edges_list()->begin();
          edge_iter != edges_list()->end();
          edge_iter++) {
+        delta = ((pLNode)(*edge_iter)->to())->Rank() - ((pLNode)(*edge_iter)->from())->Rank();
         // check for wrong value
-        if (((pLNode)(*edge_iter)->to())->Rank() - ((pLNode)(*edge_iter)->from())->Rank() < 0) {
+        if (delta < 0) {
             // todo
             printf("%s() shouldnothappen\n", __func__);
         }
         // check if edge is too long
-        if (((pLNode)(*edge_iter)->to())->Rank() - ((pLNode)(*edge_iter)->from())->Rank() > 1) {
+        if (delta > 1) {
             // this is a edge spanning multiple levels
             LongEdges.push_back(*edge_iter);
         }
+        // check horizontal edge
+        if (delta == 0) {
+            nhedges++;
+            (*edge_iter)->SetHedge(true);
+        } else {
+            (*edge_iter)->SetHedge(false);
+        }
     }
+    Set_Nhoredges(nhedges);
+
     return;
 }
 

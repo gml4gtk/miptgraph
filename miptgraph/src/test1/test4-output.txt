@@ -7,7 +7,7 @@ added node in g2 p2[3] with id 3
 added node in g2 p2[4] with id 4
 added edge in g2 with id 2 between node 0 and node 0 with id 0
 before layout
-Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 0 edges, 1 selfedges 0 reversed edges)
+Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 0 edges, 0 horizontal edges, 1 selfedges 0 reversed edges)
 Nodes:
 Node id 0: (1 self-edges)
   In  edges:
@@ -26,7 +26,7 @@ Node id 4: (0 self-edges)
   Out edges:
 Edges:
 after layout of graph 2 with dummy nodes and changed edges
-Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 0 edges, 1 selfedges 0 reversed edges)
+Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 0 edges, 0 horizontal edges, 1 selfedges 0 reversed edges)
 Nodes:
 Node id 0: (1 self-edges)
   In  edges:

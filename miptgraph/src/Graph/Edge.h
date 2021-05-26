@@ -66,6 +66,11 @@ protected:
      */
     bool reverse;
 
+    /**
+     * flag is true if a horrizontal edge
+     */
+    bool hedge;
+
 public:
 
     /**
@@ -83,6 +88,14 @@ public:
     void SetReverse(bool is_reverse)
     {
         reverse = is_reverse;
+    }
+
+    /**
+     * Set bool edge is horizontal
+     */
+    void SetHedge(bool is_hedge)
+    {
+        hedge = is_hedge;
     }
 
     /**

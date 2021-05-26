@@ -11,7 +11,7 @@ added edge in g2 between node 2 and node 3 with id 2
 added edge in g2 between node 3 and node 1 with id 3
 added edge in g2 between node 3 and node 4 with id 4
 before layout
-Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 5 edges, 0 selfedges 0 reversed edges)
+Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 5 edges, 0 horizontal edges, 0 selfedges 0 reversed edges)
 Nodes:
 Node id 0: (0 self-edges)
   In  edges:
@@ -29,11 +29,11 @@ Node id 4: (0 self-edges)
   In  edges: 3->4
   Out edges:
 Edges:
-Edge id 0: 0->1 rev=0
-Edge id 1: 1->2 rev=0
-Edge id 2: 2->3 rev=0
-Edge id 3: 3->1 rev=0
-Edge id 4: 3->4 rev=0
+Edge id 0: 0->1 reversed=0 horizontal=0
+Edge id 1: 1->2 reversed=0 horizontal=0
+Edge id 2: 2->3 reversed=0 horizontal=0
+Edge id 3: 3->1 reversed=0 horizontal=0
+Edge id 4: 3->4 reversed=0 horizontal=0
 Reversed edges changed to 1
 edge crossings reduced from 0 to 0
 Level rank 0 has these 1 nodes:
@@ -48,7 +48,7 @@ Level rank 4 has these 1 nodes:
   id:4(32,320)
 Final Crossings: 0
 after layout of graph 2 with dummy nodes and changed edges
-Dumping graph id:2 (6 nodes, 5 real nodes, 1 dummy nodes, 6 edges, 0 selfedges 1 reversed edges)
+Dumping graph id:2 (6 nodes, 5 real nodes, 1 dummy nodes, 6 edges, 0 horizontal edges, 0 selfedges 1 reversed edges)
 Nodes:
 Node id 0: (0 self-edges)
   In  edges:
@@ -69,11 +69,11 @@ Node id 5: (0 self-edges)
   In  edges: 1->5
   Out edges: 5->3
 Edges:
-Edge id 0: 0->1 rev=0
-Edge id 1: 1->2 rev=0
-Edge id 2: 2->3 rev=0
-Edge id 4: 3->4 rev=0
-Edge id 5: 1->5 rev=1
-Edge id 6: 5->3 rev=1
+Edge id 0: 0->1 reversed=0 horizontal=0
+Edge id 1: 1->2 reversed=0 horizontal=0
+Edge id 2: 2->3 reversed=0 horizontal=0
+Edge id 4: 3->4 reversed=0 horizontal=0
+Edge id 5: 1->5 reversed=1 horizontal=0
+Edge id 6: 5->3 reversed=1 horizontal=0
 edge 3->1 should be reversed via dummy node 5
 graph 2 maxrank = 4

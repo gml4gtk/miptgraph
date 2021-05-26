@@ -37,7 +37,7 @@ void Graph::Dump()
     list<pNode>::iterator node_iter;
     list<pEdge>::iterator edge_iter;
 
-    printf("Dumping graph id:%d (%d nodes, %d real nodes, %d dummy nodes, %d edges, %d selfedges %d reversed edges)\n", id(), nnodes(), nrealnodes(), ndummynodes(), nedges(), nselfedges(), nreversededges());
+    printf("Dumping graph id:%d (%d nodes, %d real nodes, %d dummy nodes, %d edges, %d horizontal edges, %d selfedges %d reversed edges)\n", id(), nnodes(), nrealnodes(), ndummynodes(), nedges(), nhoredges(), nselfedges(), nreversededges());
     printf("Nodes:\n");
     for (node_iter = m_nodes_list.begin();
          node_iter != m_nodes_list.end();

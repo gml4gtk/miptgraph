@@ -1,7 +1,7 @@
 
 Layout test started..
 before layout input graph data
-Dumping graph id:0 (9 nodes, 9 real nodes, 0 dummy nodes, 15 edges, 0 selfedges 0 reversed edges)
+Dumping graph id:0 (9 nodes, 9 real nodes, 0 dummy nodes, 15 edges, 0 horizontal edges, 0 selfedges 0 reversed edges)
 Nodes:
 Node id 0: (0 self-edges)
   In  edges:
@@ -31,21 +31,21 @@ Node id 8: (0 self-edges)
   In  edges: 3->8 1->8
   Out edges: 8->7 8->5
 Edges:
-Edge id 0: 0->1 rev=0
-Edge id 1: 4->5 rev=0
-Edge id 2: 4->6 rev=0
-Edge id 3: 7->6 rev=0
-Edge id 4: 8->7 rev=0
-Edge id 5: 8->5 rev=0
-Edge id 6: 5->6 rev=0
-Edge id 7: 3->8 rev=0
-Edge id 8: 3->7 rev=0
-Edge id 9: 3->4 rev=0
-Edge id 10: 1->2 rev=0
-Edge id 11: 1->8 rev=0
-Edge id 12: 1->5 rev=0
-Edge id 13: 2->7 rev=0
-Edge id 14: 2->6 rev=0
+Edge id 0: 0->1 reversed=0 horizontal=0
+Edge id 1: 4->5 reversed=0 horizontal=0
+Edge id 2: 4->6 reversed=0 horizontal=0
+Edge id 3: 7->6 reversed=0 horizontal=0
+Edge id 4: 8->7 reversed=0 horizontal=0
+Edge id 5: 8->5 reversed=0 horizontal=0
+Edge id 6: 5->6 reversed=0 horizontal=0
+Edge id 7: 3->8 reversed=0 horizontal=0
+Edge id 8: 3->7 reversed=0 horizontal=0
+Edge id 9: 3->4 reversed=0 horizontal=0
+Edge id 10: 1->2 reversed=0 horizontal=0
+Edge id 11: 1->8 reversed=0 horizontal=0
+Edge id 12: 1->5 reversed=0 horizontal=0
+Edge id 13: 2->7 reversed=0 horizontal=0
+Edge id 14: 2->6 reversed=0 horizontal=0
 Reversed edges changed to 6
 edge crossings reduced from 14 to 10
 improved from 10 to 6 crossings at try 1
@@ -80,7 +80,7 @@ Level rank 6 has these 1 nodes:
   id:4(70,480)
 Final Crossings: 3
 after layout with dummy nodes and changed edges
-Dumping graph id:0 (17 nodes, 9 real nodes, 8 dummy nodes, 23 edges, 0 selfedges 6 reversed edges)
+Dumping graph id:0 (17 nodes, 9 real nodes, 8 dummy nodes, 23 edges, 0 horizontal edges, 0 selfedges 6 reversed edges)
 Nodes:
 Node id 0: (0 self-edges)
   In  edges:
@@ -134,32 +134,32 @@ Node id 16: (0 self-edges)
   In  edges: 2->16
   Out edges: 16->6
 Edges:
-Edge id 0: 0->1 rev=0
-Edge id 1: 5->4 rev=1
-Edge id 3: 7->6 rev=0
-Edge id 4: 7->8 rev=1
-Edge id 5: 8->5 rev=0
-Edge id 6: 6->5 rev=1
-Edge id 7: 8->3 rev=1
-Edge id 9: 3->4 rev=0
-Edge id 10: 1->2 rev=0
-Edge id 13: 2->7 rev=0
-Edge id 15: 6->9 rev=1
-Edge id 16: 9->4 rev=1
-Edge id 17: 7->10 rev=1
-Edge id 18: 10->3 rev=1
-Edge id 19: 1->11 rev=0
-Edge id 20: 11->12 rev=0
-Edge id 21: 12->8 rev=0
-Edge id 22: 1->13 rev=0
-Edge id 23: 13->14 rev=0
-Edge id 24: 14->15 rev=0
-Edge id 25: 15->5 rev=0
-Edge id 26: 2->16 rev=0
-Edge id 27: 16->6 rev=0
+Edge id 0: 0->1 reversed=0 horizontal=0
+Edge id 1: 5->4 reversed=1 horizontal=0
+Edge id 3: 7->6 reversed=0 horizontal=0
+Edge id 4: 7->8 reversed=1 horizontal=0
+Edge id 5: 8->5 reversed=0 horizontal=0
+Edge id 6: 6->5 reversed=1 horizontal=0
+Edge id 7: 8->3 reversed=1 horizontal=0
+Edge id 9: 3->4 reversed=0 horizontal=0
+Edge id 10: 1->2 reversed=0 horizontal=0
+Edge id 13: 2->7 reversed=0 horizontal=0
+Edge id 15: 6->9 reversed=1 horizontal=0
+Edge id 16: 9->4 reversed=1 horizontal=0
+Edge id 17: 7->10 reversed=1 horizontal=0
+Edge id 18: 10->3 reversed=1 horizontal=0
+Edge id 19: 1->11 reversed=0 horizontal=0
+Edge id 20: 11->12 reversed=0 horizontal=0
+Edge id 21: 12->8 reversed=0 horizontal=0
+Edge id 22: 1->13 reversed=0 horizontal=0
+Edge id 23: 13->14 reversed=0 horizontal=0
+Edge id 24: 14->15 reversed=0 horizontal=0
+Edge id 25: 15->5 reversed=0 horizontal=0
+Edge id 26: 2->16 reversed=0 horizontal=0
+Edge id 27: 16->6 reversed=0 horizontal=0
 maxrank = 6
 second layout
-Dumping graph id:0 (17 nodes, 9 real nodes, 8 dummy nodes, 23 edges, 0 selfedges 6 reversed edges)
+Dumping graph id:0 (17 nodes, 9 real nodes, 8 dummy nodes, 23 edges, 0 horizontal edges, 0 selfedges 6 reversed edges)
 Nodes:
 Node id 0: (0 self-edges)
   In  edges:
@@ -213,29 +213,29 @@ Node id 16: (0 self-edges)
   In  edges: 2->16
   Out edges: 16->6
 Edges:
-Edge id 0: 0->1 rev=0
-Edge id 1: 5->4 rev=1
-Edge id 3: 7->6 rev=0
-Edge id 4: 7->8 rev=1
-Edge id 5: 8->5 rev=0
-Edge id 6: 6->5 rev=1
-Edge id 7: 8->3 rev=1
-Edge id 9: 3->4 rev=0
-Edge id 10: 1->2 rev=0
-Edge id 13: 2->7 rev=0
-Edge id 15: 6->9 rev=1
-Edge id 16: 9->4 rev=1
-Edge id 17: 7->10 rev=1
-Edge id 18: 10->3 rev=1
-Edge id 19: 1->11 rev=0
-Edge id 20: 11->12 rev=0
-Edge id 21: 12->8 rev=0
-Edge id 22: 1->13 rev=0
-Edge id 23: 13->14 rev=0
-Edge id 24: 14->15 rev=0
-Edge id 25: 15->5 rev=0
-Edge id 26: 2->16 rev=0
-Edge id 27: 16->6 rev=0
+Edge id 0: 0->1 reversed=0 horizontal=0
+Edge id 1: 5->4 reversed=1 horizontal=0
+Edge id 3: 7->6 reversed=0 horizontal=0
+Edge id 4: 7->8 reversed=1 horizontal=0
+Edge id 5: 8->5 reversed=0 horizontal=0
+Edge id 6: 6->5 reversed=1 horizontal=0
+Edge id 7: 8->3 reversed=1 horizontal=0
+Edge id 9: 3->4 reversed=0 horizontal=0
+Edge id 10: 1->2 reversed=0 horizontal=0
+Edge id 13: 2->7 reversed=0 horizontal=0
+Edge id 15: 6->9 reversed=1 horizontal=0
+Edge id 16: 9->4 reversed=1 horizontal=0
+Edge id 17: 7->10 reversed=1 horizontal=0
+Edge id 18: 10->3 reversed=1 horizontal=0
+Edge id 19: 1->11 reversed=0 horizontal=0
+Edge id 20: 11->12 reversed=0 horizontal=0
+Edge id 21: 12->8 reversed=0 horizontal=0
+Edge id 22: 1->13 reversed=0 horizontal=0
+Edge id 23: 13->14 reversed=0 horizontal=0
+Edge id 24: 14->15 reversed=0 horizontal=0
+Edge id 25: 15->5 reversed=0 horizontal=0
+Edge id 26: 2->16 reversed=0 horizontal=0
+Edge id 27: 16->6 reversed=0 horizontal=0
 node id 0: relative pos (0,0) absolute pos (70.000000,0.000000) dummy=0
 node id 1: relative pos (0,1) absolute pos (70.000000,80.000000) dummy=0
 node id 2: relative pos (2,2) absolute pos (120.000000,160.000000) dummy=0

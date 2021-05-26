@@ -131,7 +131,7 @@ void Edge::Reverse()
 void Edge::Dump()
 {
 
-    printf("Edge id %d: %d->%d rev=%d\n", m_id, m_from->m_id, m_to->m_id, reverse);
+    printf("Edge id %d: %d->%d reversed=%d horizontal=%d\n", m_id, m_from->m_id, m_to->m_id, reverse, hedge);
 
     return;
 };

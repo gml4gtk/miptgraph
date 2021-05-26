@@ -86,6 +86,11 @@ protected:
     int m_total_edges_num;
 
     /**
+     * total number of horizontal edges without self-edges
+     */
+    int m_total_horedges_num;
+
+    /**
      * total number of self-edges
      */
     int m_total_selfedges_num;
@@ -143,6 +148,7 @@ public:
         : m_total_nodes_num(0)
         , m_total_dummynodes_num(0)
         , m_total_edges_num(0)
+        , m_total_horedges_num(0)
         , m_total_selfedges_num(0)
         , m_total_reversededges_num(0)
         , next_node_id(0)
@@ -173,6 +179,16 @@ public:
      * get number of edges in graph without self-edges
      */
     int nedges() { return m_total_edges_num; }
+
+    /**
+     * get number of horizontal edges in graph without self-edges
+     */
+    int nhoredges() { return m_total_horedges_num; }
+
+    /**
+     * set number of horizontal edges in graph without self-edges
+     */
+    void Set_Nhoredges(int value) { m_total_horedges_num = value; }
 
     /**
      * get number of reversed edges in graph without self-edges

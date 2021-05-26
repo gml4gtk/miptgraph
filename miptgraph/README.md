@@ -3,7 +3,7 @@
 GNU GPL Free C++ directed graph layout library
 
 This is a GNU GPL Free stand-alone C++ Graph Layout Library based on GNU GPL Version 3 Free Mipt-Vis tool from Moscow Institute of Physics and Technology( MIPT)  
-This project is a second reincarnation of the Mipt-Vis project.  
+This project is another reincarnation of the Mipt-Vis project.  
 
 To compile:  
 ./autogen.sh  
@@ -19,10 +19,13 @@ To indent sources: make indent
 The directory src/test1 has example programs how to use this graph layout library.  
 The source is documented for use with the doxygen program generating html documentation.  
 The dmake script can be usd to get a log file of the make process  
-This library has own routines for hierarchial graph layout and does not depend on graphviz or others  
+This library has own routines for hierarchial graph layout and does not depend on graphviz or other libs  
+This library has a c interface to use it with notma c source code  
 The Graph and Layout directory does not depend on qt5 library or other libraries  
 To compile this C++ with emscripten or otherwise to wasm webassembly should be possible to run it in the browser  
 The user interface program must copy some graph data to/from this library to make sure it does not depend on qt5  
+Because multiple graphs can be layouted independent at once it can be used to layout bigger graph with subgraphs  
+
 Most so called graph layout programs are only spring embedder layout or drawing programs.  
 
 Other software implementing sugiyama barycenter graph algorithm are  

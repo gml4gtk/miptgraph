@@ -32,7 +32,7 @@ Level rank 4 has these 1 nodes:
   id:4(120,320)
 Final Crossings: 4
 after layout of graph 1 with dummy nodes and changed edges
-Dumping graph id:0 (17 nodes, 10 real nodes, 7 dummy nodes, 23 edges, 0 selfedges 4 reversed edges)
+Dumping graph id:0 (17 nodes, 10 real nodes, 7 dummy nodes, 23 edges, 0 horizontal edges, 0 selfedges 4 reversed edges)
 Nodes:
 Node id 0: (0 self-edges)
   In  edges:
@@ -86,32 +86,32 @@ Node id 16: (0 self-edges)
   In  edges: 1->16
   Out edges: 16->9
 Edges:
-Edge id 0: 0->1 rev=0
-Edge id 2: 0->3 rev=0
-Edge id 3: 1->5 rev=0
-Edge id 4: 6->2 rev=1
-Edge id 5: 5->2 rev=1
-Edge id 8: 9->4 rev=1
-Edge id 9: 5->8 rev=0
-Edge id 10: 6->9 rev=0
-Edge id 12: 1->7 rev=0
-Edge id 13: 1->6 rev=0
-Edge id 14: 1->5 rev=0
-Edge id 16: 0->10 rev=0
-Edge id 17: 10->11 rev=0
-Edge id 18: 11->2 rev=0
-Edge id 19: 3->12 rev=0
-Edge id 20: 12->13 rev=0
-Edge id 21: 13->4 rev=0
-Edge id 22: 7->14 rev=1
-Edge id 23: 14->4 rev=1
-Edge id 24: 1->15 rev=0
-Edge id 25: 15->8 rev=0
-Edge id 26: 1->16 rev=0
-Edge id 27: 16->9 rev=0
+Edge id 0: 0->1 reversed=0 horizontal=0
+Edge id 2: 0->3 reversed=0 horizontal=0
+Edge id 3: 1->5 reversed=0 horizontal=0
+Edge id 4: 6->2 reversed=1 horizontal=0
+Edge id 5: 5->2 reversed=1 horizontal=0
+Edge id 8: 9->4 reversed=1 horizontal=0
+Edge id 9: 5->8 reversed=0 horizontal=0
+Edge id 10: 6->9 reversed=0 horizontal=0
+Edge id 12: 1->7 reversed=0 horizontal=0
+Edge id 13: 1->6 reversed=0 horizontal=0
+Edge id 14: 1->5 reversed=0 horizontal=0
+Edge id 16: 0->10 reversed=0 horizontal=0
+Edge id 17: 10->11 reversed=0 horizontal=0
+Edge id 18: 11->2 reversed=0 horizontal=0
+Edge id 19: 3->12 reversed=0 horizontal=0
+Edge id 20: 12->13 reversed=0 horizontal=0
+Edge id 21: 13->4 reversed=0 horizontal=0
+Edge id 22: 7->14 reversed=1 horizontal=0
+Edge id 23: 14->4 reversed=1 horizontal=0
+Edge id 24: 1->15 reversed=0 horizontal=0
+Edge id 25: 15->8 reversed=0 horizontal=0
+Edge id 26: 1->16 reversed=0 horizontal=0
+Edge id 27: 16->9 reversed=0 horizontal=0
 graph 1 maxrank = 4
 after layout of graph 2 with dummy nodes and changed edges
-Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 4 edges, 0 selfedges 0 reversed edges)
+Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 4 edges, 0 horizontal edges, 0 selfedges 0 reversed edges)
 Nodes:
 Node id 0: (0 self-edges)
   In  edges:
@@ -129,12 +129,12 @@ Node id 4: (0 self-edges)
   In  edges: 3->4
   Out edges:
 Edges:
-Edge id 0: 0->1 rev=0
-Edge id 1: 0->2 rev=0
-Edge id 2: 0->3 rev=0
-Edge id 3: 3->4 rev=0
+Edge id 0: 0->1 reversed=0 horizontal=0
+Edge id 1: 0->2 reversed=0 horizontal=0
+Edge id 2: 0->3 reversed=0 horizontal=0
+Edge id 3: 3->4 reversed=0 horizontal=0
 graph 2 maxrank = 2
 after layout of graph 3 with dummy nodes and changed edges
-Dumping graph id:0 (0 nodes, 0 real nodes, 0 dummy nodes, 0 edges, 0 selfedges 0 reversed edges)
+Dumping graph id:0 (0 nodes, 0 real nodes, 0 dummy nodes, 0 edges, 0 horizontal edges, 0 selfedges 0 reversed edges)
 Nodes:
 Edges:

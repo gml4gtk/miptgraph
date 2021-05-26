@@ -27,6 +27,7 @@ libmiptgraphlayout_la_SOURCES = \
 	LGraph.cpp \
 	LNode.cpp \
 	Ordering.cpp \
+	Cmipt.cpp \
 	LEdge.h \
 	LGraph.h \
 	LNode.h \
