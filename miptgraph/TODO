@@ -26,3 +26,7 @@
 - placement in variable raster, prio algo
 - fixed: changed to stable_sort() in layout.cpp
 - fixed: added count of reversed edges
+- fixed: composite edges lists removed
+- node xy size to add
+- fixed: bool layouted into int layouted
+- re-layout should be possible after layout

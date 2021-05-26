@@ -40,12 +40,6 @@ class LEdge : public Edge {
 
 
 private:
-    /**
-     * composite edges
-     * this is a edge which is split from long edge
-     * every split edge has complete list of the split edges
-     */
-    list<pLEdge>* m_composite_edges;
 
     /**
      * set to tru if this is a split edge
@@ -54,10 +48,6 @@ private:
 
 public:
 
-    /**
-     * get composite edges list
-     */
-    const list<pLEdge>* composite_edges() { return m_composite_edges; }
 
     /**
      * create edge with defaults
@@ -70,7 +60,6 @@ public:
 	}
         composite = false;
         reverse = false;
-        m_composite_edges = NULL;
     }
 
     virtual ~LEdge();
@@ -83,12 +72,6 @@ public:
      * This method makes L-1 dummy nodes and L edges between them
      */
     void BreakLongEdge();
-
-    /**
-     * print composite edges
-     * this is a edge which is split from long edge
-     */
-    void CompositeEdgesDump();
 
     /**
      * return bool true if there are composite edges

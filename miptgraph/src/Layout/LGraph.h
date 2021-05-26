@@ -30,17 +30,28 @@
 #ifndef LAYOUT_GRAPH_H
 #define LAYOUT_GRAPH_H
 
-/// Graph with Layout methods
 /**
+ * Graph with Layout methods
  * Includes ranking, median and transposition heuristic
  */
 
 class LGraph : public Graph {
 private:
-    unsigned int maxrank; // number of y levels
 
-    bool layouted; // Are the graph already layouted.
-    Ordering* order; // horizontal node ordering
+    /**
+     * number of y levels
+     */
+    unsigned int maxrank;
+
+    /**
+     * if >0 graph is already layouted
+     */
+    unsigned int layouted;
+
+    /**
+     * horizontal node ordering
+     */
+    Ordering* order;
 
 public:
 
@@ -50,6 +61,7 @@ public:
     LGraph()
     {
         maxrank = 0;
+	layouted = false;
         order = NULL;
     }
 
@@ -73,7 +85,8 @@ public:
      */
     void Layout(unsigned long int number_of_iterations = 3,
         bool do_transpose = true,
-        int transpose_range = -1);
+        int transpose_range = -1,
+	bool verbose = false);
 
     /**
      * Init Rank value for each node.
@@ -113,14 +126,14 @@ public:
      * vertices on the previous rank. Then, the vertices in the rank are
      * sorted by their medians.
     */
-    void WeightedMedianHeuristic(int iter);
+    void WeightedMedianHeuristic(int iter, bool verbose);
 
     /**
      * The transposition heuristic for reducing edge crossings.
      * Transpose repeatedly exchanges adjacent vertices on the
      * same rank if this decreases the number of crossings.
      */
-    void Transpose(unsigned long int maxtry);
+    void Transpose(unsigned long int maxtry, bool verbose);
 
     /**
      * Calculate all edges crossings in the whole graph.

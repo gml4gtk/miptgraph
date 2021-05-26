@@ -29,11 +29,15 @@
 
 #include "Layout.h"
 
+/**
+ * adjust position
+ */
 vector<int>
 Ordering::AdjInPositions(pLNode node)
 {
     vector<int> positions;
     int rank = node->Rank();
+    // incoming edges are not at level 0 nodes
     if (rank > 0) {
         for (unsigned int i = 0; i < order_vector[rank - 1].size(); i++) {
             if (order_vector[rank - 1][i]->IsAdjacentToNode(node)) {
@@ -44,6 +48,9 @@ Ordering::AdjInPositions(pLNode node)
     return positions;
 }
 
+/**
+ * adjust position
+ */
 vector<int>
 Ordering::AdjOutPositions(pLNode node)
 {
@@ -59,18 +66,22 @@ Ordering::AdjOutPositions(pLNode node)
     return positions;
 }
 
+/**
+ * print the node order in all rank levels
+ */
 void Ordering::Dump()
 {
     for (unsigned int rank = 0; rank < order_vector.size(); rank++) {
-        printf("rank = %d\n", rank);
+        printf("Level rank %d has these %lu nodes:\n ", rank, order_vector[rank].size());
         for (unsigned int i = 0; i < order_vector[rank].size(); i++) {
-            printf("%d(%f,%f) ",
+            printf(" id:%d(%d,%d)",
                 order_vector[rank][i]->id(),
-                order_vector[rank][i]->getX(),
-                order_vector[rank][i]->getY());
+                (int)order_vector[rank][i]->getX(),
+                (int)order_vector[rank][i]->getY());
         }
         printf("\n");
     }
-
     return;
 }
+
+/* end. */

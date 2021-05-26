@@ -36,11 +36,17 @@ Edge id 3: 3->1 rev=0
 Edge id 4: 3->4 rev=0
 Reversed edges changed to 1
 edge crossings reduced from 0 to 0
-edge crossings reduced from 0 to 0
-edge crossings reduced from 0 to 0
-edge crossings reduced from 0 to 0
-edge crossings reduced from 0 to 0
-Crossings:0
+Level rank 0 has these 1 nodes:
+  id:0(32,0)
+Level rank 1 has these 1 nodes:
+  id:1(32,80)
+Level rank 2 has these 2 nodes:
+  id:5(20,160) id:2(70,160)
+Level rank 3 has these 1 nodes:
+  id:3(32,240)
+Level rank 4 has these 1 nodes:
+  id:4(32,320)
+Final Crossings: 0
 after layout of graph 2 with dummy nodes and changed edges
 Dumping graph id:2 (6 nodes, 5 real nodes, 1 dummy nodes, 6 edges, 0 selfedges 1 reversed edges)
 Nodes:

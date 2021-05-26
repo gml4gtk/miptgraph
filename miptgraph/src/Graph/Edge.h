@@ -34,10 +34,26 @@
  * An edge has two Nodes as its end points, pointer to graph that the edge relates to, and unique id.
  */
 class Edge {
-    pGraph m_graph; // graph where edge belongs to
-    pNode m_from; // from node
-    pNode m_to; // to node
-    int m_id; // uniq number in this graph
+
+    /**
+     * graph where edge belongs to
+     */
+    pGraph m_graph;
+
+    /**
+     * from node of edge
+     */
+    pNode m_from;
+
+    /**
+     * to node of edge
+     */
+    pNode m_to;
+
+    /**
+     * uniq edge number in this graph
+     */
+    int m_id;
 
 protected:
     /**

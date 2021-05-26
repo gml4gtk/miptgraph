@@ -91,9 +91,9 @@ void Graph::Destroy()
     //    list<pNode>::iterator node_iter;
     //    list<pEdge>::iterator edge_iter;
 
-    while (!m_nodes_list.empty()) {
+    while (m_nodes_list.empty() == false) {
         pNode pn = m_nodes_list.front();
-        /* delete node and it in/out edges */
+        // delete node and it in/out edges
         DeleteNode(pn);
     }
 
@@ -141,27 +141,29 @@ void Graph::DeleteNode(pNode p)
 
     // todo if dummy node, update graph dummy node count
 
-    /* clear incoming edges */
+    // clear incoming edges
     while (!p->m_in_edges_list.empty()) {
         found = DeleteEdge(p->m_in_edges_list.front()->m_from, p);
-        if (found == false) { /* edge not found */
+        if (found == false) { // edge not found
         }
     }
 
-    /* clear outgoing edges */
+    // clear outgoing edges
     while (!p->m_out_edges_list.empty()) {
         found = DeleteEdge(p, p->m_out_edges_list.front()->m_to);
-        if (found == false) { /* edge not found */
+        if (found == false) { // edge not found
         }
     }
 
-    /* remove node from nodelist */
+    // remove node from nodelist
     m_nodes_list.remove(p);
 
-    /* decr. number of total nodes */
-    m_total_nodes_num--;
+    // decr. number of total nodes
+    if (m_total_nodes_num > 0) {
+        m_total_nodes_num--;
+    }
 
-    /* clear node */
+    // clear node
     FreeNode(p);
 
     return;
@@ -169,6 +171,7 @@ void Graph::DeleteNode(pNode p)
 
 /**
  * remove edge between node from and node to
+ * return tru if edge deleted, false when edge not found
  */
 bool Graph::DeleteEdge(pNode from, pNode to)
 {
@@ -223,47 +226,47 @@ bool Graph::DeleteEdge(pNode from, pNode to)
  */
 bool Graph::Verify(void)
 {
-    /* error if no nodes, but there are edges. */
+    // error if no nodes, but there are edges.
     if (m_edges_list.size() > 0 && m_nodes_list.size() == 0) {
         return false;
     }
 
     map<pEdge, bool> edge_map;
 
-    /* scan all nodes */
+    // scan all nodes
     for (list<pNode>::iterator node_iter = m_nodes_list.begin();
          node_iter != m_nodes_list.end();
          node_iter++) {
 
-        /* error if node does not belong to this graph */
+        // error if node does not belong to this graph
         if ((*node_iter)->m_graph != this) {
             return false;
         }
 
-        /* scan incoming edges at this node */
+        // scan incoming edges at this node
         for (list<pEdge>::iterator edge_iter = (*node_iter)->m_in_edges_list.begin();
              edge_iter != (*node_iter)->m_in_edges_list.end();
              edge_iter++) {
 
-            /* error if edge does not belong to this graph */
+            // error if edge does not belong to this graph
             if ((*node_iter)->m_graph != (*edge_iter)->m_graph) {
                 return false;
             }
         }
 
-        /* scan outgoing edges at this node */
+        // scan outgoing edges at this node
         for (list<pEdge>::iterator edge_iter = (*node_iter)->m_out_edges_list.begin();
              edge_iter != (*node_iter)->m_out_edges_list.end();
              edge_iter++) {
 
-            /* error if edge does not belong to this graph */
+            // error if edge does not belong to this graph
             if ((*node_iter)->m_graph != (*edge_iter)->m_graph) {
                 return false;
             }
         }
     }
 
-    /* scan all edges */
+    // scan all edges
     for (list<pEdge>::iterator edge_iter = m_edges_list.begin();
          edge_iter != m_edges_list.end();
          edge_iter++) {
@@ -271,32 +274,32 @@ bool Graph::Verify(void)
         edge_map[(*edge_iter)] = true;
     }
 
-    /* scan all edges */
+    // scan all edges
     for (list<pEdge>::iterator edge_iter = m_edges_list.begin();
          edge_iter != m_edges_list.end();
          edge_iter++) {
 
-        /* error if edge has no from node or no end node */
+        // error if edge has no from node or no end node
         if ((*edge_iter)->m_from == NULL || (*edge_iter)->m_to == NULL) {
             return false;
         }
 
-        /* error if edge does not belong to a graph */
+        // error if edge does not belong to a graph
         if ((*edge_iter)->m_graph == NULL) {
             return false;
         }
 
-        /* error if one of nodes does not belong to a graph */
+        // error if one of nodes does not belong to a graph
         if ((*edge_iter)->m_from->m_graph == NULL || (*edge_iter)->m_to->m_graph == NULL) {
             return false;
         }
 
-        /* error if edge does not belong to this graph */
+        // error if edge does not belong to this graph
         if ((*edge_iter)->m_graph != this) {
             return false;
         }
 
-        /* error if iter does not belong to this graph */
+        // error if iter does not belong to this graph
         if (!((*edge_iter)->m_graph == (*edge_iter)->m_to->m_graph && (*edge_iter)->m_graph == (*edge_iter)->m_from->m_graph)) {
             return false;
         }
@@ -342,7 +345,7 @@ bool Graph::Verify(void)
             }
         }
 
-        /* stop at error */
+        // stop at error
         if (flag == false) {
             return false;
         }
@@ -443,63 +446,6 @@ bool Graph::FindReverseEdges(list<pEdge>& ReverseEdges)
 
     /* reversed edges changed  */
     return true;
-}
-
-/* todo creates graph with 1 node. why. */
-void Graph::CreateSingleEntry()
-{
-
-    int num = 0;
-    map<pNode, int>* dfs = new map<pNode, int>;
-    map<pNode, bool>* isused = new map<pNode, bool>;
-    list<pNode>* root_node_list = new list<pNode>;
-    pNode root = AddNode();
-
-    for (list<pNode>::iterator node_iter = m_nodes_list.begin();
-         node_iter != m_nodes_list.end();
-         node_iter++)
-        (*dfs)[*node_iter] = 0;
-
-    for (list<pNode>::iterator node_iter = m_nodes_list.begin();
-         node_iter != m_nodes_list.end();
-         node_iter++)
-        (*isused)[(*node_iter)] = false;
-
-    for (list<pNode>::iterator node_iter = m_nodes_list.begin();
-         node_iter != m_nodes_list.end();
-         node_iter++)
-        if ((*node_iter)->m_in_edges_list.size() == 0)
-            root_node_list->push_back((*node_iter));
-
-    for (list<pNode>::iterator node_iter = root_node_list->begin();
-         node_iter != root_node_list->end();
-         node_iter++) {
-        if (!(*isused)[*node_iter]) {
-            DFS((*node_iter), isused, dfs, &num);
-            if ((*node_iter) != root) {
-                pEdge edge = AddEdge(root, (*node_iter));
-                (*node_iter)->m_in_edges_list.push_back(edge);
-                root->m_out_edges_list.push_back(edge);
-            }
-        }
-    }
-
-    for (list<pNode>::iterator node_iter = m_nodes_list.begin();
-         node_iter != m_nodes_list.end();
-         node_iter++) {
-        if (!(*isused)[*node_iter]) {
-            DFS((*node_iter), isused, dfs, &num);
-            if ((*node_iter) != root) {
-                pEdge edge = AddEdge(root, (*node_iter));
-                (*node_iter)->m_in_edges_list.push_back(edge);
-                root->m_out_edges_list.push_back(edge);
-            }
-        }
-    }
-    delete root;
-    delete dfs;
-    delete isused;
-    delete root_node_list;
 }
 
 /**

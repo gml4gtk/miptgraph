@@ -36,12 +36,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
-using namespace std;
 
-/// Macros for disable copy constructor.
-#define DISALLOW_COPY_AND_ASSIGN(TypeName) \
-    TypeName(const TypeName&);             \
-    void operator=(const TypeName&)
+using namespace std;
 
 class Graph;
 class Node;

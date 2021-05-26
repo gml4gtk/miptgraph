@@ -37,19 +37,22 @@
  */
 void LGraph::Layout(unsigned long int number_of_iterations,
     bool do_transpose,
-    int transpose_range)
+    int transpose_range,
+    bool verbose)
 {
     bool changed = false;
     list<pEdge> ReverseEdges; // edges which are reversed
 
-    if (layouted == true) {
-        // todo graph is already layouted
+    if (layouted > 0) {
+        // graph is already layouted
+        // option here and todo
+        return;
     }
 
     // avoid crash when graph has no nodes
     if (m_total_nodes_num == 0) {
         // The graph is layouted
-        layouted = true;
+        layouted++;
         return;
     }
 
@@ -57,7 +60,7 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     if (m_total_edges_num == 0) {
         // special layout mode to set the single nodes
         // The graph is layouted
-        layouted = true;
+        layouted++;
         // create array for node ordering in the levels
         order = new Ordering();
         // create node lists of every rank level
@@ -76,7 +79,9 @@ void LGraph::Layout(unsigned long int number_of_iterations,
 
     if (changed == true) {
         // number of reversed edges changed
-        printf("Reversed edges changed to %d\n", nreversededges());
+        if (verbose == true) {
+            printf("Reversed edges changed to %d\n", nreversededges());
+        }
     }
 
     // change all reversed edges back into normal direction
@@ -104,16 +109,22 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     order->order_vector = InitOrder();
 
     // The graph is layouted
-    layouted = true;
+    layouted++;
 
     // improve edge crossings
     for (unsigned int i = 0; i < number_of_iterations; i++) {
         // relative x position nodes on median value
-        WeightedMedianHeuristic(i);
+        WeightedMedianHeuristic(i, verbose);
+        if (countCrossing(order) == 0) {
+            break;
+        }
         // swap nodes at all levels optional
         // Ususal is to swap nodes with same barycenter value
         if (do_transpose) {
-            Transpose(i + transpose_range);
+            Transpose(i + transpose_range, verbose);
+            if (countCrossing(order) == 0) {
+                break;
+            }
         }
     }
 
@@ -123,7 +134,11 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     // center graph and give nodes absolute node position
     InitCoordinates(order);
 
-    printf("Crossings:%d\n", countCrossing(order));
+    // this prints the node order in the levels
+    if (verbose == true) {
+        order->Dump();
+        printf("Final Crossings: %d\n", countCrossing(order));
+    }
 
     return;
 }
@@ -244,13 +259,8 @@ bool ComparePointer(pLNode node1, pLNode node2)
  * if edge crossings reduced.
  * using stable_sort() keeps the elements with same value unchanged
  */
-void LGraph::WeightedMedianHeuristic(int iter)
+void LGraph::WeightedMedianHeuristic(int iter, bool verbose)
 {
-
-    // todo force a layout
-    if (layouted == false) {
-        Layout(0, 0, 0);
-    }
 
     Ordering temp_order;
 
@@ -301,10 +311,14 @@ void LGraph::WeightedMedianHeuristic(int iter)
     // this must be <= to get best results of the barycenter
     if (cross_temp_order <= cross_order) {
         order->order_vector = temp_order.order_vector;
-        printf("edge crossings reduced from %d to %d\n", cross_order, cross_temp_order);
+        if (verbose == true) {
+            printf("edge crossings reduced from %d to %d\n", cross_order, cross_temp_order);
+        }
     } else {
         // did not improve, keep graph unchanged
-        printf("edge crossings did not reduce from current %d to %d\n", cross_order, cross_temp_order);
+        if (verbose == true) {
+            printf("edge crossings did not reduce from current %d to %d\n", cross_order, cross_temp_order);
+        }
     }
 
     return;
@@ -318,14 +332,14 @@ int LGraph::countCrossing(Ordering* order)
     int crossing = 0; // total number of crossings returned
     int rankcrossing = 0; // crossings at this rank level
     int maxcrossing = 0; // max. crossings at certain level
-    int maxcrossingrank = 0; // level with most crossings
+    // int maxcrossingrank = 0; level with most crossings
 
     // count crossings at every level
     for (unsigned int rank = 0; rank < maxrank - 1; rank++) {
         rankcrossing = countCrossingOnRank(order, rank);
         if (rankcrossing > maxcrossing) {
             maxcrossing = rankcrossing;
-            maxcrossingrank = rank;
+            // maxcrossingrank = rank;
         }
         crossing += rankcrossing;
     }
@@ -453,20 +467,15 @@ void LGraph::InitCoordinates(Ordering* order,
  * try different graph lyouts to find the one with lowest edge crossings
  * \param maxtry try limited number of times
  */
-void LGraph::Transpose(unsigned long int maxtry)
+void LGraph::Transpose(unsigned long int maxtry, bool verbose)
 {
-    // check this todo
-    if (layouted == false) {
-        // shouldnothappen, do a nop layout
-        Layout(0, false, 0);
-    }
 
     bool improved = true;
 
     for (unsigned long int j = 1; j < maxtry; j++) {
         improved = true;
         // try another layout
-        while (improved) {
+        while (improved == true) {
             improved = false;
             // scan all rank levels
             for (unsigned int r = 1; r < order->order_vector.size(); r++) {
@@ -492,6 +501,9 @@ void LGraph::Transpose(unsigned long int maxtry)
                         // put nodes at new locations
                         order->order_vector[r][i] = w;
                         order->order_vector[r][i + j] = v;
+                        if (verbose == true) {
+                            printf("improved from %d to %d crossings at try %lu\n", cross0, cross1, j);
+                        }
                     }
                     // end of nodes at level
                 }

@@ -29,8 +29,8 @@
 #ifndef GRAPH_GRAPH_H
 #define GRAPH_GRAPH_H
 
-/// Class for representation of directed graphs
 /**
+ * Class for representation of directed graphs
  * A directed graph or digraph is a pair G = (N,E) of: <br>
  *        * a set N, whose elements are called nodes, <br>
  *        * a set E of ordered pairs of vertices, directed edges <br><br>
@@ -199,12 +199,10 @@ public:
      */
     virtual bool Verify();
 
-    /// If this is not connected graph, CreateSingleEntry() will
-    /// create single graph using DFS.
-    virtual void CreateSingleEntry();
-
-    /// Search reverse edges and puts them into ReverseEdges list.
-    /// Graph must be connected.
+    /**
+     * Search reverse edges and puts them into ReverseEdges list.
+     * returns true if reversed edges increased
+     */
     virtual bool FindReverseEdges(list<pEdge>& ReverseEdges);
 
     /**

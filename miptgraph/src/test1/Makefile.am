@@ -25,6 +25,7 @@ all: libs
 	make test2
 	make test3
 	make test4
+	make test5
 
 # generate output files
 output:
@@ -32,6 +33,7 @@ output:
 	./test2 >test2-output.txt
 	./test3 >test3-output.txt
 	./test4 >test4-output.txt
+	./test5 >test5-output.txt
 
 # generate svg image data
 test1:
@@ -49,6 +51,10 @@ test3:
 test4:
 	$(CXX) test4.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test4
 
+# re-layout
+test5:
+	$(CXX) test5.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test5
+
 libs: graphlib layoutlib
 
 graphlib:
@@ -58,13 +64,14 @@ layoutlib:
 	cd ../Layout && make
 
 indent:
-	clang-format -style=WebKit -i *.cpp *.h
+	clang-format -style=WebKit -i *.cpp
 
 clean:
 	rm -v -f test1
 	rm -v -f test2
 	rm -v -f test3
 	rm -v -f test4
+	rm -v -f test5
 	rm -v -f *.output
 
 cleaner:

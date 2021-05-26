@@ -64,6 +64,7 @@ typescript, MIT, d3 dag ![d3-dag](https://github.com/erikbrinkman/d3-dag)
 
 
 ![screenshot](./screenshot.png)
+![screenshot2](./screenshot2.png)
 
 
 <span>🇳🇱</span>

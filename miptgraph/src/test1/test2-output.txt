@@ -13,9 +13,24 @@ Reversed edges changed to 4
 edge crossings reduced from 15 to 10
 edge crossings did not reduce from current 10 to 11
 edge crossings reduced from 10 to 10
+improved from 10 to 9 crossings at try 1
+improved from 9 to 8 crossings at try 1
+improved from 8 to 6 crossings at try 1
+improved from 6 to 5 crossings at try 1
 edge crossings reduced from 5 to 5
+improved from 4 to 3 crossings at try 1
 edge crossings reduced from 4 to 4
-Crossings:4
+Level rank 0 has these 1 nodes:
+  id:0(120,0)
+Level rank 1 has these 3 nodes:
+  id:1(83,80) id:10(108,80) id:3(158,80)
+Level rank 2 has these 7 nodes:
+  id:15(20,160) id:5(70,160) id:6(120,160) id:7(170,160) id:16(195,160) id:11(220,160) id:12(245,160)
+Level rank 3 has these 5 nodes:
+  id:8(45,240) id:2(95,240) id:14(120,240) id:9(170,240) id:13(195,240)
+Level rank 4 has these 1 nodes:
+  id:4(120,320)
+Final Crossings: 4
 after layout of graph 1 with dummy nodes and changed edges
 Dumping graph id:0 (17 nodes, 10 real nodes, 7 dummy nodes, 23 edges, 0 selfedges 4 reversed edges)
 Nodes:
@@ -95,12 +110,6 @@ Edge id 25: 15->8 rev=0
 Edge id 26: 1->16 rev=0
 Edge id 27: 16->9 rev=0
 graph 1 maxrank = 4
-edge crossings reduced from 0 to 0
-edge crossings reduced from 0 to 0
-edge crossings reduced from 0 to 0
-edge crossings reduced from 0 to 0
-edge crossings reduced from 0 to 0
-Crossings:0
 after layout of graph 2 with dummy nodes and changed edges
 Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 4 edges, 0 selfedges 0 reversed edges)
 Nodes:

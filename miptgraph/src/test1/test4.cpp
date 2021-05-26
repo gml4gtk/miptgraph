@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
     g2.Dump();
 
     /* layout graph 2 */
-    g2.Layout(5, true, 2);
+    g2.Layout(5, true, 2, true);
 
     printf("after layout of graph 2 with dummy nodes and changed edges\n");
     g2.Dump();

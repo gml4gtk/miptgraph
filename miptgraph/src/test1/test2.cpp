@@ -113,7 +113,7 @@ int main(int argc, char* argv[])
     */
 
     /* layout graph 1 */
-    g.Layout(5, true, 2);
+    g.Layout(5, true, 2, true);
 
     printf("after layout of graph 1 with dummy nodes and changed edges\n");
     g.Dump();
@@ -132,7 +132,7 @@ int main(int argc, char* argv[])
     LGraph g3;
 
     /* layout graph 3 */
-    g3.Layout(5, true, 2);
+    g3.Layout(5, true, 2, true);
 
     printf("after layout of graph 3 with dummy nodes and changed edges\n");
     g3.Dump();
@@ -146,3 +146,5 @@ int main(int argc, char* argv[])
 
     return (0);
 }
+
+/* end. */

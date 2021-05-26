@@ -60,8 +60,6 @@ void LEdge::BreakLongEdge()
         return;
     }
 
-    list<pLEdge>* edges_list = new list<pLEdge>;
-
     // start splitting at the head node
     pLNode prevnode = ((pLNode)from());
     pLNode newnode;
@@ -90,8 +88,6 @@ void LEdge::BreakLongEdge()
         ((pLEdge)(new_edge))->SetComposite(true);
         // copy reversed status of orig edge
         new_edge->SetReverse(is_reverse);
-        // add to main edges list
-        edges_list->push_back((pLEdge)new_edge);
         // follow the chain
         prevnode = newnode;
     }
@@ -100,39 +96,12 @@ void LEdge::BreakLongEdge()
     new_edge = graph()->AddEdge(prevnode, to());
     new_edge->SetReverse(is_reverse);
     ((pLEdge)new_edge)->SetComposite(true);
-    // add last split edge to min edge list
-    edges_list->push_back((pLEdge)new_edge);
 
     // delete the old long edge
     graph()->DeleteEdge(from(), to());
 
-    // set in every split edge the whole list of split edges
-    for (list<pLEdge>::iterator edge_iter = edges_list->begin();
-         edge_iter != edges_list->end();
-         edge_iter++) {
-        // set split edges list
-        ((pLEdge)*edge_iter)->m_composite_edges = edges_list;
-    }
-
     // this is a split edge
     composite = true;
-
-    return;
-}
-
-/**
- * print composite edges of this edge
- */
-void LEdge::CompositeEdgesDump()
-{
-    printf("Edge: %d. Composite Edges id numbers:\n", id());
-    if (m_composite_edges != NULL) {
-        for (list<pLEdge>::iterator edge_iter = m_composite_edges->begin();
-             edge_iter != m_composite_edges->end();
-             edge_iter++)
-            printf("%d   ", (*edge_iter)->id());
-    }
-    printf("\n");
 
     return;
 }
@@ -142,17 +111,6 @@ void LEdge::CompositeEdgesDump()
  */
 LEdge::~LEdge()
 {
-    // if there are composite edges delete manual
-    if (m_composite_edges != NULL) {
-        list<pLEdge>* temp_list = m_composite_edges;
-        for (list<pLEdge>::iterator edge_iter = temp_list->begin();
-             edge_iter != temp_list->end();
-             edge_iter++) {
-            ((pLEdge)*edge_iter)->m_composite_edges = NULL;
-        }
-        delete temp_list;
-    }
-
     return;
 }
 

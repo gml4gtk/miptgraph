@@ -43,31 +43,30 @@ int main(int argc, char* argv[])
 
     LGraph g;
 
-    int len = 10;
+    int len = 9;
     pLNode* p = new pLNode[len];
 
-    // Creating a new graph
+    // Creating node for a new graph
     for (int i = 0; i < len; i++) {
         p[i] = (pLNode)g.AddNode();
     }
 
-    // Performing some transformations
+    // adding edges
     g.AddEdge(p[0], p[1]);
-    g.AddEdge(p[0], p[2]);
-    g.AddEdge(p[0], p[3]);
-    g.AddEdge(p[1], p[5]);
-    g.AddEdge(p[2], p[6]);
-    g.AddEdge(p[2], p[5]);
+    g.AddEdge(p[4], p[5]);
+    g.AddEdge(p[4], p[6]);
+    g.AddEdge(p[7], p[6]);
+    g.AddEdge(p[8], p[7]);
+    g.AddEdge(p[8], p[5]);
+    g.AddEdge(p[5], p[6]);
+    g.AddEdge(p[3], p[8]);
+    g.AddEdge(p[3], p[7]);
     g.AddEdge(p[3], p[4]);
-    g.AddEdge(p[4], p[7]);
-    g.AddEdge(p[4], p[9]);
-    g.AddEdge(p[5], p[8]);
-    g.AddEdge(p[6], p[9]);
+    g.AddEdge(p[1], p[2]);
     g.AddEdge(p[1], p[8]);
-    g.AddEdge(p[1], p[7]);
-    g.AddEdge(p[1], p[6]);
     g.AddEdge(p[1], p[5]);
-    g.AddEdge(p[1], p[9]);
+    g.AddEdge(p[2], p[7]);
+    g.AddEdge(p[2], p[6]);
 
     /*
     * This main Layout function do whole procedure of LAYOUT:
@@ -86,12 +85,16 @@ int main(int argc, char* argv[])
     printf("before layout input graph data\n");
     g.Dump();
 
-    g.Layout(5, true, 10, true);
+    g.Layout(15, true, 10, true);
 
     printf("after layout with dummy nodes and changed edges\n");
     g.Dump();
 
-    printf("maxrank = %i\n", g.getMaxrank());
+    printf("maxrank = %d\nsecond layout\n", g.getMaxrank());
+
+    // doing second layout should be oke.
+    g.Layout(15, true, 10, true);
+    g.Dump();
 
     /* border around drawing */
     int xborder = 10;

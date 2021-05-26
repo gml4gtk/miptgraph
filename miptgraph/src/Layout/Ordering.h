@@ -35,7 +35,6 @@
  * Ordering contains vector of ranks.
  * Each rank contain ordered list of the nodes.
  */
-
 class Ordering {
 private:
     vector<vector<pLNode>> order_vector;
@@ -54,6 +53,6 @@ public:
     friend class LGraph;
 };
 
-#endif // LAYOUT_ORDERING_H
+#endif
 
 /* end. */
