@@ -21,6 +21,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * SPDX-License-Identifier: GPL-3.0+
+ * License-Filename: LICENSE
  */
 
 /**
@@ -30,7 +33,7 @@
 #include "Layout.h"
 
 /**
- * adjust position
+ * get adjust position to previous level
  */
 vector<int>
 Ordering::AdjInPositions(pLNode node)
@@ -39,8 +42,10 @@ Ordering::AdjInPositions(pLNode node)
     int rank = node->Rank();
     // incoming edges are not at level 0 nodes
     if (rank > 0) {
+        // scan nodes at prev. level
         for (unsigned int i = 0; i < order_vector[rank - 1].size(); i++) {
-            if (order_vector[rank - 1][i]->IsAdjacentToNode(node)) {
+            // check if node is outgoing of node at order_vector[rank - 1][i]
+            if (order_vector[rank - 1][i]->IsAdjacentToNode(node) == true) {
                 positions.push_back(i);
             }
         }
@@ -49,15 +54,18 @@ Ordering::AdjInPositions(pLNode node)
 }
 
 /**
- * adjust position
+ * get adjust position to next level
  */
 vector<int>
 Ordering::AdjOutPositions(pLNode node)
 {
     vector<int> positions;
     unsigned int rank = node->Rank();
+    // rank must be lower the the max. rank in order_vector.size()
     if (rank < order_vector.size()) {
+        // scan nodes at next level
         for (unsigned int i = 0; i < order_vector[rank + 1].size(); i++) {
+            // check if node at order_vector[rank + 1][i] is outgoing of node
             if (node->IsAdjacentToNode(order_vector[rank + 1][i])) {
                 positions.push_back(i);
             }

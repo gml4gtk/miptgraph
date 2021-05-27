@@ -21,6 +21,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * SPDX-License-Identifier: GPL-3.0+
+ * License-Filename: LICENSE
  */
 
 /**
@@ -61,6 +64,7 @@ void LGraph::Layout(unsigned long int number_of_iterations,
         // special layout mode to set the single nodes
         // The graph is layouted
         layouted++;
+        InitRank();
         // create array for node ordering in the levels
         order = new Ordering();
         // create node lists of every rank level
@@ -70,7 +74,11 @@ void LGraph::Layout(unsigned long int number_of_iterations,
         // center graph and give nodes absolute node position
         InitCoordinates(order);
         // there are zero crossings
-        maxrank = 0;
+        if (verbose == true) {
+            printf("Graph has %u starter nodes and %d ranks\n", m_nstarter_num, (maxrank + 1));
+            order->Dump();
+            printf("Final Crossings: %d\n", countCrossing(order));
+        }
         return;
     }
 
@@ -136,6 +144,7 @@ void LGraph::Layout(unsigned long int number_of_iterations,
 
     // this prints the node order in the levels
     if (verbose == true) {
+        printf("Graph has %u starter nodes\n", m_nstarter_num);
         order->Dump();
         printf("Final Crossings: %d\n", countCrossing(order));
     }
@@ -148,6 +157,7 @@ void LGraph::Layout(unsigned long int number_of_iterations,
  */
 void LGraph::InitRank()
 {
+    m_nstarter_num = 0;
     maxrank = 0;
     // Calculating the rank for all Nodes
     for (list<pNode>::iterator node_iter = nodes_list()->begin();
@@ -157,6 +167,10 @@ void LGraph::InitRank()
         unsigned int rank = ((LNode*)(*node_iter))->Rank();
         if (rank > maxrank) {
             maxrank = rank;
+        }
+        // check if this node starts a graph
+        if (((LNode*)(*node_iter))->entry) {
+            m_nstarter_num++;
         }
     }
     return;
@@ -345,6 +359,11 @@ int LGraph::countCrossing(Ordering* order)
     int rankcrossing = 0; // crossings at this rank level
     int maxcrossing = 0; // max. crossings at certain level
     // int maxcrossingrank = 0; level with most crossings
+
+    // if only single nodes
+    if (maxrank == 0) {
+        return 0;
+    }
 
     // count crossings at every level
     for (unsigned int rank = 0; rank < maxrank - 1; rank++) {

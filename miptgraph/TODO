@@ -32,3 +32,10 @@
 - fixed: bool layouted changed into int layouted
 - re-layout should be possible after layout
 - fixed: horizontal edge bool added and counter
+- fixed: added check on horizontal edges in IsAdjacentToNode
+- fixed: if (rank < order_vector.size()) to check in AdjOutPositions
+- reversereversededges() maybe at end of layout()
+- add position only routine()
+- fixed added x,y spacing and node x,y size
+- todo test1: improved from 4 to 3 crossings at try 1 and then: edge crossings reduced from 4 to 4
+- fixed: added count of starter nodes

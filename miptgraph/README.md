@@ -70,5 +70,8 @@ typescript, MIT, d3 dag ![d3-dag](https://github.com/erikbrinkman/d3-dag)
 ![screenshot2](./screenshot2.png)
 
 
+SPDX-License-Identifier: GPL-3.0+  
+License-Filename: LICENSE  
+
 <span>🇳🇱</span>
 

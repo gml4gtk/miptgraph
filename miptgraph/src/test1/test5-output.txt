@@ -3,31 +3,31 @@ Layout test started..
 before layout input graph data
 Dumping graph id:0 (9 nodes, 9 real nodes, 0 dummy nodes, 15 edges, 0 horizontal edges, 0 selfedges 0 reversed edges)
 Nodes:
-Node id 0: (0 self-edges)
+Node id 0: (0 self-edges size (30,20))
   In  edges:
   Out edges: 0->1
-Node id 1: (0 self-edges)
+Node id 1: (0 self-edges size (30,20))
   In  edges: 0->1
   Out edges: 1->2 1->8 1->5
-Node id 2: (0 self-edges)
+Node id 2: (0 self-edges size (30,20))
   In  edges: 1->2
   Out edges: 2->7 2->6
-Node id 3: (0 self-edges)
+Node id 3: (0 self-edges size (30,20))
   In  edges:
   Out edges: 3->8 3->7 3->4
-Node id 4: (0 self-edges)
+Node id 4: (0 self-edges size (30,20))
   In  edges: 3->4
   Out edges: 4->5 4->6
-Node id 5: (0 self-edges)
+Node id 5: (0 self-edges size (30,20))
   In  edges: 4->5 8->5 1->5
   Out edges: 5->6
-Node id 6: (0 self-edges)
+Node id 6: (0 self-edges size (30,20))
   In  edges: 4->6 7->6 5->6 2->6
   Out edges:
-Node id 7: (0 self-edges)
+Node id 7: (0 self-edges size (30,20))
   In  edges: 8->7 3->7 2->7
   Out edges: 7->6
-Node id 8: (0 self-edges)
+Node id 8: (0 self-edges size (30,20))
   In  edges: 3->8 1->8
   Out edges: 8->7 8->5
 Edges:
@@ -64,6 +64,7 @@ edge crossings reduced from 3 to 3
 edge crossings reduced from 3 to 3
 edge crossings reduced from 3 to 3
 edge crossings reduced from 3 to 3
+Graph has 1 starter nodes
 Level rank 0 has these 1 nodes:
   id:0(70,0)
 Level rank 1 has these 1 nodes:
@@ -82,55 +83,55 @@ Final Crossings: 3
 after layout with dummy nodes and changed edges
 Dumping graph id:0 (17 nodes, 9 real nodes, 8 dummy nodes, 23 edges, 0 horizontal edges, 0 selfedges 6 reversed edges)
 Nodes:
-Node id 0: (0 self-edges)
+Node id 0: (0 self-edges size (30,20))
   In  edges:
   Out edges: 0->1
-Node id 1: (0 self-edges)
+Node id 1: (0 self-edges size (30,20))
   In  edges: 0->1
   Out edges: 1->2 1->11 1->13
-Node id 2: (0 self-edges)
+Node id 2: (0 self-edges size (30,20))
   In  edges: 1->2
   Out edges: 2->7 2->16
-Node id 3: (0 self-edges)
+Node id 3: (0 self-edges size (30,20))
   In  edges: 8->3 10->3
   Out edges: 3->4
-Node id 4: (0 self-edges)
+Node id 4: (0 self-edges size (30,20))
   In  edges: 3->4 5->4 9->4
   Out edges:
-Node id 5: (0 self-edges)
+Node id 5: (0 self-edges size (30,20))
   In  edges: 8->5 6->5 15->5
   Out edges: 5->4
-Node id 6: (0 self-edges)
+Node id 6: (0 self-edges size (30,20))
   In  edges: 7->6 16->6
   Out edges: 6->5 6->9
-Node id 7: (0 self-edges)
+Node id 7: (0 self-edges size (30,20))
   In  edges: 2->7
   Out edges: 7->6 7->8 7->10
-Node id 8: (0 self-edges)
+Node id 8: (0 self-edges size (30,20))
   In  edges: 7->8 12->8
   Out edges: 8->5 8->3
-Node id 9: (0 self-edges)
+Node id 9: (0 self-edges size (1,1))
   In  edges: 6->9
   Out edges: 9->4
-Node id 10: (0 self-edges)
+Node id 10: (0 self-edges size (1,1))
   In  edges: 7->10
   Out edges: 10->3
-Node id 11: (0 self-edges)
+Node id 11: (0 self-edges size (1,1))
   In  edges: 1->11
   Out edges: 11->12
-Node id 12: (0 self-edges)
+Node id 12: (0 self-edges size (1,1))
   In  edges: 11->12
   Out edges: 12->8
-Node id 13: (0 self-edges)
+Node id 13: (0 self-edges size (1,1))
   In  edges: 1->13
   Out edges: 13->14
-Node id 14: (0 self-edges)
+Node id 14: (0 self-edges size (1,1))
   In  edges: 13->14
   Out edges: 14->15
-Node id 15: (0 self-edges)
+Node id 15: (0 self-edges size (1,1))
   In  edges: 14->15
   Out edges: 15->5
-Node id 16: (0 self-edges)
+Node id 16: (0 self-edges size (1,1))
   In  edges: 2->16
   Out edges: 16->6
 Edges:
@@ -161,55 +162,55 @@ maxrank = 6
 second layout
 Dumping graph id:0 (17 nodes, 9 real nodes, 8 dummy nodes, 23 edges, 0 horizontal edges, 0 selfedges 6 reversed edges)
 Nodes:
-Node id 0: (0 self-edges)
+Node id 0: (0 self-edges size (30,20))
   In  edges:
   Out edges: 0->1
-Node id 1: (0 self-edges)
+Node id 1: (0 self-edges size (30,20))
   In  edges: 0->1
   Out edges: 1->2 1->11 1->13
-Node id 2: (0 self-edges)
+Node id 2: (0 self-edges size (30,20))
   In  edges: 1->2
   Out edges: 2->7 2->16
-Node id 3: (0 self-edges)
+Node id 3: (0 self-edges size (30,20))
   In  edges: 8->3 10->3
   Out edges: 3->4
-Node id 4: (0 self-edges)
+Node id 4: (0 self-edges size (30,20))
   In  edges: 3->4 5->4 9->4
   Out edges:
-Node id 5: (0 self-edges)
+Node id 5: (0 self-edges size (30,20))
   In  edges: 8->5 6->5 15->5
   Out edges: 5->4
-Node id 6: (0 self-edges)
+Node id 6: (0 self-edges size (30,20))
   In  edges: 7->6 16->6
   Out edges: 6->5 6->9
-Node id 7: (0 self-edges)
+Node id 7: (0 self-edges size (30,20))
   In  edges: 2->7
   Out edges: 7->6 7->8 7->10
-Node id 8: (0 self-edges)
+Node id 8: (0 self-edges size (30,20))
   In  edges: 7->8 12->8
   Out edges: 8->5 8->3
-Node id 9: (0 self-edges)
+Node id 9: (0 self-edges size (1,1))
   In  edges: 6->9
   Out edges: 9->4
-Node id 10: (0 self-edges)
+Node id 10: (0 self-edges size (1,1))
   In  edges: 7->10
   Out edges: 10->3
-Node id 11: (0 self-edges)
+Node id 11: (0 self-edges size (1,1))
   In  edges: 1->11
   Out edges: 11->12
-Node id 12: (0 self-edges)
+Node id 12: (0 self-edges size (1,1))
   In  edges: 11->12
   Out edges: 12->8
-Node id 13: (0 self-edges)
+Node id 13: (0 self-edges size (1,1))
   In  edges: 1->13
   Out edges: 13->14
-Node id 14: (0 self-edges)
+Node id 14: (0 self-edges size (1,1))
   In  edges: 13->14
   Out edges: 14->15
-Node id 15: (0 self-edges)
+Node id 15: (0 self-edges size (1,1))
   In  edges: 14->15
   Out edges: 15->5
-Node id 16: (0 self-edges)
+Node id 16: (0 self-edges size (1,1))
   In  edges: 2->16
   Out edges: 16->6
 Edges:

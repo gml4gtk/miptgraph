@@ -21,6 +21,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * SPDX-License-Identifier: GPL-3.0+
+ * License-Filename: LICENSE
  */
 
 /**
@@ -153,8 +156,11 @@ bool LNode::IsAdjacentToNode(pLNode node)
     for (list<pEdge>::iterator edge_iter = out_edges_list()->begin();
          edge_iter != out_edges_list()->end();
          edge_iter++) {
-        if ((pLNode)((*edge_iter)->to()) == node) {
-            return true;
+        // skip horizontal edges
+        if ((*edge_iter)->IsHedge() == false) {
+            if ((pLNode)((*edge_iter)->to()) == node) {
+                return true;
+            }
         }
     }
     return false;

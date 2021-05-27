@@ -21,6 +21,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * SPDX-License-Identifier: GPL-3.0+
+ * License-Filename: LICENSE
  */
 
 /**
@@ -39,7 +42,7 @@
 void Node::Dump()
 {
     list<pEdge>::iterator edge_iter;
-    printf("Node id %d: (%d self-edges)\n", m_id, nselfedges());
+    printf("Node id %d: (%d self-edges size (%d,%d))\n", m_id, nselfedges(), nxsize(), nysize());
     printf("  In  edges:");
     for (edge_iter = m_in_edges_list.begin();
          edge_iter != m_in_edges_list.end();
@@ -79,6 +82,21 @@ Node::Node(pGraph graph)
 
     // set node uniq number
     m_id = graph->next_node_id;
+
+    // incoming edges to this node
+    m_in_edges_list.clear();
+
+    // outgoing edges from this node
+    m_out_edges_list.clear();
+
+    // number of self-edges at this node
+    m_selfedges = 0;
+
+    // x size
+    m_nxsize_num = 30;
+
+    // y size
+    m_nysize_num = 20;
 
     // update graph node amount
     graph->m_total_nodes_num++;

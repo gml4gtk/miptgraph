@@ -21,6 +21,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * SPDX-License-Identifier: GPL-3.0+
+ * License-Filename: LICENSE
  */
 
 /**
@@ -49,6 +52,11 @@ private:
     unsigned int layouted;
 
     /**
+     * number of starter nodes
+     */
+    unsigned int m_nstarter_num;
+
+    /**
      * horizontal node ordering
      */
     Ordering* order;
@@ -61,6 +69,7 @@ public:
     LGraph()
     {
         maxrank = 0;
+	m_nstarter_num = 0;
 	layouted = false;
         order = NULL;
     }

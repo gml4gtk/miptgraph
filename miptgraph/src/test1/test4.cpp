@@ -21,6 +21,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * SPDX-License-Identifier: GPL-3.0+
+ * License-Filename: LICENSE
  */
 
 /**
@@ -85,7 +88,7 @@ int main(int argc, char* argv[])
     /* layout graph 2 */
     g2.Layout(5, true, 2, true);
 
-    printf("after layout of graph 2 with dummy nodes and changed edges\n");
+    printf("after layout of graph 2 with optional dummy nodes and changed edges\n");
     g2.Dump();
 
     for (list<pNode>::iterator node_iter = g2.nodes_list()->begin();

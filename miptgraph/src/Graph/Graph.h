@@ -21,6 +21,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * SPDX-License-Identifier: GPL-3.0+
+ * License-Filename: LICENSE
  */
 
 /**
@@ -115,6 +118,17 @@ protected:
      */
     int m_id;
 
+    /**
+     * x spacing in the graph
+     */
+    int m_xspacing_num;
+
+    /**
+     * y spacing in the graph
+     */
+    int m_yspacing_num;
+
+
 public:
 
     /**
@@ -153,7 +167,10 @@ public:
         , m_total_reversededges_num(0)
         , next_node_id(0)
         , next_edge_id(0)
-	, m_id(0) {};
+	, m_id(0)
+	, m_xspacing_num(20)
+	, m_yspacing_num(40)
+	 {};
 
     /**
      * get uniq graph id if set by user or 0
@@ -200,6 +217,25 @@ public:
      */
     int nselfedges() { return m_total_selfedges_num; }
 
+    /**
+     * get x spacing
+     */
+    int xspacing() { return m_xspacing_num; }
+
+    /**
+     * set x spacing
+     */
+    void Setxspacing(int value ) { m_xspacing_num = value; }
+
+    /**
+     * get y spacing
+     */
+    int yspacing() { return m_yspacing_num; }
+
+    /**
+     * set y spacing
+     */
+    void Setyspacing(int value ) { m_yspacing_num = value; }
 
     /**
      * free graph

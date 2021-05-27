@@ -21,6 +21,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * SPDX-License-Identifier: GPL-3.0+
+ * License-Filename: LICENSE
  */
 
 /**
@@ -61,6 +64,16 @@ class Node {
      */
     int m_id;
 
+    /**
+     * x size
+     */
+    int m_nxsize_num;
+
+    /**
+     * y size
+     */
+    int m_nysize_num;
+
 protected:
     Node(pGraph graph);
 
@@ -75,6 +88,26 @@ public:
      * get nuber of self-edgs at this node
      */
     int nselfedges () { return m_selfedges; }
+
+    /**
+     * get x size
+     */
+    int nxsize() { return m_nxsize_num; }
+
+    /**
+     * set x size
+     */
+    void Setnxsize(int value) { m_nxsize_num = value; }
+
+    /**
+     * get y size
+     */
+    int nysize() { return m_nysize_num; }
+
+    /**
+     * set y size
+     */
+    void Setnysize(int value) { m_nysize_num = value; }
 
     /**
      * Get incoming edges

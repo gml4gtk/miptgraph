@@ -21,6 +21,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * SPDX-License-Identifier: GPL-3.0+
+ * License-Filename: LICENSE
  */
 
 /**
@@ -142,14 +145,14 @@ void Graph::DeleteNode(pNode p)
     // todo if dummy node, update graph dummy node count
 
     // clear incoming edges
-    while (!p->m_in_edges_list.empty()) {
+    while (p->m_in_edges_list.empty() == false) {
         found = DeleteEdge(p->m_in_edges_list.front()->m_from, p);
         if (found == false) { // edge not found
         }
     }
 
     // clear outgoing edges
-    while (!p->m_out_edges_list.empty()) {
+    while (p->m_out_edges_list.empty() == false) {
         found = DeleteEdge(p, p->m_out_edges_list.front()->m_to);
         if (found == false) { // edge not found
         }

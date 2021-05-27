@@ -21,6 +21,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * SPDX-License-Identifier: GPL-3.0+
+ * License-Filename: LICENSE
  */
 
 /**
@@ -32,7 +35,7 @@
 #include "config.h"
 
 /* return lib version */
-const char* cmipt_version(void)
+extern "C" const char* cmipt_version(void)
 {
     return (PACKAGE_VERSION);
 }

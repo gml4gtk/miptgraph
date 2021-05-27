@@ -21,6 +21,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * SPDX-License-Identifier: GPL-3.0+
+ * License-Filename: LICENSE
  */
 
 /**
@@ -78,6 +81,9 @@ void LEdge::BreakLongEdge()
         // set original end points of edge where this dummynode belongs to
         newnode->origfrom = ofrom;
         newnode->origto = oto;
+        // set size (1,1) for dummy node
+        newnode->Setnxsize(1);
+        newnode->Setnysize(1);
         // update count of dummy nodes in graph
         graph()->AddDummyNode();
         // set rank of dummy node
