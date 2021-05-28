@@ -133,9 +133,9 @@ public:
      * The weighted median heuristic for reducing edge crossings.
      * At each rank a vertex is assigned a median based on the adjacent
      * vertices on the previous rank. Then, the vertices in the rank are
-     * sorted by their medians.
+     * sorted by their medians. returns true if did not changed.
     */
-    void WeightedMedianHeuristic(int iter, bool verbose);
+    bool WeightedMedianHeuristic(int iter, bool verbose);
 
     /**
      * The transposition heuristic for reducing edge crossings.

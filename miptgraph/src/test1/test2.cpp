@@ -116,7 +116,7 @@ int main(int argc, char* argv[])
     */
 
     /* layout graph 1 */
-    g.Layout(5, true, 2, true);
+    g.Layout(50, true, 20, true);
 
     printf("after layout of graph 1 with dummy nodes and changed edges\n");
     g.Dump();
@@ -124,7 +124,7 @@ int main(int argc, char* argv[])
     printf("graph 1 maxrank = %i\n", g.getMaxrank());
 
     /* layout graph 2 */
-    g2.Layout(5, true, 2);
+    g2.Layout(50, true, 20);
 
     printf("after layout of graph 2 with dummy nodes and changed edges\n");
     g2.Dump();
@@ -135,7 +135,7 @@ int main(int argc, char* argv[])
     LGraph g3;
 
     /* layout graph 3 */
-    g3.Layout(5, true, 2, true);
+    g3.Layout(50, true, 20, true);
 
     printf("after layout of graph 3 with dummy nodes and changed edges\n");
     g3.Dump();

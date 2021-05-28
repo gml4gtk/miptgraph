@@ -10,25 +10,214 @@ added edge in g2 between node 0 and node 2 with id 1
 added edge in g2 between node 0 and node 3 with id 2
 added edge in g2 between node 3 and node 4 with id 3
 Reversed edges changed to 4
-edge crossings reduced from 15 to 10
-edge crossings did not reduce from current 10 to 11
-edge crossings reduced from 10 to 10
-improved from 10 to 9 crossings at try 1
-improved from 9 to 8 crossings at try 1
-improved from 8 to 6 crossings at try 1
-improved from 6 to 5 crossings at try 1
-edge crossings reduced from 5 to 5
-improved from 4 to 3 crossings at try 1
-edge crossings reduced from 4 to 4
+WeightedMedianHeuristic(): edge crossings reduced from 15 to 10
+Transpose(): edge crossings did not reduce from current 0 to 1 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 10 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 12 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 11 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 10 to 11 at try 1 rank 3
+Transpose(): edge crossings did not reduce from current 10 to 10 at try 1 rank 4
+Transpose(): edge crossings did not reduce from current 10 to 12 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 12 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 10 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 10 to 12 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 15 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 13 at try 2 rank 2
+Transpose(): edge crossings did not reduce from current 10 to 11 at try 2 rank 3
+Transpose(): edge crossings did not reduce from current 10 to 16 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 12 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 13 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 18 at try 3 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 13 at try 3 rank 2
+Transpose(): edge crossings did not reduce from current 10 to 15 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 14 at try 4 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 20 at try 4 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 14 at try 5 rank 0
+WeightedMedianHeuristic(): edge crossings did not reduce from current 10 to 11
+Transpose(): edge crossings did not reduce from current 0 to 1 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 10 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 12 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 11 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 10 to 11 at try 1 rank 3
+Transpose(): edge crossings did not reduce from current 10 to 10 at try 1 rank 4
+Transpose(): edge crossings did not reduce from current 10 to 12 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 12 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 10 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 10 to 12 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 15 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 13 at try 2 rank 2
+Transpose(): edge crossings did not reduce from current 10 to 11 at try 2 rank 3
+Transpose(): edge crossings did not reduce from current 10 to 16 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 12 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 13 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 18 at try 3 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 13 at try 3 rank 2
+Transpose(): edge crossings did not reduce from current 10 to 15 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 14 at try 4 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 20 at try 4 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 14 at try 5 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 10 to 10
+Transpose(): edge crossings did not reduce from current 0 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 11 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 10 to 10 at try 1 rank 1
+Transpose(): edge crossings reduced from 10 to 9 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 9 to 10 at try 1 rank 3
+Transpose(): edge crossings did not reduce from current 9 to 11 at try 1 rank 4
+Transpose(): edge crossings reduced from 9 to 8 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 8 to 9 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 8 to 8 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 0 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 8 to 11 at try 1 rank 0
+Transpose(): edge crossings reduced from 8 to 6 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 6 to 6 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 6 to 7 at try 1 rank 3
+Transpose(): edge crossings did not reduce from current 6 to 8 at try 1 rank 4
+Transpose(): edge crossings did not reduce from current 6 to 9 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 6 to 7 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 6 to 6 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 0 to 6 at try 1 rank 0
+Transpose(): edge crossings reduced from 6 to 5 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 5 to 8 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 5 to 5 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 5 to 6 at try 1 rank 3
+Transpose(): edge crossings did not reduce from current 5 to 7 at try 1 rank 4
+Transpose(): edge crossings did not reduce from current 5 to 10 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 5 to 6 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 5 to 5 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 0 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 5 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 5 to 8 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 5 to 5 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 5 to 6 at try 1 rank 3
+Transpose(): edge crossings did not reduce from current 5 to 7 at try 1 rank 4
+Transpose(): edge crossings did not reduce from current 5 to 10 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 5 to 6 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 5 to 5 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 5 to 11 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 5 to 10 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 5 to 7 at try 2 rank 2
+Transpose(): edge crossings did not reduce from current 5 to 10 at try 2 rank 3
+Transpose(): edge crossings did not reduce from current 5 to 13 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 5 to 7 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 5 to 11 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 5 to 14 at try 3 rank 1
+Transpose(): edge crossings did not reduce from current 5 to 13 at try 3 rank 2
+Transpose(): edge crossings did not reduce from current 5 to 17 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 5 to 14 at try 4 rank 0
+Transpose(): edge crossings did not reduce from current 5 to 23 at try 4 rank 1
+Transpose(): edge crossings did not reduce from current 5 to 23 at try 5 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 5 to 5
+Transpose(): edge crossings reduced from 4 to 3 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 3
+Transpose(): edge crossings did not reduce from current 4 to 7 at try 1 rank 4
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 1 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 1 to 4 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 3 to 4 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 3
+Transpose(): edge crossings did not reduce from current 4 to 7 at try 1 rank 4
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 1 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 1 to 4 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 9 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 6 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 2 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 10 at try 2 rank 3
+Transpose(): edge crossings did not reduce from current 1 to 4 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 9 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 12 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 6 at try 3 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 12 at try 3 rank 2
+Transpose(): edge crossings did not reduce from current 1 to 15 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 13 at try 4 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 16 at try 4 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 27 at try 5 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 4 to 4
+Transpose(): edge crossings did not reduce from current 0 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 7 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 1 rank 3
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 4
+Transpose(): edge crossings did not reduce from current 4 to 9 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 10 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 9 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 6 at try 2 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 2 rank 3
+Transpose(): edge crossings did not reduce from current 4 to 12 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 6 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 10 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 13 at try 3 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 3 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 16 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 13 at try 4 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 14 at try 4 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 14 at try 5 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 4 to 4
+Transpose(): edge crossings did not reduce from current 3 to 4 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 3
+Transpose(): edge crossings did not reduce from current 4 to 7 at try 1 rank 4
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 1 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 1 to 4 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 9 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 6 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 2 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 10 at try 2 rank 3
+Transpose(): edge crossings did not reduce from current 1 to 4 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 9 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 12 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 6 at try 3 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 12 at try 3 rank 2
+Transpose(): edge crossings did not reduce from current 1 to 15 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 13 at try 4 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 16 at try 4 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 27 at try 5 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 4 to 4
+Transpose(): edge crossings did not reduce from current 0 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 7 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 1 rank 3
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 4
+Transpose(): edge crossings did not reduce from current 4 to 9 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 4 at try 1 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 10 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 9 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 6 at try 2 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 2 rank 3
+Transpose(): edge crossings did not reduce from current 4 to 12 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 6 at try 2 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 10 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 13 at try 3 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 5 at try 3 rank 2
+Transpose(): edge crossings did not reduce from current 4 to 16 at try 3 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 13 at try 4 rank 0
+Transpose(): edge crossings did not reduce from current 4 to 14 at try 4 rank 1
+Transpose(): edge crossings did not reduce from current 4 to 14 at try 5 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 4 to 4
+Layout(): graph does not change anymore at 4 crossings
 Graph has 1 starter nodes
 Level rank 0 has these 1 nodes:
   id:0(120,0)
 Level rank 1 has these 3 nodes:
-  id:1(83,80) id:10(108,80) id:3(158,80)
+  id:3(83,80) id:10(108,80) id:1(158,80)
 Level rank 2 has these 7 nodes:
-  id:15(20,160) id:5(70,160) id:6(120,160) id:7(170,160) id:16(195,160) id:11(220,160) id:12(245,160)
+  id:12(20,160) id:16(45,160) id:7(95,160) id:6(145,160) id:11(170,160) id:5(220,160) id:15(245,160)
 Level rank 3 has these 5 nodes:
-  id:8(45,240) id:2(95,240) id:14(120,240) id:9(170,240) id:13(195,240)
+  id:13(45,240) id:9(95,240) id:14(120,240) id:2(170,240) id:8(220,240)
 Level rank 4 has these 1 nodes:
   id:4(120,320)
 Final Crossings: 4

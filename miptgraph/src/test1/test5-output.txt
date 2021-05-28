@@ -47,23 +47,68 @@ Edge id 12: 1->5 reversed=0 horizontal=0
 Edge id 13: 2->7 reversed=0 horizontal=0
 Edge id 14: 2->6 reversed=0 horizontal=0
 Reversed edges changed to 6
-edge crossings reduced from 14 to 10
-improved from 10 to 6 crossings at try 1
-improved from 5 to 2 crossings at try 1
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
-edge crossings reduced from 3 to 3
+WeightedMedianHeuristic(): edge crossings reduced from 14 to 10
+Transpose(): edge crossings did not reduce from current 0 to 1 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 2 to 4 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 2 to 2 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 10 to 13 at try 1 rank 0
+Transpose(): edge crossings reduced from 10 to 6 at try 1 rank 1
+Transpose(): edge crossings reduced from 5 to 2 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 0 to 1 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 3 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 5 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 2 to 5 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 7 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 11 at try 2 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 3 to 3
+Transpose(): edge crossings did not reduce from current 0 to 2 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 1 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 3 to 4 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 5 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 2 to 2 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 6 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 8 at try 2 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 3 to 3
+Transpose(): edge crossings did not reduce from current 0 to 1 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 3 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 5 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 2 to 5 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 7 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 11 at try 2 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 3 to 3
+Transpose(): edge crossings did not reduce from current 0 to 2 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 1 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 3 to 4 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 5 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 2 to 2 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 6 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 8 at try 2 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 3 to 3
+Transpose(): edge crossings did not reduce from current 0 to 1 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 3 to 6 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 5 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 2 to 5 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 7 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 11 at try 2 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 3 to 3
+Transpose(): edge crossings did not reduce from current 0 to 2 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 1 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 3 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 3 to 4 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 5 at try 1 rank 1
+Transpose(): edge crossings did not reduce from current 2 to 2 at try 1 rank 0
+Transpose(): edge crossings did not reduce from current 1 to 6 at try 2 rank 0
+Transpose(): edge crossings did not reduce from current 3 to 8 at try 2 rank 0
+WeightedMedianHeuristic(): edge crossings reduced from 3 to 3
+Layout(): graph does not change anymore at 3 crossings
 Graph has 1 starter nodes
 Level rank 0 has these 1 nodes:
   id:0(70,0)

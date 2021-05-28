@@ -44,6 +44,10 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     bool verbose)
 {
     bool changed = false;
+    int nsame = 0; // same crossings count
+    int curc = 0; // current crossings
+    int bestc = 0; // best crossings
+    bool status = false; // median status
     list<pEdge> ReverseEdges; // edges which are reversed
 
     if (layouted > 0) {
@@ -119,18 +123,40 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     // The graph is layouted
     layouted++;
 
+    nsame = 0;
+    bestc = 0;
+
     // improve edge crossings
     for (unsigned int i = 0; i < number_of_iterations; i++) {
         // relative x position nodes on median value
-        WeightedMedianHeuristic(i, verbose);
-        if (countCrossing(order) == 0) {
+        status = WeightedMedianHeuristic(i, verbose);
+        curc = countCrossing(order);
+        if (curc == 0) {
+            break;
+        }
+        if (status == true) {
+            if (curc < bestc) {
+                bestc = curc;
+                nsame = 0;
+            } else {
+                nsame++;
+            }
+        } else {
+            nsame = 0;
+        }
+        // stop when layout does not change and n times same crossings
+        if (nsame > 5) {
+            if (verbose == true) {
+                printf("%s(): graph does not change anymore at %d crossings\n", __func__, curc);
+            }
             break;
         }
         // swap nodes at all levels optional
         // Ususal is to swap nodes with same barycenter value
         if (do_transpose) {
             Transpose(i + transpose_range, verbose);
-            if (countCrossing(order) == 0) {
+            curc = countCrossing(order);
+            if (curc == 0) {
                 break;
             }
         }
@@ -285,14 +311,14 @@ bool ComparePointer(pLNode node1, pLNode node2)
  * if edge crossings reduced.
  * using stable_sort() keeps the elements with same value unchanged
  */
-void LGraph::WeightedMedianHeuristic(int iter, bool verbose)
+bool LGraph::WeightedMedianHeuristic(int iter, bool verbose)
 {
-
+    bool eq = false;
     Ordering temp_order;
 
     temp_order.order_vector = order->order_vector;
 
-    // go from top to bottom or revesed
+    // go from top to bottom or reversed
     if (iter % 2 == 0) {
         // scan from top to bottom of drawing
         for (unsigned int r = 1; r <= maxrank; r++) {
@@ -338,16 +364,19 @@ void LGraph::WeightedMedianHeuristic(int iter, bool verbose)
     if (cross_temp_order <= cross_order) {
         order->order_vector = temp_order.order_vector;
         if (verbose == true) {
-            printf("edge crossings reduced from %d to %d\n", cross_order, cross_temp_order);
+            printf("%s(): edge crossings reduced from %d to %d\n", __func__, cross_order, cross_temp_order);
+        }
+        if (cross_order == cross_temp_order) {
+            eq = true;
         }
     } else {
         // did not improve, keep graph unchanged
         if (verbose == true) {
-            printf("edge crossings did not reduce from current %d to %d\n", cross_order, cross_temp_order);
+            printf("%s(): edge crossings did not reduce from current %d to %d\n", __func__, cross_order, cross_temp_order);
         }
     }
 
-    return;
+    return (eq);
 }
 
 /**
@@ -533,7 +562,12 @@ void LGraph::Transpose(unsigned long int maxtry, bool verbose)
                         order->order_vector[r][i] = w;
                         order->order_vector[r][i + j] = v;
                         if (verbose == true) {
-                            printf("improved from %d to %d crossings at try %lu\n", cross0, cross1, j);
+                            printf("%s(): edge crossings reduced from %d to %d at try %lu rank %lu\n", __func__, cross0, cross1, j, i);
+                        }
+
+                    } else {
+                        if (verbose == true) {
+                            printf("%s(): edge crossings did not reduce from current %d to %d at try %lu rank %lu\n", __func__, cross0, cross1, j, i);
                         }
                     }
                     // end of nodes at level

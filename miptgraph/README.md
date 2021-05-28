@@ -16,6 +16,9 @@ make cleaner
 
 To indent sources: make indent  
 
+Version 1: initial with minimal InitCoordinates() routine to be improved  
+Version 2: in development
+
 The directory src/test1 has example programs how to use this graph layout library.  
 The source is documented for use with the doxygen program generating html documentation.  
 The dmake script can be usd to get a log file of the make process  

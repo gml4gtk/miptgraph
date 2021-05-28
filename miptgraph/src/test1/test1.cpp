@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
     printf("before layout input graph data\n");
     g.Dump();
 
-    g.Layout(5, true, 10, true);
+    g.Layout(500, true, 100, true);
 
     printf("after layout with dummy nodes and changed edges\n");
     g.Dump();

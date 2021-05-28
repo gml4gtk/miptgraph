@@ -35,7 +35,7 @@ Edge id 2: 2->3 reversed=0 horizontal=0
 Edge id 3: 3->1 reversed=0 horizontal=0
 Edge id 4: 3->4 reversed=0 horizontal=0
 Reversed edges changed to 1
-edge crossings reduced from 0 to 0
+WeightedMedianHeuristic(): edge crossings reduced from 0 to 0
 Graph has 1 starter nodes
 Level rank 0 has these 1 nodes:
   id:0(32,0)
