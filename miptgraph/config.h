@@ -2,7 +2,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Year, month and day this program is compiled. */
-#define COMPILE_DATE "Fri 05/28/21 2021"
+#define COMPILE_DATE "Sat 05/29/21 2021"
 
 /* System where this is compiled. */
 #define COMPILE_UNAME "Linux"
@@ -53,7 +53,7 @@
 #define PACKAGE_NAME "miptgraph"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "miptgraph 1.0"
+#define PACKAGE_STRING "miptgraph 2.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "miptgraph.tar.gz"
@@ -62,13 +62,13 @@
 #define PACKAGE_URL "https://notabug.org/mooigraph/miptgraph"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.0"
+#define PACKAGE_VERSION "2.0"
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "1.0"
+#define VERSION "2.0"
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 /* #undef size_t */

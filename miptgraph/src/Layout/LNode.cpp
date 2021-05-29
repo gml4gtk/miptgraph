@@ -62,10 +62,18 @@ int LNode::Rank()
         for (list<pEdge>::iterator edge_iter = in_edges_list()->begin();
              edge_iter != in_edges_list()->end();
              edge_iter++) {
-            temp = ((pLNode)(*edge_iter)->from())->Rank() + 1;
-            // set at max
-            if (temp > res) {
-                res = temp;
+            if ((pLNode)(*edge_iter)) {
+                if (((pLNode)(*edge_iter)->from())) {
+                    temp = ((pLNode)(*edge_iter)->from())->Rank() + 1;
+                    // set at max
+                    if (temp > res) {
+                        res = temp;
+                    }
+                } else {
+                    printf("todo\n");
+                }
+            } else {
+                printf("todo0\n");
             }
         }
         // the resulting y level

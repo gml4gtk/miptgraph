@@ -97,6 +97,7 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     }
 
     // change all reversed edges back into normal direction
+    // todo
     ReverseReverseEdges(ReverseEdges);
 
     // get max rank y level in the graph
@@ -119,6 +120,9 @@ void LGraph::Layout(unsigned long int number_of_iterations,
 
     // create node lists of every rank level
     order->order_vector = InitOrder();
+
+    // Check nodes in order data
+    CheckOrder(order);
 
     // The graph is layouted
     layouted++;
@@ -208,6 +212,7 @@ void LGraph::InitRank()
 vector<vector<pLNode>>
 LGraph::InitOrder()
 {
+    // reserve space for maxrank levels + 1
     vector<vector<pLNode>> order(maxrank + 1);
     // scan all nodes
     for (list<pNode>::iterator node_iter = nodes_list()->begin();
@@ -225,6 +230,7 @@ LGraph::InitOrder()
 void LGraph::ReverseReverseEdges(list<pEdge>& ReverseEdges)
 {
     // all reversed edges as normal direction edge
+    // avoids a looping in node rank()
     for (list<pEdge>::iterator edge_iter = ReverseEdges.begin();
          edge_iter != ReverseEdges.end();
          edge_iter++) {
@@ -449,17 +455,115 @@ int LGraph::countCrossingOnRank(Ordering* order, int rank)
 
 /**
  * Give nodes initial x position based on index in order
+ * does extra check on the in/out edges of the nodes in the order
  */
 void LGraph::InitPos(Ordering* order)
 {
+    pLNode curnode;
+    pLNode fromnode;
+    pLNode tonode;
+    pLNode leftnode;
+    pLNode rightnode;
     // scan all vertical rank levels
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
+        // extra check
+        if (order->order_vector[rank].size() <= 0) {
+            printf("%s(): wrong number of nodes at level %d\n", __func__, rank);
+        }
         // scan all nodes at this level
         for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
             // give node relative x position based on position in order
-            order->order_vector[rank][i]->pos = i;
+            // order->order_vector[rank][i]->pos = i;
+            curnode = order->order_vector[rank][i];
+            // set relative x postion
+            curnode->pos = i;
+            // scan outgoing edges and check if to node is one level more
+            for (list<pEdge>::iterator edge_iter = curnode->out_edges_list()->begin();
+                 edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
+                 edge_iter++) {
+                fromnode = (pLNode)(pLEdge)(*edge_iter)->from();
+                tonode = (pLNode)(pLEdge)(*edge_iter)->to();
+                if ((tonode->Rank() - fromnode->Rank()) != 1) {
+                    printf("%s(): delta at outgoing edges should be 1\n", __func__);
+                }
+            }
+            // same incoming edges
+            for (list<pEdge>::iterator edge_iter = curnode->in_edges_list()->begin();
+                 edge_iter != order->order_vector[rank][i]->in_edges_list()->end();
+                 edge_iter++) {
+                fromnode = (pLNode)(pLEdge)(*edge_iter)->from();
+                tonode = (pLNode)(pLEdge)(*edge_iter)->to();
+                if ((tonode->Rank() - fromnode->Rank()) != 1) {
+                    printf("%s(): delta at incoming edges should be 1\n", __func__);
+                }
+            }
         }
     }
+    // set left/right nodes at every node
+    // scan all vertical rank levels
+    for (unsigned int rank = 0; rank <= maxrank; rank++) {
+        // scan all nodes at this level
+        leftnode = NULL;
+        rightnode = NULL;
+        for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
+            curnode = order->order_vector[rank][i];
+	    // set node at left of node or NULL at first node
+            curnode->lnode = leftnode;
+            if ((i + 1) < order->order_vector[rank].size()) {
+                rightnode = order->order_vector[rank][i + 1];
+            } else {
+                rightnode = NULL;
+            }
+	    // set node at right of node or NULL at last node
+            curnode->rnode = rightnode;
+            leftnode = curnode;
+        }
+    }
+
+    return;
+}
+
+/**
+ * Check node in order data
+ */
+void LGraph::CheckOrder(Ordering* order)
+{
+    pLNode curnode;
+    pLNode fromnode;
+    pLNode tonode;
+    // scan all vertical rank levels
+    for (unsigned int rank = 0; rank <= maxrank; rank++) {
+        // extra check
+        if (order->order_vector[rank].size() <= 0) {
+            printf("%s(): wrong number of nodes at level %d\n", __func__, rank);
+        }
+        // scan all nodes at this level
+        for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
+	    // current node to check
+	    curnode = order->order_vector[rank][i];
+            // scan outgoing edges and check if to node is one level more
+            for (list<pEdge>::iterator edge_iter = curnode->out_edges_list()->begin();
+                 edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
+                 edge_iter++) {
+                fromnode = (pLNode)(pLEdge)(*edge_iter)->from();
+                tonode = (pLNode)(pLEdge)(*edge_iter)->to();
+                if ((tonode->Rank() - fromnode->Rank()) != 1) {
+                    printf("%s(): delta at outgoing edges should be 1\n", __func__);
+                }
+            }
+            // same incoming edges
+            for (list<pEdge>::iterator edge_iter = curnode->in_edges_list()->begin();
+                 edge_iter != order->order_vector[rank][i]->in_edges_list()->end();
+                 edge_iter++) {
+                fromnode = (pLNode)(pLEdge)(*edge_iter)->from();
+                tonode = (pLNode)(pLEdge)(*edge_iter)->to();
+                if ((tonode->Rank() - fromnode->Rank()) != 1) {
+                    printf("%s(): delta at incoming edges should be 1\n", __func__);
+                }
+            }
+        }
+    }
+
     return;
 }
 

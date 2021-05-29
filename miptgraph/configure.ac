@@ -34,7 +34,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([miptgraph], [1.0], [mooigraph@gmail.com], [miptgraph.tar.gz], [https://notabug.org/mooigraph/miptgraph])
+AC_INIT([miptgraph], [2.0], [mooigraph@gmail.com], [miptgraph.tar.gz], [https://notabug.org/mooigraph/miptgraph])
 AC_CONFIG_SRCDIR([src/Layout/LEdge.h])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIRS([m4])

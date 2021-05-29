@@ -99,6 +99,16 @@ private:
      */
     pNode origto;
 
+    /**
+     * node left from this node in order at rank
+     */
+    pLNode lnode;
+
+    /**
+     * node right from this node in order at rank
+     */
+    pLNode rnode;
+
 public:
 
     /**

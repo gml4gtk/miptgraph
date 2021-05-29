@@ -121,6 +121,11 @@ public:
     void InitPos(Ordering* order);
 
     /**
+     * Check node in order data
+     */
+    void CheckOrder(Ordering* order);
+
+    /**
      * Init coordiates for each node.
      * \todo this should be flexible
      */

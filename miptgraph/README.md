@@ -23,11 +23,12 @@ The directory src/test1 has example programs how to use this graph layout librar
 The source is documented for use with the doxygen program generating html documentation.  
 The dmake script can be usd to get a log file of the make process  
 This library has own routines for hierarchial graph layout and does not depend on graphviz or other libs  
-This library has a c interface to use it with notma c source code  
+This library has a c interface to use it with normal c source code  
 The Graph and Layout directory does not depend on qt5 library or other libraries  
 To compile this C++ with emscripten or otherwise to wasm webassembly should be possible to run it in the browser  
 The user interface program must copy some graph data to/from this library to make sure it does not depend on qt5  
 Because multiple graphs can be layouted independent at once it can be used to layout bigger graph with subgraphs  
+There are almost no C++ libraries for graph layout with sugiyama algorithm but other GPL Free ones are ogdf, graphlhet and igraph  
 
 Most so called graph layout programs are only spring embedder layout or drawing programs.  
 
@@ -71,6 +72,8 @@ typescript, MIT, d3 dag ![d3-dag](https://github.com/erikbrinkman/d3-dag)
 
 ![screenshot](./screenshot.png)
 ![screenshot2](./screenshot2.png)
+
+![gplv3](./gplv3-with-text-84x42.png)
 
 
 SPDX-License-Identifier: GPL-3.0+  

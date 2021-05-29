@@ -39,3 +39,8 @@
 - fixed: added x,y spacing and node x,y size
 - fixed: test1: improved from 4 to 3 crossings at try 1 and then: edge crossings reduced from 4 to 4
 - fixed: added count of starter nodes
+- test in reversereverse causes segv in rank()
+- fixed: added left/right nodes in rank order to node data for later use
+- fixed: added check on nodes in order data before start of barycenter
+
+
