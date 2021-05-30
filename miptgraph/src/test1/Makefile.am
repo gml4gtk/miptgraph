@@ -27,15 +27,17 @@ all: libs
 	make test4
 	make test5
 	make test6
+	make test7
 
 # generate output files
-output:
+output: all
 	./test1 >test1-output.txt
 	./test2 >test2-output.txt
 	./test3 >test3-output.txt
 	./test4 >test4-output.txt
 	./test5 >test5-output.txt
 	./test6 >test6-output.txt
+	./test7 >test7-output.txt
 
 # generate svg image data
 test1:
@@ -58,10 +60,16 @@ test5:
 	$(CXX) test5.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test5
 
 # run c++ from c
+# or: $(CC) `pkg-config --libs --cflags gtk+-2.0` -I. -I.. test6.c -c -o test6.o
 test6:
 	$(CC) -I. -I.. test6.c -c -o test6.o
 	$(CXX) test6.o ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test6
 
+# graph with nodes with variable sizes
+test7:
+	$(CXX) test7.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test7
+
+# this depends on these libs
 libs: graphlib layoutlib
 
 graphlib:
@@ -80,6 +88,7 @@ clean:
 	rm -v -f test4
 	rm -v -f test5
 	rm -v -f test6
+	rm -v -f test7
 	rm -v -f *.output
 
 cleaner:

@@ -40,9 +40,9 @@
  * pos    - horisontal relative position
  * median - temp value to calculate pos
  * Also there is some methods:
- *      Rank() to calculate rank
- *      Median() to calculate median
- *      IsAdjacentToNode is test for adjacent of 2 nodes
+ * Rank() to calculate rank or return already calculated one
+ * Median() to calculate median
+ * IsAdjacentToNode is test for adjacent of 2 nodes
  */
 
 class LNode : public Node {
@@ -74,10 +74,24 @@ private:
     bool dummy;
 
     /**
-     * final Coordinates for drawing or -1 if undefined
+     * x final Coordinate using simple placement for drawing or -1 if undefined
      */
     double x;
+
+    /**
+     * y final Coordinate using simple placement for drawing or -1 if undefined
+     */
     double y;
+
+    /**
+     * x2 final Coordinate using priority placement for drawing or -1 if undefined
+     */
+    double x2;
+
+    /**
+     * y2 final Coordinate using priority placement for drawing or -1 if undefined
+     */
+    double y2;
 
     /**
      * node x size for label text
@@ -88,6 +102,16 @@ private:
      * node y size for label text
      */
     int nysize;
+
+    /**
+     * node x center
+     */
+    int ncenterx;
+
+    /**
+     * node y center
+     */
+    int ncentery;
 
     /**
      * if a dummy node this is the from node of the edge the dummy node belongs to
@@ -132,7 +156,7 @@ public:
     double getY() { return y; }
 
     /**
-     * Calculate node rank
+     * Calculate node rank relative y position or return calculated one
      */
     int Rank();
 
@@ -145,6 +169,31 @@ public:
      * get relative x postion
      */
     int getPos() { return pos; }
+
+    /**
+     * set node size
+     */
+    void setNodeSize (int xsize, int ysize) { nxsize = xsize; ncenterx = xsize / 2; nysize = ysize; ncentery = ysize / 2; }
+
+    /**
+     * get node x size
+     */
+    int getxsize () { return nxsize; }
+
+    /**
+     * get node y size
+     */
+    int getysize () { return nysize; }
+
+    /**
+     * get node x center
+     */
+    int getxcenter () { return ncenterx; }
+
+    /**
+     * get node y center
+     */
+    int getycenter () { return ncentery; }
 
     /** Calculate weighed median for the node.
      * The median value of a vertex is defined as the median position of the

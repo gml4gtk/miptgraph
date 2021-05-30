@@ -208,16 +208,25 @@ void LGraph::InitRank()
 
 /**
  * create list of nodes in every rank level
+ * \todo add nodes initial order using dfs
  */
 vector<vector<pLNode>>
 LGraph::InitOrder()
 {
+    pLNode curnode;
     // reserve space for maxrank levels + 1
     vector<vector<pLNode>> order(maxrank + 1);
     // scan all nodes
+    // todo run dfs and in order of visited push
     for (list<pNode>::iterator node_iter = nodes_list()->begin();
          node_iter != nodes_list()->end();
          node_iter++) {
+        // get current node
+        curnode = ((pLNode)(*node_iter));
+        if (curnode->in_edges_list()->size() == 0) {
+            // this is a starter node
+            // todo run dfs at this starter node to fill order[]
+        }
         // add node at rank level to list of nodes at that rank level
         order[((pLNode)(*node_iter))->Rank()].push_back((pLNode)(*node_iter));
     }
@@ -507,14 +516,14 @@ void LGraph::InitPos(Ordering* order)
         rightnode = NULL;
         for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
             curnode = order->order_vector[rank][i];
-	    // set node at left of node or NULL at first node
+            // set node at left of node or NULL at first node
             curnode->lnode = leftnode;
             if ((i + 1) < order->order_vector[rank].size()) {
                 rightnode = order->order_vector[rank][i + 1];
             } else {
                 rightnode = NULL;
             }
-	    // set node at right of node or NULL at last node
+            // set node at right of node or NULL at last node
             curnode->rnode = rightnode;
             leftnode = curnode;
         }
@@ -539,8 +548,8 @@ void LGraph::CheckOrder(Ordering* order)
         }
         // scan all nodes at this level
         for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
-	    // current node to check
-	    curnode = order->order_vector[rank][i];
+            // current node to check
+            curnode = order->order_vector[rank][i];
             // scan outgoing edges and check if to node is one level more
             for (list<pEdge>::iterator edge_iter = curnode->out_edges_list()->begin();
                  edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
@@ -623,6 +632,8 @@ void LGraph::InitCoordinates(Ordering* order,
             order->order_vector[rank][i]->y = rank * vertical_size;
         }
     }
+
+    // now priority layout setting (x2,y2)
 
     return;
 }
