@@ -45,6 +45,9 @@
 - use dfs to fill initial order with nodes
 - test7.cpp as test for priority placement
 - fixed: added node center (x,y) point
+- fixed: first part of helper program miptgml with gtk-2 gui
+- fixed: added screenshot gtk+ miptgml gui program
+- fixed: parsing gml graph in gtk+ gui using peg parser
 
 
 

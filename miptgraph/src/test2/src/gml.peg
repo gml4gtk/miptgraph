@@ -1,0 +1,173 @@
+# gml graph language lexer+parser to use with packcc parser generator
+%prefix "gml"
+
+%value "char *"
+
+%source {
+
+#include "config.h"
+
+#include <stdio.h>
+#include <string.h>
+
+#include "main.h"
+#include "mem.h"
+
+static FILE *curstream = NULL;
+
+#define PCC_BUFFERSIZE 2048
+#define PCC_ARRAYSIZE 16
+
+#undef strnlen
+#define strnlen(str, maxlen) pcc_strnlen(str, maxlen)
+static size_t pcc_strnlen(const char *str, size_t maxlen) {
+    size_t i;
+    for (i = 0; i < maxlen && str[i]; i++);
+    return i;
+}
+
+#define PCC_MALLOC(auxil, size) pcc_malloc_e(size)
+static void *pcc_malloc_e(size_t size) {
+    void *p = calloc(1,size);
+    if (p == NULL) {
+        exit(1);
+    }
+    return p;
+}
+
+#define PCC_FREE(auxil, ptr) if (ptr) { free(ptr); }
+
+#define PCC_REALLOC(auxil, ptr, size) realloc(ptr, size)
+
+static char *pname = "";
+
+static int ind = 0;
+
+static int parseerror = 0;
+
+static int linenr = 1;
+
+static int pdebug = 0;
+
+static const char *dbg_str[] = { "Evaluating rule", "Matched rule", "Abandoning rule" };
+
+#define PCC_DEBUG(event, rule, level, pos, buffer, length) \
+    if (pdebug) { fprintf(stdout, "%*s%s %s @%d [%.*s]\n", (int)(level * 2), "", dbg_str[event], rule, (int)pos, (int)length,  buffer); fflush(stdout); }
+
+#define PCC_ERROR(auxil) { pcc_error(); return 0; }
+
+static void pcc_error(void) {
+   printf("Gml graph syntax error at line %d in file %s\n",linenr,pname);
+   parseerror = 1;
+   return;
+}
+
+#define PCC_GETCHAR(auxil) myfgetc()
+
+static int myfgetc (void)
+{
+  int ret = 0;
+  if (parseerror) {
+    ret = EOF;
+  } else {
+    ret = fgetc (curstream);
+    if (pdebug) {
+      if (ret > 0 && ret != EOF) {
+        printf("/* %c */\n",ret);
+      }
+    }
+    if (ret == '\n') {
+      linenr++;
+    }
+  }
+  return (ret);
+}
+
+}
+
+
+# start of input
+file <- _ head _ 'graph' _ list _ !.
+
+head <- (pair)*
+
+list <- '[' _ some_items* _ ']' _
+
+some_items <- id _ list2 _ / pair _
+
+list2 <- '[' _ some_items* _ ']' _
+
+pair <- (id string)
+    / (id id)
+    / (id fpnum)
+    / (id digit)
+
+digit <- ( ('-' / '+')? [0-9]+ _ ) { printf("NUMBER=%s\n",$0); }
+
+fpnum <-  ( ('-' / '+')? [0-9]* '.' [0-9]+ (['e''E'] ('-' / '+')? [0-9]+ )?  _ ) { printf("FPNUMBER=%s\n",$0); }
+
+id	<- < [a-zA-Z_]+[a-zA-Z_0-9]* > _	{ printf("ID=%s\n",$0); }
+
+string	<- '"' < char* > '"'  _	{  printf("STRING=%s\n",$0);  }
+
+char	<-
+	'\\' "\""
+	/ '\\' '\\'
+	/ '\\' 'b'
+	/ '\\' 'f'
+	/ '\\' 'n'
+	/ '\\' 'r'
+	/ '\\' 't'
+	/ (!"\"" .)
+
+_	<-	(space / comment)*
+
+space	<-	' '
+	/ '\t'
+	/ endofline
+
+comment	<-	'#' (!endofline .)* endofline
+
+endofline	<- '\r\n'
+	/ '\n\r'
+	/ '\n'
+	/ '\r'
+
+%%
+
+/* parse, return 0 if oke, or >0 the line number of parse error */
+/* adding data to raw node/edge lists */
+int gmlparse (struct usrgraph *maingraph, FILE *stream, char *name, int debug)
+{
+    gml_context_t *ctx = NULL;
+    int ret = 0;
+    if (maingraph == NULL) {
+	return (1);
+    }
+    ctx = gml_create(NULL);
+    linenr = 1;
+    ind = 0;
+    parseerror = 0;
+    pdebug = debug;
+    if (name) {
+	pname = name;
+    } else {
+	pname = "unknown";
+    }
+    if (stream) {
+	curstream = stream;
+    } else {
+	curstream = stdin;
+    }
+    while (gml_parse(ctx, NULL)){;}
+    gml_destroy(ctx);
+    if (parseerror) {
+	ret = linenr;
+    } else {
+	/* no parse error */
+	ret = 0;
+    }
+    return (ret);
+}
+
+/* end. */
