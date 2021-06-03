@@ -30,4 +30,86 @@
  * @file: uniqnode.c
  */
 
+#include "config.h"
+
+#include <stdio.h>
+
+#include "splay-tree.h"
+#include "main.h"
+#include "mem.h"
+#include "uniqnode.h"
+
+static splay_tree gidtree = NULL;
+static splay_tree lidtree = NULL;
+
+struct usrnode *uniqnode_gid(int nr)
+{
+	splay_tree_node spn = NULL;
+	if (gidtree == NULL) {
+		return (NULL);
+	}
+	spn = splay_tree_lookup(gidtree, (splay_tree_key) nr);
+	if (spn == NULL) {
+		return (NULL);
+	}
+	return ((struct usrnode *)spn->value);
+}
+
+void uniqnode_gid_add(struct usrnode *n)
+{
+	struct usrnode *nn = NULL;
+	nn = uniqnode_gid(n->gmlid);
+	if (nn) {
+		return;
+	}
+	if (gidtree == NULL) {
+		gidtree = splay_tree_new(splay_tree_compare_ints, NULL, NULL);
+	}
+	splay_tree_insert(gidtree, (splay_tree_key) n->gmlid, (splay_tree_value) n);
+	return;
+}
+
+struct usrnode *uniqnode_lid(int nr)
+{
+	splay_tree_node spn = NULL;
+	if (lidtree == NULL) {
+		return (NULL);
+	}
+	spn = splay_tree_lookup(lidtree, (splay_tree_key) nr);
+	if (spn == NULL) {
+		return (NULL);
+	}
+	return ((struct usrnode *)spn->value);
+}
+
+void uniqnode_lid_add(struct usrnode *n)
+{
+	struct usrnode *nn = NULL;
+	nn = uniqnode_lid(n->lid);
+	if (nn) {
+		return;
+	}
+	if (lidtree == NULL) {
+		lidtree = splay_tree_new(splay_tree_compare_ints, NULL, NULL);
+	}
+	splay_tree_insert(lidtree, (splay_tree_key) n->lid, (splay_tree_value) n);
+	return;
+}
+
+void uniqnode_clear_gid(void)
+{
+	if (gidtree) {
+		gidtree = splay_tree_delete(gidtree);
+	}
+	return;
+}
+
+void uniqnode_clear_lid(void)
+{
+	if (lidtree) {
+		lidtree = splay_tree_delete(lidtree);
+	}
+	return;
+}
+
 /* end. */

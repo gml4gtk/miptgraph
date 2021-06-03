@@ -60,11 +60,11 @@ int main(int argc, char* argv[])
 
     // node 0 size (40,20)
     // set all nodes at different size
-    p2[0]->setNodeSize(40,20);
-    p2[1]->setNodeSize(100,25);
-    p2[2]->setNodeSize(520,10);
-    p2[3]->setNodeSize(400,50);
-    p2[4]->setNodeSize(100,20);
+    p2[0]->setNodeSize(40, 20);
+    p2[1]->setNodeSize(100, 25);
+    p2[2]->setNodeSize(520, 10);
+    p2[3]->setNodeSize(400, 50);
+    p2[4]->setNodeSize(100, 20);
 
     pLEdge ee;
 

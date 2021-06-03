@@ -33,6 +33,18 @@
 #ifndef UNIQNODE_H
 #define UNIQNODE_H 1
 
+extern struct usrnode *uniqnode_gid(int nr);
+
+extern void uniqnode_gid_add(struct usrnode *n);
+
+extern struct usrnode *uniqnode_lid(int nr);
+
+extern void uniqnode_lid_add(struct usrnode *n);
+
+extern void uniqnode_clear_gid(void);
+
+extern void uniqnode_clear_lid(void);
+
 #endif
 
 /* end. */

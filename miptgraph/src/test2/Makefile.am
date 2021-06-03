@@ -20,13 +20,52 @@
 #
 
 #
-# dirs with makefile.am
-SUBDIRS = . Graph Layout test1
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
+#
+AM_MAKEFLAGS = --no-print-directory
+
+#
+AUTOMAKE_OPTIONS = foreign subdir-objects
+
+# dirs with makefile.am
+SUBDIRS = . src
+
+# indent sources
+indent:
+	cd src && make indent
+
+#
+distclean:
+	cd src && make distclean
+	make cleaner
+
+#
 cleaner:
-	rm -v -f *.output
+	cd src && make cleaner
+	rm -v -f -r -d html
+	rm -v -f -r -d m4
+	rm -v -f -r -d autom4te.cache
+	rm -v -f aclocal.m4
+	rm -v -f ar-lib
+	rm -v -f compile
+	rm -v -f config.guess
+	rm -v -f config.h.in
+	rm -v -f config.h.in~
+	rm -v -f config.log
+	rm -v -f config.status
+	rm -v -f config.sub
+	rm -v -f configure
+	rm -v -f depcomp
+	rm -v -f dsmake.*
+	rm -v -f install-sh
+	rm -v -f libtool
+	rm -v -f ltmain.sh
 	rm -v -f Makefile
 	rm -v -f Makefile.in
+	rm -v -f missing
+	rm -v -f stamp-h1
+	rm -v -f O1
+	rm -v -f O2
 
-
-
+# end.

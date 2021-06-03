@@ -43,12 +43,20 @@ struct usrgraph {
 	struct usrnode *rawnodelistend;
 	struct usredge *rawedgelist;
 	struct usredge *rawedgelistend;
+	void *lg;
 };
 
 /* */
 struct usrnode {
 	int gmlid;		/* id number from gml data */
+	char *gmlidstr;		/* as string */
 	int lid;		/* id number from layouter */
+	char *nlabel;		/* optional node label */
+	char *fill;		/* node fill color as #rrggbb */
+	int fillcolor;		/* rgb node fill color */
+	char *outline;		/* node outline color as #rrggbb */
+	int outlinecolor;	/* rgb node outline color */
+	struct usrnode *next;	/* linkage */
 };
 
 /* */
@@ -57,6 +65,10 @@ struct usredge {
 	int fromlid;		/* id number from layouter */
 	int togmlid;		/* id number from gml data */
 	int tolid;		/* id number from layouter */
+	char *elabel;		/* opt. edge label */
+	char *fill;		/* edge line color as #rrggbb */
+	int fillcolor;		/* edge line color as rgb */
+	struct usredge *next;	/* linkage */
 };
 
 /* in gml.peg */

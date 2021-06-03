@@ -308,7 +308,7 @@ int main(int argc, char *argv[])
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(menuitem1), menuitem1_menu);
 
 	/* 'open' in 'file' sub menu in menu items in menu bar in vbox1 */
-	open1 = gtk_menu_item_new_with_mnemonic("Open GML File");
+	open1 = gtk_menu_item_new_with_mnemonic("Open GML Graph");
 	gtk_container_add(GTK_CONTAINER(menuitem1_menu), open1);
 	gtk_widget_show(open1);
 
@@ -607,21 +607,136 @@ static void on_top_level_window_open1_activate(GtkMenuItem * menuitem, gpointer 
 	return;
 }
 
+/* copy into layouter */
+static void do_layout_all_copyto(struct usrgraph *g)
+{
+	struct usrnode *n = NULL;
+	void *nn = NULL;
+	if (g == NULL) {
+		return;
+	}
+	if (g->lg == NULL) {
+		return;
+	}
+	if (g->rawnodelist) {
+		nn = cmipt_newnode(g->lg);
+		if (g->rawedgelist) {
+		}
+	}
+	return;
+}
+
+/* copy from layouter */
+static void do_layout_all_copyfrom(struct usrgraph *g)
+{
+	if (g == NULL) {
+		return;
+	}
+	return;
+}
+
 /* layout it */
 static void do_layout_all(struct usrgraph *g)
 {
+	struct usrnode *n = NULL;
+	struct usredge *e = NULL;
+	void *gptr = NULL;
+	if (g == NULL) {
+		return;
+	}
+	gptr = cmipt_newgraph();
+	if (gptr == NULL) {
+		return;
+	}
+	g->lg = gptr;
+	if (option_gdebug > 1 || 0) {
+		printf("going to layout this graph data:\n");
+		if (g->rawnodelist) {
+			n = g->rawnodelist;
+			while (n) {
+				printf("node %s %d %s\n", n->gmlidstr, n->gmlid, n->nlabel);
+				n = n->next;
+			}
+		}
+		if (g->rawedgelist) {
+			e = g->rawedgelist;
+			while (e) {
+				printf("edge from %d to %d\n", e->fromgmlid, e->togmlid);
+				e = e->next;
+			}
+		}
+	}
+	do_layout_all_copyto(g);
+	/* run layout */
+	cmipt_layout(g->lg, 10, 1, 10, 1);
+	do_layout_all_copyfrom(g);
+	return;
+}
+
+static void do_clear_all_rawedgelist(void)
+{
+	struct usredge *e = NULL;
+	struct usredge *enext = NULL;
+	if (maingraph) {
+		if (maingraph->rawedgelist) {
+			e = maingraph->rawedgelist;
+			while (e) {
+				enext = e->next;
+				e = do_free(e);
+				e = enext;
+			}
+		}
+	}
+	return;
+}
+
+static void do_clear_all_rawnodelist(void)
+{
+	struct usrnode *n = NULL;
+	struct usrnode *nnext = NULL;
+	if (maingraph) {
+		if (maingraph->rawnodelist) {
+			n = maingraph->rawnodelist;
+			while (n) {
+				nnext = n->next;
+				n = do_free(n);
+				n = nnext;
+			}
+		}
+	}
 	return;
 }
 
 /* clear all used mem at exit or file->open */
 static void do_clear_all(void)
 {
+
+	/* clear node and string database */
+	uniqnode_clear_gid();
+	uniqnode_clear_lid();
+	uniqstr_clear();
+
 	/* clear maingraph data */
 
 	// ...
 
-	/* main graph data */
-	maingraph = do_free(maingraph);
+	if (maingraph) {
+
+		maingraph->lg = cmipt_deletegraph(maingraph->lg);
+
+		/* clear input data */
+		do_clear_all_rawnodelist();
+		maingraph->rawnodelist = NULL;
+		maingraph->rawnodelistend = NULL;
+
+		do_clear_all_rawedgelist();
+		maingraph->rawedgelist = NULL;
+		maingraph->rawedgelistend = NULL;
+
+		/* main graph data */
+		maingraph = do_free(maingraph);
+	}
+
 	return;
 }
 

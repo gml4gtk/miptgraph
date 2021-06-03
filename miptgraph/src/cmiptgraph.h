@@ -34,6 +34,18 @@ extern "C" {
 /* return version number */
 extern const char *cmipt_version (void);
 
+/* new graph */
+extern void *cmipt_newgraph (void);
+
+/* delete graph */
+extern void *cmipt_deletegraph (void *g);
+
+/* new node */
+extern void *cmipt_newnode (void *g);
+
+/* run layout */
+extern void cmipt_layout (void *g, int iter, int transpose, int iter2, int debug);
+
 #ifdef __cplusplus
 }
 #endif

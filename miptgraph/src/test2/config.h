@@ -2,7 +2,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Year, month and day this program is compiled. */
-#define COMPILE_DATE "Tue 06/01/21 2021"
+#define COMPILE_DATE "Thu 06/03/21 2021"
 
 /* System where this is compiled. */
 #define COMPILE_UNAME "Linux"

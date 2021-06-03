@@ -35,6 +35,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "splay-tree.h"
+#include "main.h"
 #include "mem.h"
 #include "uniqstring.h"
 
@@ -57,6 +59,10 @@ char *uniqstr(char *str)
 	}
 
 	return s;
+}
+
+void uniqstr_clear(void)
+{
 }
 
 /* end. */

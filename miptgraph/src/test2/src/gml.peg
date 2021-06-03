@@ -9,9 +9,23 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
 
 #include "main.h"
 #include "mem.h"
+#include "uniqstring.h"
+#include "uniqnode.h"
+
+static struct usrgraph *maing = NULL;
+
+/* different block modes */
+#define INHUH 0 /* unknown */
+#define INNODE 1 /* node [...] */
+#define INEDGE 2 /* edge [...] */
+#define INGRAPHICS 3 /* graphics [...] */
+
+static int cmode1 = INHUH;
+static int cmode2 = INHUH;
 
 static FILE *curstream = NULL;
 
@@ -39,6 +53,36 @@ static void *pcc_malloc_e(size_t size) {
 
 #define PCC_REALLOC(auxil, ptr, size) realloc(ptr, size)
 
+/* node id */
+static char *nodeid = NULL;
+
+/* node label */
+static char *nodelabel = NULL;
+
+/* edge from */
+static char *edgefrom = NULL;
+
+/* edge to */
+static char *edgeto = NULL;
+
+/* edge label */
+static char *edgelabel = NULL;
+
+/* edge fill */
+static char *efill = NULL;
+
+/* node fill */
+static char *nfill = NULL;
+
+/* current fill */
+static char *currfill = NULL;
+
+/* node outline */
+static char *noutline = NULL;
+
+/* current outline */
+static char *curroutline = NULL;
+
 static char *pname = "";
 
 static int ind = 0;
@@ -64,12 +108,15 @@ static void pcc_error(void) {
 
 #define PCC_GETCHAR(auxil) myfgetc()
 
+/* return EOF at parse error to stop parser or next char from stream */
 static int myfgetc (void)
 {
   int ret = 0;
   if (parseerror) {
+    /* return EOF at parse error */
     ret = EOF;
   } else {
+    /* no parse error, get next char */
     ret = fgetc (curstream);
     if (pdebug) {
       if (ret > 0 && ret != EOF) {
@@ -83,6 +130,404 @@ static int myfgetc (void)
   return (ret);
 }
 
+/* at start of "id [...]" */
+static void start (int ix, char *str)
+{
+    if (ix == 2) {
+	if (strcmp (str,"graphics") == 0) {
+	    if (cmode1 == INNODE || cmode1 == INEDGE) {
+		cmode2 = INGRAPHICS;
+		currfill = NULL;
+		curroutline = NULL;
+	    } else {
+		cmode2 = INHUH;
+	    }
+	} else {
+	    cmode2 = INHUH;
+	}
+	return;
+    }
+    if (ix == 1) {
+	cmode2 = INHUH;
+	if (strcmp (str, "node") == 0) {
+	    cmode1 = INNODE;
+	    nodeid = NULL;
+	    nodelabel = NULL;
+	    nfill = NULL;
+	    noutline = NULL;
+	    currfill = NULL;
+	    curroutline = NULL;
+	} else if (strcmp (str, "edge") == 0) {
+	    cmode1 = INEDGE;
+	    edgefrom = NULL;
+	    edgeto = NULL;
+	    edgelabel = NULL;
+	    efill = NULL;
+	    currfill = NULL;
+	} else {
+	    cmode1 = INHUH;
+	}
+	return;
+    }
+    return;
+}
+
+/* #rrggbb to int */
+static int color2int (char *str)
+{
+    int status = 0;
+    int ret = -1;
+    unsigned int r = 0;
+    unsigned int g = 0;
+    unsigned int b = 0;
+    errno = 0;
+    if (str == NULL) {
+	printf("expected html color in form of \"#rrggbb\" but found nil\n");
+	return (-1);
+    }
+    if (strlen (str) == 0) {
+	printf("expected html color in form of \"#rrggbb\" but found \"\"\n");
+	return (-1);
+    }
+    status = sscanf (str, "#%02x%02x%02x", &r, &g, &b);
+    if (status == 3) {
+	ret = ((r << 16) | (g << 8) | b);
+    } else if (errno != 0) {
+	/* convers error */
+	ret = -1;
+    } else {
+	/* did not match */
+	ret = -1;
+    }
+    if (ret == -1) {
+	printf("expected html color in form of #rrggbb but found %s\n",str);
+    }
+    return (ret);
+}
+
+/* */
+static int str2num (char *str)
+{
+    long int r = 0;
+    char *es;
+    errno = 0;
+    if (str == NULL) {
+	errno = EINVAL;
+	return (0);
+    }
+    if (strlen (str) == 0) {
+	errno = EINVAL;
+	return (0);
+    }
+    r = strtol (str, &es, 10);
+    if (str == es) {
+	errno = EINVAL;
+	return (0);
+    }
+    return ((int) r);
+}
+
+/* add node */
+static void nadd (char *nid, char *nl, char *nf, char *no)
+{
+    char *nl2 = NULL;
+    char *nf2 = NULL;
+    char *no2 = NULL;
+    int nfcol = 0xffffff;
+    int nocol = 0;
+    int nidnum = 0;
+    struct usrnode *nun = NULL;
+    struct usrnode *nun2 = NULL;
+    if (nl) {
+	if (strlen (nl)) {
+	    nl2 = nl;
+	} else {
+	    nl2 = NULL;
+	}
+    }
+    if (nf) {
+	if (strlen (nf)) {
+	    nf2 = nf;
+	} else {
+	    nf2 = NULL;
+	}
+    }
+    if (no) {
+	if (strlen (no)) {
+	    no2 = no;
+	} else {
+	    no2 = NULL;
+	}
+    }
+    if (nf2) {
+	nfcol = color2int (nf2);
+	if (nfcol == -1) {
+	    printf ("unknown node fill color %s skipped\n",nf2);
+	    nfcol = 0xffffff;
+	}
+    }
+    if (no2) {
+	nocol = color2int (no2);
+	if (nocol == -1) {
+	    printf ("unknown node outline color %s skipped\n", no2);
+	    nocol = 0;
+	}
+    }
+    nidnum = str2num (nid);
+    if (errno) {
+	printf ("wrong number %s for node id and node skipped\n",nid);
+	errno = 0;
+	return;
+    }
+    if (pdebug) {
+	printf ("adding node %s, label %s, fillcolor %s outline color %s\n",nid,nl2,nf2,no2);
+    }
+    /* check if already defined */
+    nun = uniqnode_gid(nidnum);
+    if (nun) {
+	printf ("node with id %s is already defined and replacing it\n",nid);
+	nun2 = nun;
+    } else {
+	nun = do_malloc (sizeof(struct usrnode));
+    }
+    nun->gmlid = nidnum;
+    nun->gmlidstr = nid;
+    nun->fill = nf2;
+    nun->fillcolor = nfcol;
+    nun->outline = no2;
+    nun->outlinecolor = nocol;
+    if (nl2) {
+	nun->nlabel = nl2;
+    } else {
+	nun->nlabel = nun->gmlidstr;
+    }
+    if (nun2 == NULL) {
+	if (maing->rawnodelist == NULL) {
+	    maing->rawnodelist = nun;
+	    maing->rawnodelistend = nun;
+	} else {
+	    maing->rawnodelistend->next = nun;
+	    maing->rawnodelistend = nun;
+	}
+	uniqnode_gid_add(nun);
+    }
+    return;
+}
+
+/* add edge */
+static void eadd (char *ef, char *et, char *el, char *efil)
+{
+    char *el2 = NULL;
+    char *efil2 = NULL;
+    int ecol = 0;
+    int efnum = 0;
+    int etnum = 0;
+    struct usrnode *nunf = NULL;
+    struct usrnode *nunt = NULL;
+    struct usredge *ned = NULL;
+    if (el) {
+	if (strlen (el)) {
+	    el2 = el;
+	} else {
+	    el2 = NULL;
+	}
+    }
+    if (efil) {
+	if (strlen (efil)) {
+	    efil2 = efil;
+	} else {
+	    efil2 = NULL;
+	}
+    }
+    if (efil2) {
+	ecol = color2int (efil2);
+	if (ecol == -1) {
+	    printf ("unknown edge color %s skipped\n",efil2);
+	    ecol = 0;
+	}
+    }
+    efnum = str2num (ef);
+    if (errno) {
+	printf ("wrong number %s for edge source id and edge skipped\n",ef);
+	errno = 0;
+	return;
+    }
+    etnum = str2num (et);
+    if (errno) {
+	printf ("wrong number %s for edge target id and edge skipped\n",et);
+	errno = 0;
+	return;
+    }
+    if (pdebug) {
+	printf ("adding edge from %s to %s, label %s, edge line color %s\n",ef,et,el2,efil2);
+    }
+    /* check if already defined */
+    nunf = uniqnode_gid(efnum);
+    if (nunf == NULL) {
+	printf ("source node %d in edge from %s to %s not found and adding source node now\n",efnum,ef,et);
+	nadd (ef, NULL, NULL, NULL);
+	nunf = uniqnode_gid(efnum);
+    }
+    /* check if already defined */
+    nunt = uniqnode_gid(etnum);
+    if (nunt == NULL) {
+	printf ("target node %d in edge from %s to %s not found and adding source node now\n",etnum,ef,et);
+	nadd (et, NULL, NULL, NULL);
+	nunt = uniqnode_gid(etnum);
+    }
+    ned = do_malloc (sizeof(struct usredge));
+    ned->fromgmlid = efnum;
+    ned->togmlid = etnum;
+    ned->fill = efil2;
+    ned->fillcolor = ecol;
+    ned->elabel = el2;
+    if (maing->rawedgelist == NULL) {
+	maing->rawedgelist = ned;
+	maing->rawedgelistend = ned;
+    } else {
+	maing->rawedgelistend->next = ned;
+	maing->rawedgelistend = ned;
+    }
+    return;
+}
+
+/* at end of "id [...]" */
+static void fin (int ix)
+{
+    if (ix == 1) {
+	if (cmode1 == INNODE) {
+	    nadd (nodeid, nodelabel, nfill, noutline);
+	} else if (cmode1 == INEDGE) {
+	    eadd (edgefrom, edgeto, edgelabel, efill);
+	} else {
+	    /* skip */
+	}
+	return;
+    }
+    if (ix == 2) {
+	if (cmode2 == INGRAPHICS) {
+	    if (cmode1 == INNODE) {
+		if (currfill) {
+		    nfill = currfill;
+		}
+		if (curroutline) {
+		    noutline = curroutline;
+		}
+	    } else if (cmode1 == INEDGE) {
+		if (currfill) {
+		    efill = currfill;
+		}
+	    } else {
+		/* skip */
+	    }
+	}
+	return;
+    }
+    return;
+}
+
+/* id id */
+static void pair_ii (char *l, char *r, int ix)
+{
+    return;
+}
+
+/* id string and "" for r is same as NULL */
+static void pair_is (char *l, char *r, int ix)
+{
+    if (ix == 1) {
+	if (cmode1 == INNODE) {
+	    if (strcmp(l,"label") == 0) {
+		if (nodelabel) {
+		    printf ("redefinition of node label from %s to %s\n",nodelabel,r);
+		}
+		nodelabel = r;
+	    }
+	} else if (cmode1 == INEDGE) {
+	    if (strcmp(l,"label") == 0) {
+		if (edgelabel) {
+		    printf ("redefinition of edge label from %s to %s\n",edgelabel,r);
+		}
+		edgelabel = r;
+	    }
+	} else {
+	    /* skip */
+	}
+	return;
+    }
+    if (ix == 2) {
+	if (cmode2 == INGRAPHICS) {
+	    if (cmode1 == INNODE) {
+		if (strcmp (l,"fill") == 0) {
+		    if (currfill) {
+			printf ("redefinition of node fill from %s to %s\n", currfill,r);
+		    }
+		    currfill = r;
+		} else if (strcmp (l,"outline") == 0) {
+			if (curroutline) {
+			    printf ("redefinition of node outline from %s to %s\n", curroutline,r);
+			}
+			curroutline = r;
+		} else {
+		    /* skip */
+		}
+	    } else if (cmode1 == INEDGE) {
+		if (strcmp (l,"fill") == 0) {
+		    if (currfill) {
+			printf ("redefinition of edge fill from %s to %s\n", currfill,r);
+		    }
+		    currfill = r;
+		} else {
+		    /* skip */
+		}
+	    } else {
+		/* skip */
+	    }
+	}
+	return;
+    }
+    return;
+}
+
+/* id fpnum */
+static void pair_if (char *l, char *r, int ix)
+{
+    return;
+}
+
+/* id num */
+static void pair_id (char *l, char *r, int ix)
+{
+    if (ix == 1) {
+	if (cmode1 == INNODE) {
+	    if (strcmp(l,"id") == 0) {
+		if (nodeid) {
+		    printf ("redefinition of node id from %s to %s\n",nodeid,r);
+		}
+		nodeid = r;
+	    }
+	} else if (cmode1 == INEDGE) {
+	    if (strcmp(l,"source") == 0) {
+		if (edgefrom) {
+		    printf ("redefinition of edge source from %s to %s\n",edgefrom,r);
+		}
+		edgefrom = r;
+	    } else if (strcmp(l,"target") == 0) {
+		if (edgeto) {
+		    printf ("redefinition of edge target from %s to %s\n",edgeto,r);
+		}
+		edgeto = r;
+	    } else {
+		/* skip */
+	    }
+	} else {
+	    /* skip */
+	}
+	return;
+    }
+    return;
+}
+
 }
 
 
@@ -93,22 +538,25 @@ head <- (pair)*
 
 list <- '[' _ some_items* _ ']' _
 
-some_items <- id _ list2 _ / pair _
+some_items <- (left:id { ind++; start(ind,left); } _ list2) { fin (ind); if (ind > 0) { ind--; } else { ind = 0; } }
+	/ pair
 
-list2 <- '[' _ some_items* _ ']' _
+list2 <- '['  _ some_items* _ ']' _
 
-pair <- (id string)
-    / (id id)
-    / (id fpnum)
-    / (id digit)
+pair <- (left:id _ right:string _) { pair_is (left,right,ind); }
+    / (left:id _ right:id _) { pair_ii (left,right,ind);}
+    / (left:id _ right:fpnum _) { pair_if (left,right,ind); }
+    / (left:id _ right:digit _) { pair_id (left,right,ind); }
 
-digit <- ( ('-' / '+')? [0-9]+ _ ) { printf("NUMBER=%s\n",$0); }
+digit <- ( ('-' / '+')? [0-9]+ ) { $$ = uniqstr ((char *)$0); }
 
-fpnum <-  ( ('-' / '+')? [0-9]* '.' [0-9]+ (['e''E'] ('-' / '+')? [0-9]+ )?  _ ) { printf("FPNUMBER=%s\n",$0); }
+fpnum <-  ( ('-' / '+')? [0-9]* '.' [0-9]+ (['e''E'] ('-' / '+')? [0-9]+ )? ) { $$ = uniqstr ((char *)$0); }
 
-id	<- < [a-zA-Z_]+[a-zA-Z_0-9]* > _	{ printf("ID=%s\n",$0); }
+id	<- < [a-zA-Z_]+[a-zA-Z_0-9]* > { $$ = uniqstr ((char *)$0); }
 
-string	<- '"' < char* > '"'  _	{  printf("STRING=%s\n",$0);  }
+string	<- '"' m:mid '"' { $$ = m; }
+
+mid	<- char* { $$ = uniqstr ((char *)$0); }
 
 char	<-
 	'\\' "\""
@@ -137,13 +585,14 @@ endofline	<- '\r\n'
 
 /* parse, return 0 if oke, or >0 the line number of parse error */
 /* adding data to raw node/edge lists */
-int gmlparse (struct usrgraph *maingraph, FILE *stream, char *name, int debug)
+int gmlparse (struct usrgraph *mg, FILE *stream, char *name, int debug)
 {
     gml_context_t *ctx = NULL;
     int ret = 0;
-    if (maingraph == NULL) {
+    if (mg == NULL) {
 	return (1);
     }
+    maing = mg;
     ctx = gml_create(NULL);
     linenr = 1;
     ind = 0;

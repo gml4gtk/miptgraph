@@ -61,3 +61,5 @@ cleaner:
 	rm -v -f Makefile
 	rm -v -f Makefile.in
 	rm -v -f *.scallgraph.gv
+	rm -v -f *.output
+	rm -v -f *.errors

@@ -48,6 +48,8 @@
 - fixed: first part of helper program miptgml with gtk-2 gui
 - fixed: added screenshot gtk+ miptgml gui program
 - fixed: parsing gml graph in gtk+ gui using peg parser
+- fixed: parsing gml data into datastructs and ready to layout
+- fixed: first run of layouter from gml graph file
 
 
 

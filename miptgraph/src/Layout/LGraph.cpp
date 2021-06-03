@@ -354,6 +354,7 @@ bool LGraph::WeightedMedianHeuristic(int iter, bool verbose)
                 temp_order.order_vector[r][i]->median = temp_order.order_vector[r][i]->Median(*order, MEDIAN_OUT);
             }
             // Sort temp_order using ComparePointer comparator on the barycenter value of the nodes
+            // use stable sort to keep equal values at same position
             stable_sort(temp_order.order_vector[r].begin(),
                 temp_order.order_vector[r].end(),
                 ComparePointer);

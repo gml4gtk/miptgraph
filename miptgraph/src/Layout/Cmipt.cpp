@@ -40,4 +40,65 @@ extern "C" const char* cmipt_version(void)
     return (PACKAGE_VERSION);
 }
 
+/* create new graph */
+extern "C" void* cmipt_newgraph(void)
+{
+    pLGraph pg = new LGraph;
+    return ((void*)pg);
+}
+
+/* delete graph */
+extern "C" void* cmipt_deletegraph(void* g)
+{
+    pLGraph pg;
+    if (g) {
+        pg = (pLGraph)g;
+        delete pg;
+    }
+    return (NULL);
+}
+
+/* create new node */
+extern "C" void* cmipt_newnode(void* g)
+{
+    pLNode p;
+    pLGraph pg;
+    pg = (pLGraph)g;
+    p = pg->AddNode();
+    return ((void*)p);
+}
+
+/* run layout */
+extern "C" void cmipt_layout(void* g, int iter, int transpose, int iter2, int debug)
+{
+    bool dotr = false;
+    bool dodb = false;
+    int itera = 0;
+    int iterb = 0;
+    pLGraph pg;
+    pg = (pLGraph)g;
+    if (iter > 0) {
+        itera = iter;
+    } else {
+        itera = 100;
+    }
+    if (iter2 > 0) {
+        iterb = iter2;
+    } else {
+        iterb = 100;
+    }
+    if (transpose > 0) {
+        dotr = true;
+    } else {
+        dotr = false;
+    }
+    if (debug > 0) {
+        dodb = true;
+    } else {
+        dodb = false;
+    }
+    pg->Layout(itera, dotr, iterb, dodb);
+    return;
+}
+
 /* end. */

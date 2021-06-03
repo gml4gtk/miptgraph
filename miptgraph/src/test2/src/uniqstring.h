@@ -35,6 +35,8 @@
 
 extern char *uniqstr(char *str);
 
+extern void uniqstr_clear(void);
+
 #endif
 
 /* end. */
