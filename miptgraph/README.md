@@ -19,6 +19,7 @@ To indent sources: make indent
 Version 1: initial with minimal InitCoordinates() routine to be improved  
 Version 2: in development
 
+The directory src/test2 has the gtk+ gui program miptgml for use with gml graph data  
 The directory src/test1 and test2 has example programs how to use this graph layout library.  
 The source is documented for use with the doxygen program generating html documentation.  
 The dmake script can be usd to get a log file of the make process  
@@ -72,6 +73,7 @@ typescript, MIT, d3 dag ![d3-dag](https://github.com/erikbrinkman/d3-dag)
 
 ![screenshot](./screenshot.png)
 ![screenshot2](./screenshot2.png)
+![screenschotmiptgml](./src/test2/screenshot.png)
 
 ![gplv3](./gplv3-with-text-84x42.png)
 

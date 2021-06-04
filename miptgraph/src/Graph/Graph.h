@@ -178,6 +178,16 @@ public:
     int id() { return m_id; }
 
     /**
+     * get max. node id possible
+     */
+    int maxnodeid () { return next_node_id; }
+
+    /**
+     * get max. edge id possible
+     */
+    int maxedgeid () { return next_node_id; }
+
+    /**
      * get number of real nodes in graph without dummy nodes
      */
     int nrealnodes() { return (m_total_nodes_num - m_total_dummynodes_num); }

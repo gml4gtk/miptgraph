@@ -10,6 +10,7 @@ To compile for gtk-2 on Linux
 make  
 
 also:  
+make indent  
 make clean  
 make cleaner  
 make distclean  

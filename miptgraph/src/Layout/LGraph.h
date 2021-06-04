@@ -130,9 +130,9 @@ public:
      * \todo this should be flexible
      */
     void InitCoordinates(Ordering* order,
-        int normalwide = 50,
-        int dummywide = 25,
-        int vertical_size = 80);
+        int normalwide = 20,
+        int dummywide = 1,
+        int vertical_size = 40);
 
     /**
      * The weighted median heuristic for reducing edge crossings.
@@ -184,6 +184,16 @@ public:
      * free edge
      */
     virtual void FreeEdge(pEdge p);
+
+    /**
+     * find node with id
+     */
+    virtual pLNode FindNode (int num);
+
+    /**
+     * find edge with id
+     */
+    virtual pLEdge FindEdge (int num);
 
     friend class LEdge;
     friend class LNode;

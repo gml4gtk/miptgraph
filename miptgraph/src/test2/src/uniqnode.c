@@ -41,6 +41,7 @@
 
 static splay_tree gidtree = NULL;
 static splay_tree lidtree = NULL;
+static splay_tree drawlidtree = NULL;
 
 struct usrnode *uniqnode_gid(int nr)
 {
@@ -96,6 +97,33 @@ void uniqnode_lid_add(struct usrnode *n)
 	return;
 }
 
+struct drawnode *uniqdrawnode_lid(int nr)
+{
+	splay_tree_node spn = NULL;
+	if (lidtree == NULL) {
+		return (NULL);
+	}
+	spn = splay_tree_lookup(drawlidtree, (splay_tree_key) nr);
+	if (spn == NULL) {
+		return (NULL);
+	}
+	return ((struct drawnode *)spn->value);
+}
+
+void uniqdrawnode_lid_add(struct drawnode *n)
+{
+	struct drawnode *nn = NULL;
+	nn = uniqdrawnode_lid(n->lid);
+	if (nn) {
+		return;
+	}
+	if (drawlidtree == NULL) {
+		drawlidtree = splay_tree_new(splay_tree_compare_ints, NULL, NULL);
+	}
+	splay_tree_insert(drawlidtree, (splay_tree_key) n->lid, (splay_tree_value) n);
+	return;
+}
+
 void uniqnode_clear_gid(void)
 {
 	if (gidtree) {
@@ -108,6 +136,14 @@ void uniqnode_clear_lid(void)
 {
 	if (lidtree) {
 		lidtree = splay_tree_delete(lidtree);
+	}
+	return;
+}
+
+void uniqdrawnode_clear_lid(void)
+{
+	if (drawlidtree) {
+		drawlidtree = splay_tree_delete(drawlidtree);
 	}
 	return;
 }

@@ -85,6 +85,10 @@ public:
     int id() { return m_id; }
 
     /**
+     * get node with id
+     */
+    
+    /**
      * get nuber of self-edgs at this node
      */
     int nselfedges () { return m_selfedges; }
@@ -129,6 +133,7 @@ public:
      * Print info about the node
      */
     virtual void Dump();
+
 
     friend class Edge;
     friend class Graph;

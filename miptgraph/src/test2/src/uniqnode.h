@@ -41,9 +41,15 @@ extern struct usrnode *uniqnode_lid(int nr);
 
 extern void uniqnode_lid_add(struct usrnode *n);
 
+extern struct drawnode *uniqdrawnode_lid(int nr);
+
+extern void uniqdrawnode_lid_add(struct drawnode *n);
+
 extern void uniqnode_clear_gid(void);
 
 extern void uniqnode_clear_lid(void);
+
+extern void uniqdrawnode_clear_lid(void);
 
 #endif
 

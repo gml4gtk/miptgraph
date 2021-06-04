@@ -220,8 +220,8 @@ public:
     {
         x = -1; // no x coord
 	y = -1; // no y coord
-	nxsize = 50; // default node x size
-	nysize = 50; // default node y size
+	nxsize = 10; // default node x size
+	nysize = 10; // default node y size
         rank = -1; // no rank
 	pos = -1; // no x pos
         median = 0; // no barycenter value

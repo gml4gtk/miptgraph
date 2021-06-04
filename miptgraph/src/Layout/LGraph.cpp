@@ -735,4 +735,34 @@ LGraph::AddEdge(pNode from, pNode to)
     return new_edge;
 }
 
+pLNode LGraph::FindNode(int num)
+{
+    pLNode curnode;
+    for (list<pNode>::iterator node_iter = nodes_list()->begin();
+         node_iter != nodes_list()->end();
+         node_iter++) {
+        // get current node
+        curnode = ((pLNode)(*node_iter));
+        if (curnode->id() == num) {
+            return (curnode);
+        }
+    }
+    return (NULL);
+}
+
+pLEdge LGraph::FindEdge(int num)
+{
+    pLEdge curedge;
+    // scan all edges
+    for (list<pEdge>::iterator edge_iter = edges_list()->begin();
+         edge_iter != edges_list()->end();
+         edge_iter++) {
+        curedge = (pLEdge)(*edge_iter);
+        if (curedge->id() == num) {
+            return (curedge);
+        }
+    }
+    return (NULL);
+}
+
 /* end. */

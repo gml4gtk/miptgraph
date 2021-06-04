@@ -607,11 +607,27 @@ static void on_top_level_window_open1_activate(GtkMenuItem * menuitem, gpointer 
 	return;
 }
 
+/* get text size of node */
+static struct usrxy *do_layout_all_ntextsize(struct usrnode *n)
+{
+	struct usrxy *ret = NULL;
+	ret = do_malloc(sizeof(struct usrxy));
+	return (ret);
+}
+
 /* copy into layouter */
 static void do_layout_all_copyto(struct usrgraph *g)
 {
+	struct usrxy *sz = NULL;
+	struct usrnode *fn = NULL;
+	struct usrnode *tn = NULL;
 	struct usrnode *n = NULL;
+	struct usredge *e = NULL;
 	void *nn = NULL;
+	void *ee = NULL;
+	int nnid = 0;
+	int nxsize = 0;
+	int nysize = 0;
 	if (g == NULL) {
 		return;
 	}
@@ -619,8 +635,49 @@ static void do_layout_all_copyto(struct usrgraph *g)
 		return;
 	}
 	if (g->rawnodelist) {
-		nn = cmipt_newnode(g->lg);
+		n = g->rawnodelist;
+		while (n) {
+			nn = cmipt_newnode(g->lg);
+			n->ln = nn;
+			nnid = cmipt_nodeid(nn);
+			n->lid = nnid;
+			uniqnode_lid_add(n);
+			sz = do_layout_all_ntextsize(n);
+			n->txsize = sz->x;
+			n->tysize = sz->y;
+			sz = do_free(sz);
+			n->xsize = cmipt_nodexsize(nn);
+			n->ysize = cmipt_nodeysize(nn);
+			nxsize = 0;
+			nysize = 0;
+			if (n->xsize <= 0) {
+				nxsize = 1;
+			}
+			if (n->ysize <= 0) {
+				nysize = 1;
+			}
+			if (n->txsize > n->xsize) {
+				nxsize = n->txsize;
+			}
+			if (n->tysize > n->ysize) {
+				nysize = n->tysize;
+			}
+			if (nxsize || nysize) {
+				cmipt_setnodesize(nn, nxsize, nysize);
+			}
+			n = n->next;
+		}
 		if (g->rawedgelist) {
+			e = g->rawedgelist;
+			while (e) {
+				fn = uniqnode_gid(e->fromgmlid);
+				tn = uniqnode_gid(e->togmlid);
+				if (fn && tn) {
+					ee = cmipt_newedge(g->lg, fn->ln, tn->ln);
+					e->le = ee;
+				}
+				e = e->next;
+			}
 		}
 	}
 	return;
@@ -629,8 +686,128 @@ static void do_layout_all_copyto(struct usrgraph *g)
 /* copy from layouter */
 static void do_layout_all_copyfrom(struct usrgraph *g)
 {
+	int i = 0;
+	int count = 0;
+	struct usrnode *un = NULL;
+	struct drawnode *dn = NULL;
+	struct drawedge *en = NULL;
+	struct drawnode *fn = NULL;
+	struct drawnode *tn = NULL;
+	void *ret = NULL;
+	int fln = 0;
+	int tln = 0;
+	int isdummy = 0;
+	int selfedges = 0;
+	int rxpos = 0;
+	int rypos = 0;
+	int xpos = 0;
+	int ypos = 0;
+	int xsize = 0;
+	int ysize = 0;
+	int hor = 0;
+	int rev = 0;
+	int split = 0;
 	if (g == NULL) {
 		return;
+	}
+	if (g->lg == NULL) {
+		return;
+	}
+	/* get number of nodes in graph including dummy nodes */
+	count = cmipt_graphnnodes(g->lg);
+	if (count > 0) {
+		/* rebuild db */
+		uniqdrawnode_clear_lid();
+		count = cmipt_graphmaxnodeid(g->lg);
+		/* copy nodes from layouter */
+		for (i = 0; i < count; i++) {
+			ret = cmipt_findnode(g->lg, i);
+			if (ret == NULL) {
+				continue;
+			}
+			/* */
+			isdummy = cmipt_nodeisdummy(ret);
+			if (isdummy == 0) {
+				/* this is a real node, get other data */
+				un = uniqnode_lid(i);
+				xsize = un->xsize;
+				ysize = un->ysize;
+			} else {
+				un = NULL;
+				xsize = 1;
+				ysize = 1;
+			}
+			rxpos = cmipt_noderxpos(ret);
+			rypos = cmipt_noderypos(ret);
+			xpos = cmipt_nodexpos(ret);
+			ypos = cmipt_nodeypos(ret);
+			selfedges = cmipt_nodenselfedges(ret);
+			dn = do_malloc(sizeof(struct drawnode));
+			dn->lid = i;	/* layouter id */
+			dn->xpos = xpos;
+			dn->ypos = ypos;
+			dn->rxpos = rxpos;
+			dn->rypos = rypos;
+			dn->dummy = isdummy;
+			dn->un = un;	/* NULL if a dummy node */
+			dn->selfedges = selfedges;
+			if (g->drawnodelist == NULL) {
+				g->drawnodelist = dn;
+				g->drawnodelistend = dn;
+			} else {
+				g->drawnodelistend->next = dn;
+				g->drawnodelistend = dn;
+			}
+			uniqdrawnode_lid_add(dn);
+			/* update drawing size */
+			if (xpos + xsize > maxx) {
+				maxx = xpos + xsize;
+			}
+			if (ypos + ysize > maxy) {
+				maxy = ypos + ysize;
+			}
+			/* */
+		}
+		/* copied all nodes, now copy edges */
+		/* get number of edges in graph without self-edges */
+		count = cmipt_graphnedges(g->lg);
+		if (count > 0) {
+			/* copy edges and some can have been removed in layouter */
+			count = cmipt_graphmaxedgeid(g->lg);
+			for (i = 0; i < count; i++) {
+				ret = cmipt_findedge(g->lg, i);
+				if (ret == NULL) {
+					/* some edges can be deleted */
+					continue;
+				}
+				/* other edges and new created edges */
+				fln = cmipt_edgefromnode(ret);
+				tln = cmipt_edgetonode(ret);
+				hor = cmipt_edgeishor(ret);
+				rev = cmipt_edgeisrev(ret);
+				split = cmipt_edgeissplit(ret);
+				fn = uniqdrawnode_lid(fln);
+				tn = uniqdrawnode_lid(tln);
+				if (fn && tn) {
+					en = do_malloc(sizeof(struct drawedge));
+					en->lid = i;
+					en->hor = hor;
+					en->rev = rev;
+					en->split = split;
+					en->fn = fn;
+					en->tn = tn;
+					if (g->drawedgelist == NULL) {
+						g->drawedgelist = en;
+						g->drawedgelistend = en;
+					} else {
+						g->drawedgelistend->next = en;
+						g->drawedgelistend = en;
+					}
+				}
+				/* next edge */
+			}
+			/* if() */
+		}
 	}
 	return;
 }
@@ -649,6 +826,8 @@ static void do_layout_all(struct usrgraph *g)
 		return;
 	}
 	g->lg = gptr;
+	maxx = 0;
+	maxy = 0;
 	if (option_gdebug > 1 || 0) {
 		printf("going to layout this graph data:\n");
 		if (g->rawnodelist) {
@@ -670,6 +849,7 @@ static void do_layout_all(struct usrgraph *g)
 	/* run layout */
 	cmipt_layout(g->lg, 10, 1, 10, 1);
 	do_layout_all_copyfrom(g);
+
 	return;
 }
 
@@ -707,6 +887,40 @@ static void do_clear_all_rawnodelist(void)
 	return;
 }
 
+static void do_clear_all_drawedgelist(void)
+{
+	struct drawedge *e = NULL;
+	struct drawedge *enext = NULL;
+	if (maingraph) {
+		if (maingraph->drawedgelist) {
+			e = maingraph->drawedgelist;
+			while (e) {
+				enext = e->next;
+				e = do_free(e);
+				e = enext;
+			}
+		}
+	}
+	return;
+}
+
+static void do_clear_all_drawnodelist(void)
+{
+	struct drawnode *n = NULL;
+	struct drawnode *nnext = NULL;
+	if (maingraph) {
+		if (maingraph->drawnodelist) {
+			n = maingraph->drawnodelist;
+			while (n) {
+				nnext = n->next;
+				n = do_free(n);
+				n = nnext;
+			}
+		}
+	}
+	return;
+}
+
 /* clear all used mem at exit or file->open */
 static void do_clear_all(void)
 {
@@ -714,6 +928,7 @@ static void do_clear_all(void)
 	/* clear node and string database */
 	uniqnode_clear_gid();
 	uniqnode_clear_lid();
+	uniqdrawnode_clear_lid();
 	uniqstr_clear();
 
 	/* clear maingraph data */
@@ -732,6 +947,15 @@ static void do_clear_all(void)
 		do_clear_all_rawedgelist();
 		maingraph->rawedgelist = NULL;
 		maingraph->rawedgelistend = NULL;
+
+		/* clear draw data */
+		do_clear_all_drawnodelist();
+		maingraph->drawnodelist = NULL;
+		maingraph->drawnodelistend = NULL;
+
+		do_clear_all_drawedgelist();
+		maingraph->drawedgelist = NULL;
+		maingraph->drawedgelistend = NULL;
 
 		/* main graph data */
 		maingraph = do_free(maingraph);
@@ -805,6 +1029,8 @@ static void on_vscale2_changed(GtkAdjustment * adj)
 static void on_hscale1_changed(GtkAdjustment * adj)
 {
 	gdouble val = 0.0;
+
+	/* */
 	if (adj) {
 	}
 
@@ -829,11 +1055,135 @@ static void on_hscale1_changed(GtkAdjustment * adj)
 
 static void on_top_level_window_drawingarea1_expose_event_nodes(cairo_t * crp)
 {
+	struct drawnode *dn = NULL;
+	int xpos = 0;
+	int ypos = 0;
+	int dummy = 0;
+	int xsize = 0;
+	int ysize = 0;
+	int x0 = 0;
+	int y0 = 0;
+	int ncolor = 0;
+	int nbcolor = 0;
+	int r = 0;
+	int g = 0;
+	int b = 0;
+	if (maingraph->drawnodelist) {
+		dn = maingraph->drawnodelist;
+		while (dn) {
+			if (dn->un == NULL) {
+				/* shouldnothappen */
+				dn->dummy = 1;
+			}
+			xpos = dn->xpos;
+			ypos = dn->ypos;
+			dummy = dn->dummy;
+			if (dummy) {
+				xsize = 1;
+				ysize = 1;
+				ncolor = 0;
+				nbcolor = 0;
+			} else {
+				xsize = dn->un->xsize;
+				ysize = dn->un->ysize;
+				ncolor = dn->un->fillcolor;
+				nbcolor = dn->un->outlinecolor;
+			}
+
+			/* */
+			x0 = xpos - vxmin;
+			y0 = ypos - vymin;
+
+			/* fillcolor of node white default or color */
+			r = ((ncolor & 0x00ff0000) >> 16);
+			g = ((ncolor & 0x0000ff00) >> 8);
+			b = (ncolor & 0x000000ff);
+
+			cairo_set_source_rgb(crp, r / 255.0, g / 255.0, b / 255.0);
+			cairo_rectangle(crp, x0, y0, xsize, ysize);
+			cairo_fill(crp);
+			cairo_stroke(crp);
+
+			/* bordercolor of node black default or color */
+			r = (nbcolor & 0x00ff0000) >> 16;
+			g = (nbcolor & 0x0000ff00) >> 8;
+			b = (nbcolor & 0x000000ff);
+
+			cairo_set_source_rgb(crp, r / 255.0, g / 255.0, b / 255.0);
+			cairo_rectangle(crp, x0, y0, xsize, ysize);
+			cairo_stroke(crp);
+
+			dn = dn->next;
+		}
+	}
 	return;
 }
 
 static void on_top_level_window_drawingarea1_expose_event_edges(cairo_t * crp)
 {
+	struct drawedge *de = NULL;
+	struct drawnode *fn = NULL;
+	struct drawnode *tn = NULL;
+	int fdummy = 0;
+	int tdummy = 0;
+	int fxc = 0;
+	int fyc = 0;
+	int txc = 0;
+	int tyc = 0;
+	int xf = 0;
+	int yf = 0;
+	int xt = 0;
+	int yt = 0;
+	int ecolor = 0;
+	int r = 0;
+	int g = 0;
+	int b = 0;
+	if (maingraph->drawedgelist) {
+		de = maingraph->drawedgelist;
+		while (de) {
+			fn = de->fn;
+			tn = de->tn;
+			fdummy = fn->dummy;
+			tdummy = tn->dummy;
+			if (fdummy) {
+				fxc = fn->xpos;
+				fyc = fn->ypos;
+			} else {
+				fxc = fn->xpos + fn->un->xsize / 2;;
+				fyc = fn->ypos + fn->un->ysize / 2;
+			}
+			xf = fxc - vxmin;
+			yf = fyc - vymin;
+			if (tdummy) {
+				txc = tn->xpos;
+				tyc = tn->ypos;
+			} else {
+				txc = tn->xpos + tn->un->xsize / 2;;
+				tyc = tn->ypos + tn->un->ysize / 2;
+			}
+			xt = txc - vxmin;
+			yt = tyc - vymin;
+
+			/* thickness of edge line */
+			cairo_set_line_width(crp, 0.9 /* DEFAULT_EDGE_THICKNESS */ );
+
+			/* black or colored line */
+			r = (ecolor & 0x00ff0000) >> 16;
+			g = (ecolor & 0x0000ff00) >> 8;
+			b = (ecolor & 0x000000ff);
+
+			/* draw in line color of edge */
+			cairo_set_source_rgb(crp, r / 255.0, g / 255.0, b / 255.0);
+
+			cairo_move_to(crp, xf, yf);
+
+			cairo_line_to(crp, xt, yt);
+
+			cairo_stroke(crp);
+
+			de = de->next;
+		}
+	}
 	return;
 }
 
@@ -896,10 +1246,13 @@ static gboolean on_top_level_window_drawingarea1_expose_event(GtkWidget * widget
 	cairo_stroke(crdraw);
 	/* use zoom slider drawing scale */
 	cairo_scale(crdraw, zfactor, zfactor);
-	on_top_level_window_drawingarea1_expose_event_nodes(crdraw);
 	on_top_level_window_drawingarea1_expose_event_edges(crdraw);
+	on_top_level_window_drawingarea1_expose_event_nodes(crdraw);
 	/* ready drawing */
 	cairo_destroy(crdraw);
+
+	/* do a re-draw */
+	gtk_widget_queue_draw(drawingarea1);
 
 	return (FALSE);
 }

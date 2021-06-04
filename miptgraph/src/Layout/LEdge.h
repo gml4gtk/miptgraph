@@ -45,7 +45,7 @@ class LEdge : public Edge {
 private:
 
     /**
-     * set to tru if this is a split edge
+     * set to true if this is a split edge
      */
     bool composite;
 

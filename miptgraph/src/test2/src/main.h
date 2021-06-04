@@ -36,6 +36,14 @@
 struct usrgraph;
 struct usrnode;
 struct usredge;
+struct drawnode;
+struct drawedge;
+struct usrxy;
+
+struct usrxy {
+	int x;
+	int y;
+};
 
 /* */
 struct usrgraph {
@@ -43,6 +51,10 @@ struct usrgraph {
 	struct usrnode *rawnodelistend;
 	struct usredge *rawedgelist;
 	struct usredge *rawedgelistend;
+	struct drawnode *drawnodelist;
+	struct drawnode *drawnodelistend;
+	struct drawedge *drawedgelist;
+	struct drawedge *drawedgelistend;
 	void *lg;
 };
 
@@ -56,19 +68,47 @@ struct usrnode {
 	int fillcolor;		/* rgb node fill color */
 	char *outline;		/* node outline color as #rrggbb */
 	int outlinecolor;	/* rgb node outline color */
+	void *ln;		/* */
+	int xsize;		/* */
+	int ysize;		/* */
+	int txsize;		/* */
+	int tysize;		/* */
 	struct usrnode *next;	/* linkage */
 };
 
 /* */
 struct usredge {
 	int fromgmlid;		/* id number from gml data */
-	int fromlid;		/* id number from layouter */
 	int togmlid;		/* id number from gml data */
-	int tolid;		/* id number from layouter */
 	char *elabel;		/* opt. edge label */
 	char *fill;		/* edge line color as #rrggbb */
 	int fillcolor;		/* edge line color as rgb */
+	void *le;		/* */
 	struct usredge *next;	/* linkage */
+};
+
+/* */
+struct drawnode {
+	int lid;		/* layouter id of node */
+	int rxpos;		/* relative x pos */
+	int rypos;		/* relative y pos */
+	int xpos;		/* x pos */
+	int ypos;		/* y pos */
+	int dummy;		/* set if dummy node */
+	int selfedges;		/* number of self edges at node */
+	struct usrnode *un;	/* opt. other node data */
+	struct drawnode *next;	/* linkage */
+};
+
+/* */
+struct drawedge {
+	int lid;		/* layouter id of edge */
+	int hor;		/* 1 if edge is horizontal */
+	int rev;		/* 1 if edge is reversed */
+	int split;		/* 1 if edge is split */
+	struct drawnode *fn;	/* from node */
+	struct drawnode *tn;	/* to node */
+	struct drawedge *next;	/* linkage */
 };
 
 /* in gml.peg */

@@ -1,3 +1,4 @@
+
 # miptgraph
 Some GNU GPL Free C++ files for graph layout
 
@@ -16,3 +17,12 @@ The directory miptgraph has a stand-alone C++ graph layout library which is the 
 This C++ software has own routines for hierarchial graph layout and does not depend on graphviz or others
 
 Todo documentation, tests, example programs
+
+The miptgraph directory has a stand-alone C++ graph visualisation library and gtk+ gui miptgml gml graph viewer  
+
+![screenschotmiptgml](miptgraph/src/test2/screenshot.png)
+
+SPDX-License-Identifier: GPL-3.0+  
+License-Filename: LICENSE  
+
+<span>🇳🇱</span>
