@@ -54,6 +54,8 @@
 - fixed: upgraded the c interface to use with gtk+ libs
 - qvge running with this layouter instead of ogdf v 043 in qvge-gml or v 05.5
 - ogdf placement algo
+- fixed: updated node median values as ogdf does it
+- edge line drawing to fix
 
 
 

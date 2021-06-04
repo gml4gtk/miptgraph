@@ -93,6 +93,7 @@ int LNode::Rank()
  * if multiple of 2 use average
  * to change these calculations does change the layout
  * other ways are to get average of in+out edges
+ * updated with how ogdf does it
  */
 double
 LNode::Median(Ordering order, bool direction)
@@ -108,8 +109,8 @@ LNode::Median(Ordering order, bool direction)
 
     // for bary value use this:
     // iterate list
-    //   sum+=list[n]*256
-    // bary=sum/(256*list.size())
+    //   sum+=list[n];
+    // bary=sum/(list.size())
 
     // how many edges at node
     int size = list.size();
@@ -119,7 +120,8 @@ LNode::Median(Ordering order, bool direction)
 
     // if no edges, return -1
     if (size == 0) {
-        // todo return 0 should be better
+	    /* orig return -1 */
+        // ogdf return 0 should be better
         return 0; // -1;
     }
 
@@ -131,8 +133,14 @@ LNode::Median(Ordering order, bool direction)
 
     // at exactly 2 use average of pos 0 and 1
     if (size == 2) {
-        median = ((double)list[0] + (double)list[1]) / 2.;
-        return median;
+	if (0) {
+	    /* orig */
+    	    median = ((double)list[0] + (double)list[1]) / 2.;
+        } else {
+	    /* this does ogdf */
+	    median = ((double)list[0] + (double)list[1]);
+	}
+	return median;
     }
 
     // 1 mod 2 is 1
@@ -140,19 +148,29 @@ LNode::Median(Ordering order, bool direction)
     // 3 mod 2 is 1
     // 4 mod 2 is 0
 
-    // if not a multiple of 2, return pos of middle edge point
+    // if multiple of 2, return pos of middle edge point
     if ((size % 2) == 1) {
-        median = (double)list[m];
+	if (0) {
+	    /* orig */
+	    median = (double)list[m];
+        } else {
+	    /* this is used in ogdf */
+	    median = 2*(double)list[m];
+	}
         return median;
     }
 
-    // if multiple of 2 and this assumes list is sorted on position
-
+    // if no multiple of 2 and this assumes list is sorted on position
+    if (0) {
+	/* orig */
     double left = (double)list[m - 1] - (double)list[0];
     double right = (double)list[size - 1] - (double)list[m];
 
     median = (double)((double)list[m - 1] * right + (double)list[m] * left) / (left + right);
-
+    } else {
+	/* this is used in ogdf */
+	median = (double)list[m] + (double)list[m+1];
+    }
     return median;
 }
 
