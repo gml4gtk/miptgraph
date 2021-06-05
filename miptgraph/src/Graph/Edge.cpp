@@ -38,6 +38,10 @@
  * the edge is added to graph edgelist
  * the edge is added as outgoing edge of from node
  * the edge is added as incoming edge of to node
+ * self-edge has always id number -a
+ * self-edges are in own m_selfedges_list
+ * self-edges are not in m_edges_list or at node in/out lists
+ * edge can cross graphs which is not allowed or can be made a feature
  * \sa AddEdge
  */
 Edge::Edge(pNode from, pNode to)
@@ -60,17 +64,15 @@ Edge::Edge(pNode from, pNode to)
     // graph must be defined
     assert(pg);
 
-    // give edge uniq number in this graph
-    m_id = pg->next_edge_id;
-
-    // update edge id counter
-    pg->next_edge_id++;
 
     // set graph of edge
     m_graph = pg;
 
     if (from->id() == to->id()) {
         // this is a self-edge and not in the edges list
+
+	// self edges do not need uniq id
+	m_id = -1;
 
         // update number of edges in this graph
         pg->m_total_selfedges_num++;
@@ -84,13 +86,19 @@ Edge::Edge(pNode from, pNode to)
     } else {
         // regular edge
 
+	// give edge uniq number in this graph
+	m_id = pg->next_edge_id;
+
+	// update edge id counter
+	pg->next_edge_id++;
+
         // update number of edges in this graph
         pg->m_total_edges_num++;
 
         // push on edges list
         pg->m_edges_list.push_back(this);
 
-        // add edge to outgoing edges ot from node
+        // add edge to outgoing edges of from node
         from->m_out_edges_list.push_back(this);
 
         // add edge to incoming edges of to node

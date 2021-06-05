@@ -55,6 +55,7 @@ class Edge {
 
     /**
      * uniq edge number in this graph
+     * self-edges have fixed id set to -1
      */
     int m_id;
 

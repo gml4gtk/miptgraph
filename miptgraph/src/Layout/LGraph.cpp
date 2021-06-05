@@ -735,6 +735,9 @@ LGraph::AddEdge(pNode from, pNode to)
     return new_edge;
 }
 
+/**
+ * find node with given id number
+ */
 pLNode LGraph::FindNode(int num)
 {
     pLNode curnode;
@@ -750,6 +753,9 @@ pLNode LGraph::FindNode(int num)
     return (NULL);
 }
 
+/**
+ * find edge with given id number
+ */
 pLEdge LGraph::FindEdge(int num)
 {
     pLEdge curedge;

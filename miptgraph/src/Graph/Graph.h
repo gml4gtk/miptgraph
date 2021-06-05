@@ -185,7 +185,7 @@ public:
     /**
      * get max. edge id possible
      */
-    int maxedgeid () { return next_node_id; }
+    int maxedgeid () { return next_edge_id; }
 
     /**
      * get number of real nodes in graph without dummy nodes

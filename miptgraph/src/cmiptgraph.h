@@ -112,6 +112,9 @@ extern void *cmipt_newedge (void *g, void *f, void *t);
 /* find edge */
 extern void* cmipt_findedge(void* g, int num);
 
+/* find next edge */
+extern void* cmipt_nextedge(void* g, int num);
+
 /* get from node of edge */
 extern int cmipt_edgefromnode (void *e);
 

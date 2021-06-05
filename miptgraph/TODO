@@ -55,8 +55,10 @@
 - qvge running with this layouter instead of ogdf v 043 in qvge-gml or v 05.5
 - ogdf placement algo
 - fixed: updated node median values as ogdf does it
-- edge line drawing to fix
-
+- fixed: edge line drawing using edge id
+- findnode, findedge to use splay tree
+- edge attribs handling as color, linestyle
+- fixed: selfedges do not need edge number, they now have id -1
 
 
 

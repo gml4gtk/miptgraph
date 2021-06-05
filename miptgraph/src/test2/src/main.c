@@ -1059,6 +1059,7 @@ static void on_top_level_window_drawingarea1_expose_event_nodes(cairo_t * crp)
 	int xpos = 0;
 	int ypos = 0;
 	int dummy = 0;
+	int se = 0;
 	int xsize = 0;
 	int ysize = 0;
 	int x0 = 0;
@@ -1075,6 +1076,8 @@ static void on_top_level_window_drawingarea1_expose_event_nodes(cairo_t * crp)
 				/* shouldnothappen */
 				dn->dummy = 1;
 			}
+			/* after node drawing, this amount of self-edges at this node must be in drawing, see dagre */
+			se = dn->selfedges;
 			xpos = dn->xpos;
 			ypos = dn->ypos;
 			dummy = dn->dummy;
