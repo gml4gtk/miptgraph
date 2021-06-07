@@ -56,9 +56,12 @@
 - ogdf placement algo
 - fixed: updated node median values as ogdf does it
 - fixed: edge line drawing using edge id
-- findnode, findedge to use splay tree
-- edge attribs handling as color, linestyle
+- findnode, findedge search
+- fixed: edge attribs handling as color, linestyle
 - fixed: selfedges do not need edge number, they now have id -1
+- fixed: median value of node
+- layout of fine-tune gml is wrong for the start nodes positions
+- fixed: added bool if edge is a inner edge
 
 
 

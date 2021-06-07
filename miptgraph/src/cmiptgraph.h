@@ -107,13 +107,10 @@ extern int cmipt_nodenselfedges (void *n);
 extern void* cmipt_findnode(void* g, int num);
 
 /* new edge */
-extern void *cmipt_newedge (void *g, void *f, void *t);
+extern void *cmipt_newedge (void *g, void *f, void *t, void *e);
 
 /* find edge */
 extern void* cmipt_findedge(void* g, int num);
-
-/* find next edge */
-extern void* cmipt_nextedge(void* g, int num);
 
 /* get from node of edge */
 extern int cmipt_edgefromnode (void *e);
@@ -129,6 +126,9 @@ extern int cmipt_edgeisrev (void *e);
 
 /* return if edge is split */
 extern int cmipt_edgeissplit (void *e);
+
+/* return usrdata of edge */
+extern void *cmipt_edgeusrdata (void *e);
 
 
 /* run layout */

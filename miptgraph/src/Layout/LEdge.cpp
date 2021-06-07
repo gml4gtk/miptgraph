@@ -40,6 +40,7 @@ void LEdge::BreakLongEdge()
 {
     // Difference between rank of the "in" and "out"  nodes
     int n = ((pLNode)to())->Rank() - ((pLNode)from())->Rank();
+    void* ud = NULL;
 
     // get original end points of this edge
     pLNode ofrom = (pLNode)from();
@@ -66,6 +67,7 @@ void LEdge::BreakLongEdge()
     // start splitting at the head node
     pLNode prevnode = ((pLNode)from());
     pLNode newnode;
+    ud = usrdata;
 
     // copy reversed edge status
     bool is_reverse = reverse;
@@ -77,7 +79,7 @@ void LEdge::BreakLongEdge()
         // create dummy node for connection
         newnode = (pLNode)graph()->AddNode();
         // this is a dummy node
-        newnode->dummy = true;
+        newnode->SetDummy();
         // set original end points of edge where this dummynode belongs to
         newnode->origfrom = ofrom;
         newnode->origto = oto;
@@ -89,7 +91,7 @@ void LEdge::BreakLongEdge()
         // set rank of dummy node
         newnode->rank = (((pLNode)from())->Rank()) + i;
         // add new edge to dummy node
-        new_edge = graph()->AddEdge(prevnode, newnode);
+        new_edge = graph()->AddEdge(prevnode, newnode, ud);
         // this is a split edge
         ((pLEdge)(new_edge))->SetComposite(true);
         // copy reversed status of orig edge
@@ -99,7 +101,7 @@ void LEdge::BreakLongEdge()
     }
 
     // create last edge
-    new_edge = graph()->AddEdge(prevnode, to());
+    new_edge = graph()->AddEdge(prevnode, to(), ud);
     new_edge->SetReverse(is_reverse);
     ((pLEdge)new_edge)->SetComposite(true);
 

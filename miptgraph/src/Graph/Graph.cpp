@@ -128,10 +128,12 @@ void Graph::AddDummyNode()
 
 /**
  * create edge
+ * this will also set if edge is inner edge
  */
-pEdge Graph::AddEdge(pNode from, pNode to)
+pEdge Graph::AddEdge(pNode from, pNode to, void* e)
 {
     pEdge new_edge = new Edge(from, to);
+    new_edge->usrdata = e;
     return new_edge;
 }
 

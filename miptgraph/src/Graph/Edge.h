@@ -75,7 +75,17 @@ protected:
      */
     bool hedge;
 
+    /**
+     * flags is true if both nodes are dummy nodes
+     */
+    bool inner;
+
 public:
+
+    /**
+     * set optional usr data
+     */
+    void *usrdata;
 
     /**
      * Get reversed direction of edge
@@ -84,6 +94,15 @@ public:
     bool IsReverse()
     {
         return reverse;
+    }
+
+    /**
+     * is inner edge
+     * \return treu if both nodes are dummy nodes
+     */
+    bool IsInner()
+    {
+	return inner;
     }
 
     /**

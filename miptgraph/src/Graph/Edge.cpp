@@ -64,15 +64,14 @@ Edge::Edge(pNode from, pNode to)
     // graph must be defined
     assert(pg);
 
-
     // set graph of edge
     m_graph = pg;
 
     if (from->id() == to->id()) {
         // this is a self-edge and not in the edges list
 
-	// self edges do not need uniq id
-	m_id = -1;
+        // self edges do not need uniq id
+        m_id = -1;
 
         // update number of edges in this graph
         pg->m_total_selfedges_num++;
@@ -86,11 +85,11 @@ Edge::Edge(pNode from, pNode to)
     } else {
         // regular edge
 
-	// give edge uniq number in this graph
-	m_id = pg->next_edge_id;
+        // give edge uniq number in this graph
+        m_id = pg->next_edge_id;
 
-	// update edge id counter
-	pg->next_edge_id++;
+        // update edge id counter
+        pg->next_edge_id++;
 
         // update number of edges in this graph
         pg->m_total_edges_num++;
@@ -103,6 +102,13 @@ Edge::Edge(pNode from, pNode to)
 
         // add edge to incoming edges of to node
         to->m_in_edges_list.push_back(this);
+
+        // check if this is inner edge
+        if (from->IsDummy() == true && to->IsDummy() == true) {
+            inner = true;
+        } else {
+            inner = false;
+        }
     }
 
     return;

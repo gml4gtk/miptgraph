@@ -19,7 +19,6 @@
 #  */
 #
 
-#
 # dirs with makefile.am
 SUBDIRS = . Graph Layout test1
 
@@ -28,5 +27,4 @@ cleaner:
 	rm -v -f Makefile
 	rm -v -f Makefile.in
 
-
-
+# end.

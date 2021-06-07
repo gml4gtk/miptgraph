@@ -287,7 +287,7 @@ public:
      * \param to   - end node of the edge
      * \sa AddNode, DeleteNode, DeleteEdge
      */
-    virtual pEdge AddEdge(pNode from, pNode to);
+    virtual pEdge AddEdge(pNode from, pNode to, void *e);
 
     /**
      * Delete node from the graph and all  its incoming and outgoing edges,

@@ -33,17 +33,24 @@
 #ifndef LAYOUT_H
 #define LAYOUT_H
 
+#include <iostream>
+#include <algorithm>
+#include <utility>
+
 #include "../Graph/predecls.h"
+
 
 class LGraph;
 class LNode;
 class LEdge;
 class Ordering;
 
+
 typedef LGraph* pLGraph;
 typedef LNode*  pLNode;
 typedef LEdge*  pLEdge;
 
+#include "splay-tree.h"
 #include "LNode.h"
 #include "LEdge.h"
 #include "LGraph.h"

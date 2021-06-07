@@ -179,6 +179,8 @@ void LGraph::Layout(unsigned long int number_of_iterations,
         printf("Final Crossings: %d\n", countCrossing(order));
     }
 
+    nodesplay = splay_tree_new(splay_tree_compare_ints, NULL, NULL);
+
     return;
 }
 
@@ -273,11 +275,14 @@ void LGraph::FindLongEdges(list<pEdge>& LongEdges)
         // check horizontal edge
         if (delta == 0) {
             nhedges++;
+            // this is a horizontal edge
             (*edge_iter)->SetHedge(true);
         } else {
             (*edge_iter)->SetHedge(false);
         }
     }
+
+    // set count of horizontal edges
     Set_Nhoredges(nhedges);
 
     return;
@@ -599,7 +604,7 @@ void LGraph::InitCoordinates(Ordering* order,
         // scan nodes at this level
         for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
             // adjust xsize depending on node type
-            if (order->order_vector[rank][i]->dummy == false) {
+            if (order->order_vector[rank][i]->IsDummy() == false) {
                 // regular node
                 wides[rank] += normalwide;
             } else {
@@ -622,7 +627,7 @@ void LGraph::InitCoordinates(Ordering* order,
             if (i == 0) {
                 // put first node
                 order->order_vector[rank][i]->x = (maxwide / 2) - (wides[rank] / 2) + 20;
-            } else if (order->order_vector[rank][i]->dummy == false) {
+            } else if (order->order_vector[rank][i]->IsDummy() == false) {
                 // regular node
                 order->order_vector[rank][i]->x = order->order_vector[rank][i - 1]->x + normalwide;
             } else {
@@ -729,9 +734,10 @@ LGraph::AddNode()
  * add edge between from and to nodes
  */
 pLEdge
-LGraph::AddEdge(pNode from, pNode to)
+LGraph::AddEdge(pNode from, pNode to, void* usrdata)
 {
     pLEdge new_edge = new LEdge((pLNode)from, (pLNode)to);
+    new_edge->usrdata = usrdata;
     return new_edge;
 }
 

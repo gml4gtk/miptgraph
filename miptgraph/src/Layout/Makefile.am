@@ -28,6 +28,7 @@ libmiptgraphlayout_la_SOURCES = \
 	LNode.cpp \
 	Ordering.cpp \
 	Cmipt.cpp \
+	Splay-Tree.cpp \
 	LEdge.h \
 	LGraph.h \
 	LNode.h \
@@ -63,3 +64,5 @@ cleaner:
 	rm -v -f *.scallgraph.gv
 	rm -v -f *.output
 	rm -v -f *.errors
+
+# end.

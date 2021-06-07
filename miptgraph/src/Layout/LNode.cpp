@@ -84,16 +84,22 @@ int LNode::Rank()
 }
 
 /**
- * return median barycenter value of node
+ * return median barycenter value of node which is middle point of connected edges
  * \param direction 1 or 0 MEDIAN_IN or MEDIAN_OUT checking in/out edges at node
  * if no edges at node returns 0 or -1
- * if edge count is not a multiple of 2, return pos of middle edge point
+ * this assumes list is sorted on position
+ * the pos values are integer numbers with rlative horizontal position
+ * the array with pos numbers is 0...n-1 where n is number of entries
+ * if edge count is not a multiple of 2, return pos of middle edge points
  * if edge count is exactly 2 use average of pos 0 and 1
  * if edge count is exactly 1 use pos 0
  * if multiple of 2 use average
  * to change these calculations does change the layout
  * other ways are to get average of in+out edges
  * updated with how ogdf does it
+ * also possible to use the average barycenrer
+ * also possible to use the most frequent value in the data set
+ * this value determines the layout and other variantions are possible
  */
 double
 LNode::Median(Ordering order, bool direction)
@@ -116,13 +122,13 @@ LNode::Median(Ordering order, bool direction)
     int size = list.size();
 
     // mid point
+    // at size 5, 5/2 is 2.5, select pos 2 from 0...4
     int m = size / 2;
 
-    // if no edges, return -1
+    // if no edges, orig: return -1
     if (size == 0) {
-	    /* orig return -1 */
         // ogdf return 0 should be better
-        return 0; // -1;
+        return 0;
     }
 
     // at exactly 1 use pos 0
@@ -133,44 +139,36 @@ LNode::Median(Ordering order, bool direction)
 
     // at exactly 2 use average of pos 0 and 1
     if (size == 2) {
-	if (0) {
-	    /* orig */
-    	    median = ((double)list[0] + (double)list[1]) / 2.;
-        } else {
-	    /* this does ogdf */
-	    median = ((double)list[0] + (double)list[1]);
-	}
-	return median;
-    }
-
-    // 1 mod 2 is 1
-    // 2 mod 2 is 0
-    // 3 mod 2 is 1
-    // 4 mod 2 is 0
-
-    // if multiple of 2, return pos of middle edge point
-    if ((size % 2) == 1) {
-	if (0) {
-	    /* orig */
-	    median = (double)list[m];
-        } else {
-	    /* this is used in ogdf */
-	    median = 2*(double)list[m];
-	}
+        median = (((double)list[0] + (double)list[1]) / 2.0);
+        // this does ogdf
+        // median = ((double)list[0] + (double)list[1]);
         return median;
     }
 
-    // if no multiple of 2 and this assumes list is sorted on position
-    if (0) {
-	/* orig */
-    double left = (double)list[m - 1] - (double)list[0];
-    double right = (double)list[size - 1] - (double)list[m];
+    // 1 mod 2 is 1
+    // 2 mod 2 is 0 even
+    // 3 mod 2 is 1 odd
+    // 4 mod 2 is 0 even
 
-    median = (double)((double)list[m - 1] * right + (double)list[m] * left) / (left + right);
-    } else {
-	/* this is used in ogdf */
-	median = (double)list[m] + (double)list[m+1];
+    // if odd return pos of middle edge point
+    if ((size % 2) == 1) {
+        median = (double)list[m];
+        // this is used in ogdf
+        // median = 2*(double)list[m];
+        return median;
     }
+
+    // if multiple of 2 and this assumes list is sorted on position
+    // orig
+    // double left = (double)list[m - 1] - (double)list[0];
+    // double right = (double)list[size - 1] - (double)list[m];
+    // median = (double)((double)list[m - 1] * right + (double)list[m] * left) / (left + right);
+    // this is used in ogdf
+    // median = (double)list[m] + (double)list[m+1];
+    // this is in the math book (x[n/2]+x[n/2+1])/2
+    // but here the data is 0...n-1 and not 1...n
+    median = (((double)list[m - 1] + (double)list[m]) / 2.0);
+
     return median;
 }
 

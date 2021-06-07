@@ -33,6 +33,7 @@
 #ifndef LAYOUT_GRAPH_H
 #define LAYOUT_GRAPH_H
 
+
 /**
  * Graph with Layout methods
  * Includes ranking, median and transposition heuristic
@@ -64,6 +65,11 @@ private:
 public:
 
     /**
+     * splay with node id and node
+     */
+    splay_tree nodesplay;
+
+    /**
      * create graph
      */
     LGraph()
@@ -72,6 +78,11 @@ public:
 	m_nstarter_num = 0;
 	layouted = false;
         order = NULL;
+    }
+
+    ~LGraph()
+    {
+	nodesplay = splay_tree_delete (nodesplay);
     }
 
     /**
@@ -173,7 +184,7 @@ public:
     /**
      * add edge
      */
-    virtual pLEdge AddEdge(pNode from, pNode to);
+    virtual pLEdge AddEdge(pNode from, pNode to, void *usrdata);
 
     /**
      * free node

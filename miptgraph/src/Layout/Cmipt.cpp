@@ -331,7 +331,7 @@ extern "C" void* cmipt_findnode(void* g, int num)
 }
 
 /* new edge */
-extern "C" void* cmipt_newedge(void* g, void* f, void* t)
+extern "C" void* cmipt_newedge(void* g, void* f, void* t, void* usrdata)
 {
     void* ret = NULL;
     pLGraph pg = NULL;
@@ -342,7 +342,7 @@ extern "C" void* cmipt_newedge(void* g, void* f, void* t)
         pg = (pLGraph)g;
         pf = (pLNode)f;
         pt = (pLNode)t;
-        e = pg->AddEdge(pf, pt);
+        e = pg->AddEdge(pf, pt, usrdata);
         ret = (void*)e;
     }
     return (ret);
@@ -434,6 +434,18 @@ extern "C" int cmipt_edgeissplit(void* e)
         } else {
             ret = 0;
         }
+    }
+    return (ret);
+}
+
+/* return usrdata of edge or NULL */
+extern "C" void* cmipt_edgeusrdata(void* e)
+{
+    pLEdge p = NULL;
+    void* ret = NULL;
+    if (e) {
+        p = (pLEdge)e;
+        ret = p->usrdata;
     }
     return (ret);
 }

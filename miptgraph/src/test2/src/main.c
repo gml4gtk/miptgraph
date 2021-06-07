@@ -130,7 +130,7 @@ static int bgcg = 0xff;
 static int bgcb = 0xff;
 
 /* debug 0,1,2 */
-static int option_gdebug = 2;
+static int option_gdebug = 0;
 
 /* last open/save dir */
 static char *lastopendir = NULL;
@@ -673,7 +673,7 @@ static void do_layout_all_copyto(struct usrgraph *g)
 				fn = uniqnode_gid(e->fromgmlid);
 				tn = uniqnode_gid(e->togmlid);
 				if (fn && tn) {
-					ee = cmipt_newedge(g->lg, fn->ln, tn->ln);
+					ee = cmipt_newedge(g->lg, fn->ln, tn->ln, (void *)e);
 					e->le = ee;
 				}
 				e = e->next;
@@ -707,6 +707,10 @@ static void do_layout_all_copyfrom(struct usrgraph *g)
 	int hor = 0;
 	int rev = 0;
 	int split = 0;
+	void *ud = NULL;
+	int ecolor = 0;
+	char *elabel = NULL;
+	struct usredge *ue = NULL;
 	if (g == NULL) {
 		return;
 	}
@@ -785,6 +789,16 @@ static void do_layout_all_copyfrom(struct usrgraph *g)
 				tln = cmipt_edgetonode(ret);
 				hor = cmipt_edgeishor(ret);
 				rev = cmipt_edgeisrev(ret);
+				ud = cmipt_edgeusrdata(ret);
+				if (ud) {
+					ue = (struct usredge *)ud;
+					ecolor = ue->fillcolor;
+					elabel = ue->elabel;
+				} else {
+					/* black edge color */
+					ecolor = 0;
+					elabel = NULL;
+				}
 				split = cmipt_edgeissplit(ret);
 				fn = uniqdrawnode_lid(fln);
 				tn = uniqdrawnode_lid(tln);
@@ -796,6 +810,8 @@ static void do_layout_all_copyfrom(struct usrgraph *g)
 					en->split = split;
 					en->fn = fn;
 					en->tn = tn;
+					en->ecolor = ecolor;
+					en->elabel = elabel;
 					if (g->drawedgelist == NULL) {
 						g->drawedgelist = en;
 						g->drawedgelistend = en;
@@ -847,7 +863,7 @@ static void do_layout_all(struct usrgraph *g)
 	}
 	do_layout_all_copyto(g);
 	/* run layout */
-	cmipt_layout(g->lg, 10, 1, 10, 1);
+	cmipt_layout(g->lg, 10, 1, 10, /* debug 1 */ 0);
 	do_layout_all_copyfrom(g);
 
 	return;
@@ -1078,6 +1094,8 @@ static void on_top_level_window_drawingarea1_expose_event_nodes(cairo_t * crp)
 			}
 			/* after node drawing, this amount of self-edges at this node must be in drawing, see dagre */
 			se = dn->selfedges;
+			if (se) {	/* todo */
+			}
 			xpos = dn->xpos;
 			ypos = dn->ypos;
 			dummy = dn->dummy;
@@ -1169,6 +1187,8 @@ static void on_top_level_window_drawingarea1_expose_event_edges(cairo_t * crp)
 
 			/* thickness of edge line */
 			cairo_set_line_width(crp, 0.9 /* DEFAULT_EDGE_THICKNESS */ );
+
+			ecolor = de->ecolor;
 
 			/* black or colored line */
 			r = (ecolor & 0x00ff0000) >> 16;
