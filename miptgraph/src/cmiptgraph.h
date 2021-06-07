@@ -130,9 +130,8 @@ extern int cmipt_edgeissplit (void *e);
 /* return usrdata of edge */
 extern void *cmipt_edgeusrdata (void *e);
 
-
 /* run layout */
-extern void cmipt_layout (void *g, int iter, int transpose, int iter2, int debug);
+extern void cmipt_layout (void *g, int iter, int transpose, int iter2, int debug, int usebary);
 
 #ifdef __cplusplus
 }

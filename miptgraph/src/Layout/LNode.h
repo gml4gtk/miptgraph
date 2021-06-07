@@ -69,6 +69,11 @@ private:
     bool we_were_here;
 
     /**
+     * if true this is a dummy node
+     */
+    bool dummy;
+
+    /**
      * x final Coordinate using simple placement for drawing or -1 if undefined
      */
     double x;
@@ -135,6 +140,10 @@ public:
      */
     bool entry;
 
+    /**
+     * return true if this is a dummy node
+     */
+    bool IsDummy() { return dummy; }
 
     /**
      * return final x coord
@@ -217,6 +226,7 @@ public:
 	pos = -1; // no x pos
         median = 0; // no barycenter value
         we_were_here = false;
+        dummy = false; // this is a real node
 	entry = false; // not startnode
 	origfrom = NULL; // edge point
 	origto = NULL; // edge point

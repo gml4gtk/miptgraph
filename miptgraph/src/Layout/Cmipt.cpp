@@ -451,7 +451,7 @@ extern "C" void* cmipt_edgeusrdata(void* e)
 }
 
 /* run layout */
-extern "C" void cmipt_layout(void* g, int iter, int transpose, int iter2, int debug)
+extern "C" void cmipt_layout(void* g, int iter, int transpose, int iter2, int debug, int bary)
 {
     bool dotr = false;
     bool dodb = false;

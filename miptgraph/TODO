@@ -62,6 +62,9 @@
 - fixed: median value of node
 - layout of fine-tune gml is wrong for the start nodes positions
 - fixed: added bool if edge is a inner edge
+- fixed: added barycenter value calculation of a node
+- fixed: added use barycenter values in layout routine
+
 
 
 

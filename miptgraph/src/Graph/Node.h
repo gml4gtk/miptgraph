@@ -74,11 +74,6 @@ class Node {
      */
     int m_nysize_num;
 
-    /**
-     * if true this is a dummy node
-     */
-    bool dummy;
-
 protected:
     Node(pGraph graph);
 
@@ -90,15 +85,9 @@ public:
     int id() { return m_id; }
 
     /**
-     * return true if this is a dummy node
+     * get node with id
      */
-    bool IsDummy() { return dummy; }
-
-    /**
-     * set this is a dummy node
-     */
-    void SetDummy() { dummy = true; }
-
+    
     /**
      * get nuber of self-edgs at this node
      */

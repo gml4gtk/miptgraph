@@ -79,7 +79,7 @@ void LEdge::BreakLongEdge()
         // create dummy node for connection
         newnode = (pLNode)graph()->AddNode();
         // this is a dummy node
-        newnode->SetDummy();
+        newnode->dummy = true;
         // set original end points of edge where this dummynode belongs to
         newnode->origfrom = ofrom;
         newnode->origto = oto;

@@ -67,7 +67,12 @@ public:
     /**
      * splay with node id and node
      */
-    splay_tree nodesplay;
+    splay_tree nodesplay = (splay_tree)0;
+
+    /**
+     * splay with edge id and edge
+     */
+    splay_tree edgesplay = (splay_tree)0;
 
     /**
      * create graph
@@ -77,12 +82,15 @@ public:
         maxrank = 0;
 	m_nstarter_num = 0;
 	layouted = false;
-        order = NULL;
+        order = (Ordering *)0;
+	nodesplay = (splay_tree)0;
+	edgesplay = (splay_tree)0;
     }
 
     ~LGraph()
     {
 	nodesplay = splay_tree_delete (nodesplay);
+	edgesplay = splay_tree_delete (edgesplay);
     }
 
     /**

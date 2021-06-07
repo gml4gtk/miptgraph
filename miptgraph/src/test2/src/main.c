@@ -863,7 +863,7 @@ static void do_layout_all(struct usrgraph *g)
 	}
 	do_layout_all_copyto(g);
 	/* run layout */
-	cmipt_layout(g->lg, 10, 1, 10, /* debug 1 */ 0);
+	cmipt_layout(g->lg, 10, 1, 10, /* debug 1 */ 0, /* use barycenter values */ 0);
 	do_layout_all_copyfrom(g);
 
 	return;

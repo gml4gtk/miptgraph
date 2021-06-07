@@ -102,13 +102,6 @@ Edge::Edge(pNode from, pNode to)
 
         // add edge to incoming edges of to node
         to->m_in_edges_list.push_back(this);
-
-        // check if this is inner edge
-        if (from->IsDummy() == true && to->IsDummy() == true) {
-            inner = true;
-        } else {
-            inner = false;
-        }
     }
 
     return;
