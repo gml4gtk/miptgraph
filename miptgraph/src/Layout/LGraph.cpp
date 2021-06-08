@@ -204,11 +204,14 @@ void LGraph::Layout(unsigned long int number_of_iterations,
         splay_tree_insert(edgesplay, (splay_tree_key)((pLEdge)(*edge_iter))->id(), (splay_tree_value)((pLEdge)(*edge_iter)));
     }
 
+    // get statistics too and count crossings
+    curc = FinalcountCrossing(order);
+
     // this prints the node order in the levels
     if (verbose == true) {
         printf("Graph has %u starter nodes\n", m_nstarter_num);
         order->Dump();
-        printf("Final Crossings: %d\n", countCrossing(order));
+        printf("Final Crossings: %d\n", curc);
     }
 
     return;
@@ -459,6 +462,33 @@ int LGraph::countCrossing(Ordering* order)
 }
 
 /**
+ * Count edge crossings of the whole graph
+ */
+int LGraph::FinalcountCrossing(Ordering* order)
+{
+    int crossing = 0; // total number of crossings returned
+    int rankcrossing = 0; // crossings at this rank level
+    int maxcrossing = 0; // max. crossings at certain level
+    // int maxcrossingrank = 0; level with most crossings
+
+    // if only single nodes
+    if (maxrank == 0) {
+        return 0;
+    }
+
+    // count crossings at every level
+    for (unsigned int rank = 0; rank < maxrank - 1; rank++) {
+        rankcrossing = FinalcountCrossingOnRank(order, rank);
+        if (rankcrossing > maxcrossing) {
+            maxcrossing = rankcrossing;
+            // maxcrossingrank = rank;
+        }
+        crossing += rankcrossing;
+    }
+    return crossing;
+}
+
+/**
  * Count edge crossings between rank level rank and rank+1
  */
 int LGraph::countCrossingOnRank(Ordering* order, int rank)
@@ -492,6 +522,74 @@ int LGraph::countCrossingOnRank(Ordering* order, int rank)
             if ((cmp1 > 0 && cmp2 < 0) || (cmp1 < 0 && cmp2 > 0)) {
                 // edges did cross
                 crossing++;
+            } else {
+                // edges did not cross
+            }
+        }
+    }
+
+    return crossing;
+}
+
+/**
+ * Count edge crossings between rank level rank and rank+1
+ */
+int LGraph::FinalcountCrossingOnRank(Ordering* order, int rank)
+{
+    int crossing = 0;
+    pLEdge curedgei = NULL;
+    pLEdge curedgej = NULL;
+
+    // Making list of all outgoing edges between rank and rank+1 level
+    vector<pLEdge> edge_list;
+
+    // scan node at this rank level
+    for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
+        // select the outgoing edges at a node
+        for (list<pEdge>::iterator edge_iter = order->order_vector[rank][i]->out_edges_list()->begin();
+             edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
+             edge_iter++) {
+            edge_list.push_back((pLEdge)(*edge_iter));
+            ((pLEdge)(*edge_iter))->iicross = 0;
+            ((pLEdge)(*edge_iter))->ircross = 0;
+            ((pLEdge)(*edge_iter))->rrcross = 0;
+        }
+    }
+
+    // scan the edges in just created edge list
+    for (unsigned int i = 0; i < edge_list.size(); i++) {
+        // scan the next edges after current edge
+        curedgei = (pLEdge)edge_list[i];
+        for (unsigned int j = i + 1; j < edge_list.size(); j++) {
+            curedgej = (pLEdge)edge_list[j];
+            // Criterion of crossing edge_list[i] and edge_list[j]
+            // check relative position of to nodes in edge
+            int cmp1 = ((pLNode)edge_list[i]->to())->pos - ((pLNode)edge_list[j]->to())->pos;
+            // check relative position of from nodes in edge
+            int cmp2 = ((pLNode)edge_list[i]->from())->pos - ((pLNode)edge_list[j]->from())->pos;
+
+            // cmp1 is delto to pos, cmp2 is delta from pos
+            if ((cmp1 > 0 && cmp2 < 0) || (cmp1 < 0 && cmp2 > 0)) {
+                // edges did cross
+                crossing++;
+                // set type of edge crossing
+                if ((curedgei->inner == true) || (curedgej->inner == true)) {
+
+                    if ((curedgei->inner == true) && (curedgej->inner == true)) {
+                        curedgei->iicross++;
+                        curedgej->iicross++;
+                    } else {
+                        curedgei->ircross++;
+                        curedgej->ircross++;
+                    }
+
+                } else {
+                    // both are not inner edges
+                    curedgei->rrcross++;
+                    curedgej->rrcross++;
+                }
+            } else {
+                // edges did not cross
             }
         }
     }

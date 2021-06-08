@@ -60,12 +60,17 @@
 - fixed: edge attribs handling as color, linestyle
 - fixed: selfedges do not need edge number, they now have id -1
 - fixed: median value of node
-- layout of fine-tune gml is wrong for the start nodes positions
+- fiexed: layout of fine-tune gml is wrong for the start nodes positions because error in median()
 - fixed: added bool if edge is a inner edge
 - fixed: added barycenter value calculation of a node
 - fixed: added use barycenter values in layout routine
 - fixed: added skip list algorithm
 - fixed: find node/edge
+- fixed: type of edge crossing indicator
+- fixed: inner edge type indicator added
+- fixed: median node pos at no edges
+- fixed: barycenter of node at no edges
+- edges_list in count crossings to clear or otherwise
 
 
 

@@ -49,6 +49,26 @@ private:
      */
     bool composite;
 
+    /**
+     * set to true if this is a inner edge between two dummy nodes
+     */
+    bool inner;
+
+    /**
+     * counter if this inner edge crosses with another inner edge
+     */
+    int iicross;
+
+    /**
+     * counter if this inner edge crosses with another not-inner edge
+     */
+    int ircross;
+
+    /**
+     * counter if this not-inner edge crosses with another not-inner edge
+     */
+    int rrcross;
+
 public:
 
 
@@ -64,6 +84,10 @@ public:
         composite = false;
         reverse = false;
 	hedge = false;
+	iicross = 0;
+	ircross = 0;
+	rrcross = 0;
+	inner = false;
     }
 
     virtual ~LEdge();

@@ -181,6 +181,16 @@ public:
     int countCrossingOnRank(Ordering* order, int rank);
 
     /**
+     * Calculate all edges crossings in the whole graph.
+     */
+    int FinalcountCrossing(Ordering* order);
+
+    /**
+     * Calculate all crossings between rank an rank+1.
+     */
+    int FinalcountCrossingOnRank(Ordering* order, int rank);
+
+    /**
      * The initial (horizontal)ordering.
      * Should be called after InitRank().
      */

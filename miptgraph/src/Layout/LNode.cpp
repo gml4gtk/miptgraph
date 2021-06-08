@@ -92,9 +92,10 @@ int LNode::Rank()
  * the pos values are integer numbers with rlative horizontal position
  * the array with pos numbers is 0...n-1 where n is number of entries
  * if edge count is not a multiple of 2, return pos of middle edge points
+ * if edge count is 0 return relative position of node in this
  * if edge count is exactly 2 use average of pos 0 and 1
  * if edge count is exactly 1 use pos 0
- * if multiple of 2 use average
+ * if edge count is multiple of 2 use average
  * to change these calculations does change the layout
  * other ways are to get average of in+out edges
  * updated with how ogdf does it
@@ -109,7 +110,7 @@ LNode::Median(Ordering order, bool direction, bool bary)
     double sum = 0.0;
     int i = 0;
 
-    // get list with in or out going edges at node
+    // get list with in or out going edges at node in this
     if (direction == MEDIAN_IN) {
         list = order.AdjInPositions(this);
     } else {
@@ -130,8 +131,9 @@ LNode::Median(Ordering order, bool direction, bool bary)
 
     // if no edges, orig: return -1
     if (size == 0) {
-        // ogdf return 0 should be better
-        return 0;
+        // ogdf return 0
+        // return -1;
+	return this->getPos();
     }
 
     // at exactly 1 use pos 0
@@ -148,6 +150,7 @@ LNode::Median(Ordering order, bool direction, bool bary)
         return median;
     }
 
+    // barycenter average value with size number of edges
     if (bary == true) {
         for (i = 0; i < size; i++) {
             sum += (double)list[i];

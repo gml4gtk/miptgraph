@@ -96,6 +96,12 @@ void LEdge::BreakLongEdge()
         ((pLEdge)(new_edge))->SetComposite(true);
         // copy reversed status of orig edge
         new_edge->SetReverse(is_reverse);
+        // indicate this is a inner edge
+        if ((prevnode->dummy == true) && (newnode->dummy == true)) {
+            ((pLEdge)(new_edge))->inner = true;
+        } else {
+            ((pLEdge)(new_edge))->inner = true;
+        }
         // follow the chain
         prevnode = newnode;
     }
