@@ -29,6 +29,7 @@ libmiptgraphlayout_la_SOURCES = \
 	Ordering.cpp \
 	Cmipt.cpp \
 	Splay-Tree.cpp \
+	Skip-List.cpp \
 	LEdge.h \
 	LGraph.h \
 	LNode.h \
@@ -57,6 +58,7 @@ cleaner:
 	rm -v -f -r -d .deps
 	rm -v -f -r -d .libs
 	rm -v -f *.o
+	rm -v -f *.~
 	rm -v -f *.lo
 	rm -v -f *.la
 	rm -v -f Makefile

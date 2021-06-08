@@ -37,11 +37,13 @@
  * \param number_of_iterations how many times
  * \param do_transpose if true do phase-II
  * \param transpose_range how many nodes to swap
+ * \param verbose if true print messages
+ * \parm usebary if true use barycenter values
  */
 void LGraph::Layout(unsigned long int number_of_iterations,
     bool do_transpose,
     int transpose_range,
-    bool verbose)
+    bool verbose, bool usebary)
 {
     bool changed = false;
     int nsame = 0; // same crossings count
@@ -64,17 +66,10 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     }
 
     // clear db
-    nodesplay = splay_tree_delete (nodesplay);
-    edgesplay = splay_tree_delete (edgesplay);
-    nodesplay = splay_tree_new (splay_tree_compare_ints, (splay_tree_delete_key_fn)0, (splay_tree_delete_value_fn) 0);
-    edgesplay = splay_tree_new (splay_tree_compare_ints, (splay_tree_delete_key_fn)0, (splay_tree_delete_value_fn) 0);
-
-    // copy nodes in db
-    for (list<pNode>::iterator node_iter = nodes_list()->begin();
-         node_iter != nodes_list()->end();
-         node_iter++) {
-	splay_tree_insert (nodesplay, (splay_tree_key) ((LNode*)(*node_iter))->id(), (splay_tree_value) ((LNode*)(*node_iter)));
-    }
+    nodesplay = splay_tree_delete(nodesplay);
+    edgesplay = splay_tree_delete(edgesplay);
+    nodesplay = splay_tree_new(splay_tree_compare_ints, (splay_tree_delete_key_fn)0, (splay_tree_delete_value_fn)0);
+    edgesplay = splay_tree_new(splay_tree_compare_ints, (splay_tree_delete_key_fn)0, (splay_tree_delete_value_fn)0);
 
     // nothing to layout if there are no edges but there can be self-edges at nodes
     if (m_total_edges_num == 0) {
@@ -90,13 +85,20 @@ void LGraph::Layout(unsigned long int number_of_iterations,
         InitPos(order);
         // center graph and give nodes absolute node position
         InitCoordinates(order);
+
+        // copy nodes in db
+        for (list<pNode>::iterator node_iter = nodes_list()->begin();
+             node_iter != nodes_list()->end();
+             node_iter++) {
+            splay_tree_insert(nodesplay, (splay_tree_key)((LNode*)(*node_iter))->id(), (splay_tree_value)((LNode*)(*node_iter)));
+        }
+
         // there are zero crossings
         if (verbose == true) {
             printf("Graph has %u starter nodes and %d ranks\n", m_nstarter_num, (maxrank + 1));
             order->Dump();
             printf("Final Crossings: %d\n", countCrossing(order));
         }
-
 
         return;
     }
@@ -148,11 +150,12 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     // improve edge crossings
     for (unsigned int i = 0; i < number_of_iterations; i++) {
         // relative x position nodes on median value
-        status = WeightedMedianHeuristic(i, verbose);
+        status = WeightedMedianHeuristic(i, verbose, usebary);
         curc = countCrossing(order);
         if (curc == 0) {
             break;
         }
+        // true status if crossings did not change
         if (status == true) {
             if (curc < bestc) {
                 bestc = curc;
@@ -187,18 +190,25 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     // center graph and give nodes absolute node position
     InitCoordinates(order);
 
-    // this prints the node order in the levels
-    if (verbose == true) {
-        printf("Graph has %u starter nodes\n", m_nstarter_num);
-        order->Dump();
-        printf("Final Crossings: %d\n", countCrossing(order));
+    // copy nodes in db
+    for (list<pNode>::iterator node_iter = nodes_list()->begin();
+         node_iter != nodes_list()->end();
+         node_iter++) {
+        splay_tree_insert(nodesplay, (splay_tree_key)((LNode*)(*node_iter))->id(), (splay_tree_value)((LNode*)(*node_iter)));
     }
 
     // copy edges in db
     for (list<pEdge>::iterator edge_iter = edges_list()->begin();
          edge_iter != edges_list()->end();
          edge_iter++) {
-        splay_tree_insert (edgesplay, (splay_tree_key) ((pLEdge)(*edge_iter))->id(), (splay_tree_value) ((pLEdge)(*edge_iter)) );
+        splay_tree_insert(edgesplay, (splay_tree_key)((pLEdge)(*edge_iter))->id(), (splay_tree_value)((pLEdge)(*edge_iter)));
+    }
+
+    // this prints the node order in the levels
+    if (verbose == true) {
+        printf("Graph has %u starter nodes\n", m_nstarter_num);
+        order->Dump();
+        printf("Final Crossings: %d\n", countCrossing(order));
     }
 
     return;
@@ -347,8 +357,10 @@ bool ComparePointer(pLNode node1, pLNode node2)
  * then sort the new node order and check
  * if edge crossings reduced.
  * using stable_sort() keeps the elements with same value unchanged
+ * \param if usebary is true use barycenter values
+ * \return true if number of crossings did not change
  */
-bool LGraph::WeightedMedianHeuristic(int iter, bool verbose)
+bool LGraph::WeightedMedianHeuristic(int iter, bool verbose, bool usebary)
 {
     bool eq = false;
     Ordering temp_order;
@@ -361,7 +373,7 @@ bool LGraph::WeightedMedianHeuristic(int iter, bool verbose)
         for (unsigned int r = 1; r <= maxrank; r++) {
             // get median barycenter value for every node at this level
             for (unsigned int i = 0; i < temp_order.order_vector[r].size(); i++) {
-                temp_order.order_vector[r][i]->median = temp_order.order_vector[r][i]->Median(*order, MEDIAN_IN);
+                temp_order.order_vector[r][i]->median = temp_order.order_vector[r][i]->Median(*order, MEDIAN_IN, usebary);
             }
             // Sort temp_order using ComparePointer comparator on the barycenter value of the nodes
             stable_sort(temp_order.order_vector[r].begin(),
@@ -373,7 +385,7 @@ bool LGraph::WeightedMedianHeuristic(int iter, bool verbose)
         for (int r = maxrank - 1; r >= 0; r--) {
             // get median barycenter value for every node at this level
             for (unsigned int i = 0; i < temp_order.order_vector[r].size(); i++) {
-                temp_order.order_vector[r][i]->median = temp_order.order_vector[r][i]->Median(*order, MEDIAN_OUT);
+                temp_order.order_vector[r][i]->median = temp_order.order_vector[r][i]->Median(*order, MEDIAN_OUT, usebary);
             }
             // Sort temp_order using ComparePointer comparator on the barycenter value of the nodes
             // use stable sort to keep equal values at same position
@@ -399,11 +411,13 @@ bool LGraph::WeightedMedianHeuristic(int iter, bool verbose)
     // different order can have same amount of edge crossings
     // using <= is needed to keep the layout moving
     // this must be <= to get best results of the barycenter
+    eq = false;
     if (cross_temp_order <= cross_order) {
         order->order_vector = temp_order.order_vector;
         if (verbose == true) {
             printf("%s(): edge crossings reduced from %d to %d\n", __func__, cross_order, cross_temp_order);
         }
+        // return true if did not change
         if (cross_order == cross_temp_order) {
             eq = true;
         }
@@ -763,17 +777,16 @@ LGraph::AddEdge(pNode from, pNode to, void* usrdata)
  */
 pLNode LGraph::FindNode(int num)
 {
-    pLNode curnode;
-    for (list<pNode>::iterator node_iter = nodes_list()->begin();
-         node_iter != nodes_list()->end();
-         node_iter++) {
-        // get current node
-        curnode = ((pLNode)(*node_iter));
-        if (curnode->id() == num) {
-            return (curnode);
-        }
+    pLNode curnode = NULL;
+    splay_tree_node spn = NULL;
+
+    spn = splay_tree_lookup(nodesplay, (splay_tree_key)num);
+
+    if (spn) {
+        curnode = (pLNode)spn->value;
     }
-    return (NULL);
+
+    return (curnode);
 }
 
 /**
@@ -781,17 +794,16 @@ pLNode LGraph::FindNode(int num)
  */
 pLEdge LGraph::FindEdge(int num)
 {
-    pLEdge curedge;
-    // scan all edges
-    for (list<pEdge>::iterator edge_iter = edges_list()->begin();
-         edge_iter != edges_list()->end();
-         edge_iter++) {
-        curedge = (pLEdge)(*edge_iter);
-        if (curedge->id() == num) {
-            return (curedge);
-        }
+    pLEdge curedge = NULL;
+    splay_tree_node spn = NULL;
+
+    spn = splay_tree_lookup(edgesplay, (splay_tree_key)num);
+
+    if (spn) {
+        curedge = (pLEdge)spn->value;
     }
-    return (NULL);
+
+    return (curedge);
 }
 
 /* end. */

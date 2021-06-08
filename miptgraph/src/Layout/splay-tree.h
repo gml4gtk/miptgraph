@@ -117,5 +117,8 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
+
+
 #endif				/* _SPLAY_TREE_H */
+
 /* end. */

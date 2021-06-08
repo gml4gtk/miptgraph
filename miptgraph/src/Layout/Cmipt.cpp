@@ -455,6 +455,7 @@ extern "C" void cmipt_layout(void* g, int iter, int transpose, int iter2, int de
 {
     bool dotr = false;
     bool dodb = false;
+    bool usebary = false;
     int itera = 0;
     int iterb = 0;
     pLGraph pg = NULL;
@@ -479,7 +480,12 @@ extern "C" void cmipt_layout(void* g, int iter, int transpose, int iter2, int de
     } else {
         dodb = false;
     }
-    pg->Layout(itera, dotr, iterb, dodb);
+    if (bary > 0) {
+        usebary = true;
+    } else {
+        usebary = false;
+    }
+    pg->Layout(itera, dotr, iterb, dodb, usebary);
     return;
 }
 

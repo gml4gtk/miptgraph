@@ -64,7 +64,8 @@
 - fixed: added bool if edge is a inner edge
 - fixed: added barycenter value calculation of a node
 - fixed: added use barycenter values in layout routine
-
+- fixed: added skip list algorithm
+- fixed: find node/edge
 
 
 

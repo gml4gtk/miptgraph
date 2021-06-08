@@ -114,7 +114,9 @@ public:
     void Layout(unsigned long int number_of_iterations = 3,
         bool do_transpose = true,
         int transpose_range = -1,
-	bool verbose = false);
+	bool verbose = false,
+	bool usebary = false
+	);
 
     /**
      * Init Rank value for each node.
@@ -159,7 +161,7 @@ public:
      * vertices on the previous rank. Then, the vertices in the rank are
      * sorted by their medians. returns true if did not changed.
     */
-    bool WeightedMedianHeuristic(int iter, bool verbose);
+    bool WeightedMedianHeuristic(int iter, bool verbose, bool usebary);
 
     /**
      * The transposition heuristic for reducing edge crossings.

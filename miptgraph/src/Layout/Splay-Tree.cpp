@@ -45,7 +45,7 @@ Boston, MA 02110-1301, USA.  */
      Algorithms.  Harper-Collins, Inc.  1991.  */
 
 /**
- * @file: Splay-Tree.c
+ * @file: Splay-Tree.cpp
  */
 
 #ifdef __cplusplus

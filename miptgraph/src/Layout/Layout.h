@@ -51,6 +51,7 @@ typedef LNode*  pLNode;
 typedef LEdge*  pLEdge;
 
 #include "splay-tree.h"
+#include "skip-list.h"
 #include "LNode.h"
 #include "LEdge.h"
 #include "LGraph.h"

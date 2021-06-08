@@ -86,6 +86,7 @@ int LNode::Rank()
 /**
  * return median barycenter value of node which is middle point of connected edges
  * \param direction 1 or 0 MEDIAN_IN or MEDIAN_OUT checking in/out edges at node
+ * \param bary if true return the barycenter value
  * if no edges at node returns 0 or -1
  * this assumes list is sorted on position
  * the pos values are integer numbers with rlative horizontal position
@@ -102,9 +103,11 @@ int LNode::Rank()
  * this value determines the layout and other variantions are possible
  */
 double
-LNode::Median(Ordering order, bool direction)
+LNode::Median(Ordering order, bool direction, bool bary)
 {
     vector<int> list;
+    double sum = 0.0;
+    int i = 0;
 
     // get list with in or out going edges at node
     if (direction == MEDIAN_IN) {
@@ -142,6 +145,14 @@ LNode::Median(Ordering order, bool direction)
         median = (((double)list[0] + (double)list[1]) / 2.0);
         // this does ogdf
         // median = ((double)list[0] + (double)list[1]);
+        return median;
+    }
+
+    if (bary == true) {
+        for (i = 0; i < size; i++) {
+            sum += (double)list[i];
+        }
+        median = (double)(sum / (double)size);
         return median;
     }
 

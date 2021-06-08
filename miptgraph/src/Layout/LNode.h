@@ -205,7 +205,7 @@ public:
      * If direction == true then funcrion calculate IN MEDIAN
      * if false then OUT MEDIAN
      */
-    double Median(Ordering order, bool direction);
+    double Median(Ordering order, bool direction, bool bary);
 
     /**
      * Return true if node is adjacent to this node
