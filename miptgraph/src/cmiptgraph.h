@@ -100,6 +100,12 @@ extern int cmipt_nodexpos (void *n);
 /* y pos of node */
 extern int cmipt_nodeypos (void *n);
 
+/* x pos of node */
+extern int cmipt_nodefxpos (void *n);
+
+/* y pos of node */
+extern int cmipt_nodefypos (void *n);
+
 /* number of selfedges at node */
 extern int cmipt_nodenselfedges (void *n);
 

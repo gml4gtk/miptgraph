@@ -40,13 +40,23 @@
  */
 class Ordering {
 private:
+
+    /**
+     * list of nodes at order
+     */
     vector<vector<pLNode>> order_vector;
+
 
 public:
     Ordering() {}
     ~Ordering() {}
 
     void Dump();
+
+    vector<int> m_crossings_num;
+    vector<int> m_iicrossings_num;
+    vector<int> m_ircrossings_num;
+    vector<int> m_rrcrossings_num;
 
     // The adj_position function returns an ordered array
     // of the present positions of the nodes adjacent to node.

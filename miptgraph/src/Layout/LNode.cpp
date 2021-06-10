@@ -133,7 +133,7 @@ LNode::Median(Ordering order, bool direction, bool bary)
     if (size == 0) {
         // ogdf return 0
         // return -1;
-	return this->getPos();
+        return this->getPos();
     }
 
     // at exactly 1 use pos 0

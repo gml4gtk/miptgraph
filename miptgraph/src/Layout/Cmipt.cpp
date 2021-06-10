@@ -306,6 +306,30 @@ extern "C" int cmipt_nodeypos(void* n)
     return (ret);
 }
 
+/* x pos of node */
+extern "C" int cmipt_nodefxpos(void* n)
+{
+    int ret = -1;
+    pLNode p = NULL;
+    if (n) {
+        p = (pLNode)n;
+        ret = (int)p->getXF();
+    }
+    return (ret);
+}
+
+/* y pos of node */
+extern "C" int cmipt_nodefypos(void* n)
+{
+    int ret = -1;
+    pLNode p = NULL;
+    if (n) {
+        p = (pLNode)n;
+        ret = (int)p->getYF();
+    }
+    return (ret);
+}
+
 /* number of selfedges at node */
 extern "C" int cmipt_nodenselfedges(void* n)
 {

@@ -71,6 +71,9 @@
 - fixed: median node pos at no edges
 - fixed: barycenter of node at no edges
 - edges_list in count crossings to clear or otherwise
+- fixed: inited second node (x,y)
+- fixed: crossing count info added to rank level data
+- fixed: printing detailed edge crossing info
 
 
 

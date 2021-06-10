@@ -66,5 +66,6 @@ cleaner:
 	rm -v -f *.scallgraph.gv
 	rm -v -f *.output
 	rm -v -f *.errors
+	rm -v -f *.warnings
 
 # end.

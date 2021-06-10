@@ -147,13 +147,17 @@ public:
     void CheckOrder(Ordering* order);
 
     /**
-     * Init coordiates for each node.
-     * \todo this should be flexible
+     * Init coordiates for each node
      */
     void InitCoordinates(Ordering* order,
         int normalwide = 20,
         int dummywide = 1,
         int vertical_size = 40);
+
+    /**
+     * set nodes at final (x,y) position in the graph
+     */
+    void FinalCoordinates(Ordering* order);
 
     /**
      * The weighted median heuristic for reducing edge crossings.
@@ -195,6 +199,7 @@ public:
      * Should be called after InitRank().
      */
     vector<vector<pLNode>> InitOrder();
+    vector<int> InitOrder2();
 
     /**
      * add real node

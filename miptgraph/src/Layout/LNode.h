@@ -74,22 +74,22 @@ private:
     bool dummy;
 
     /**
-     * x final Coordinate using simple placement for drawing or -1 if undefined
+     * x initial Coordinate using simple placement for drawing or -1 if undefined
      */
     double x;
 
     /**
-     * y final Coordinate using simple placement for drawing or -1 if undefined
+     * y initial Coordinate using simple placement for drawing or -1 if undefined
      */
     double y;
 
     /**
-     * x2 final Coordinate using priority placement for drawing or -1 if undefined
+     * x2 final Coordinate for drawing or -1 if undefined
      */
     double x2;
 
     /**
-     * y2 final Coordinate using priority placement for drawing or -1 if undefined
+     * y2 final Coordinate for drawing or -1 if undefined
      */
     double y2;
 
@@ -146,14 +146,24 @@ public:
     bool IsDummy() { return dummy; }
 
     /**
-     * return final x coord
+     * return initial x coord
      */
     double getX() { return x; }
 
     /**
-     * return final y coord
+     * return initial y coord
      */
     double getY() { return y; }
+
+    /**
+     * return final x coord
+     */
+    double getXF() { return x2; }
+
+    /**
+     * return final y coord
+     */
+    double getYF() { return y2; }
 
     /**
      * Calculate node rank relative y position or return calculated one
@@ -218,15 +228,17 @@ public:
     LNode(pLGraph pg)
         : Node((pGraph)pg)
     {
-        x = -1; // no x coord
+	x = -1; // no x coord
 	y = -1; // no y coord
+	x2 = -1; // no x coord
+	y2 = -1; // no y coord
 	nxsize = 10; // default node x size
 	nysize = 10; // default node y size
-        rank = -1; // no rank
+	rank = -1; // no rank
 	pos = -1; // no x pos
-        median = 0; // no barycenter value
-        we_were_here = false;
-        dummy = false; // this is a real node
+	median = 0; // no barycenter value
+	we_were_here = false;
+	dummy = false; // this is a real node
 	entry = false; // not startnode
 	origfrom = NULL; // edge point
 	origto = NULL; // edge point

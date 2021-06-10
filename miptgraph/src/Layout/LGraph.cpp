@@ -83,8 +83,11 @@ void LGraph::Layout(unsigned long int number_of_iterations,
         order->order_vector = InitOrder();
         // give nodes relative x position
         InitPos(order);
+
         // center graph and give nodes absolute node position
         InitCoordinates(order);
+
+        FinalCoordinates(order);
 
         // copy nodes in db
         for (list<pNode>::iterator node_iter = nodes_list()->begin();
@@ -138,6 +141,14 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     // create node lists of every rank level
     order->order_vector = InitOrder();
 
+    //    vector<vector<pLNode>> order(maxrank + 1);
+
+    order->m_crossings_num = InitOrder2();
+    order->m_iicrossings_num = InitOrder2();
+    order->m_ircrossings_num = InitOrder2();
+    order->m_rrcrossings_num = InitOrder2();
+    //    vector<vector<int>> order(maxrank + 1);
+
     // Check nodes in order data
     CheckOrder(order);
 
@@ -190,6 +201,12 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     // center graph and give nodes absolute node position
     InitCoordinates(order);
 
+    // get statistics too and count crossings
+    curc = FinalcountCrossing(order);
+
+    // center graph and give nodes absolute node position
+    FinalCoordinates(order);
+
     // copy nodes in db
     for (list<pNode>::iterator node_iter = nodes_list()->begin();
          node_iter != nodes_list()->end();
@@ -203,9 +220,6 @@ void LGraph::Layout(unsigned long int number_of_iterations,
          edge_iter++) {
         splay_tree_insert(edgesplay, (splay_tree_key)((pLEdge)(*edge_iter))->id(), (splay_tree_value)((pLEdge)(*edge_iter)));
     }
-
-    // get statistics too and count crossings
-    curc = FinalcountCrossing(order);
 
     // this prints the node order in the levels
     if (verbose == true) {
@@ -251,6 +265,7 @@ LGraph::InitOrder()
     pLNode curnode;
     // reserve space for maxrank levels + 1
     vector<vector<pLNode>> order(maxrank + 1);
+
     // scan all nodes
     // todo run dfs and in order of visited push
     for (list<pNode>::iterator node_iter = nodes_list()->begin();
@@ -265,6 +280,15 @@ LGraph::InitOrder()
         // add node at rank level to list of nodes at that rank level
         order[((pLNode)(*node_iter))->Rank()].push_back((pLNode)(*node_iter));
     }
+    return order;
+}
+
+vector<int>
+LGraph::InitOrder2()
+{
+    // reserve space for maxrank levels + 1
+    vector<int> order(maxrank + 1);
+
     return order;
 }
 
@@ -445,7 +469,7 @@ int LGraph::countCrossing(Ordering* order)
     // int maxcrossingrank = 0; level with most crossings
 
     // if only single nodes
-    if (maxrank == 0) {
+    if (maxrank < 2) {
         return 0;
     }
 
@@ -472,7 +496,7 @@ int LGraph::FinalcountCrossing(Ordering* order)
     // int maxcrossingrank = 0; level with most crossings
 
     // if only single nodes
-    if (maxrank == 0) {
+    if (maxrank < 2) {
         return 0;
     }
 
@@ -537,6 +561,9 @@ int LGraph::countCrossingOnRank(Ordering* order, int rank)
 int LGraph::FinalcountCrossingOnRank(Ordering* order, int rank)
 {
     int crossing = 0;
+    int iicrossings = 0;
+    int ircrossings = 0;
+    int rrcrossings = 0;
     pLEdge curedgei = NULL;
     pLEdge curedgej = NULL;
 
@@ -578,21 +605,31 @@ int LGraph::FinalcountCrossingOnRank(Ordering* order, int rank)
                     if ((curedgei->inner == true) && (curedgej->inner == true)) {
                         curedgei->iicross++;
                         curedgej->iicross++;
+                        iicrossings++;
                     } else {
                         curedgei->ircross++;
                         curedgej->ircross++;
+                        // this are the edge type 1 conflicta
+                        ircrossings++;
                     }
 
                 } else {
                     // both are not inner edges
                     curedgei->rrcross++;
                     curedgej->rrcross++;
+                    rrcrossings++;
                 }
             } else {
                 // edges did not cross
             }
         }
     }
+
+    // crossing counts for this level
+    order->m_crossings_num[rank] = crossing;
+    order->m_iicrossings_num[rank] = iicrossings;
+    order->m_ircrossings_num[rank] = ircrossings;
+    order->m_rrcrossings_num[rank] = rrcrossings;
 
     return crossing;
 }
@@ -712,11 +749,50 @@ void LGraph::CheckOrder(Ordering* order)
 }
 
 /**
+ * set nodes at final (x,y) position in the graph
+ * (x2,y2) have same values as (x,y) at start
+ * this set new (x2,y2) coordinates for the nodes
+ */
+
+void LGraph::FinalCoordinates(Ordering* order)
+{
+    bool verbose = true;
+
+    // mark crossing edge conflicts
+    // there can only dummynodes when maxrank >1
+    // with levels 0, 1 and 2
+    if (maxrank > 1) {
+        for (unsigned int rank = 0; rank < maxrank - 1; rank++) {
+            // only if there are crossings at this level with a dummy node involved
+            // edge type 1 conflicts when inner edge crosses non-inner edge
+            if (verbose == true) {
+                std::printf("between level %d and level %d are %d crossings", rank, rank + 1, order->m_crossings_num[rank]);
+                if (order->m_crossings_num[rank] > 0) {
+                    std::printf(", %d local-nonlocal, %d local-local, %d nonlocal-nonlocal crossings",
+                        order->m_ircrossings_num[rank],
+                        order->m_iicrossings_num[rank],
+                        order->m_rrcrossings_num[rank]);
+                }
+                std::printf("\n");
+            }
+            if (order->m_ircrossings_num[rank] > 0) {
+                printf("between level %d and level %d are %d possible edge type 1 conflicts\n", (int)rank, (int)(rank + 1), (int)order->m_ircrossings_num[rank]);
+                /*
+            vector<pLNode> prevLayer = order->order_vector[rank];
+            vector<pLNode> currLayer = order->order_vector[rank + 1];
+ */
+            }
+        }
+    }
+
+    return;
+}
+
+/**
  * set nodes at final (x,y) position in this level
  * \param normalwide is x size for a node
  * \param dummy wide is x sie for a dummy node
  * \param vertical_size is y distance between y rank levels
- * \todo this must be more flexible done
  */
 void LGraph::InitCoordinates(Ordering* order,
     int normalwide,
@@ -765,6 +841,10 @@ void LGraph::InitCoordinates(Ordering* order,
             }
             // y spacing
             order->order_vector[rank][i]->y = rank * vertical_size;
+
+            // set a value for the second (x,y) pos
+            order->order_vector[rank][i]->x2 = order->order_vector[rank][i]->x;
+            order->order_vector[rank][i]->y2 = order->order_vector[rank][i]->y;
         }
     }
 
