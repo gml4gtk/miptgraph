@@ -199,6 +199,10 @@ public:
      * Should be called after InitRank().
      */
     vector<vector<pLNode>> InitOrder();
+
+    /**
+     * init edge crossing info
+     */
     vector<int> InitOrder2();
 
     /**

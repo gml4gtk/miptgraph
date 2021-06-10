@@ -707,6 +707,8 @@ static void do_layout_all_copyfrom(struct usrgraph *g)
 	int hor = 0;
 	int rev = 0;
 	int split = 0;
+	int splithead = 0;
+	int splittail = 0;
 	void *ud = NULL;
 	int ecolor = 0;
 	char *elabel = NULL;
@@ -799,7 +801,10 @@ static void do_layout_all_copyfrom(struct usrgraph *g)
 					ecolor = 0;
 					elabel = NULL;
 				}
+				/* is edge a split edge */
 				split = cmipt_edgeissplit(ret);
+				splithead = cmipt_edgeisheadsplit(ret);
+				splittail = cmipt_edgeistailsplit(ret);
 				fn = uniqdrawnode_lid(fln);
 				tn = uniqdrawnode_lid(tln);
 				if (fn && tn) {
@@ -808,6 +813,8 @@ static void do_layout_all_copyfrom(struct usrgraph *g)
 					en->hor = hor;
 					en->rev = rev;
 					en->split = split;
+					en->splithead = splithead;
+					en->splittail = splittail;
 					en->fn = fn;
 					en->tn = tn;
 					en->ecolor = ecolor;

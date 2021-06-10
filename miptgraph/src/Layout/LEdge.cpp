@@ -102,6 +102,12 @@ void LEdge::BreakLongEdge()
         } else {
             ((pLEdge)(new_edge))->inner = true;
         }
+        // indicate at first edge this is head of a split edge
+        if (n == 1) {
+            ((pLEdge)(new_edge))->splitedgehead = true;
+        } else {
+            ((pLEdge)(new_edge))->splitedgehead = false;
+        }
         // follow the chain
         prevnode = newnode;
     }
@@ -110,6 +116,8 @@ void LEdge::BreakLongEdge()
     new_edge = graph()->AddEdge(prevnode, to(), ud);
     new_edge->SetReverse(is_reverse);
     ((pLEdge)new_edge)->SetComposite(true);
+    // this is tail of a split edge
+    ((pLEdge)(new_edge))->splitedgetail = true;
 
     // delete the old long edge
     graph()->DeleteEdge(from(), to());

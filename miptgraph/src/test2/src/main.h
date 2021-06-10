@@ -106,6 +106,8 @@ struct drawedge {
 	int hor;		/* 1 if edge is horizontal */
 	int rev;		/* 1 if edge is reversed */
 	int split;		/* 1 if edge is split */
+	int splithead;		/* 1 if edge is head of split edge */
+	int splittail;		/* 1 if edge is tail of split edge */
 	int ecolor;		/* edge color */
 	char *elabel;		/* edge label */
 	struct drawnode *fn;	/* from node */

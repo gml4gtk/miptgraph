@@ -462,6 +462,42 @@ extern "C" int cmipt_edgeissplit(void* e)
     return (ret);
 }
 
+/* return if edge is head of split edge */
+extern "C" int cmipt_edgeisheadsplit(void* e)
+{
+    pLEdge p = NULL;
+    bool status = false;
+    int ret = -1;
+    if (e) {
+        p = (pLEdge)e;
+        status = p->IsHeadSplitEdge();
+        if (status == true) {
+            ret = 1;
+        } else {
+            ret = 0;
+        }
+    }
+    return (ret);
+}
+
+/* return if edge is tail of split edge */
+extern "C" int cmipt_edgeistailsplit(void* e)
+{
+    pLEdge p = NULL;
+    bool status = false;
+    int ret = -1;
+    if (e) {
+        p = (pLEdge)e;
+        status = p->IsTailSplitEdge();
+        if (status == true) {
+            ret = 1;
+        } else {
+            ret = 0;
+        }
+    }
+    return (ret);
+}
+
 /* return usrdata of edge or NULL */
 extern "C" void* cmipt_edgeusrdata(void* e)
 {

@@ -74,6 +74,7 @@
 - fixed: inited second node (x,y)
 - fixed: crossing count info added to rank level data
 - fixed: printing detailed edge crossing info
+- fixed: added split edge head and tail indicator
 
 
 

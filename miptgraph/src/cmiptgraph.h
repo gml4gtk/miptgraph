@@ -133,6 +133,12 @@ extern int cmipt_edgeisrev (void *e);
 /* return if edge is split */
 extern int cmipt_edgeissplit (void *e);
 
+/* return 1 if edge is head of split edge */
+extern int cmipt_edgeisheadsplit (void *e);
+
+/* return 1 if edge is tail of split edge */
+extern int cmipt_edgeistailsplit (void *e);
+
 /* return usrdata of edge */
 extern void *cmipt_edgeusrdata (void *e);
 

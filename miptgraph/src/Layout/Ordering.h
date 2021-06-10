@@ -53,14 +53,38 @@ public:
 
     void Dump();
 
+    /**
+     * total number of crossings at level
+     */
     vector<int> m_crossings_num;
+
+    /**
+     * total number of inner-inner crossings at level
+     */
     vector<int> m_iicrossings_num;
+
+    /**
+     * total number of inner-noninner crossings at level
+     */
     vector<int> m_ircrossings_num;
+
+    /**
+     * total number of noninner-noninner crossings at level
+     */
     vector<int> m_rrcrossings_num;
 
-    // The adj_position function returns an ordered array
-    // of the present positions of the nodes adjacent to node.
+    /**
+     * The adj_position function returns an ordered array
+     * of the present positions of the nodes adjacent to node.
+     * incoming edges to node
+     */
     vector<int> AdjInPositions(pLNode node);
+
+    /**
+     * The adj_position function returns an ordered array
+     * of the present positions of the nodes adjacent to node.
+     * outgoing edges from node
+     */
     vector<int> AdjOutPositions(pLNode node);
 
     friend class LGraph;

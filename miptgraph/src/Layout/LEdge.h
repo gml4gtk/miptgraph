@@ -55,6 +55,16 @@ private:
     bool inner;
 
     /**
+     * set true is this is head edge of a split edge
+     */
+    bool splitedgehead;
+
+    /**
+     * set true is this is tail edge of a split edge
+     */
+    bool splitedgetail;
+
+    /**
      * counter if this inner edge crosses with another inner edge
      */
     int iicross;
@@ -81,6 +91,8 @@ public:
 	if (from->id() == to->id()) {
 	    // this is a self-edge handled in edge creation
 	}
+	splitedgehead = false;
+	splitedgetail = false;
         composite = false;
         reverse = false;
 	hedge = false;
@@ -112,6 +124,16 @@ public:
      * this is a edge which is split from long edge
      */
     void SetComposite(bool is_composite) { composite = is_composite; }
+
+    /**
+     * return true if this is head of a split edge
+     */
+    bool IsHeadSplitEdge() { return splitedgehead; }
+
+    /**
+     * return true if this is tail of a split edge
+     */
+    bool IsTailSplitEdge() { return splitedgetail; }
 
 };
 
