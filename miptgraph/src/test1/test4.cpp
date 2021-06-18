@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
     /* nodes in graph 2 are 0..4 */
 
     /* 0->0 self-edge is not in edge list */
-    ee = (pLEdge)g2.AddEdge(p2[0], p2[0]);
+    ee = (pLEdge)g2.AddEdge(p2[0], p2[0], NULL);
     printf("added edge in g2 with id %d between node %d and node %d with id %d\n", g2.id(), ee->from()->id(), ee->to()->id(), ee->id());
 
     /* graph has no edges */

@@ -36,45 +36,103 @@ Edge id 3: 3->1 reversed=0 horizontal=0
 Edge id 4: 3->4 reversed=0 horizontal=0
 Reversed edges changed to 1
 WeightedMedianHeuristic(): edge crossings reduced from 0 to 0
-Graph has 1 starter nodes
+Ordering::Dump() there are 9 levels
 Level rank 0 has these 1 nodes:
-  id:0(32,0)
+  id:0(23,0)
 Level rank 1 has these 1 nodes:
-  id:1(32,80)
-Level rank 2 has these 2 nodes:
-  id:5(20,160) id:2(70,160)
-Level rank 3 has these 1 nodes:
-  id:3(32,240)
-Level rank 4 has these 1 nodes:
-  id:4(32,320)
+  id:5(28,40)
+Level rank 2 has these 1 nodes:
+  id:1(23,80)
+Level rank 3 has these 2 nodes:
+  id:8(25,120) id:6(30,120)
+Level rank 4 has these 2 nodes:
+  id:9(20,160) id:2(35,160)
+Level rank 5 has these 2 nodes:
+  id:10(25,200) id:7(30,200)
+Level rank 6 has these 1 nodes:
+  id:3(23,240)
+Level rank 7 has these 1 nodes:
+  id:11(28,280)
+Level rank 8 has these 1 nodes:
+  id:4(23,320)
+between level 0 and level 1 are 0 crossings
+between level 1 and level 2 are 0 crossings
+between level 2 and level 3 are 0 crossings
+between level 3 and level 4 are 0 crossings
+between level 4 and level 5 are 0 crossings
+between level 5 and level 6 are 0 crossings
+Graph has 1 starter nodes
+Ordering::Dump() there are 9 levels
+Level rank 0 has these 1 nodes:
+  id:0(23,0)
+Level rank 1 has these 1 nodes:
+  id:5(28,40)
+Level rank 2 has these 1 nodes:
+  id:1(23,80)
+Level rank 3 has these 2 nodes:
+  id:8(25,120) id:6(30,120)
+Level rank 4 has these 2 nodes:
+  id:9(20,160) id:2(35,160)
+Level rank 5 has these 2 nodes:
+  id:10(25,200) id:7(30,200)
+Level rank 6 has these 1 nodes:
+  id:3(23,240)
+Level rank 7 has these 1 nodes:
+  id:11(28,280)
+Level rank 8 has these 1 nodes:
+  id:4(23,320)
 Final Crossings: 0
 after layout of graph 2 with dummy nodes and changed edges
-Dumping graph id:2 (6 nodes, 5 real nodes, 1 dummy nodes, 6 edges, 0 horizontal edges, 0 selfedges 1 reversed edges)
+Dumping graph id:2 (12 nodes, 5 real nodes, 7 dummy nodes, 12 edges, 0 horizontal edges, 0 selfedges 1 reversed edges)
 Nodes:
 Node id 0: (0 self-edges size (30,20))
   In  edges:
-  Out edges: 0->1
+  Out edges: 0->5
 Node id 1: (0 self-edges size (30,20))
-  In  edges: 0->1
-  Out edges: 1->2 1->5
+  In  edges: 5->1
+  Out edges: 1->6 1->8
 Node id 2: (0 self-edges size (30,20))
-  In  edges: 1->2
-  Out edges: 2->3
+  In  edges: 6->2
+  Out edges: 2->7
 Node id 3: (0 self-edges size (30,20))
-  In  edges: 2->3 5->3
-  Out edges: 3->4
+  In  edges: 7->3 10->3
+  Out edges: 3->11
 Node id 4: (0 self-edges size (30,20))
-  In  edges: 3->4
+  In  edges: 11->4
   Out edges:
 Node id 5: (0 self-edges size (1,1))
-  In  edges: 1->5
-  Out edges: 5->3
+  In  edges: 0->5
+  Out edges: 5->1
+Node id 6: (0 self-edges size (1,1))
+  In  edges: 1->6
+  Out edges: 6->2
+Node id 7: (0 self-edges size (1,1))
+  In  edges: 2->7
+  Out edges: 7->3
+Node id 8: (0 self-edges size (1,1))
+  In  edges: 1->8
+  Out edges: 8->9
+Node id 9: (0 self-edges size (1,1))
+  In  edges: 8->9
+  Out edges: 9->10
+Node id 10: (0 self-edges size (1,1))
+  In  edges: 9->10
+  Out edges: 10->3
+Node id 11: (0 self-edges size (1,1))
+  In  edges: 3->11
+  Out edges: 11->4
 Edges:
-Edge id 0: 0->1 reversed=0 horizontal=0
-Edge id 1: 1->2 reversed=0 horizontal=0
-Edge id 2: 2->3 reversed=0 horizontal=0
-Edge id 4: 3->4 reversed=0 horizontal=0
-Edge id 5: 1->5 reversed=1 horizontal=0
-Edge id 6: 5->3 reversed=1 horizontal=0
+Edge id 5: 0->5 reversed=0 horizontal=0
+Edge id 6: 5->1 reversed=0 horizontal=0
+Edge id 7: 1->6 reversed=0 horizontal=0
+Edge id 8: 6->2 reversed=0 horizontal=0
+Edge id 9: 2->7 reversed=0 horizontal=0
+Edge id 10: 7->3 reversed=0 horizontal=0
+Edge id 11: 1->8 reversed=1 horizontal=0
+Edge id 12: 8->9 reversed=1 horizontal=0
+Edge id 13: 9->10 reversed=1 horizontal=0
+Edge id 14: 10->3 reversed=1 horizontal=0
+Edge id 15: 3->11 reversed=0 horizontal=0
+Edge id 16: 11->4 reversed=0 horizontal=0
 edge 3->1 should be reversed via dummy node 5
-graph 2 maxrank = 4
+graph 2 maxrank = 8

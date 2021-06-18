@@ -59,17 +59,17 @@ public:
     vector<int> m_crossings_num;
 
     /**
-     * total number of inner-inner crossings at level
+     * total number of inner-inner edge crossings at level Type 2 conflict
      */
     vector<int> m_iicrossings_num;
 
     /**
-     * total number of inner-noninner crossings at level
+     * total number of inner-noninner edge crossings at level Type 1 conflict
      */
     vector<int> m_ircrossings_num;
 
     /**
-     * total number of noninner-noninner crossings at level
+     * total number of noninner-noninner edge crossings at level Type 0 conflict
      */
     vector<int> m_rrcrossings_num;
 

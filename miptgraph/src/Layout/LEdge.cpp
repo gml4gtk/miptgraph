@@ -39,12 +39,15 @@
 void LEdge::BreakLongEdge()
 {
     // Difference between rank of the "in" and "out"  nodes
-    int n = ((pLNode)to())->Rank() - ((pLNode)from())->Rank();
+    int n = 0;
     void* ud = NULL;
 
     // get original end points of this edge
     pLNode ofrom = (pLNode)from();
+
     pLNode oto = (pLNode)to();
+
+    n = ((pLNode)to())->Rank() - ((pLNode)from())->Rank();
 
     // id numbers are ofrom->id() and oto->id()
 
@@ -55,7 +58,7 @@ void LEdge::BreakLongEdge()
 
     if (n < 0) {
         // this should not happen
-        printf("fixme1 breaklongedge\n");
+        printf("%s() delta < 0 should be >0 and is %d\n", __func__, n);
         return;
     }
 

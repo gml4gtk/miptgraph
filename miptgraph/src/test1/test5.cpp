@@ -55,21 +55,21 @@ int main(int argc, char* argv[])
     }
 
     // adding edges
-    g.AddEdge(p[0], p[1]);
-    g.AddEdge(p[4], p[5]);
-    g.AddEdge(p[4], p[6]);
-    g.AddEdge(p[7], p[6]);
-    g.AddEdge(p[8], p[7]);
-    g.AddEdge(p[8], p[5]);
-    g.AddEdge(p[5], p[6]);
-    g.AddEdge(p[3], p[8]);
-    g.AddEdge(p[3], p[7]);
-    g.AddEdge(p[3], p[4]);
-    g.AddEdge(p[1], p[2]);
-    g.AddEdge(p[1], p[8]);
-    g.AddEdge(p[1], p[5]);
-    g.AddEdge(p[2], p[7]);
-    g.AddEdge(p[2], p[6]);
+    g.AddEdge(p[0], p[1], NULL);
+    g.AddEdge(p[4], p[5], NULL);
+    g.AddEdge(p[4], p[6], NULL);
+    g.AddEdge(p[7], p[6], NULL);
+    g.AddEdge(p[8], p[7], NULL);
+    g.AddEdge(p[8], p[5], NULL);
+    g.AddEdge(p[5], p[6], NULL);
+    g.AddEdge(p[3], p[8], NULL);
+    g.AddEdge(p[3], p[7], NULL);
+    g.AddEdge(p[3], p[4], NULL);
+    g.AddEdge(p[1], p[2], NULL);
+    g.AddEdge(p[1], p[8], NULL);
+    g.AddEdge(p[1], p[5], NULL);
+    g.AddEdge(p[2], p[7], NULL);
+    g.AddEdge(p[2], p[6], NULL);
 
     /*
     * This main Layout function do whole procedure of LAYOUT:
@@ -122,7 +122,7 @@ int main(int argc, char* argv[])
         if ((int)y > maxy) {
             maxy = (int)y;
         }
-        printf("node id %d: relative pos (%d,%d) absolute pos (%f,%f) dummy=%d\n", ((LNode*)(*node_iter))->id(), pos, rank, x, y, dum);
+        printf("node id %d: relative pos (%d,%d) absolute pos (%d,%d) dummy=%d\n", ((LNode*)(*node_iter))->id(), pos, rank, (int)x, (int)y, dum);
     }
 
     printf("Layout test passed!\nThis is the image svg data:\n\n");

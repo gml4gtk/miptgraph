@@ -75,6 +75,9 @@
 - fixed: crossing count info added to rank level data
 - fixed: printing detailed edge crossing info
 - fixed: added split edge head and tail indicator
-
+- fixed: updated addedge in test programs
+- fixed: added edge type 1 marking and counter
+- fixed: double space the graph then same edges will be multiple edges instead of one
+- 
 
 

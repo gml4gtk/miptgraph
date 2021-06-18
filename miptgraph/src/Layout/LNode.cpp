@@ -40,6 +40,8 @@
  */
 int LNode::Rank()
 {
+    // the initial undefined value for rank is -1
+
     // If rank is determined before.
     if (rank >= 0) {
         // do not change
@@ -64,7 +66,7 @@ int LNode::Rank()
              edge_iter++) {
             if ((pLNode)(*edge_iter)) {
                 if (((pLNode)(*edge_iter)->from())) {
-                    temp = ((pLNode)(*edge_iter)->from())->Rank() + 1;
+                    temp = (((pLNode)(*edge_iter)->from())->Rank() + 1);
                     // set at max
                     if (temp > res) {
                         res = temp;
@@ -80,7 +82,8 @@ int LNode::Rank()
         rank = res;
     }
     we_were_here = true;
-    return rank;
+
+    return (rank);
 }
 
 /**

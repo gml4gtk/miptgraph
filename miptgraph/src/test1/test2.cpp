@@ -67,38 +67,38 @@ int main(int argc, char* argv[])
 
     // Performing some transformations
     /* nodes in graph 1 are 0..9 */
-    g.AddEdge(p[0], p[1]);
-    g.AddEdge(p[0], p[2]);
-    g.AddEdge(p[0], p[3]);
-    g.AddEdge(p[1], p[5]);
-    g.AddEdge(p[2], p[6]);
-    g.AddEdge(p[2], p[5]);
-    g.AddEdge(p[3], p[4]);
-    g.AddEdge(p[4], p[7]);
-    g.AddEdge(p[4], p[9]);
-    g.AddEdge(p[5], p[8]);
-    g.AddEdge(p[6], p[9]);
-    g.AddEdge(p[1], p[8]);
-    g.AddEdge(p[1], p[7]);
-    g.AddEdge(p[1], p[6]);
-    g.AddEdge(p[1], p[5]);
-    g.AddEdge(p[1], p[9]);
+    g.AddEdge(p[0], p[1], NULL);
+    g.AddEdge(p[0], p[2], NULL);
+    g.AddEdge(p[0], p[3], NULL);
+    g.AddEdge(p[1], p[5], NULL);
+    g.AddEdge(p[2], p[6], NULL);
+    g.AddEdge(p[2], p[5], NULL);
+    g.AddEdge(p[3], p[4], NULL);
+    g.AddEdge(p[4], p[7], NULL);
+    g.AddEdge(p[4], p[9], NULL);
+    g.AddEdge(p[5], p[8], NULL);
+    g.AddEdge(p[6], p[9], NULL);
+    g.AddEdge(p[1], p[8], NULL);
+    g.AddEdge(p[1], p[7], NULL);
+    g.AddEdge(p[1], p[6], NULL);
+    g.AddEdge(p[1], p[5], NULL);
+    g.AddEdge(p[1], p[9], NULL);
 
     g2.Setid(2);
 
     pLEdge ee;
 
     /* nodes in graph 2 are 0..4 */
-    ee = (pLEdge)g2.AddEdge(p2[0], p2[1]);
+    ee = (pLEdge)g2.AddEdge(p2[0], p2[1], NULL);
     printf("added edge in g2 with id %d between node %d and node %d with id %d\n", g2.id(), ee->from()->id(), ee->to()->id(), ee->id());
 
-    ee = (pLEdge)g2.AddEdge(p2[0], p2[2]);
+    ee = (pLEdge)g2.AddEdge(p2[0], p2[2], NULL);
     printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
 
-    ee = (pLEdge)g2.AddEdge(p2[0], p2[3]);
+    ee = (pLEdge)g2.AddEdge(p2[0], p2[3], NULL);
     printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
 
-    ee = (pLEdge)g2.AddEdge(p2[3], p2[4]);
+    ee = (pLEdge)g2.AddEdge(p2[3], p2[4], NULL);
     printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
 
     /*

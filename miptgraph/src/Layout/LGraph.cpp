@@ -76,11 +76,16 @@ void LGraph::Layout(unsigned long int number_of_iterations,
         // special layout mode to set the single nodes
         // The graph is layouted
         layouted++;
+
+        // init vertical levels
         InitRank();
+
         // create array for node ordering in the levels
         order = new Ordering();
+
         // create node lists of every rank level
         order->order_vector = InitOrder();
+
         // give nodes relative x position
         InitPos(order);
 
@@ -98,7 +103,7 @@ void LGraph::Layout(unsigned long int number_of_iterations,
 
         // there are zero crossings
         if (verbose == true) {
-            printf("Graph has %u starter nodes and %d ranks\n", m_nstarter_num, (maxrank + 1));
+            printf("Graph has %d starter nodes and %d ranks\n", m_nstarter_num, (maxrank + 1));
             order->Dump();
             printf("Final Crossings: %d\n", countCrossing(order));
         }
@@ -106,21 +111,22 @@ void LGraph::Layout(unsigned long int number_of_iterations,
         return;
     }
 
-    // find cycles in the graph, reverse few edges if needed, set vertical rank level of nodes
+    // find cycles in the graph, reverse few edges if needed
     changed = FindReverseEdges(ReverseEdges);
 
     if (changed == true) {
         // number of reversed edges changed
         if (verbose == true) {
-            printf("Reversed edges changed to %d\n", nreversededges());
+            std::printf("Reversed edges changed to %d\n", nreversededges());
         }
     }
 
-    // change all reversed edges back into normal direction
-    // todo
+    // reverse edges to get cyclic graph
     ReverseReverseEdges(ReverseEdges);
 
-    // get max rank y level in the graph
+    // at this point the graph is acyclic with reversed edges
+    // double space the graph then same edges are multiple edges
+    // set node rank levels and get max rank y level in the graph
     InitRank();
 
     // list for longer edges to split
@@ -141,13 +147,10 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     // create node lists of every rank level
     order->order_vector = InitOrder();
 
-    //    vector<vector<pLNode>> order(maxrank + 1);
-
     order->m_crossings_num = InitOrder2();
     order->m_iicrossings_num = InitOrder2();
     order->m_ircrossings_num = InitOrder2();
     order->m_rrcrossings_num = InitOrder2();
-    //    vector<vector<int>> order(maxrank + 1);
 
     // Check nodes in order data
     CheckOrder(order);
@@ -233,17 +236,35 @@ void LGraph::Layout(unsigned long int number_of_iterations,
 
 /**
  * get how many rank y levels there are in the graph
+ * at this point the graph is acyclic with reversed edges
+ * double space the graph then same edges are multiple edges
  */
 void LGraph::InitRank()
 {
     m_nstarter_num = 0;
     maxrank = 0;
+    unsigned int rank = 0;
+    // Calculating the rank for all Nodes
+    for (list<pNode>::iterator node_iter = nodes_list()->begin();
+         node_iter != nodes_list()->end();
+         node_iter++) {
+        // determine the rank of the node
+        rank = ((LNode*)(*node_iter))->Rank();
+        if (rank) {
+            // silence unused warning
+        }
+    }
     // Calculating the rank for all Nodes
     for (list<pNode>::iterator node_iter = nodes_list()->begin();
          node_iter != nodes_list()->end();
          node_iter++) {
         // get rank level of this node
-        unsigned int rank = ((LNode*)(*node_iter))->Rank();
+        rank = ((LNode*)(*node_iter))->Rank();
+        // double space the graph
+        // this is needed to make sure same edges are in drawing multiple edges
+        // instead of one bundled edge
+        ((LNode*)(*node_iter))->setrank(2 * rank);
+        rank = ((LNode*)(*node_iter))->Rank();
         if (rank > maxrank) {
             maxrank = rank;
         }
@@ -258,6 +279,7 @@ void LGraph::InitRank()
 /**
  * create list of nodes in every rank level
  * \todo add nodes initial order using dfs
+ * that seems to improve the barycenter algorithm
  */
 vector<vector<pLNode>>
 LGraph::InitOrder()
@@ -283,9 +305,13 @@ LGraph::InitOrder()
     return order;
 }
 
+/**
+ * reserve space for maxrank levels + 1
+ */
 vector<int>
 LGraph::InitOrder2()
 {
+
     // reserve space for maxrank levels + 1
     vector<int> order(maxrank + 1);
 
@@ -293,7 +319,7 @@ LGraph::InitOrder2()
 }
 
 /**
- * change all reversed edges into normal direction edge
+ * reverse edges to get acyclic graph
  */
 void LGraph::ReverseReverseEdges(list<pEdge>& ReverseEdges)
 {
@@ -314,6 +340,7 @@ void LGraph::FindLongEdges(list<pEdge>& LongEdges)
 {
     int nhedges = 0;
     int delta = 0;
+
     // scan all edges
     for (list<pEdge>::iterator edge_iter = edges_list()->begin();
          edge_iter != edges_list()->end();
@@ -322,7 +349,7 @@ void LGraph::FindLongEdges(list<pEdge>& LongEdges)
         // check for wrong value
         if (delta < 0) {
             // todo
-            printf("%s() shouldnothappen\n", __func__);
+            printf("%s() delta is %d shouldnothappen\n", __func__, delta);
         }
         // check if edge is too long
         if (delta > 1) {
@@ -337,6 +364,8 @@ void LGraph::FindLongEdges(list<pEdge>& LongEdges)
             (*edge_iter)->SetHedge(false);
         }
     }
+
+    // set number of hor. edges
     Set_Nhoredges(nhedges);
 
     return;
@@ -347,6 +376,7 @@ void LGraph::FindLongEdges(list<pEdge>& LongEdges)
  */
 void LGraph::AddDummyNodes(list<pEdge>& LongEdges)
 {
+
     // scan all edges, skip self-edges
     for (list<pEdge>::iterator edge_iter = LongEdges.begin();
          edge_iter != LongEdges.end();
@@ -395,7 +425,7 @@ bool LGraph::WeightedMedianHeuristic(int iter, bool verbose, bool usebary)
     temp_order.order_vector = order->order_vector;
 
     // go from top to bottom or reversed
-    if (iter % 2 == 0) {
+    if ((iter % 2) == 0) {
         // scan from top to bottom of drawing
         for (unsigned int r = 1; r <= maxrank; r++) {
             // get median barycenter value for every node at this level
@@ -451,7 +481,9 @@ bool LGraph::WeightedMedianHeuristic(int iter, bool verbose, bool usebary)
     } else {
         // did not improve, keep graph unchanged
         if (verbose == true) {
-            printf("%s(): edge crossings did not reduce from current %d to %d\n", __func__, cross_order, cross_temp_order);
+            if (0) {
+                printf("%s(): edge crossings did not reduce from current %d to %d\n", __func__, cross_order, cross_temp_order);
+            }
         }
     }
 
@@ -486,7 +518,7 @@ int LGraph::countCrossing(Ordering* order)
 }
 
 /**
- * Count edge crossings of the whole graph
+ * Count edge crossings of the whole graph and get statistics
  */
 int LGraph::FinalcountCrossing(Ordering* order)
 {
@@ -572,18 +604,21 @@ int LGraph::FinalcountCrossingOnRank(Ordering* order, int rank)
 
     // scan node at this rank level
     for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
-        // select the outgoing edges at a node
+        // select the outgoing edges at a node and reset edge crossing count data
         for (list<pEdge>::iterator edge_iter = order->order_vector[rank][i]->out_edges_list()->begin();
              edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
              edge_iter++) {
             edge_list.push_back((pLEdge)(*edge_iter));
+            // no crossings at this edge
             ((pLEdge)(*edge_iter))->iicross = 0;
             ((pLEdge)(*edge_iter))->ircross = 0;
             ((pLEdge)(*edge_iter))->rrcross = 0;
+            // not a  conflict type 1 edge
+            ((pLEdge)(*edge_iter))->conflict = false;
         }
     }
 
-    // scan the edges in just created edge list
+    // scan the out going edges in just created edge list and set type of edge crossing
     for (unsigned int i = 0; i < edge_list.size(); i++) {
         // scan the next edges after current edge
         curedgei = (pLEdge)edge_list[i];
@@ -603,10 +638,12 @@ int LGraph::FinalcountCrossingOnRank(Ordering* order, int rank)
                 if ((curedgei->inner == true) || (curedgej->inner == true)) {
 
                     if ((curedgei->inner == true) && (curedgej->inner == true)) {
+                        // these edges are inner crossing edges
                         curedgei->iicross++;
                         curedgej->iicross++;
                         iicrossings++;
                     } else {
+                        /* i is a non-inner, j a inner edge */
                         curedgei->ircross++;
                         curedgej->ircross++;
                         // this are the edge type 1 conflicta
@@ -649,7 +686,7 @@ void LGraph::InitPos(Ordering* order)
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
         // extra check
         if (order->order_vector[rank].size() <= 0) {
-            printf("%s(): wrong number of nodes at level %d\n", __func__, rank);
+            printf("%s(): wrong number of nodes at level %d with %lu nodes\n", __func__, rank, order->order_vector[rank].size());
         }
         // scan all nodes at this level
         for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
@@ -712,6 +749,7 @@ void LGraph::CheckOrder(Ordering* order)
     pLNode curnode;
     pLNode fromnode;
     pLNode tonode;
+    int delta = 0;
     // scan all vertical rank levels
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
         // extra check
@@ -728,8 +766,9 @@ void LGraph::CheckOrder(Ordering* order)
                  edge_iter++) {
                 fromnode = (pLNode)(pLEdge)(*edge_iter)->from();
                 tonode = (pLNode)(pLEdge)(*edge_iter)->to();
-                if ((tonode->Rank() - fromnode->Rank()) != 1) {
-                    printf("%s(): delta at outgoing edges should be 1\n", __func__);
+                delta = (tonode->Rank() - fromnode->Rank());
+                if (delta != 1) {
+                    printf("%s(): delta at outgoing edges should be 1 but it is %d\n", __func__, delta);
                 }
             }
             // same incoming edges
@@ -738,8 +777,9 @@ void LGraph::CheckOrder(Ordering* order)
                  edge_iter++) {
                 fromnode = (pLNode)(pLEdge)(*edge_iter)->from();
                 tonode = (pLNode)(pLEdge)(*edge_iter)->to();
-                if ((tonode->Rank() - fromnode->Rank()) != 1) {
-                    printf("%s(): delta at incoming edges should be 1\n", __func__);
+                delta = (tonode->Rank() - fromnode->Rank());
+                if (delta != 1) {
+                    printf("%s(): delta at incoming edges should be 1 but it is %d\n", __func__, delta);
                 }
             }
         }
@@ -757,18 +797,36 @@ void LGraph::CheckOrder(Ordering* order)
 void LGraph::FinalCoordinates(Ordering* order)
 {
     bool verbose = true;
+    int ntype1 = 0;
+
+    // print the levels with the orders of the nodes
+    if (verbose == true) {
+        order->Dump();
+    }
 
     // mark crossing edge conflicts
     // there can only dummynodes when maxrank >1
-    // with levels 0, 1 and 2
+    // with levels 0, 1 and 2 with at least dummy nodes at level 1
+    // This phase of the node placer marks all type 1 and type 2 conflicts.
+    // The conflict types base on the distinction of inner segments and non-inner segments of edges.
+    // A inner segment is present if an edge is drawn between two dummy nodes and thus is part of
+    // a long edge.
+    // A non-inner segment is present if one of the connected nodes is not a dummy node.
+    // Type 0 conflicts occur if two non-inner segments cross each other.
+    // Type 1 conflicts happen when a non-inner segment and a inner segment cross.
+    // Type 2 conflicts are present if two inner segments cross.
+    // The markers are later used to solve conflicts in favor of long edges.
+    // In case of type 2 conflicts, the marker favors the earlier node in layout order.
+    // In case of type 1 conflict the non-inner edge is marked as conflicting edge.
     if (maxrank > 1) {
-        for (unsigned int rank = 0; rank < maxrank - 1; rank++) {
+        // here if maxrank is 2 or more with levels 0, 1, 2 ...
+        for (unsigned int rank = 0; rank < maxrank - 2; rank++) {
             // only if there are crossings at this level with a dummy node involved
             // edge type 1 conflicts when inner edge crosses non-inner edge
             if (verbose == true) {
                 std::printf("between level %d and level %d are %d crossings", rank, rank + 1, order->m_crossings_num[rank]);
                 if (order->m_crossings_num[rank] > 0) {
-                    std::printf(", %d local-nonlocal, %d local-local, %d nonlocal-nonlocal crossings",
+                    std::printf(", %d local-nonlocal Type 1 conflict, %d local-local Type 2 conflict, %d nonlocal-nonlocal crossings type 0 conflict",
                         order->m_ircrossings_num[rank],
                         order->m_iicrossings_num[rank],
                         order->m_rrcrossings_num[rank]);
@@ -776,14 +834,88 @@ void LGraph::FinalCoordinates(Ordering* order)
                 std::printf("\n");
             }
             if (order->m_ircrossings_num[rank] > 0) {
-                printf("between level %d and level %d are %d possible edge type 1 conflicts\n", (int)rank, (int)(rank + 1), (int)order->m_ircrossings_num[rank]);
-                /*
-            vector<pLNode> prevLayer = order->order_vector[rank];
-            vector<pLNode> currLayer = order->order_vector[rank + 1];
- */
-            }
+                if (verbose == true) {
+                    std::printf("between level %d and level %d are %d Type 1 edge conflicts\n", (int)rank, (int)(rank + 1), (int)order->m_ircrossings_num[rank]);
+                }
+                // check nodes at level (rank) and the out edges to level rank+1
+                // find the Type 1 conflict edges and mark them
+                // if curedge->ircross > 0 then it is a Type 1 conflict edge
+                // check if edge is inner or non-inner segment
+                // mark non-inner segment as conflict edge
+
+                // Making list of all outgoing edges between rank and rank+1 level
+                vector<pLEdge> edge_list;
+
+                // scan node at this rank level
+                for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
+                    // select the outgoing edges at a node and reset edge crossing count data
+                    for (list<pEdge>::iterator edge_iter = order->order_vector[rank][i]->out_edges_list()->begin();
+                         edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
+                         edge_iter++) {
+                        edge_list.push_back((pLEdge)(*edge_iter));
+                        // not a  conflict type 1 edge
+                        ((pLEdge)(*edge_iter))->conflict = false;
+                    }
+                }
+
+                // scan the edges in just created edge list
+                for (unsigned int i = 0; i < edge_list.size(); i++) {
+                    if (edge_list[i]->n_ircross() > 0) {
+                        // scan the next edges after current edge
+                        for (unsigned int j = i + 1; j < edge_list.size(); j++) {
+                            if (edge_list[j]->n_ircross() > 0) {
+                                // Criterion of crossing edge_list[i] and edge_list[j]
+                                // check relative position of to nodes in edge
+                                int cmp1 = ((pLNode)edge_list[i]->to())->pos - ((pLNode)edge_list[j]->to())->pos;
+                                // check relative position of from nodes in edge
+                                int cmp2 = ((pLNode)edge_list[i]->from())->pos - ((pLNode)edge_list[j]->from())->pos;
+
+                                // cmp1 is delto to pos, cmp2 is delta from pos
+                                if ((cmp1 > 0 && cmp2 < 0) || (cmp1 < 0 && cmp2 > 0)) {
+                                    // edges did cross
+                                    if (verbose == true) {
+                                        std::printf("edge crossing inner status %d and %d\n", edge_list[i]->inner, edge_list[j]->inner);
+                                    }
+                                    if (edge_list[i]->inner == true && edge_list[j]->inner == true) {
+                                        // inner inner edge crossings
+                                    } else if (edge_list[i]->inner == false && edge_list[j]->inner == false) {
+                                        // should not happen
+                                    } else if (edge_list[i]->inner == false && edge_list[j]->inner == true) {
+                                        // noninner inner crossing
+                                        if (edge_list[i]->conflict == false) {
+                                            // set the noninner edge as conflict edge
+                                            edge_list[i]->setconflict(true);
+                                            ntype1++;
+                                        }
+                                    } else {
+                                        // inner noninner crossing
+                                        if (edge_list[j]->conflict == false) {
+                                            // set the noninner edge as conflict edge
+                                            edge_list[j]->setconflict(true);
+                                            ntype1++;
+                                        }
+                                    }
+                                } else {
+                                    // edges did not cross
+                                }
+                            } // end of if (edge_list[j]->n_ircross() > 0)
+                        } // end of for (unsigned int j = i + 1; j < edge_list.size(); j++)
+                    } // end of if (edge_list[i]->n_ircross() > 0)
+                } // end of for (unsigned int i = 0; i < edge_list.size(); i++)
+            } // end of if (order->m_ircrossings_num[rank] > 0)
+        } // end of for (unsigned int rank = 0; rank < maxrank - 2; rank++)
+    } // end of if (maxrank > 1)
+
+    if (verbose == true) {
+        if (ntype1 > 0) {
+            std::printf("total %d type 1 conflict edges in the graph\n", ntype1);
         }
     }
+    // init_medians
+    //        for (int i = 0; i < 4; ++i) {
+    //            vertical_align(h, static_cast<orient>(i));
+    //            horizontal_compaction(h, static_cast<orient>(i));
+    //        }
 
     return;
 }
@@ -897,7 +1029,9 @@ void LGraph::Transpose(unsigned long int maxtry, bool verbose)
 
                     } else {
                         if (verbose == true) {
-                            printf("%s(): edge crossings did not reduce from current %d to %d at try %lu rank %lu\n", __func__, cross0, cross1, j, i);
+                            if (0) {
+                                printf("%s(): edge crossings did not reduce from current %d to %d at try %lu rank %lu\n", __func__, cross0, cross1, j, i);
+                            }
                         }
                     }
                     // end of nodes at level

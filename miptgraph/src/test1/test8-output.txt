@@ -1,0 +1,1103 @@
+
+Layout test started..
+before layout input graph data
+Dumping graph id:0 (20 nodes, 20 real nodes, 0 dummy nodes, 34 edges, 0 horizontal edges, 0 selfedges 0 reversed edges)
+Nodes:
+Node id 0: (0 self-edges size (30,20))
+  In  edges: 8->0 10->0
+  Out edges:
+Node id 1: (0 self-edges size (30,20))
+  In  edges: 16->1 4->1
+  Out edges: 1->2 1->5 1->6 1->16
+Node id 2: (0 self-edges size (30,20))
+  In  edges: 1->2 13->2
+  Out edges: 2->13 2->19
+Node id 3: (0 self-edges size (30,20))
+  In  edges: 5->3
+  Out edges: 3->19
+Node id 4: (0 self-edges size (30,20))
+  In  edges: 6->4
+  Out edges: 4->17 4->1
+Node id 5: (0 self-edges size (30,20))
+  In  edges: 1->5 12->5
+  Out edges: 5->3 5->17
+Node id 6: (0 self-edges size (30,20))
+  In  edges: 1->6 18->6
+  Out edges: 6->4 6->8 6->16
+Node id 7: (0 self-edges size (30,20))
+  In  edges: 9->7
+  Out edges: 7->18
+Node id 8: (0 self-edges size (30,20))
+  In  edges: 6->8 11->8
+  Out edges: 8->0 8->11
+Node id 9: (0 self-edges size (30,20))
+  In  edges:
+  Out edges: 9->7 9->17
+Node id 10: (0 self-edges size (30,20))
+  In  edges: 11->10 15->10
+  Out edges: 10->0 10->16 10->15
+Node id 11: (0 self-edges size (30,20))
+  In  edges: 8->11
+  Out edges: 11->10 11->18 11->8
+Node id 12: (0 self-edges size (30,20))
+  In  edges:
+  Out edges: 12->5 12->17
+Node id 13: (0 self-edges size (30,20))
+  In  edges: 2->13
+  Out edges: 13->2
+Node id 14: (0 self-edges size (30,20))
+  In  edges:
+  Out edges: 14->16
+Node id 15: (0 self-edges size (30,20))
+  In  edges: 10->15
+  Out edges: 15->10 15->16
+Node id 16: (0 self-edges size (30,20))
+  In  edges: 1->16 6->16 10->16 14->16 15->16
+  Out edges: 16->1
+Node id 17: (0 self-edges size (30,20))
+  In  edges: 5->17 4->17 18->17 9->17 12->17
+  Out edges:
+Node id 18: (0 self-edges size (30,20))
+  In  edges: 7->18 11->18
+  Out edges: 18->17 18->6
+Node id 19: (0 self-edges size (30,20))
+  In  edges: 2->19 3->19
+  Out edges:
+Edges:
+Edge id 0: 2->13 reversed=0 horizontal=0
+Edge id 1: 2->19 reversed=0 horizontal=0
+Edge id 2: 1->2 reversed=0 horizontal=0
+Edge id 3: 1->5 reversed=0 horizontal=0
+Edge id 4: 1->6 reversed=0 horizontal=0
+Edge id 5: 1->16 reversed=0 horizontal=0
+Edge id 6: 5->3 reversed=0 horizontal=0
+Edge id 7: 5->17 reversed=0 horizontal=0
+Edge id 8: 6->4 reversed=0 horizontal=0
+Edge id 9: 6->8 reversed=0 horizontal=0
+Edge id 10: 6->16 reversed=0 horizontal=0
+Edge id 11: 16->1 reversed=0 horizontal=0
+Edge id 12: 13->2 reversed=0 horizontal=0
+Edge id 13: 3->19 reversed=0 horizontal=0
+Edge id 14: 4->17 reversed=0 horizontal=0
+Edge id 15: 4->1 reversed=0 horizontal=0
+Edge id 16: 8->0 reversed=0 horizontal=0
+Edge id 17: 8->11 reversed=0 horizontal=0
+Edge id 18: 18->17 reversed=0 horizontal=0
+Edge id 19: 18->6 reversed=0 horizontal=0
+Edge id 20: 7->18 reversed=0 horizontal=0
+Edge id 21: 11->10 reversed=0 horizontal=0
+Edge id 22: 11->18 reversed=0 horizontal=0
+Edge id 23: 11->8 reversed=0 horizontal=0
+Edge id 24: 9->7 reversed=0 horizontal=0
+Edge id 25: 9->17 reversed=0 horizontal=0
+Edge id 26: 10->0 reversed=0 horizontal=0
+Edge id 27: 10->16 reversed=0 horizontal=0
+Edge id 28: 10->15 reversed=0 horizontal=0
+Edge id 29: 12->5 reversed=0 horizontal=0
+Edge id 30: 12->17 reversed=0 horizontal=0
+Edge id 31: 14->16 reversed=0 horizontal=0
+Edge id 32: 15->10 reversed=0 horizontal=0
+Edge id 33: 15->16 reversed=0 horizontal=0
+Ordering::Dump() there are 13 levels
+Level rank 0 has these 2 nodes:
+  id:1(57,0) id:0(72,0)
+Level rank 1 has these 8 nodes:
+  id:22(52,40) id:23(57,40) id:25(62,40) id:24(67,40) id:49(72,40) id:61(77,40) id:66(82,40) id:90(87,40)
+Level rank 2 has these 8 nodes:
+  id:2(37,80) id:5(52,80) id:26(57,80) id:6(72,80) id:50(77,80) id:62(82,80) id:67(87,80) id:91(92,80)
+Level rank 3 has these 15 nodes:
+  id:21(35,120) id:20(40,120) id:58(45,120) id:34(50,120) id:41(55,120) id:68(60,120) id:37(65,120) id:27(70,120) id:42(75,120) id:38(80,120) id:51(85,120) id:63(90,120) id:73(95,120) id:92(100,120) id:101(105,120)
+Level rank 4 has these 13 nodes:
+  id:19(20,160) id:13(35,160) id:8(50,160) id:28(55,160) id:35(60,160) id:43(65,160) id:52(70,160) id:17(85,160) id:39(90,160) id:64(95,160) id:74(100,160) id:93(105,160) id:102(110,160)
+Level rank 5 has these 16 nodes:
+  id:29(32,200) id:69(37,200) id:59(42,200) id:81(47,200) id:36(52,200) id:44(57,200) id:53(62,200) id:70(67,200) id:60(72,200) id:40(77,200) id:65(82,200) id:75(87,200) id:83(92,200) id:94(97,200) id:104(102,200) id:103(107,200)
+Level rank 6 has these 11 nodes:
+  id:30(25,240) id:11(40,240) id:3(55,240) id:45(60,240) id:54(65,240) id:71(70,240) id:4(85,240) id:76(90,240) id:84(95,240) id:95(100,240) id:12(115,240)
+Level rank 7 has these 9 nodes:
+  id:31(50,280) id:79(55,280) id:96(60,280) id:46(65,280) id:55(70,280) id:80(75,280) id:72(80,280) id:77(85,280) id:85(90,280)
+Level rank 8 has these 6 nodes:
+  id:32(47,320) id:10(62,320) id:47(67,320) id:56(72,320) id:18(87,320) id:86(92,320)
+Level rank 9 has these 8 nodes:
+  id:33(52,360) id:97(57,360) id:48(62,360) id:57(67,360) id:78(72,360) id:87(77,360) id:98(82,360) id:106(87,360)
+Level rank 10 has these 5 nodes:
+  id:16(50,400) id:7(65,400) id:88(70,400) id:99(75,400) id:107(80,400)
+Level rank 11 has these 6 nodes:
+  id:105(57,440) id:109(62,440) id:82(67,440) id:89(72,440) id:100(77,440) id:108(82,440)
+Level rank 12 has these 3 nodes:
+  id:14(50,480) id:15(65,480) id:9(80,480)
+between level 0 and level 1 are 0 crossings
+between level 1 and level 2 are 0 crossings
+between level 2 and level 3 are 20 crossings, 0 local-nonlocal Type 1 conflict, 20 local-local Type 2 conflict, 0 nonlocal-nonlocal crossings type 0 conflict
+between level 3 and level 4 are 7 crossings, 5 local-nonlocal Type 1 conflict, 2 local-local Type 2 conflict, 0 nonlocal-nonlocal crossings type 0 conflict
+between level 3 and level 4 are 5 Type 1 edge conflicts
+edge crossing inner status 1 and 0
+edge crossing inner status 1 and 0
+edge crossing inner status 1 and 1
+edge crossing inner status 0 and 1
+edge crossing inner status 0 and 1
+edge crossing inner status 0 and 1
+between level 4 and level 5 are 11 crossings, 0 local-nonlocal Type 1 conflict, 11 local-local Type 2 conflict, 0 nonlocal-nonlocal crossings type 0 conflict
+between level 5 and level 6 are 1 crossings, 0 local-nonlocal Type 1 conflict, 0 local-local Type 2 conflict, 1 nonlocal-nonlocal crossings type 0 conflict
+between level 6 and level 7 are 8 crossings, 0 local-nonlocal Type 1 conflict, 8 local-local Type 2 conflict, 0 nonlocal-nonlocal crossings type 0 conflict
+between level 7 and level 8 are 0 crossings
+between level 8 and level 9 are 8 crossings, 0 local-nonlocal Type 1 conflict, 8 local-local Type 2 conflict, 0 nonlocal-nonlocal crossings type 0 conflict
+between level 9 and level 10 are 0 crossings
+total 3 type 1 conflict edges in the graph
+after layout with dummy nodes and changed edges
+Dumping graph id:0 (110 nodes, 20 real nodes, 90 dummy nodes, 124 edges, 0 horizontal edges, 0 selfedges 18 reversed edges)
+Nodes:
+Node id 0: (0 self-edges size (30,20))
+  In  edges:
+  Out edges: 0->66 0->90
+Node id 1: (0 self-edges size (30,20))
+  In  edges:
+  Out edges: 1->22 1->23 1->24 1->25 1->49 1->61
+Node id 2: (0 self-edges size (30,20))
+  In  edges: 22->2
+  Out edges: 2->20 2->21 2->58
+Node id 3: (0 self-edges size (30,20))
+  In  edges: 36->3 59->3
+  Out edges:
+Node id 4: (0 self-edges size (30,20))
+  In  edges: 40->4 60->4 65->4
+  Out edges:
+Node id 5: (0 self-edges size (30,20))
+  In  edges: 23->5
+  Out edges: 5->34 5->37 5->101
+Node id 6: (0 self-edges size (30,20))
+  In  edges: 24->6
+  Out edges: 6->38 6->41 6->42 6->73
+Node id 7: (0 self-edges size (30,20))
+  In  edges: 78->7
+  Out edges: 7->82
+Node id 8: (0 self-edges size (30,20))
+  In  edges: 41->8 68->8
+  Out edges: 8->69 8->81
+Node id 9: (0 self-edges size (30,20))
+  In  edges: 82->9 89->9
+  Out edges:
+Node id 10: (0 self-edges size (30,20))
+  In  edges: 79->10 96->10
+  Out edges: 10->97 10->98 10->106
+Node id 11: (0 self-edges size (30,20))
+  In  edges: 69->11 81->11
+  Out edges: 11->79 11->80
+Node id 12: (0 self-edges size (30,20))
+  In  edges: 103->12 104->12
+  Out edges:
+Node id 13: (0 self-edges size (30,20))
+  In  edges: 20->13 58->13
+  Out edges:
+Node id 14: (0 self-edges size (30,20))
+  In  edges: 105->14
+  Out edges:
+Node id 15: (0 self-edges size (30,20))
+  In  edges: 100->15 108->15 109->15
+  Out edges:
+Node id 16: (0 self-edges size (30,20))
+  In  edges: 33->16 48->16 57->16 97->16
+  Out edges: 16->105 16->109
+Node id 17: (0 self-edges size (30,20))
+  In  edges: 37->17
+  Out edges: 17->60 17->70 17->83 17->104
+Node id 18: (0 self-edges size (30,20))
+  In  edges: 72->18 77->18 80->18
+  Out edges: 18->78
+Node id 19: (0 self-edges size (30,20))
+  In  edges: 21->19
+  Out edges: 19->59
+Node id 20: (0 self-edges size (1,1))
+  In  edges: 2->20
+  Out edges: 20->13
+Node id 21: (0 self-edges size (1,1))
+  In  edges: 2->21
+  Out edges: 21->19
+Node id 22: (0 self-edges size (1,1))
+  In  edges: 1->22
+  Out edges: 22->2
+Node id 23: (0 self-edges size (1,1))
+  In  edges: 1->23
+  Out edges: 23->5
+Node id 24: (0 self-edges size (1,1))
+  In  edges: 1->24
+  Out edges: 24->6
+Node id 25: (0 self-edges size (1,1))
+  In  edges: 1->25
+  Out edges: 25->26
+Node id 26: (0 self-edges size (1,1))
+  In  edges: 25->26
+  Out edges: 26->27
+Node id 27: (0 self-edges size (1,1))
+  In  edges: 26->27
+  Out edges: 27->28
+Node id 28: (0 self-edges size (1,1))
+  In  edges: 27->28
+  Out edges: 28->29
+Node id 29: (0 self-edges size (1,1))
+  In  edges: 28->29
+  Out edges: 29->30
+Node id 30: (0 self-edges size (1,1))
+  In  edges: 29->30
+  Out edges: 30->31
+Node id 31: (0 self-edges size (1,1))
+  In  edges: 30->31
+  Out edges: 31->32
+Node id 32: (0 self-edges size (1,1))
+  In  edges: 31->32
+  Out edges: 32->33
+Node id 33: (0 self-edges size (1,1))
+  In  edges: 32->33
+  Out edges: 33->16
+Node id 34: (0 self-edges size (1,1))
+  In  edges: 5->34
+  Out edges: 34->35
+Node id 35: (0 self-edges size (1,1))
+  In  edges: 34->35
+  Out edges: 35->36
+Node id 36: (0 self-edges size (1,1))
+  In  edges: 35->36
+  Out edges: 36->3
+Node id 37: (0 self-edges size (1,1))
+  In  edges: 5->37
+  Out edges: 37->17
+Node id 38: (0 self-edges size (1,1))
+  In  edges: 6->38
+  Out edges: 38->39
+Node id 39: (0 self-edges size (1,1))
+  In  edges: 38->39
+  Out edges: 39->40
+Node id 40: (0 self-edges size (1,1))
+  In  edges: 39->40
+  Out edges: 40->4
+Node id 41: (0 self-edges size (1,1))
+  In  edges: 6->41
+  Out edges: 41->8
+Node id 42: (0 self-edges size (1,1))
+  In  edges: 6->42
+  Out edges: 42->43
+Node id 43: (0 self-edges size (1,1))
+  In  edges: 42->43
+  Out edges: 43->44
+Node id 44: (0 self-edges size (1,1))
+  In  edges: 43->44
+  Out edges: 44->45
+Node id 45: (0 self-edges size (1,1))
+  In  edges: 44->45
+  Out edges: 45->46
+Node id 46: (0 self-edges size (1,1))
+  In  edges: 45->46
+  Out edges: 46->47
+Node id 47: (0 self-edges size (1,1))
+  In  edges: 46->47
+  Out edges: 47->48
+Node id 48: (0 self-edges size (1,1))
+  In  edges: 47->48
+  Out edges: 48->16
+Node id 49: (0 self-edges size (1,1))
+  In  edges: 1->49
+  Out edges: 49->50
+Node id 50: (0 self-edges size (1,1))
+  In  edges: 49->50
+  Out edges: 50->51
+Node id 51: (0 self-edges size (1,1))
+  In  edges: 50->51
+  Out edges: 51->52
+Node id 52: (0 self-edges size (1,1))
+  In  edges: 51->52
+  Out edges: 52->53
+Node id 53: (0 self-edges size (1,1))
+  In  edges: 52->53
+  Out edges: 53->54
+Node id 54: (0 self-edges size (1,1))
+  In  edges: 53->54
+  Out edges: 54->55
+Node id 55: (0 self-edges size (1,1))
+  In  edges: 54->55
+  Out edges: 55->56
+Node id 56: (0 self-edges size (1,1))
+  In  edges: 55->56
+  Out edges: 56->57
+Node id 57: (0 self-edges size (1,1))
+  In  edges: 56->57
+  Out edges: 57->16
+Node id 58: (0 self-edges size (1,1))
+  In  edges: 2->58
+  Out edges: 58->13
+Node id 59: (0 self-edges size (1,1))
+  In  edges: 19->59
+  Out edges: 59->3
+Node id 60: (0 self-edges size (1,1))
+  In  edges: 17->60
+  Out edges: 60->4
+Node id 61: (0 self-edges size (1,1))
+  In  edges: 1->61
+  Out edges: 61->62
+Node id 62: (0 self-edges size (1,1))
+  In  edges: 61->62
+  Out edges: 62->63
+Node id 63: (0 self-edges size (1,1))
+  In  edges: 62->63
+  Out edges: 63->64
+Node id 64: (0 self-edges size (1,1))
+  In  edges: 63->64
+  Out edges: 64->65
+Node id 65: (0 self-edges size (1,1))
+  In  edges: 64->65
+  Out edges: 65->4
+Node id 66: (0 self-edges size (1,1))
+  In  edges: 0->66
+  Out edges: 66->67
+Node id 67: (0 self-edges size (1,1))
+  In  edges: 66->67
+  Out edges: 67->68
+Node id 68: (0 self-edges size (1,1))
+  In  edges: 67->68
+  Out edges: 68->8
+Node id 69: (0 self-edges size (1,1))
+  In  edges: 8->69
+  Out edges: 69->11
+Node id 70: (0 self-edges size (1,1))
+  In  edges: 17->70
+  Out edges: 70->71
+Node id 71: (0 self-edges size (1,1))
+  In  edges: 70->71
+  Out edges: 71->72
+Node id 72: (0 self-edges size (1,1))
+  In  edges: 71->72
+  Out edges: 72->18
+Node id 73: (0 self-edges size (1,1))
+  In  edges: 6->73
+  Out edges: 73->74
+Node id 74: (0 self-edges size (1,1))
+  In  edges: 73->74
+  Out edges: 74->75
+Node id 75: (0 self-edges size (1,1))
+  In  edges: 74->75
+  Out edges: 75->76
+Node id 76: (0 self-edges size (1,1))
+  In  edges: 75->76
+  Out edges: 76->77
+Node id 77: (0 self-edges size (1,1))
+  In  edges: 76->77
+  Out edges: 77->18
+Node id 78: (0 self-edges size (1,1))
+  In  edges: 18->78
+  Out edges: 78->7
+Node id 79: (0 self-edges size (1,1))
+  In  edges: 11->79
+  Out edges: 79->10
+Node id 80: (0 self-edges size (1,1))
+  In  edges: 11->80
+  Out edges: 80->18
+Node id 81: (0 self-edges size (1,1))
+  In  edges: 8->81
+  Out edges: 81->11
+Node id 82: (0 self-edges size (1,1))
+  In  edges: 7->82
+  Out edges: 82->9
+Node id 83: (0 self-edges size (1,1))
+  In  edges: 17->83
+  Out edges: 83->84
+Node id 84: (0 self-edges size (1,1))
+  In  edges: 83->84
+  Out edges: 84->85
+Node id 85: (0 self-edges size (1,1))
+  In  edges: 84->85
+  Out edges: 85->86
+Node id 86: (0 self-edges size (1,1))
+  In  edges: 85->86
+  Out edges: 86->87
+Node id 87: (0 self-edges size (1,1))
+  In  edges: 86->87
+  Out edges: 87->88
+Node id 88: (0 self-edges size (1,1))
+  In  edges: 87->88
+  Out edges: 88->89
+Node id 89: (0 self-edges size (1,1))
+  In  edges: 88->89
+  Out edges: 89->9
+Node id 90: (0 self-edges size (1,1))
+  In  edges: 0->90
+  Out edges: 90->91
+Node id 91: (0 self-edges size (1,1))
+  In  edges: 90->91
+  Out edges: 91->92
+Node id 92: (0 self-edges size (1,1))
+  In  edges: 91->92
+  Out edges: 92->93
+Node id 93: (0 self-edges size (1,1))
+  In  edges: 92->93
+  Out edges: 93->94
+Node id 94: (0 self-edges size (1,1))
+  In  edges: 93->94
+  Out edges: 94->95
+Node id 95: (0 self-edges size (1,1))
+  In  edges: 94->95
+  Out edges: 95->96
+Node id 96: (0 self-edges size (1,1))
+  In  edges: 95->96
+  Out edges: 96->10
+Node id 97: (0 self-edges size (1,1))
+  In  edges: 10->97
+  Out edges: 97->16
+Node id 98: (0 self-edges size (1,1))
+  In  edges: 10->98
+  Out edges: 98->99
+Node id 99: (0 self-edges size (1,1))
+  In  edges: 98->99
+  Out edges: 99->100
+Node id 100: (0 self-edges size (1,1))
+  In  edges: 99->100
+  Out edges: 100->15
+Node id 101: (0 self-edges size (1,1))
+  In  edges: 5->101
+  Out edges: 101->102
+Node id 102: (0 self-edges size (1,1))
+  In  edges: 101->102
+  Out edges: 102->103
+Node id 103: (0 self-edges size (1,1))
+  In  edges: 102->103
+  Out edges: 103->12
+Node id 104: (0 self-edges size (1,1))
+  In  edges: 17->104
+  Out edges: 104->12
+Node id 105: (0 self-edges size (1,1))
+  In  edges: 16->105
+  Out edges: 105->14
+Node id 106: (0 self-edges size (1,1))
+  In  edges: 10->106
+  Out edges: 106->107
+Node id 107: (0 self-edges size (1,1))
+  In  edges: 106->107
+  Out edges: 107->108
+Node id 108: (0 self-edges size (1,1))
+  In  edges: 107->108
+  Out edges: 108->15
+Node id 109: (0 self-edges size (1,1))
+  In  edges: 16->109
+  Out edges: 109->15
+Edges:
+Edge id 34: 2->20 reversed=0 horizontal=0
+Edge id 35: 20->13 reversed=0 horizontal=0
+Edge id 36: 2->21 reversed=0 horizontal=0
+Edge id 37: 21->19 reversed=0 horizontal=0
+Edge id 38: 1->22 reversed=0 horizontal=0
+Edge id 39: 22->2 reversed=0 horizontal=0
+Edge id 40: 1->23 reversed=0 horizontal=0
+Edge id 41: 23->5 reversed=0 horizontal=0
+Edge id 42: 1->24 reversed=0 horizontal=0
+Edge id 43: 24->6 reversed=0 horizontal=0
+Edge id 44: 1->25 reversed=0 horizontal=0
+Edge id 45: 25->26 reversed=0 horizontal=0
+Edge id 46: 26->27 reversed=0 horizontal=0
+Edge id 47: 27->28 reversed=0 horizontal=0
+Edge id 48: 28->29 reversed=0 horizontal=0
+Edge id 49: 29->30 reversed=0 horizontal=0
+Edge id 50: 30->31 reversed=0 horizontal=0
+Edge id 51: 31->32 reversed=0 horizontal=0
+Edge id 52: 32->33 reversed=0 horizontal=0
+Edge id 53: 33->16 reversed=0 horizontal=0
+Edge id 54: 5->34 reversed=0 horizontal=0
+Edge id 55: 34->35 reversed=0 horizontal=0
+Edge id 56: 35->36 reversed=0 horizontal=0
+Edge id 57: 36->3 reversed=0 horizontal=0
+Edge id 58: 5->37 reversed=0 horizontal=0
+Edge id 59: 37->17 reversed=0 horizontal=0
+Edge id 60: 6->38 reversed=0 horizontal=0
+Edge id 61: 38->39 reversed=0 horizontal=0
+Edge id 62: 39->40 reversed=0 horizontal=0
+Edge id 63: 40->4 reversed=0 horizontal=0
+Edge id 64: 6->41 reversed=0 horizontal=0
+Edge id 65: 41->8 reversed=0 horizontal=0
+Edge id 66: 6->42 reversed=0 horizontal=0
+Edge id 67: 42->43 reversed=0 horizontal=0
+Edge id 68: 43->44 reversed=0 horizontal=0
+Edge id 69: 44->45 reversed=0 horizontal=0
+Edge id 70: 45->46 reversed=0 horizontal=0
+Edge id 71: 46->47 reversed=0 horizontal=0
+Edge id 72: 47->48 reversed=0 horizontal=0
+Edge id 73: 48->16 reversed=0 horizontal=0
+Edge id 74: 1->49 reversed=1 horizontal=0
+Edge id 75: 49->50 reversed=1 horizontal=0
+Edge id 76: 50->51 reversed=1 horizontal=0
+Edge id 77: 51->52 reversed=1 horizontal=0
+Edge id 78: 52->53 reversed=1 horizontal=0
+Edge id 79: 53->54 reversed=1 horizontal=0
+Edge id 80: 54->55 reversed=1 horizontal=0
+Edge id 81: 55->56 reversed=1 horizontal=0
+Edge id 82: 56->57 reversed=1 horizontal=0
+Edge id 83: 57->16 reversed=1 horizontal=0
+Edge id 84: 2->58 reversed=1 horizontal=0
+Edge id 85: 58->13 reversed=1 horizontal=0
+Edge id 86: 19->59 reversed=1 horizontal=0
+Edge id 87: 59->3 reversed=1 horizontal=0
+Edge id 88: 17->60 reversed=1 horizontal=0
+Edge id 89: 60->4 reversed=1 horizontal=0
+Edge id 90: 1->61 reversed=1 horizontal=0
+Edge id 91: 61->62 reversed=1 horizontal=0
+Edge id 92: 62->63 reversed=1 horizontal=0
+Edge id 93: 63->64 reversed=1 horizontal=0
+Edge id 94: 64->65 reversed=1 horizontal=0
+Edge id 95: 65->4 reversed=1 horizontal=0
+Edge id 96: 0->66 reversed=1 horizontal=0
+Edge id 97: 66->67 reversed=1 horizontal=0
+Edge id 98: 67->68 reversed=1 horizontal=0
+Edge id 99: 68->8 reversed=1 horizontal=0
+Edge id 100: 8->69 reversed=0 horizontal=0
+Edge id 101: 69->11 reversed=0 horizontal=0
+Edge id 102: 17->70 reversed=1 horizontal=0
+Edge id 103: 70->71 reversed=1 horizontal=0
+Edge id 104: 71->72 reversed=1 horizontal=0
+Edge id 105: 72->18 reversed=1 horizontal=0
+Edge id 106: 6->73 reversed=1 horizontal=0
+Edge id 107: 73->74 reversed=1 horizontal=0
+Edge id 108: 74->75 reversed=1 horizontal=0
+Edge id 109: 75->76 reversed=1 horizontal=0
+Edge id 110: 76->77 reversed=1 horizontal=0
+Edge id 111: 77->18 reversed=1 horizontal=0
+Edge id 112: 18->78 reversed=1 horizontal=0
+Edge id 113: 78->7 reversed=1 horizontal=0
+Edge id 114: 11->79 reversed=0 horizontal=0
+Edge id 115: 79->10 reversed=0 horizontal=0
+Edge id 116: 11->80 reversed=0 horizontal=0
+Edge id 117: 80->18 reversed=0 horizontal=0
+Edge id 118: 8->81 reversed=1 horizontal=0
+Edge id 119: 81->11 reversed=1 horizontal=0
+Edge id 120: 7->82 reversed=1 horizontal=0
+Edge id 121: 82->9 reversed=1 horizontal=0
+Edge id 122: 17->83 reversed=1 horizontal=0
+Edge id 123: 83->84 reversed=1 horizontal=0
+Edge id 124: 84->85 reversed=1 horizontal=0
+Edge id 125: 85->86 reversed=1 horizontal=0
+Edge id 126: 86->87 reversed=1 horizontal=0
+Edge id 127: 87->88 reversed=1 horizontal=0
+Edge id 128: 88->89 reversed=1 horizontal=0
+Edge id 129: 89->9 reversed=1 horizontal=0
+Edge id 130: 0->90 reversed=1 horizontal=0
+Edge id 131: 90->91 reversed=1 horizontal=0
+Edge id 132: 91->92 reversed=1 horizontal=0
+Edge id 133: 92->93 reversed=1 horizontal=0
+Edge id 134: 93->94 reversed=1 horizontal=0
+Edge id 135: 94->95 reversed=1 horizontal=0
+Edge id 136: 95->96 reversed=1 horizontal=0
+Edge id 137: 96->10 reversed=1 horizontal=0
+Edge id 138: 10->97 reversed=0 horizontal=0
+Edge id 139: 97->16 reversed=0 horizontal=0
+Edge id 140: 10->98 reversed=0 horizontal=0
+Edge id 141: 98->99 reversed=0 horizontal=0
+Edge id 142: 99->100 reversed=0 horizontal=0
+Edge id 143: 100->15 reversed=0 horizontal=0
+Edge id 144: 5->101 reversed=1 horizontal=0
+Edge id 145: 101->102 reversed=1 horizontal=0
+Edge id 146: 102->103 reversed=1 horizontal=0
+Edge id 147: 103->12 reversed=1 horizontal=0
+Edge id 148: 17->104 reversed=1 horizontal=0
+Edge id 149: 104->12 reversed=1 horizontal=0
+Edge id 150: 16->105 reversed=1 horizontal=0
+Edge id 151: 105->14 reversed=1 horizontal=0
+Edge id 152: 10->106 reversed=1 horizontal=0
+Edge id 153: 106->107 reversed=1 horizontal=0
+Edge id 154: 107->108 reversed=1 horizontal=0
+Edge id 155: 108->15 reversed=1 horizontal=0
+Edge id 156: 16->109 reversed=1 horizontal=0
+Edge id 157: 109->15 reversed=1 horizontal=0
+maxrank = 12
+node id 0: relative pos (1,0) absolute pos (72,0) dummy=0
+node id 1: relative pos (0,0) absolute pos (57,0) dummy=0
+node id 2: relative pos (0,2) absolute pos (37,80) dummy=0
+node id 3: relative pos (2,6) absolute pos (55,240) dummy=0
+node id 4: relative pos (6,6) absolute pos (85,240) dummy=0
+node id 5: relative pos (1,2) absolute pos (52,80) dummy=0
+node id 6: relative pos (3,2) absolute pos (72,80) dummy=0
+node id 7: relative pos (1,10) absolute pos (65,400) dummy=0
+node id 8: relative pos (2,4) absolute pos (50,160) dummy=0
+node id 9: relative pos (2,12) absolute pos (80,480) dummy=0
+node id 10: relative pos (1,8) absolute pos (62,320) dummy=0
+node id 11: relative pos (1,6) absolute pos (40,240) dummy=0
+node id 12: relative pos (10,6) absolute pos (115,240) dummy=0
+node id 13: relative pos (1,4) absolute pos (35,160) dummy=0
+node id 14: relative pos (0,12) absolute pos (50,480) dummy=0
+node id 15: relative pos (1,12) absolute pos (65,480) dummy=0
+node id 16: relative pos (0,10) absolute pos (50,400) dummy=0
+node id 17: relative pos (7,4) absolute pos (85,160) dummy=0
+node id 18: relative pos (4,8) absolute pos (87,320) dummy=0
+node id 19: relative pos (0,4) absolute pos (20,160) dummy=0
+node id 20: relative pos (1,3) absolute pos (40,120) dummy=1
+node id 21: relative pos (0,3) absolute pos (35,120) dummy=1
+node id 22: relative pos (0,1) absolute pos (52,40) dummy=1
+node id 23: relative pos (1,1) absolute pos (57,40) dummy=1
+node id 24: relative pos (3,1) absolute pos (67,40) dummy=1
+node id 25: relative pos (2,1) absolute pos (62,40) dummy=1
+node id 26: relative pos (2,2) absolute pos (57,80) dummy=1
+node id 27: relative pos (7,3) absolute pos (70,120) dummy=1
+node id 28: relative pos (3,4) absolute pos (55,160) dummy=1
+node id 29: relative pos (0,5) absolute pos (32,200) dummy=1
+node id 30: relative pos (0,6) absolute pos (25,240) dummy=1
+node id 31: relative pos (0,7) absolute pos (50,280) dummy=1
+node id 32: relative pos (0,8) absolute pos (47,320) dummy=1
+node id 33: relative pos (0,9) absolute pos (52,360) dummy=1
+node id 34: relative pos (3,3) absolute pos (50,120) dummy=1
+node id 35: relative pos (4,4) absolute pos (60,160) dummy=1
+node id 36: relative pos (4,5) absolute pos (52,200) dummy=1
+node id 37: relative pos (6,3) absolute pos (65,120) dummy=1
+node id 38: relative pos (9,3) absolute pos (80,120) dummy=1
+node id 39: relative pos (8,4) absolute pos (90,160) dummy=1
+node id 40: relative pos (9,5) absolute pos (77,200) dummy=1
+node id 41: relative pos (4,3) absolute pos (55,120) dummy=1
+node id 42: relative pos (8,3) absolute pos (75,120) dummy=1
+node id 43: relative pos (5,4) absolute pos (65,160) dummy=1
+node id 44: relative pos (5,5) absolute pos (57,200) dummy=1
+node id 45: relative pos (3,6) absolute pos (60,240) dummy=1
+node id 46: relative pos (3,7) absolute pos (65,280) dummy=1
+node id 47: relative pos (2,8) absolute pos (67,320) dummy=1
+node id 48: relative pos (2,9) absolute pos (62,360) dummy=1
+node id 49: relative pos (4,1) absolute pos (72,40) dummy=1
+node id 50: relative pos (4,2) absolute pos (77,80) dummy=1
+node id 51: relative pos (10,3) absolute pos (85,120) dummy=1
+node id 52: relative pos (6,4) absolute pos (70,160) dummy=1
+node id 53: relative pos (6,5) absolute pos (62,200) dummy=1
+node id 54: relative pos (4,6) absolute pos (65,240) dummy=1
+node id 55: relative pos (4,7) absolute pos (70,280) dummy=1
+node id 56: relative pos (3,8) absolute pos (72,320) dummy=1
+node id 57: relative pos (3,9) absolute pos (67,360) dummy=1
+node id 58: relative pos (2,3) absolute pos (45,120) dummy=1
+node id 59: relative pos (2,5) absolute pos (42,200) dummy=1
+node id 60: relative pos (8,5) absolute pos (72,200) dummy=1
+node id 61: relative pos (5,1) absolute pos (77,40) dummy=1
+node id 62: relative pos (5,2) absolute pos (82,80) dummy=1
+node id 63: relative pos (11,3) absolute pos (90,120) dummy=1
+node id 64: relative pos (9,4) absolute pos (95,160) dummy=1
+node id 65: relative pos (10,5) absolute pos (82,200) dummy=1
+node id 66: relative pos (6,1) absolute pos (82,40) dummy=1
+node id 67: relative pos (6,2) absolute pos (87,80) dummy=1
+node id 68: relative pos (5,3) absolute pos (60,120) dummy=1
+node id 69: relative pos (1,5) absolute pos (37,200) dummy=1
+node id 70: relative pos (7,5) absolute pos (67,200) dummy=1
+node id 71: relative pos (5,6) absolute pos (70,240) dummy=1
+node id 72: relative pos (6,7) absolute pos (80,280) dummy=1
+node id 73: relative pos (12,3) absolute pos (95,120) dummy=1
+node id 74: relative pos (10,4) absolute pos (100,160) dummy=1
+node id 75: relative pos (11,5) absolute pos (87,200) dummy=1
+node id 76: relative pos (7,6) absolute pos (90,240) dummy=1
+node id 77: relative pos (7,7) absolute pos (85,280) dummy=1
+node id 78: relative pos (4,9) absolute pos (72,360) dummy=1
+node id 79: relative pos (1,7) absolute pos (55,280) dummy=1
+node id 80: relative pos (5,7) absolute pos (75,280) dummy=1
+node id 81: relative pos (3,5) absolute pos (47,200) dummy=1
+node id 82: relative pos (2,11) absolute pos (67,440) dummy=1
+node id 83: relative pos (12,5) absolute pos (92,200) dummy=1
+node id 84: relative pos (8,6) absolute pos (95,240) dummy=1
+node id 85: relative pos (8,7) absolute pos (90,280) dummy=1
+node id 86: relative pos (5,8) absolute pos (92,320) dummy=1
+node id 87: relative pos (5,9) absolute pos (77,360) dummy=1
+node id 88: relative pos (2,10) absolute pos (70,400) dummy=1
+node id 89: relative pos (3,11) absolute pos (72,440) dummy=1
+node id 90: relative pos (7,1) absolute pos (87,40) dummy=1
+node id 91: relative pos (7,2) absolute pos (92,80) dummy=1
+node id 92: relative pos (13,3) absolute pos (100,120) dummy=1
+node id 93: relative pos (11,4) absolute pos (105,160) dummy=1
+node id 94: relative pos (13,5) absolute pos (97,200) dummy=1
+node id 95: relative pos (9,6) absolute pos (100,240) dummy=1
+node id 96: relative pos (2,7) absolute pos (60,280) dummy=1
+node id 97: relative pos (1,9) absolute pos (57,360) dummy=1
+node id 98: relative pos (6,9) absolute pos (82,360) dummy=1
+node id 99: relative pos (3,10) absolute pos (75,400) dummy=1
+node id 100: relative pos (4,11) absolute pos (77,440) dummy=1
+node id 101: relative pos (14,3) absolute pos (105,120) dummy=1
+node id 102: relative pos (12,4) absolute pos (110,160) dummy=1
+node id 103: relative pos (15,5) absolute pos (107,200) dummy=1
+node id 104: relative pos (14,5) absolute pos (102,200) dummy=1
+node id 105: relative pos (0,11) absolute pos (57,440) dummy=1
+node id 106: relative pos (7,9) absolute pos (87,360) dummy=1
+node id 107: relative pos (4,10) absolute pos (80,400) dummy=1
+node id 108: relative pos (5,11) absolute pos (82,440) dummy=1
+node id 109: relative pos (1,11) absolute pos (62,440) dummy=1
+Layout test passed!
+This is the image svg data:
+
+<svg width="135" height="500" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <g>
+  <title>miptgraph</title>
+  <style>
+    .small { font: italic 15px sans-serif; }
+  </style>
+  <!-- edge id 34 edge from node 2->20 reversed=0 -->
+  <line id="edge_34" x1="47" y1="90" x2="50" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 35 edge from node 20->13 reversed=0 -->
+  <line id="edge_35" x1="50" y1="130" x2="45" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 36 edge from node 2->21 reversed=0 -->
+  <line id="edge_36" x1="47" y1="90" x2="45" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 37 edge from node 21->19 reversed=0 -->
+  <line id="edge_37" x1="45" y1="130" x2="30" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 38 edge from node 1->22 reversed=0 -->
+  <line id="edge_38" x1="67" y1="10" x2="62" y2="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 39 edge from node 22->2 reversed=0 -->
+  <line id="edge_39" x1="62" y1="50" x2="47" y2="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 40 edge from node 1->23 reversed=0 -->
+  <line id="edge_40" x1="67" y1="10" x2="67" y2="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 41 edge from node 23->5 reversed=0 -->
+  <line id="edge_41" x1="67" y1="50" x2="62" y2="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 42 edge from node 1->24 reversed=0 -->
+  <line id="edge_42" x1="67" y1="10" x2="77" y2="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 43 edge from node 24->6 reversed=0 -->
+  <line id="edge_43" x1="77" y1="50" x2="82" y2="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 44 edge from node 1->25 reversed=0 -->
+  <line id="edge_44" x1="67" y1="10" x2="72" y2="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 45 edge from node 25->26 reversed=0 -->
+  <line id="edge_45" x1="72" y1="50" x2="67" y2="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 46 edge from node 26->27 reversed=0 -->
+  <line id="edge_46" x1="67" y1="90" x2="80" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 47 edge from node 27->28 reversed=0 -->
+  <line id="edge_47" x1="80" y1="130" x2="65" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 48 edge from node 28->29 reversed=0 -->
+  <line id="edge_48" x1="65" y1="170" x2="42" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 49 edge from node 29->30 reversed=0 -->
+  <line id="edge_49" x1="42" y1="210" x2="35" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 50 edge from node 30->31 reversed=0 -->
+  <line id="edge_50" x1="35" y1="250" x2="60" y2="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 51 edge from node 31->32 reversed=0 -->
+  <line id="edge_51" x1="60" y1="290" x2="57" y2="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 52 edge from node 32->33 reversed=0 -->
+  <line id="edge_52" x1="57" y1="330" x2="62" y2="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 53 edge from node 33->16 reversed=0 -->
+  <line id="edge_53" x1="62" y1="370" x2="60" y2="410" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 54 edge from node 5->34 reversed=0 -->
+  <line id="edge_54" x1="62" y1="90" x2="60" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 55 edge from node 34->35 reversed=0 -->
+  <line id="edge_55" x1="60" y1="130" x2="70" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 56 edge from node 35->36 reversed=0 -->
+  <line id="edge_56" x1="70" y1="170" x2="62" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 57 edge from node 36->3 reversed=0 -->
+  <line id="edge_57" x1="62" y1="210" x2="65" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 58 edge from node 5->37 reversed=0 -->
+  <line id="edge_58" x1="62" y1="90" x2="75" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 59 edge from node 37->17 reversed=0 -->
+  <line id="edge_59" x1="75" y1="130" x2="95" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 60 edge from node 6->38 reversed=0 -->
+  <line id="edge_60" x1="82" y1="90" x2="90" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 61 edge from node 38->39 reversed=0 -->
+  <line id="edge_61" x1="90" y1="130" x2="100" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 62 edge from node 39->40 reversed=0 -->
+  <line id="edge_62" x1="100" y1="170" x2="87" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 63 edge from node 40->4 reversed=0 -->
+  <line id="edge_63" x1="87" y1="210" x2="95" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 64 edge from node 6->41 reversed=0 -->
+  <line id="edge_64" x1="82" y1="90" x2="65" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 65 edge from node 41->8 reversed=0 -->
+  <line id="edge_65" x1="65" y1="130" x2="60" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 66 edge from node 6->42 reversed=0 -->
+  <line id="edge_66" x1="82" y1="90" x2="85" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 67 edge from node 42->43 reversed=0 -->
+  <line id="edge_67" x1="85" y1="130" x2="75" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 68 edge from node 43->44 reversed=0 -->
+  <line id="edge_68" x1="75" y1="170" x2="67" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 69 edge from node 44->45 reversed=0 -->
+  <line id="edge_69" x1="67" y1="210" x2="70" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 70 edge from node 45->46 reversed=0 -->
+  <line id="edge_70" x1="70" y1="250" x2="75" y2="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 71 edge from node 46->47 reversed=0 -->
+  <line id="edge_71" x1="75" y1="290" x2="77" y2="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 72 edge from node 47->48 reversed=0 -->
+  <line id="edge_72" x1="77" y1="330" x2="72" y2="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 73 edge from node 48->16 reversed=0 -->
+  <line id="edge_73" x1="72" y1="370" x2="60" y2="410" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 74 edge from node 1->49 reversed=1 -->
+  <line id="edge_74" x1="67" y1="10" x2="82" y2="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 75 edge from node 49->50 reversed=1 -->
+  <line id="edge_75" x1="82" y1="50" x2="87" y2="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 76 edge from node 50->51 reversed=1 -->
+  <line id="edge_76" x1="87" y1="90" x2="95" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 77 edge from node 51->52 reversed=1 -->
+  <line id="edge_77" x1="95" y1="130" x2="80" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 78 edge from node 52->53 reversed=1 -->
+  <line id="edge_78" x1="80" y1="170" x2="72" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 79 edge from node 53->54 reversed=1 -->
+  <line id="edge_79" x1="72" y1="210" x2="75" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 80 edge from node 54->55 reversed=1 -->
+  <line id="edge_80" x1="75" y1="250" x2="80" y2="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 81 edge from node 55->56 reversed=1 -->
+  <line id="edge_81" x1="80" y1="290" x2="82" y2="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 82 edge from node 56->57 reversed=1 -->
+  <line id="edge_82" x1="82" y1="330" x2="77" y2="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 83 edge from node 57->16 reversed=1 -->
+  <line id="edge_83" x1="77" y1="370" x2="60" y2="410" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 84 edge from node 2->58 reversed=1 -->
+  <line id="edge_84" x1="47" y1="90" x2="55" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 85 edge from node 58->13 reversed=1 -->
+  <line id="edge_85" x1="55" y1="130" x2="45" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 86 edge from node 19->59 reversed=1 -->
+  <line id="edge_86" x1="30" y1="170" x2="52" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 87 edge from node 59->3 reversed=1 -->
+  <line id="edge_87" x1="52" y1="210" x2="65" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 88 edge from node 17->60 reversed=1 -->
+  <line id="edge_88" x1="95" y1="170" x2="82" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 89 edge from node 60->4 reversed=1 -->
+  <line id="edge_89" x1="82" y1="210" x2="95" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 90 edge from node 1->61 reversed=1 -->
+  <line id="edge_90" x1="67" y1="10" x2="87" y2="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 91 edge from node 61->62 reversed=1 -->
+  <line id="edge_91" x1="87" y1="50" x2="92" y2="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 92 edge from node 62->63 reversed=1 -->
+  <line id="edge_92" x1="92" y1="90" x2="100" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 93 edge from node 63->64 reversed=1 -->
+  <line id="edge_93" x1="100" y1="130" x2="105" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 94 edge from node 64->65 reversed=1 -->
+  <line id="edge_94" x1="105" y1="170" x2="92" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 95 edge from node 65->4 reversed=1 -->
+  <line id="edge_95" x1="92" y1="210" x2="95" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 96 edge from node 0->66 reversed=1 -->
+  <line id="edge_96" x1="82" y1="10" x2="92" y2="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 97 edge from node 66->67 reversed=1 -->
+  <line id="edge_97" x1="92" y1="50" x2="97" y2="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 98 edge from node 67->68 reversed=1 -->
+  <line id="edge_98" x1="97" y1="90" x2="70" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 99 edge from node 68->8 reversed=1 -->
+  <line id="edge_99" x1="70" y1="130" x2="60" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 100 edge from node 8->69 reversed=0 -->
+  <line id="edge_100" x1="60" y1="170" x2="47" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 101 edge from node 69->11 reversed=0 -->
+  <line id="edge_101" x1="47" y1="210" x2="50" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 102 edge from node 17->70 reversed=1 -->
+  <line id="edge_102" x1="95" y1="170" x2="77" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 103 edge from node 70->71 reversed=1 -->
+  <line id="edge_103" x1="77" y1="210" x2="80" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 104 edge from node 71->72 reversed=1 -->
+  <line id="edge_104" x1="80" y1="250" x2="90" y2="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 105 edge from node 72->18 reversed=1 -->
+  <line id="edge_105" x1="90" y1="290" x2="97" y2="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 106 edge from node 6->73 reversed=1 -->
+  <line id="edge_106" x1="82" y1="90" x2="105" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 107 edge from node 73->74 reversed=1 -->
+  <line id="edge_107" x1="105" y1="130" x2="110" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 108 edge from node 74->75 reversed=1 -->
+  <line id="edge_108" x1="110" y1="170" x2="97" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 109 edge from node 75->76 reversed=1 -->
+  <line id="edge_109" x1="97" y1="210" x2="100" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 110 edge from node 76->77 reversed=1 -->
+  <line id="edge_110" x1="100" y1="250" x2="95" y2="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 111 edge from node 77->18 reversed=1 -->
+  <line id="edge_111" x1="95" y1="290" x2="97" y2="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 112 edge from node 18->78 reversed=1 -->
+  <line id="edge_112" x1="97" y1="330" x2="82" y2="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 113 edge from node 78->7 reversed=1 -->
+  <line id="edge_113" x1="82" y1="370" x2="75" y2="410" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 114 edge from node 11->79 reversed=0 -->
+  <line id="edge_114" x1="50" y1="250" x2="65" y2="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 115 edge from node 79->10 reversed=0 -->
+  <line id="edge_115" x1="65" y1="290" x2="72" y2="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 116 edge from node 11->80 reversed=0 -->
+  <line id="edge_116" x1="50" y1="250" x2="85" y2="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 117 edge from node 80->18 reversed=0 -->
+  <line id="edge_117" x1="85" y1="290" x2="97" y2="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 118 edge from node 8->81 reversed=1 -->
+  <line id="edge_118" x1="60" y1="170" x2="57" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 119 edge from node 81->11 reversed=1 -->
+  <line id="edge_119" x1="57" y1="210" x2="50" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 120 edge from node 7->82 reversed=1 -->
+  <line id="edge_120" x1="75" y1="410" x2="77" y2="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 121 edge from node 82->9 reversed=1 -->
+  <line id="edge_121" x1="77" y1="450" x2="90" y2="490" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 122 edge from node 17->83 reversed=1 -->
+  <line id="edge_122" x1="95" y1="170" x2="102" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 123 edge from node 83->84 reversed=1 -->
+  <line id="edge_123" x1="102" y1="210" x2="105" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 124 edge from node 84->85 reversed=1 -->
+  <line id="edge_124" x1="105" y1="250" x2="100" y2="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 125 edge from node 85->86 reversed=1 -->
+  <line id="edge_125" x1="100" y1="290" x2="102" y2="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 126 edge from node 86->87 reversed=1 -->
+  <line id="edge_126" x1="102" y1="330" x2="87" y2="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 127 edge from node 87->88 reversed=1 -->
+  <line id="edge_127" x1="87" y1="370" x2="80" y2="410" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 128 edge from node 88->89 reversed=1 -->
+  <line id="edge_128" x1="80" y1="410" x2="82" y2="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 129 edge from node 89->9 reversed=1 -->
+  <line id="edge_129" x1="82" y1="450" x2="90" y2="490" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 130 edge from node 0->90 reversed=1 -->
+  <line id="edge_130" x1="82" y1="10" x2="97" y2="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 131 edge from node 90->91 reversed=1 -->
+  <line id="edge_131" x1="97" y1="50" x2="102" y2="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 132 edge from node 91->92 reversed=1 -->
+  <line id="edge_132" x1="102" y1="90" x2="110" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 133 edge from node 92->93 reversed=1 -->
+  <line id="edge_133" x1="110" y1="130" x2="115" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 134 edge from node 93->94 reversed=1 -->
+  <line id="edge_134" x1="115" y1="170" x2="107" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 135 edge from node 94->95 reversed=1 -->
+  <line id="edge_135" x1="107" y1="210" x2="110" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 136 edge from node 95->96 reversed=1 -->
+  <line id="edge_136" x1="110" y1="250" x2="70" y2="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 137 edge from node 96->10 reversed=1 -->
+  <line id="edge_137" x1="70" y1="290" x2="72" y2="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 138 edge from node 10->97 reversed=0 -->
+  <line id="edge_138" x1="72" y1="330" x2="67" y2="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 139 edge from node 97->16 reversed=0 -->
+  <line id="edge_139" x1="67" y1="370" x2="60" y2="410" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 140 edge from node 10->98 reversed=0 -->
+  <line id="edge_140" x1="72" y1="330" x2="92" y2="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 141 edge from node 98->99 reversed=0 -->
+  <line id="edge_141" x1="92" y1="370" x2="85" y2="410" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 142 edge from node 99->100 reversed=0 -->
+  <line id="edge_142" x1="85" y1="410" x2="87" y2="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 143 edge from node 100->15 reversed=0 -->
+  <line id="edge_143" x1="87" y1="450" x2="75" y2="490" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#696969" fill="none"/>
+  <!-- edge id 144 edge from node 5->101 reversed=1 -->
+  <line id="edge_144" x1="62" y1="90" x2="115" y2="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 145 edge from node 101->102 reversed=1 -->
+  <line id="edge_145" x1="115" y1="130" x2="120" y2="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 146 edge from node 102->103 reversed=1 -->
+  <line id="edge_146" x1="120" y1="170" x2="117" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 147 edge from node 103->12 reversed=1 -->
+  <line id="edge_147" x1="117" y1="210" x2="125" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 148 edge from node 17->104 reversed=1 -->
+  <line id="edge_148" x1="95" y1="170" x2="112" y2="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 149 edge from node 104->12 reversed=1 -->
+  <line id="edge_149" x1="112" y1="210" x2="125" y2="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 150 edge from node 16->105 reversed=1 -->
+  <line id="edge_150" x1="60" y1="410" x2="67" y2="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 151 edge from node 105->14 reversed=1 -->
+  <line id="edge_151" x1="67" y1="450" x2="60" y2="490" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 152 edge from node 10->106 reversed=1 -->
+  <line id="edge_152" x1="72" y1="330" x2="97" y2="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 153 edge from node 106->107 reversed=1 -->
+  <line id="edge_153" x1="97" y1="370" x2="90" y2="410" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 154 edge from node 107->108 reversed=1 -->
+  <line id="edge_154" x1="90" y1="410" x2="92" y2="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 155 edge from node 108->15 reversed=1 -->
+  <line id="edge_155" x1="92" y1="450" x2="75" y2="490" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 156 edge from node 16->109 reversed=1 -->
+  <line id="edge_156" x1="60" y1="410" x2="72" y2="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <!-- edge id 157 edge from node 109->15 reversed=1 -->
+  <line id="edge_157" x1="72" y1="450" x2="75" y2="490" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#0f0fff" fill="none"/>
+  <rect id="node_0" width="20" height="20" x="67"  y="-5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="72" y="10" class="small">0</text>
+  <rect id="node_1" width="20" height="20" x="52"  y="-5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="57" y="10" class="small">1</text>
+  <rect id="node_2" width="20" height="20" x="32"  y="75" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="37" y="90" class="small">2</text>
+  <rect id="node_3" width="20" height="20" x="50"  y="235" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="55" y="250" class="small">3</text>
+  <rect id="node_4" width="20" height="20" x="80"  y="235" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="85" y="250" class="small">4</text>
+  <rect id="node_5" width="20" height="20" x="47"  y="75" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="52" y="90" class="small">5</text>
+  <rect id="node_6" width="20" height="20" x="67"  y="75" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="72" y="90" class="small">6</text>
+  <rect id="node_7" width="20" height="20" x="60"  y="395" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="65" y="410" class="small">7</text>
+  <rect id="node_8" width="20" height="20" x="45"  y="155" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="50" y="170" class="small">8</text>
+  <rect id="node_9" width="20" height="20" x="75"  y="475" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="80" y="490" class="small">9</text>
+  <rect id="node_10" width="20" height="20" x="57"  y="315" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="62" y="330" class="small">10</text>
+  <rect id="node_11" width="20" height="20" x="35"  y="235" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="40" y="250" class="small">11</text>
+  <rect id="node_12" width="20" height="20" x="110"  y="235" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="115" y="250" class="small">12</text>
+  <rect id="node_13" width="20" height="20" x="30"  y="155" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="35" y="170" class="small">13</text>
+  <rect id="node_14" width="20" height="20" x="45"  y="475" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="50" y="490" class="small">14</text>
+  <rect id="node_15" width="20" height="20" x="60"  y="475" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="65" y="490" class="small">15</text>
+  <rect id="node_16" width="20" height="20" x="45"  y="395" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="50" y="410" class="small">16</text>
+  <rect id="node_17" width="20" height="20" x="80"  y="155" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="85" y="170" class="small">17</text>
+  <rect id="node_18" width="20" height="20" x="82"  y="315" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="87" y="330" class="small">18</text>
+  <rect id="node_19" width="20" height="20" x="15"  y="155" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#7fff00"/>
+  <text x="20" y="170" class="small">19</text>
+  <rect id="node_20" width="5" height="5" x="50"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_21" width="5" height="5" x="45"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_22" width="5" height="5" x="62"  y="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_23" width="5" height="5" x="67"  y="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_24" width="5" height="5" x="77"  y="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_25" width="5" height="5" x="72"  y="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_26" width="5" height="5" x="67"  y="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_27" width="5" height="5" x="80"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_28" width="5" height="5" x="65"  y="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_29" width="5" height="5" x="42"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_30" width="5" height="5" x="35"  y="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_31" width="5" height="5" x="60"  y="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_32" width="5" height="5" x="57"  y="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_33" width="5" height="5" x="62"  y="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_34" width="5" height="5" x="60"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_35" width="5" height="5" x="70"  y="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_36" width="5" height="5" x="62"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_37" width="5" height="5" x="75"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_38" width="5" height="5" x="90"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_39" width="5" height="5" x="100"  y="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_40" width="5" height="5" x="87"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_41" width="5" height="5" x="65"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_42" width="5" height="5" x="85"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_43" width="5" height="5" x="75"  y="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_44" width="5" height="5" x="67"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_45" width="5" height="5" x="70"  y="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_46" width="5" height="5" x="75"  y="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_47" width="5" height="5" x="77"  y="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_48" width="5" height="5" x="72"  y="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_49" width="5" height="5" x="82"  y="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_50" width="5" height="5" x="87"  y="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_51" width="5" height="5" x="95"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_52" width="5" height="5" x="80"  y="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_53" width="5" height="5" x="72"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_54" width="5" height="5" x="75"  y="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_55" width="5" height="5" x="80"  y="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_56" width="5" height="5" x="82"  y="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_57" width="5" height="5" x="77"  y="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_58" width="5" height="5" x="55"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_59" width="5" height="5" x="52"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_60" width="5" height="5" x="82"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_61" width="5" height="5" x="87"  y="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_62" width="5" height="5" x="92"  y="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_63" width="5" height="5" x="100"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_64" width="5" height="5" x="105"  y="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_65" width="5" height="5" x="92"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_66" width="5" height="5" x="92"  y="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_67" width="5" height="5" x="97"  y="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_68" width="5" height="5" x="70"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_69" width="5" height="5" x="47"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_70" width="5" height="5" x="77"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_71" width="5" height="5" x="80"  y="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_72" width="5" height="5" x="90"  y="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_73" width="5" height="5" x="105"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_74" width="5" height="5" x="110"  y="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_75" width="5" height="5" x="97"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_76" width="5" height="5" x="100"  y="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_77" width="5" height="5" x="95"  y="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_78" width="5" height="5" x="82"  y="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_79" width="5" height="5" x="65"  y="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_80" width="5" height="5" x="85"  y="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_81" width="5" height="5" x="57"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_82" width="5" height="5" x="77"  y="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_83" width="5" height="5" x="102"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_84" width="5" height="5" x="105"  y="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_85" width="5" height="5" x="100"  y="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_86" width="5" height="5" x="102"  y="330" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_87" width="5" height="5" x="87"  y="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_88" width="5" height="5" x="80"  y="410" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_89" width="5" height="5" x="82"  y="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_90" width="5" height="5" x="97"  y="50" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_91" width="5" height="5" x="102"  y="90" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_92" width="5" height="5" x="110"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_93" width="5" height="5" x="115"  y="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_94" width="5" height="5" x="107"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_95" width="5" height="5" x="110"  y="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_96" width="5" height="5" x="70"  y="290" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_97" width="5" height="5" x="67"  y="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_98" width="5" height="5" x="92"  y="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_99" width="5" height="5" x="85"  y="410" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_100" width="5" height="5" x="87"  y="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_101" width="5" height="5" x="115"  y="130" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_102" width="5" height="5" x="120"  y="170" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_103" width="5" height="5" x="117"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_104" width="5" height="5" x="112"  y="210" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_105" width="5" height="5" x="67"  y="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_106" width="5" height="5" x="97"  y="370" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_107" width="5" height="5" x="90"  y="410" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_108" width="5" height="5" x="92"  y="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+  <rect id="node_109" width="5" height="5" x="72"  y="450" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="#ff0000"/>
+ </g>
+</svg>

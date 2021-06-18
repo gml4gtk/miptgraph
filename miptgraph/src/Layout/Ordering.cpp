@@ -79,15 +79,16 @@ Ordering::AdjOutPositions(pLNode node)
  */
 void Ordering::Dump()
 {
+    std::printf("Ordering::Dump() there are %lu levels\n", order_vector.size());
     for (unsigned int rank = 0; rank < order_vector.size(); rank++) {
-        printf("Level rank %d has these %lu nodes:\n ", rank, order_vector[rank].size());
+        std::printf("Level rank %d has these %lu nodes:\n ", rank, order_vector[rank].size());
         for (unsigned int i = 0; i < order_vector[rank].size(); i++) {
-            printf(" id:%d(%d,%d)",
+            std::printf(" id:%d(%d,%d)",
                 order_vector[rank][i]->id(),
                 (int)order_vector[rank][i]->getX(),
                 (int)order_vector[rank][i]->getY());
         }
-        printf("\n");
+        std::printf("\n");
     }
     return;
 }

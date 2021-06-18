@@ -27,14 +27,13 @@
  */
 
 /**
- * @file: test7.cpp
+ * @file: test8.cpp
  */
 
 #include "../Layout/Layout.h"
 
 /**
 * Create a LGraph object and call some of its methods.
-* Run two graph layout at same time.
 */
 
 int main(int argc, char* argv[])
@@ -47,46 +46,147 @@ int main(int argc, char* argv[])
 
     LGraph g;
 
-    g.Setid(2);
+    /* 3 type 1 edge conflicts, 19 nodes
+digraph G {
+n2 -> n13
+n2 -> n19
+n1 -> n2
+n1 -> n5
+n1 -> n6
+n1 -> n16
+n5 -> n3
+n5 -> n17
+n6 -> n4
+n6 -> n8
+n6 -> n16
+n16 -> n1
+n13 -> n2
+n3 -> n19
+n4 -> n17
+n4 -> n1
+n8 -> n0
+n8 -> n11
+n18 -> n17
+n18 -> n6
+n7 -> n18
+n11 -> n10
+n11 -> n18
+n11 -> n8
+n9 -> n7
+n9 -> n17
+n10 -> n0
+n10 -> n16
+n10 -> n15
+n12 -> n5
+n12 -> n17
+n14 -> n16
+n15 -> n10
+n15 -> n16
+}
 
-    int len2 = 5;
-    pLNode* p2 = new pLNode[len2];
+graph [
+node [ id 0 ]
+node [ id 1 ]
+node [ id 2 ]
+node [ id 3 ]
+node [ id 4 ]
+node [ id 5 ]
+node [ id 6 ]
+node [ id 7 ]
+node [ id 8 ]
+node [ id 9 ]
+node [ id 10 ]
+node [ id 11 ]
+node [ id 12 ]
+node [ id 13 ]
+node [ id 14 ]
+node [ id 15 ]
+node [ id 16 ]
+node [ id 17 ]
+node [ id 18 ]
+node [ id 19 ]
+edge [ source 2 target 13 ]
+edge [ source 2 target 19 ]
+edge [ source 1 target 2 ]
+edge [ source 1 target 5 ]
+edge [ source 1 target 6 ]
+edge [ source 1 target 16 ]
+edge [ source 5 target 3 ]
+edge [ source 5 target 17 ]
+edge [ source 6 target 4 ]
+edge [ source 6 target 8 ]
+edge [ source 6 target 16 ]
+edge [ source 16 target 1 ]
+edge [ source 13 target 2 ]
+edge [ source 3 target 19 ]
+edge [ source 4 target 17 ]
+edge [ source 4 target 1 ]
+edge [ source 8 target 0 ]
+edge [ source 8 target 11 ]
+edge [ source 18 target 17 ]
+edge [ source 18 target 6 ]
+edge [ source 7 target 18 ]
+edge [ source 11 target 10 ]
+edge [ source 11 target 18 ]
+edge [ source 11 target 8 ]
+edge [ source 9 target 7 ]
+edge [ source 9 target 17 ]
+edge [ source 10 target 0 ]
+edge [ source 10 target 16 ]
+edge [ source 10 target 15 ]
+edge [ source 12 target 5 ]
+edge [ source 12 target 17 ]
+edge [ source 14 target 16 ]
+edge [ source 15 target 10 ]
+edge [ source 15 target 16 ]
+]
+
+*/
+
+    /* 0..19 are 20 nodes */
+    int len = 20;
+    pLNode* p = new pLNode[len];
 
     // Creating a new graph
-    for (int i = 0; i < len2; i++) {
-        p2[i] = (pLNode)g.AddNode();
-        printf("added node in g2 p2[%d] with id %d\n", i, p2[i]->id());
+    for (int i = 0; i < len; i++) {
+        p[i] = (pLNode)g.AddNode();
     }
 
-    // node 0 size (40,20)
-    // set all nodes at different size
-    p2[0]->setNodeSize(40, 20);
-    p2[1]->setNodeSize(100, 25);
-    p2[2]->setNodeSize(520, 10);
-    p2[3]->setNodeSize(400, 50);
-    p2[4]->setNodeSize(100, 20);
-
-    pLEdge ee;
-
-    /* nodes in graph 2 are 0..4 */
-
-    /* 0->1 */
-    ee = (pLEdge)g.AddEdge(p2[0], p2[1], NULL);
-    printf("added edge in g2 with id %d between node %d and node %d with id %d\n", g.id(), ee->from()->id(), ee->to()->id(), ee->id());
-
-    /* cycle 1->2->3->1 */
-    ee = (pLEdge)g.AddEdge(p2[1], p2[2], NULL);
-    printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
-
-    ee = (pLEdge)g.AddEdge(p2[2], p2[3], NULL);
-    printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
-
-    ee = (pLEdge)g.AddEdge(p2[3], p2[1], NULL);
-    printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
-
-    /* 3->4 */
-    ee = (pLEdge)g.AddEdge(p2[3], p2[4], NULL);
-    printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
+    // Performing some transformations
+    g.AddEdge(p[2], p[13], NULL);
+    g.AddEdge(p[2], p[19], NULL);
+    g.AddEdge(p[1], p[2], NULL);
+    g.AddEdge(p[1], p[5], NULL);
+    g.AddEdge(p[1], p[6], NULL);
+    g.AddEdge(p[1], p[16], NULL);
+    g.AddEdge(p[5], p[3], NULL);
+    g.AddEdge(p[5], p[17], NULL);
+    g.AddEdge(p[6], p[4], NULL);
+    g.AddEdge(p[6], p[8], NULL);
+    g.AddEdge(p[6], p[16], NULL);
+    g.AddEdge(p[16], p[1], NULL);
+    g.AddEdge(p[13], p[2], NULL);
+    g.AddEdge(p[3], p[19], NULL);
+    g.AddEdge(p[4], p[17], NULL);
+    g.AddEdge(p[4], p[1], NULL);
+    g.AddEdge(p[8], p[0], NULL);
+    g.AddEdge(p[8], p[11], NULL);
+    g.AddEdge(p[18], p[17], NULL);
+    g.AddEdge(p[18], p[6], NULL);
+    g.AddEdge(p[7], p[18], NULL);
+    g.AddEdge(p[11], p[10], NULL);
+    g.AddEdge(p[11], p[18], NULL);
+    g.AddEdge(p[11], p[8], NULL);
+    g.AddEdge(p[9], p[7], NULL);
+    g.AddEdge(p[9], p[17], NULL);
+    g.AddEdge(p[10], p[0], NULL);
+    g.AddEdge(p[10], p[16], NULL);
+    g.AddEdge(p[10], p[15], NULL);
+    g.AddEdge(p[12], p[5], NULL);
+    g.AddEdge(p[12], p[17], NULL);
+    g.AddEdge(p[14], p[16], NULL);
+    g.AddEdge(p[15], p[10], NULL);
+    g.AddEdge(p[15], p[16], NULL);
 
     /*
     * This main Layout function do whole procedure of LAYOUT:
@@ -102,16 +202,15 @@ int main(int argc, char* argv[])
     * and transpose_range > 1 to improve crossings
     */
 
-    printf("before layout\n");
+    printf("before layout input graph data\n");
     g.Dump();
 
-    /* layout graph */
-    g.Layout(500, true, 200, true);
+    g.Layout(500, true, 100, /* debug */ false);
 
-    printf("after layout of graph 2 with dummy nodes and changed edges\n");
+    printf("after layout with dummy nodes and changed edges\n");
     g.Dump();
 
-    printf("edge 3->1 should be reversed via dummy node 5\ngraph 2 maxrank = %i\n", g.getMaxrank());
+    printf("maxrank = %i\n", g.getMaxrank());
 
     /* border around drawing */
     int xborder = 10;
@@ -189,8 +288,8 @@ int main(int argc, char* argv[])
         double y = ((LNode*)(*node_iter))->getY();
         bool dum = ((LNode*)(*node_iter))->IsDummy();
         int id = ((LNode*)(*node_iter))->id();
-        int xsize = ((LNode*)(*node_iter))->getxsize();
-        int ysize = ((LNode*)(*node_iter))->getysize();
+        int xsize = 20;
+        int ysize = 20;
         int ty = 10;
         if (dum) {
             /* this is a dummy node */
@@ -208,8 +307,9 @@ int main(int argc, char* argv[])
     printf("%s\n", " </g>");
     printf("%s\n", "</svg>");
 
+    // Clean up
     g.Destroy();
-    delete[] p2;
+    delete[] p;
 
     return (0);
 }

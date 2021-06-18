@@ -401,6 +401,7 @@ bool Graph::FindReverseEdges(list<pEdge>& ReverseEdges)
     map<pNode, bool>* isused = new map<pNode, bool>; // dfs flags
     int num = 0; // Current dfs counter is 0
     size_t count_rev_edges = ReverseEdges.size();
+    int rank = 0;
 
     // clear dfs
     for (list<pNode>::iterator node_iter = m_nodes_list.begin();

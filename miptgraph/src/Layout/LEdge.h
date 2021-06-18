@@ -55,6 +55,11 @@ private:
     bool inner;
 
     /**
+     * set to true if this is a type 1 conflicting edge
+     */
+    bool conflict;
+
+    /**
      * set true is this is head edge of a split edge
      */
     bool splitedgehead;
@@ -65,17 +70,17 @@ private:
     bool splitedgetail;
 
     /**
-     * counter if this inner edge crosses with another inner edge
+     * counter if inner edge crosses with another inner edge
      */
     int iicross;
 
     /**
-     * counter if this inner edge crosses with another not-inner edge
+     * counter if inner edge crosses with another not-inner edge
      */
     int ircross;
 
     /**
-     * counter if this not-inner edge crosses with another not-inner edge
+     * counter if not-inner edge crosses with another not-inner edge
      */
     int rrcross;
 
@@ -93,8 +98,9 @@ public:
 	}
 	splitedgehead = false;
 	splitedgetail = false;
-        composite = false;
-        reverse = false;
+	conflict = false;
+	composite = false;
+	reverse = false;
 	hedge = false;
 	iicross = 0;
 	ircross = 0;
@@ -135,6 +141,15 @@ public:
      */
     bool IsTailSplitEdge() { return splitedgetail; }
 
+    /**
+     * return number of inner with non-inner crossings at this edge
+     */
+    int n_ircross() { return ircross; }
+
+    /**
+     * set edge conflict status
+     */
+    void setconflict (bool status) { conflict = status; }
 };
 
 #endif

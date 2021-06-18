@@ -28,6 +28,7 @@ all: libs
 	make test5
 	make test6
 	make test7
+	make test8
 
 # generate output files
 output: all
@@ -38,6 +39,7 @@ output: all
 	./test5 >test5-output.txt
 	./test6 >test6-output.txt
 	./test7 >test7-output.txt
+	./test8 >test8-output.txt
 
 # generate svg image data
 test1:
@@ -69,6 +71,10 @@ test6:
 test7:
 	$(CXX) test7.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test7
 
+# graph with type1 edges
+test8:
+	$(CXX) test8.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test8
+
 # this depends on these libs
 libs: graphlib layoutlib
 
@@ -89,6 +95,7 @@ clean:
 	rm -v -f test5
 	rm -v -f test6
 	rm -v -f test7
+	rm -v -f test8
 	rm -v -f *.output
 
 cleaner:

@@ -150,8 +150,8 @@ public:
      * Init coordiates for each node
      */
     void InitCoordinates(Ordering* order,
-        int normalwide = 20,
-        int dummywide = 1,
+        int normalwide = 15,
+        int dummywide = 5,
         int vertical_size = 40);
 
     /**

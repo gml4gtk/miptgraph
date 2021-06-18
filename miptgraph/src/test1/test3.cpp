@@ -63,21 +63,21 @@ int main(int argc, char* argv[])
     /* nodes in graph 2 are 0..4 */
 
     /* 0->1 */
-    ee = (pLEdge)g2.AddEdge(p2[0], p2[1]);
+    ee = (pLEdge)g2.AddEdge(p2[0], p2[1], NULL);
     printf("added edge in g2 with id %d between node %d and node %d with id %d\n", g2.id(), ee->from()->id(), ee->to()->id(), ee->id());
 
     /* cycle 1->2->3->1 */
-    ee = (pLEdge)g2.AddEdge(p2[1], p2[2]);
+    ee = (pLEdge)g2.AddEdge(p2[1], p2[2], NULL);
     printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
 
-    ee = (pLEdge)g2.AddEdge(p2[2], p2[3]);
+    ee = (pLEdge)g2.AddEdge(p2[2], p2[3], NULL);
     printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
 
-    ee = (pLEdge)g2.AddEdge(p2[3], p2[1]);
+    ee = (pLEdge)g2.AddEdge(p2[3], p2[1], NULL);
     printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
 
     /* 3->4 */
-    ee = (pLEdge)g2.AddEdge(p2[3], p2[4]);
+    ee = (pLEdge)g2.AddEdge(p2[3], p2[4], NULL);
     printf("added edge in g2 between node %d and node %d with id %d\n", ee->from()->id(), ee->to()->id(), ee->id());
 
     /*

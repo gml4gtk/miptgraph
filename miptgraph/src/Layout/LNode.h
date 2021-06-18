@@ -171,6 +171,16 @@ public:
     int Rank();
 
     /**
+     * get rank level of node
+     */
+    int getrank () { return rank; }
+
+    /**
+     * set rank level of node
+     */
+    void setrank (int num) { rank = num; }
+
+    /**
      * get barycenter value
      */
     double getMedian() { return median; }
@@ -236,7 +246,7 @@ public:
 	nysize = 10; // default node y size
 	rank = -1; // no rank
 	pos = -1; // no x pos
-	median = 0; // no barycenter value
+	median = 0.0; // no barycenter value
 	we_were_here = false;
 	dummy = false; // this is a real node
 	entry = false; // not startnode
