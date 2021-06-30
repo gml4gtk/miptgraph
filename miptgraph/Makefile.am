@@ -29,11 +29,10 @@ AM_MAKEFLAGS = --no-print-directory
 AUTOMAKE_OPTIONS = foreign subdir-objects
 
 # dirs with makefile.am
-SUBDIRS = . src/Graph src/Layout
+SUBDIRS = . src/Layout
 
 # indent sources
 indent:
-	cd src/Graph && make indent
 	cd src/Layout && make indent
 	cd src/test1 && make indent
 
@@ -44,7 +43,6 @@ distclean:
 #
 cleaner:
 	cd src && make cleaner
-	cd src/Graph && make cleaner
 	cd src/Layout && make cleaner
 	cd src/test1 && make cleaner
 	rm -v -f -r -d html

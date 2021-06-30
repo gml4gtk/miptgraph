@@ -108,6 +108,7 @@ struct drawedge {
 	int split;		/* 1 if edge is split */
 	int splithead;		/* 1 if edge is head of split edge */
 	int splittail;		/* 1 if edge is tail of split edge */
+	int type1;		/* 1 if edge is type 1 conflict edge */
 	int ecolor;		/* edge color */
 	char *elabel;		/* edge label */
 	struct drawnode *fn;	/* from node */

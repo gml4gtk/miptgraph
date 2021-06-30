@@ -9,25 +9,16 @@ added edge in g2 with id 2 between node 0 and node 0 with id -1
 before layout
 Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 0 edges, 0 horizontal edges, 1 selfedges 0 reversed edges)
 Nodes:
-Node id 0: (1 self-edges size (30,20))
-  In  edges:
-  Out edges:
-Node id 1: (0 self-edges size (30,20))
-  In  edges:
-  Out edges:
-Node id 2: (0 self-edges size (30,20))
-  In  edges:
-  Out edges:
-Node id 3: (0 self-edges size (30,20))
-  In  edges:
-  Out edges:
-Node id 4: (0 self-edges size (30,20))
-  In  edges:
-  Out edges:
+Node id 0: (1 self-edges size (10,10) 0 in-edges 0 out-edges)
+Node id 1: (0 self-edges size (10,10) 0 in-edges 0 out-edges)
+Node id 2: (0 self-edges size (10,10) 0 in-edges 0 out-edges)
+Node id 3: (0 self-edges size (10,10) 0 in-edges 0 out-edges)
+Node id 4: (0 self-edges size (10,10) 0 in-edges 0 out-edges)
 Edges:
 Ordering::Dump() there are 1 levels
 Level rank 0 has these 5 nodes:
   id:0(20,0) id:1(35,0) id:2(50,0) id:3(65,0) id:4(80,0)
+}
 Graph has 5 starter nodes and 1 ranks
 Ordering::Dump() there are 1 levels
 Level rank 0 has these 5 nodes:
@@ -36,21 +27,11 @@ Final Crossings: 0
 after layout of graph 2 with optional dummy nodes and changed edges
 Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 0 edges, 0 horizontal edges, 1 selfedges 0 reversed edges)
 Nodes:
-Node id 0: (1 self-edges size (30,20))
-  In  edges:
-  Out edges:
-Node id 1: (0 self-edges size (30,20))
-  In  edges:
-  Out edges:
-Node id 2: (0 self-edges size (30,20))
-  In  edges:
-  Out edges:
-Node id 3: (0 self-edges size (30,20))
-  In  edges:
-  Out edges:
-Node id 4: (0 self-edges size (30,20))
-  In  edges:
-  Out edges:
+Node id 0: (1 self-edges size (10,10) 0 in-edges 0 out-edges)
+Node id 1: (0 self-edges size (10,10) 0 in-edges 0 out-edges)
+Node id 2: (0 self-edges size (10,10) 0 in-edges 0 out-edges)
+Node id 3: (0 self-edges size (10,10) 0 in-edges 0 out-edges)
+Node id 4: (0 self-edges size (10,10) 0 in-edges 0 out-edges)
 Edges:
 node id 0 is at position (20,0)
 node id 1 is at position (35,0)

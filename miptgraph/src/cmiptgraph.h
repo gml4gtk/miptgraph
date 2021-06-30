@@ -139,6 +139,9 @@ extern int cmipt_edgeisheadsplit (void *e);
 /* return 1 if edge is tail of split edge */
 extern int cmipt_edgeistailsplit (void *e);
 
+/* return 1 if edge is type 1 edge */
+extern int cmipt_edgeistype1 (void *e);
+
 /* return usrdata of edge */
 extern void *cmipt_edgeusrdata (void *e);
 

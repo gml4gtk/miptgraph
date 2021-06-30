@@ -39,10 +39,28 @@
  * This class contains one new variable: reverse
  * And method BreakLongEdge() for better drawing long edges
  */
-class LEdge : public Edge {
+class LEdge {
 
+    /**
+     * graph where edge belongs to
+     */
+    pLGraph m_graph;
 
-private:
+    /**
+     * from node of edge
+     */
+    pLNode m_from;
+
+    /**
+     * to node of edge
+     */
+    pLNode m_to;
+
+    /**
+     * uniq edge number in this graph
+     * self-edges have fixed id set to -1
+     */
+    int m_id;
 
     /**
      * set to true if this is a split edge
@@ -84,29 +102,23 @@ private:
      */
     int rrcross;
 
+    /**
+     * flag is true if already revert this edge for layout.
+     */
+    bool reverse;
+
+    /**
+     * flag is true if a horrizontal edge
+     */
+    bool hedge;
+
 public:
 
 
     /**
      * create edge with defaults
      */
-    LEdge(pLNode from, pLNode to)
-        : Edge((pNode)from, (pNode)to)
-    {
-	if (from->id() == to->id()) {
-	    // this is a self-edge handled in edge creation
-	}
-	splitedgehead = false;
-	splitedgetail = false;
-	conflict = false;
-	composite = false;
-	reverse = false;
-	hedge = false;
-	iicross = 0;
-	ircross = 0;
-	rrcross = 0;
-	inner = false;
-    }
+    LEdge(pLNode from, pLNode to);
 
     virtual ~LEdge();
 
@@ -150,6 +162,89 @@ public:
      * set edge conflict status
      */
     void setconflict (bool status) { conflict = status; }
+
+    /**
+     * is edge a type 1 edge conflict
+     */
+    bool isconflict () { return conflict; }
+
+    /**
+     * set optional usr data
+     */
+    void *usrdata;
+
+    /**
+     * Get reversed direction of edge
+     * \return true if edge is reversed
+     */
+    bool IsReverse()
+    {
+        return reverse;
+    }
+
+    /**
+     * Set bool edge has reversed direction
+     */
+    void SetReverse(bool is_reverse)
+    {
+        reverse = is_reverse;
+    }
+
+    /**
+     * Set bool edge is horizontal
+     */
+    void SetHedge(bool is_hedge)
+    {
+        hedge = is_hedge;
+    }
+
+    /**
+     * Get bool edge is horizontal
+     */
+    bool IsHedge()
+    {
+	return (hedge);
+    }
+
+    /**
+     * swap direction of edge
+     */
+    void Reverse();
+
+    /**
+     * Get pLGraph pointer of graph where edge is
+     * \return graph of edge
+     */
+    pLGraph graph() { return m_graph; }
+
+    /**
+     * Get uniq edge number
+     * \return int edge number
+     */
+    int id() { return m_id; }
+
+    /**
+     * Get pLNode pointer to edge start node
+     * \return from-node of edge
+     */
+    pLNode from() { return m_from; }
+
+    /**
+     * Get pLNode pointer to edge end node
+     * \return to-node of edge
+     */
+    pLNode to() { return m_to; }
+
+    /**
+     * Print info about the edge
+     */
+    virtual void Dump();
+
+    /**
+     * Print short info about the edge
+     */
+    virtual void Print();
+
 };
 
 #endif

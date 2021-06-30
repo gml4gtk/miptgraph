@@ -104,7 +104,7 @@ AC_COPYRIGHT([
 ])
 
 
-AC_CONFIG_FILES([Makefile src/Makefile src/Graph/Makefile src/Layout/Makefile src/test1/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile src/Layout/Makefile src/test1/Makefile])
 
 AC_OUTPUT
 

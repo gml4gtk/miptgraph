@@ -50,7 +50,7 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     int curc = 0; // current crossings
     int bestc = 0; // best crossings
     bool status = false; // median status
-    list<pEdge> ReverseEdges; // edges which are reversed
+    list<pLEdge> ReverseEdges; // edges which are reversed
 
     if (layouted > 0) {
         // graph is already layouted
@@ -95,7 +95,7 @@ void LGraph::Layout(unsigned long int number_of_iterations,
         FinalCoordinates(order);
 
         // copy nodes in db
-        for (list<pNode>::iterator node_iter = nodes_list()->begin();
+        for (list<pLNode>::iterator node_iter = nodes_list()->begin();
              node_iter != nodes_list()->end();
              node_iter++) {
             splay_tree_insert(nodesplay, (splay_tree_key)((LNode*)(*node_iter))->id(), (splay_tree_value)((LNode*)(*node_iter)));
@@ -107,6 +107,8 @@ void LGraph::Layout(unsigned long int number_of_iterations,
             order->Dump();
             printf("Final Crossings: %d\n", countCrossing(order));
         }
+
+        delete order;
 
         return;
     }
@@ -130,7 +132,7 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     InitRank();
 
     // list for longer edges to split
-    list<pEdge> LongEdges;
+    list<pLEdge> LongEdges;
 
     // add long edges to list
     FindLongEdges(LongEdges);
@@ -211,14 +213,14 @@ void LGraph::Layout(unsigned long int number_of_iterations,
     FinalCoordinates(order);
 
     // copy nodes in db
-    for (list<pNode>::iterator node_iter = nodes_list()->begin();
+    for (list<pLNode>::iterator node_iter = nodes_list()->begin();
          node_iter != nodes_list()->end();
          node_iter++) {
         splay_tree_insert(nodesplay, (splay_tree_key)((LNode*)(*node_iter))->id(), (splay_tree_value)((LNode*)(*node_iter)));
     }
 
     // copy edges in db
-    for (list<pEdge>::iterator edge_iter = edges_list()->begin();
+    for (list<pLEdge>::iterator edge_iter = edges_list()->begin();
          edge_iter != edges_list()->end();
          edge_iter++) {
         splay_tree_insert(edgesplay, (splay_tree_key)((pLEdge)(*edge_iter))->id(), (splay_tree_value)((pLEdge)(*edge_iter)));
@@ -230,6 +232,9 @@ void LGraph::Layout(unsigned long int number_of_iterations,
         order->Dump();
         printf("Final Crossings: %d\n", curc);
     }
+
+    // free to avoid memleak
+    delete order;
 
     return;
 }
@@ -245,7 +250,7 @@ void LGraph::InitRank()
     maxrank = 0;
     unsigned int rank = 0;
     // Calculating the rank for all Nodes
-    for (list<pNode>::iterator node_iter = nodes_list()->begin();
+    for (list<pLNode>::iterator node_iter = nodes_list()->begin();
          node_iter != nodes_list()->end();
          node_iter++) {
         // determine the rank of the node
@@ -255,7 +260,7 @@ void LGraph::InitRank()
         }
     }
     // Calculating the rank for all Nodes
-    for (list<pNode>::iterator node_iter = nodes_list()->begin();
+    for (list<pLNode>::iterator node_iter = nodes_list()->begin();
          node_iter != nodes_list()->end();
          node_iter++) {
         // get rank level of this node
@@ -290,7 +295,7 @@ LGraph::InitOrder()
 
     // scan all nodes
     // todo run dfs and in order of visited push
-    for (list<pNode>::iterator node_iter = nodes_list()->begin();
+    for (list<pLNode>::iterator node_iter = nodes_list()->begin();
          node_iter != nodes_list()->end();
          node_iter++) {
         // get current node
@@ -321,11 +326,11 @@ LGraph::InitOrder2()
 /**
  * reverse edges to get acyclic graph
  */
-void LGraph::ReverseReverseEdges(list<pEdge>& ReverseEdges)
+void LGraph::ReverseReverseEdges(list<pLEdge>& ReverseEdges)
 {
     // all reversed edges as normal direction edge
     // avoids a looping in node rank()
-    for (list<pEdge>::iterator edge_iter = ReverseEdges.begin();
+    for (list<pLEdge>::iterator edge_iter = ReverseEdges.begin();
          edge_iter != ReverseEdges.end();
          edge_iter++) {
         ((pLEdge)(*edge_iter))->Reverse();
@@ -336,16 +341,29 @@ void LGraph::ReverseReverseEdges(list<pEdge>& ReverseEdges)
 /**
  * find edges which are longer then 1 vertical rank level
  */
-void LGraph::FindLongEdges(list<pEdge>& LongEdges)
+void LGraph::FindLongEdges(list<pLEdge>& LongEdges)
 {
     int nhedges = 0;
     int delta = 0;
+    pLEdge curedge;
+    pLNode fn;
+    pLNode tn;
 
     // scan all edges
-    for (list<pEdge>::iterator edge_iter = edges_list()->begin();
+    for (list<pLEdge>::iterator edge_iter = edges_list()->begin();
          edge_iter != edges_list()->end();
          edge_iter++) {
-        delta = ((pLNode)(*edge_iter)->to())->Rank() - ((pLNode)(*edge_iter)->from())->Rank();
+        curedge = (*edge_iter);
+        fn = curedge->from();
+        tn = curedge->to();
+        if (fn == NULL) {
+            printf("nil fn\n");
+        }
+        if (tn == NULL) {
+            printf("nil tn\n");
+        }
+        //        delta = ((*edge_iter)->to())->Rank() - ((*edge_iter)->from())->Rank();
+        delta = tn->Rank() - fn->Rank();
         // check for wrong value
         if (delta < 0) {
             // todo
@@ -374,11 +392,11 @@ void LGraph::FindLongEdges(list<pEdge>& LongEdges)
 /**
  * split long edges with dummy nodes
  */
-void LGraph::AddDummyNodes(list<pEdge>& LongEdges)
+void LGraph::AddDummyNodes(list<pLEdge>& LongEdges)
 {
 
     // scan all edges, skip self-edges
-    for (list<pEdge>::iterator edge_iter = LongEdges.begin();
+    for (list<pLEdge>::iterator edge_iter = LongEdges.begin();
          edge_iter != LongEdges.end();
          edge_iter++) {
         ((pLEdge)(*edge_iter))->BreakLongEdge();
@@ -550,6 +568,7 @@ int LGraph::FinalcountCrossing(Ordering* order)
 int LGraph::countCrossingOnRank(Ordering* order, int rank)
 {
     int crossing = 0;
+    pLEdge curedge;
 
     // Making list of all outgoing edges between rank and rank+1 level
     vector<pLEdge> edge_list;
@@ -557,10 +576,11 @@ int LGraph::countCrossingOnRank(Ordering* order, int rank)
     // scan node at this rank level
     for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
         // select the outgoing edges at a node
-        for (list<pEdge>::iterator edge_iter = order->order_vector[rank][i]->out_edges_list()->begin();
+        for (list<pLEdge>::iterator edge_iter = order->order_vector[rank][i]->out_edges_list()->begin();
              edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
              edge_iter++) {
-            edge_list.push_back((pLEdge)(*edge_iter));
+            curedge = (*edge_iter);
+            edge_list.push_back(curedge);
         }
     }
 
@@ -584,6 +604,8 @@ int LGraph::countCrossingOnRank(Ordering* order, int rank)
         }
     }
 
+    edge_list.clear();
+
     return crossing;
 }
 
@@ -605,7 +627,7 @@ int LGraph::FinalcountCrossingOnRank(Ordering* order, int rank)
     // scan node at this rank level
     for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
         // select the outgoing edges at a node and reset edge crossing count data
-        for (list<pEdge>::iterator edge_iter = order->order_vector[rank][i]->out_edges_list()->begin();
+        for (list<pLEdge>::iterator edge_iter = order->order_vector[rank][i]->out_edges_list()->begin();
              edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
              edge_iter++) {
             edge_list.push_back((pLEdge)(*edge_iter));
@@ -668,6 +690,8 @@ int LGraph::FinalcountCrossingOnRank(Ordering* order, int rank)
     order->m_ircrossings_num[rank] = ircrossings;
     order->m_rrcrossings_num[rank] = rrcrossings;
 
+    edge_list.clear();
+
     return crossing;
 }
 
@@ -682,6 +706,7 @@ void LGraph::InitPos(Ordering* order)
     pLNode tonode;
     pLNode leftnode;
     pLNode rightnode;
+
     // scan all vertical rank levels
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
         // extra check
@@ -696,7 +721,7 @@ void LGraph::InitPos(Ordering* order)
             // set relative x postion
             curnode->pos = i;
             // scan outgoing edges and check if to node is one level more
-            for (list<pEdge>::iterator edge_iter = curnode->out_edges_list()->begin();
+            for (list<pLEdge>::iterator edge_iter = curnode->out_edges_list()->begin();
                  edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
                  edge_iter++) {
                 fromnode = (pLNode)(pLEdge)(*edge_iter)->from();
@@ -706,7 +731,7 @@ void LGraph::InitPos(Ordering* order)
                 }
             }
             // same incoming edges
-            for (list<pEdge>::iterator edge_iter = curnode->in_edges_list()->begin();
+            for (list<pLEdge>::iterator edge_iter = curnode->in_edges_list()->begin();
                  edge_iter != order->order_vector[rank][i]->in_edges_list()->end();
                  edge_iter++) {
                 fromnode = (pLNode)(pLEdge)(*edge_iter)->from();
@@ -717,6 +742,7 @@ void LGraph::InitPos(Ordering* order)
             }
         }
     }
+
     // set left/right nodes at every node
     // scan all vertical rank levels
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
@@ -750,6 +776,7 @@ void LGraph::CheckOrder(Ordering* order)
     pLNode fromnode;
     pLNode tonode;
     int delta = 0;
+
     // scan all vertical rank levels
     for (unsigned int rank = 0; rank <= maxrank; rank++) {
         // extra check
@@ -761,7 +788,7 @@ void LGraph::CheckOrder(Ordering* order)
             // current node to check
             curnode = order->order_vector[rank][i];
             // scan outgoing edges and check if to node is one level more
-            for (list<pEdge>::iterator edge_iter = curnode->out_edges_list()->begin();
+            for (list<pLEdge>::iterator edge_iter = curnode->out_edges_list()->begin();
                  edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
                  edge_iter++) {
                 fromnode = (pLNode)(pLEdge)(*edge_iter)->from();
@@ -772,7 +799,7 @@ void LGraph::CheckOrder(Ordering* order)
                 }
             }
             // same incoming edges
-            for (list<pEdge>::iterator edge_iter = curnode->in_edges_list()->begin();
+            for (list<pLEdge>::iterator edge_iter = curnode->in_edges_list()->begin();
                  edge_iter != order->order_vector[rank][i]->in_edges_list()->end();
                  edge_iter++) {
                 fromnode = (pLNode)(pLEdge)(*edge_iter)->from();
@@ -789,15 +816,264 @@ void LGraph::CheckOrder(Ordering* order)
 }
 
 /**
+ *
+ * \param orient is 0..3 orientation mode
+ */
+static void FinalCoordinates_horizontal_compaction(Ordering* order, int orient)
+{
+}
+
+//static bool FinalCoordinates_vertical_align_is_type1_edge(node u, node v)
+// scan edge list for this edge and return if it is type1 edge
+// or scan outgoing edges of node for this edge and check
+
+/**
+ * for every node choose the node it will be vertical aligned to
+ * \param orient is 0..3 orientation mode
+
+initialize root[v] = v;
+initialize align[v] = v;
+for i=1 to lastlayer do
+{
+ r←0;
+ for k=1 to last_node_in_layer do
+ {
+   if node v(i) k has_upper_neighbors u1 ≺ ... ≺ ud with d > 0 then
+   {
+ // slice
+    for m median of node v(i) k do
+    {
+     if align[v(i)k] = v(i)k then
+     {
+      if (um,v(i)k) not marked and r < pos[um] then
+      {
+        align[um] ← v(i)k;
+       root[v(i)k] ← root[um];
+       align[v(i)k] ← root[v(i)k];
+       r = pos[um];
+     }
+    }
+   }
+  }
+ }
+}
+
+
+ */
+static void FinalCoordinates_vertical_align(Ordering* order, int orient)
+{
+}
+
+/**
+ * sort in/out edges of a node
+ */
+static void FinalCoordinates_init_sortededges(pLNode node)
+{
+    int nconn = 0;
+    int needed = 0;
+    int prevfrom = 0;
+    int prevto = 0;
+    pLEdge curedge;
+    pLNode fromnode;
+    pLNode tonode;
+
+    nconn = (int)node->in_edges_list()->size();
+
+    if (nconn > 1) {
+        needed = 0;
+        prevfrom = -1;
+        // check if sort is needed
+        for (list<pLEdge>::iterator edge_iter = node->in_edges_list()->begin(); edge_iter != node->in_edges_list()->end(); edge_iter++) {
+            curedge = (*edge_iter);
+            fromnode = curedge->from();
+            if (fromnode->getPos() < prevfrom) {
+                needed = 1;
+                break;
+            }
+            prevfrom = fromnode->getPos();
+        }
+        if (needed > 0) {
+            // sort of in edges is needed
+            node->NodeSortIn();
+        }
+    }
+
+    nconn = (int)node->out_edges_list()->size();
+
+    if (nconn > 1) {
+        needed = 0;
+        prevto = -1;
+        // check if sort is needed
+        for (list<pLEdge>::iterator edge_iter = node->out_edges_list()->begin(); edge_iter != node->out_edges_list()->end(); edge_iter++) {
+            curedge = (*edge_iter);
+            tonode = curedge->to();
+            if (tonode->getPos() < prevto) {
+                needed = 1;
+                break;
+            }
+            prevto = tonode->getPos();
+        }
+        if (needed > 0) {
+            // sort of out edge is needed
+            node->NodeSortOut();
+        }
+    }
+
+    return;
+}
+
+/**
+ *
+ */
+void LGraph::FinalCoordinates_init_medians(Ordering* order)
+{
+    list<pLEdge>::iterator edge_iter;
+    pLNode curnode;
+    pLNode c1node;
+    pLNode c2node;
+    pLEdge curedge;
+    int i = 0;
+    int j = 0;
+    int nconn = 0;
+
+    // init the sizes for the node data
+    // m_total_nodes_num is > 0 and is number of real + dummy nodes
+    for (i = 0; i < 4; i++) {
+        // root node of block the node belongs to
+        root[i] = vector<pLNode>(m_total_nodes_num);
+        // node to align with of the node
+        align[i] = vector<pLNode>(m_total_nodes_num);
+        // node
+        sink[i] = vector<pLNode>(m_total_nodes_num);
+        // node
+        medians[i] = vector<pLNode>(m_total_nodes_num);
+        // movement
+        shift[i] = vector<double>(m_total_nodes_num);
+    }
+
+    // scan all nodes to set the median nodes
+    for (list<pLNode>::iterator node_iter = nodes_list()->begin();
+         node_iter != nodes_list()->end();
+         node_iter++) {
+        curnode = ((LNode*)(*node_iter));
+        j = curnode->id();
+
+        // in/out edges of node must be sorted for median
+        FinalCoordinates_init_sortededges(curnode);
+
+        // init the 4 connecting nodes possible at node
+        // upper_left=0, lower_left=1, upper_right=2, lower_right=3
+        for (i = 0; i < 4; i++) {
+            root[i][j] = curnode;
+            align[i][j] = curnode;
+            sink[i][j] = curnode;
+            medians[i][j] = curnode;
+            shift[i][j] = 0.0;
+        }
+
+        // preset
+        medians[orient::lower_left][j] = curnode; // left;
+        medians[orient::lower_right][j] = curnode; // right;
+
+        // check the out going edges of this node
+        nconn = (int)curnode->out_edges_list()->size();
+        if (nconn == 0) {
+            // no out edges
+            medians[orient::lower_left][j] = curnode; // left;
+            medians[orient::lower_right][j] = curnode; // right;
+        } else if (nconn == 1) {
+            // find median of out edges
+            // with 1 edge both are the to node.
+            edge_iter = curnode->out_edges_list()->begin();
+            c1node = (pLNode)(pLEdge)(*edge_iter)->to();
+            medians[orient::lower_left][j] = c1node; // left;
+            medians[orient::lower_right][j] = c1node; // right;
+        } else if (nconn == 2) {
+            // find median of out edges
+            edge_iter = curnode->out_edges_list()->begin();
+            c1node = (pLNode)(pLEdge)(*edge_iter)->to();
+            edge_iter++;
+            c2node = (pLNode)(pLEdge)(*edge_iter)->to();
+            medians[orient::lower_left][j] = c1node; // left;
+            medians[orient::lower_right][j] = c2node; // right;
+        } else {
+            // find median of out edges
+            i = 0;
+            for (list<pLEdge>::iterator edge_iter = curnode->out_edges_list()->begin();
+                 edge_iter != curnode->out_edges_list()->end();
+                 edge_iter++) {
+                curedge = (*edge_iter);
+                if (i == ((nconn / 2) - 1)) {
+                    c1node = (*edge_iter)->to();
+                    edge_iter++;
+                    c2node = (*edge_iter)->to();
+                    medians[orient::lower_left][j] = c1node; // left;
+                    medians[orient::lower_right][j] = c2node; // right;
+                    break;
+                }
+                i++;
+            }
+        }
+
+        // check the in coming edges to this node
+        nconn = (int)curnode->in_edges_list()->size();
+
+        // preset default
+        medians[orient::upper_left][j] = curnode; // left;
+        medians[orient::upper_right][j] = curnode; // right;
+
+        if (nconn == 0) {
+            // no in edges
+            medians[orient::upper_left][j] = curnode; // left;
+            medians[orient::upper_right][j] = curnode; // right;
+        } else if (nconn == 1) {
+            // find median of in edges
+            edge_iter = curnode->in_edges_list()->begin();
+            c1node = (pLNode)(pLEdge)(*edge_iter)->from();
+            medians[orient::lower_left][j] = c1node; // left;
+            medians[orient::lower_right][j] = c1node; // right;
+        } else if (nconn == 2) {
+            // find median of in edges
+            edge_iter = curnode->in_edges_list()->begin();
+            c1node = (*edge_iter)->from();
+            edge_iter++;
+            c2node = (*edge_iter)->from();
+            medians[orient::lower_left][j] = c1node; // left;
+            medians[orient::lower_right][j] = c2node; // right;
+        } else {
+            // find median of in edges
+            i = 0;
+            for (list<pLEdge>::iterator edge_iter = curnode->in_edges_list()->begin();
+                 edge_iter != curnode->in_edges_list()->end();
+                 edge_iter++) {
+                curedge = (*edge_iter);
+                if (i == ((nconn / 2) - 1)) {
+                    c1node = (*edge_iter)->from();
+                    edge_iter++;
+                    c2node = (*edge_iter)->from();
+                    medians[orient::lower_left][j] = c1node; // left;
+                    medians[orient::lower_right][j] = c2node; // right;
+                    break;
+                }
+                i++;
+            }
+        }
+    }
+
+    return;
+}
+
+/**
  * set nodes at final (x,y) position in the graph
  * (x2,y2) have same values as (x,y) at start
  * this set new (x2,y2) coordinates for the nodes
  */
-
 void LGraph::FinalCoordinates(Ordering* order)
 {
     bool verbose = true;
     int ntype1 = 0;
+    int rc = 0;
+    vector<pLEdge> edge_list;
 
     // print the levels with the orders of the nodes
     if (verbose == true) {
@@ -805,6 +1081,7 @@ void LGraph::FinalCoordinates(Ordering* order)
     }
 
     // mark crossing edge conflicts
+    // this is the crossing count routine but only checks where non-inner segment and a inner segment cross
     // there can only dummynodes when maxrank >1
     // with levels 0, 1 and 2 with at least dummy nodes at level 1
     // This phase of the node placer marks all type 1 and type 2 conflicts.
@@ -820,7 +1097,12 @@ void LGraph::FinalCoordinates(Ordering* order)
     // In case of type 1 conflict the non-inner edge is marked as conflicting edge.
     if (maxrank > 1) {
         // here if maxrank is 2 or more with levels 0, 1, 2 ...
-        for (unsigned int rank = 0; rank < maxrank - 2; rank++) {
+        // there can only be inner edges below level 2 because level 0 has start nodes
+        // and level 1 has dummy nodes with only non-inner edges
+        // the last level only has end nodes with (last-level-1) dummy nodes
+        // at that level are only non-inner edges
+        for (unsigned int rank = 2; rank < maxrank - 2; rank++) {
+            rc = 0;
             // only if there are crossings at this level with a dummy node involved
             // edge type 1 conflicts when inner edge crosses non-inner edge
             if (verbose == true) {
@@ -844,12 +1126,12 @@ void LGraph::FinalCoordinates(Ordering* order)
                 // mark non-inner segment as conflict edge
 
                 // Making list of all outgoing edges between rank and rank+1 level
-                vector<pLEdge> edge_list;
+                edge_list.clear();
 
                 // scan node at this rank level
                 for (unsigned int i = 0; i < order->order_vector[rank].size(); i++) {
                     // select the outgoing edges at a node and reset edge crossing count data
-                    for (list<pEdge>::iterator edge_iter = order->order_vector[rank][i]->out_edges_list()->begin();
+                    for (list<pLEdge>::iterator edge_iter = order->order_vector[rank][i]->out_edges_list()->begin();
                          edge_iter != order->order_vector[rank][i]->out_edges_list()->end();
                          edge_iter++) {
                         edge_list.push_back((pLEdge)(*edge_iter));
@@ -872,6 +1154,7 @@ void LGraph::FinalCoordinates(Ordering* order)
 
                                 // cmp1 is delto to pos, cmp2 is delta from pos
                                 if ((cmp1 > 0 && cmp2 < 0) || (cmp1 < 0 && cmp2 > 0)) {
+                                    rc++;
                                     // edges did cross
                                     if (verbose == true) {
                                         std::printf("edge crossing inner status %d and %d\n", edge_list[i]->inner, edge_list[j]->inner);
@@ -903,19 +1186,51 @@ void LGraph::FinalCoordinates(Ordering* order)
                     } // end of if (edge_list[i]->n_ircross() > 0)
                 } // end of for (unsigned int i = 0; i < edge_list.size(); i++)
             } // end of if (order->m_ircrossings_num[rank] > 0)
-        } // end of for (unsigned int rank = 0; rank < maxrank - 2; rank++)
+            // todo here
+            std::printf("at rank %d found %d crossings and expected %d crossings\n", rank, order->m_ircrossings_num[rank], rc);
+        } // end of for (unsigned int rank = 0; rank < maxrank - 1; rank++)
     } // end of if (maxrank > 1)
+
+    edge_list.clear();
 
     if (verbose == true) {
         if (ntype1 > 0) {
             std::printf("total %d type 1 conflict edges in the graph\n", ntype1);
+            // output it as dot graph
+            std::printf("// conflict type 1 edge is noninner edge colored red and crossing between inner and noninner edge\n");
+            std::printf("// inner edge is blue\n");
+            std::printf("// noninner edge is green\n");
+            std::printf("digraph conflict1edges {\n");
+            // scan all edges
+            for (list<pLEdge>::iterator edge_iter = edges_list()->begin();
+                 edge_iter != edges_list()->end();
+                 edge_iter++) {
+                std::printf(" %d -> %d [color=\"", (*edge_iter)->from()->id(), (*edge_iter)->to()->id());
+                if (((pLEdge)(*edge_iter))->conflict == true) {
+                    // this is a conflict 1 edge and a noninner edge
+                    std::printf("red");
+                } else {
+                    // colorize inner/noninner edges
+                    if (((pLEdge)(*edge_iter))->inner == true) {
+                        std::printf("blue");
+                    } else {
+                        std::printf("green");
+                    }
+                }
+                std::printf("\"];\n");
+            }
         }
+        std::printf("}\n");
     }
-    // init_medians
-    //        for (int i = 0; i < 4; ++i) {
-    //            vertical_align(h, static_cast<orient>(i));
-    //            horizontal_compaction(h, static_cast<orient>(i));
-    //        }
+
+    // init arrays with the node data
+    FinalCoordinates_init_medians(order);
+
+    for (int i = 0; i < 4; ++i) {
+        // for every node choose the node it will be vertica; aligned to
+        FinalCoordinates_vertical_align(order, i);
+        FinalCoordinates_horizontal_compaction(order, i);
+    }
 
     return;
 }
@@ -1048,38 +1363,28 @@ void LGraph::Transpose(unsigned long int maxtry, bool verbose)
 /**
  * free node
  */
-void LGraph::FreeNode(pNode p)
+void LGraph::FreeNode(pLNode p)
 {
     assert(p != NULL);
-    delete (pLNode)p; // todo warning here
+    delete p; // todo warning here
 }
 
 /**
  * free edge
  */
-void LGraph::FreeEdge(pEdge p)
+void LGraph::FreeEdge(pLEdge p)
 {
     assert(p != NULL);
     delete (pLEdge)p; // todo warning here
 }
 
 /**
- * create new real node
- */
-pLNode
-LGraph::AddNode()
-{
-    pLNode new_node = new LNode(this);
-    return new_node;
-}
-
-/**
  * add edge between from and to nodes
  */
 pLEdge
-LGraph::AddEdge(pNode from, pNode to, void* usrdata)
+LGraph::AddEdge(pLNode from, pLNode to, void* usrdata)
 {
-    pLEdge new_edge = new LEdge((pLNode)from, (pLNode)to);
+    pLEdge new_edge = new LEdge(from, to);
     new_edge->usrdata = usrdata;
     return new_edge;
 }
@@ -1116,6 +1421,456 @@ pLEdge LGraph::FindEdge(int num)
     }
 
     return (curedge);
+}
+
+/**
+     * create graph
+     */
+LGraph::LGraph()
+{
+    maxrank = 0;
+    m_nstarter_num = 0;
+    layouted = false;
+    order = (Ordering*)0;
+    nodesplay = (splay_tree)0;
+    edgesplay = (splay_tree)0;
+    m_total_nodes_num = 0;
+    m_total_dummynodes_num = 0;
+    m_total_edges_num = 0;
+    m_total_horedges_num = 0;
+    m_total_selfedges_num = 0;
+    m_total_reversededges_num = 0;
+    next_node_id = 0;
+    next_edge_id = 0;
+    m_id = 0;
+    m_xspacing_num = 20;
+    m_yspacing_num = 40;
+}
+
+/**
+     * delete graph
+     */
+LGraph::~LGraph()
+{
+    nodesplay = splay_tree_delete(nodesplay);
+    edgesplay = splay_tree_delete(edgesplay);
+    Destroy();
+}
+
+/**
+ * create node
+ */
+pLNode LGraph::AddNode()
+{
+    pLNode new_node = new LNode(this);
+    return new_node;
+}
+
+/**
+ * clear graph
+ * \todo check
+ */
+void LGraph::Destroy()
+{
+    //    list<pNode>::iterator node_iter;
+    //    list<pEdge>::iterator edge_iter;
+
+    while (m_nodes_list.empty() == false) {
+        pLNode pn = m_nodes_list.front();
+        // delete node and it in/out edges
+        DeleteNode(pn);
+    }
+
+    assert(m_nodes_list.empty());
+    assert(m_edges_list.empty());
+    assert(m_total_edges_num == 0);
+    assert(m_total_nodes_num == 0);
+
+    nodesplay = splay_tree_delete(nodesplay);
+    edgesplay = splay_tree_delete(edgesplay);
+
+    return;
+}
+
+/**
+ * return false if some integrity error of graph data
+ */
+bool LGraph::Verify(void)
+{
+    // error if no nodes, but there are edges.
+    if (m_edges_list.size() > 0 && m_nodes_list.size() == 0) {
+        return false;
+    }
+
+    map<pLEdge, bool> edge_map;
+
+    // scan all nodes
+    for (list<pLNode>::iterator node_iter = m_nodes_list.begin();
+         node_iter != m_nodes_list.end();
+         node_iter++) {
+
+        // error if node does not belong to this graph
+        if ((*node_iter)->m_graph != this) {
+            return false;
+        }
+
+        // scan incoming edges at this node
+        for (list<pLEdge>::iterator edge_iter = (*node_iter)->m_in_edges_list.begin();
+             edge_iter != (*node_iter)->m_in_edges_list.end();
+             edge_iter++) {
+
+            // error if edge does not belong to this graph
+            if ((*node_iter)->m_graph != (*edge_iter)->m_graph) {
+                return false;
+            }
+        }
+
+        // scan outgoing edges at this node
+        for (list<pLEdge>::iterator edge_iter = (*node_iter)->m_out_edges_list.begin();
+             edge_iter != (*node_iter)->m_out_edges_list.end();
+             edge_iter++) {
+
+            // error if edge does not belong to this graph
+            if ((*node_iter)->m_graph != (*edge_iter)->m_graph) {
+                return false;
+            }
+        }
+    }
+
+    // scan all edges
+    for (list<pLEdge>::iterator edge_iter = m_edges_list.begin();
+         edge_iter != m_edges_list.end();
+         edge_iter++) {
+
+        edge_map[(*edge_iter)] = true;
+    }
+
+    // scan all edges
+    for (list<pLEdge>::iterator edge_iter = m_edges_list.begin();
+         edge_iter != m_edges_list.end();
+         edge_iter++) {
+
+        // error if edge has no from node or no end node
+        if ((*edge_iter)->m_from == NULL || (*edge_iter)->m_to == NULL) {
+            return false;
+        }
+
+        // error if edge does not belong to a graph
+        if ((*edge_iter)->m_graph == NULL) {
+            return false;
+        }
+
+        // error if one of nodes does not belong to a graph
+        if ((*edge_iter)->m_from->m_graph == NULL || (*edge_iter)->m_to->m_graph == NULL) {
+            return false;
+        }
+
+        // error if edge does not belong to this graph
+        if ((*edge_iter)->m_graph != this) {
+            return false;
+        }
+
+        // error if iter does not belong to this graph
+        if (!((*edge_iter)->m_graph == (*edge_iter)->m_to->m_graph && (*edge_iter)->m_graph == (*edge_iter)->m_from->m_graph)) {
+            return false;
+        }
+
+        bool flag = false;
+
+        // Check for list of incoming edges.
+        for (list<pLEdge>::iterator edge_local = (*edge_iter)->m_to->m_in_edges_list.begin();
+             edge_local != (*edge_iter)->m_to->m_in_edges_list.end();
+             edge_local++) {
+
+            // Sets if this is exist incoming edge
+            if ((*edge_iter) == (*edge_local)) {
+                flag = true; // named edge_iter.
+            }
+
+            // If there are some edges without declaration
+            if (edge_map[(*edge_iter)] == false) {
+                return false; // in m_edges_list, graph isn't correct.
+            }
+        }
+
+        /* stop at error */
+        if (flag == false) {
+            return false;
+        }
+
+        flag = false;
+
+        // The same check for list of outgoing edges.
+        for (list<pLEdge>::iterator edge_local = (*edge_iter)->m_from->m_out_edges_list.begin();
+             edge_local != (*edge_iter)->m_from->m_out_edges_list.end();
+             edge_local++) {
+
+            // Sets if this is exist outgoing edge
+            if ((*edge_iter) == (*edge_local)) {
+                flag = true;
+            }
+
+            // If there are some edges without declaration
+            if (edge_map[(*edge_iter)] == false) {
+                return false;
+            }
+        }
+
+        // stop at error
+        if (flag == false) {
+            return false;
+        }
+    }
+
+    // graph data is correct
+    return true;
+}
+
+/**
+ * run dfs to assing node dfs number
+ */
+void LGraph::DFS(pLNode node,
+    map<pLNode, bool>* isused,
+    map<pLNode, int>* dfs,
+    int* num)
+{
+    pLEdge curedge;
+    pLNode ton;
+
+    if ((*isused)[node] == true) {
+        // return if node has already set
+        return;
+    }
+
+    (*isused)[node] = true;
+
+    // set dfs count
+    (*dfs)[node] = ++(*num);
+
+    // follow outgoing edges of this node
+    for (list<pLEdge>::iterator edge_iter = node->m_out_edges_list.begin();
+         edge_iter != node->m_out_edges_list.end();
+         edge_iter++) {
+        curedge = (*edge_iter);
+        ton = curedge->to();
+        if (ton) {
+            // if to edge is not done, recurse
+            //        if (((*isused)[(*edge_iter)->m_to]) == false) {
+            //            DFS((*edge_iter)->m_to, isused, dfs, num);
+            //        }
+            if (((*isused)[ton]) == false) {
+                DFS(ton, isused, dfs, num);
+            }
+        }
+    }
+
+    return;
+}
+
+/**
+ * return true if revesed edges count changed
+ * find cycles in the graph and reverse edge
+ */
+bool LGraph::FindReverseEdges(list<pLEdge>& ReverseEdges)
+{
+    map<pLNode, int>* dfs = new map<pLNode, int>; // dfs count numbers
+    map<pLNode, bool>* isused = new map<pLNode, bool>; // dfs flags
+    int num = 0; // Current dfs counter is 0
+    size_t count_rev_edges = ReverseEdges.size();
+    int rank = 0;
+
+    // clear dfs
+    for (list<pLNode>::iterator node_iter = m_nodes_list.begin();
+         node_iter != m_nodes_list.end();
+         node_iter++) {
+        (*dfs)[*node_iter] = 0;
+    }
+
+    // clear used
+    for (list<pLNode>::iterator node_iter = m_nodes_list.begin();
+         node_iter != m_nodes_list.end();
+         node_iter++) {
+        (*isused)[(*node_iter)] = false;
+    }
+
+    for (list<pLNode>::iterator node_iter = m_nodes_list.begin();
+         node_iter != m_nodes_list.end();
+         node_iter++) {
+
+        if ((*isused)[*node_iter] == false) {
+            // Starts from every new node.
+            DFS((*node_iter), isused, dfs, &num);
+        }
+    }
+
+    delete isused;
+
+    // detect cycles
+    for (list<pLEdge>::iterator edge_iter = m_edges_list.begin();
+         edge_iter != m_edges_list.end();
+         edge_iter++) {
+
+        if ((*dfs)[(*edge_iter)->m_to] < (*dfs)[(*edge_iter)->m_from]) {
+            // this is a cycle
+            ReverseEdges.push_back((*edge_iter));
+        }
+    }
+
+    delete dfs;
+
+    // total number of reversed edges without self-edges
+    m_total_reversededges_num = ReverseEdges.size();
+
+    if (ReverseEdges.size() == count_rev_edges) {
+        return false; // No changes
+    }
+
+    /* reversed edges changed  */
+    return true;
+}
+
+/**
+ * set uniq graph id as int number
+ */
+void LGraph::Setid(int id)
+{
+
+    m_id = id;
+
+    return;
+}
+
+/**
+ * increase count of dummy nodes
+ */
+void LGraph::AddDummyNode()
+{
+    m_total_dummynodes_num++;
+    return;
+}
+
+/**
+ * delete node and it in/out edges
+ */
+void LGraph::DeleteNode(pLNode p)
+{
+    bool found = false;
+
+    // todo if dummy node, update graph dummy node count
+
+    // clear incoming edges
+    while (p->m_in_edges_list.empty() == false) {
+        found = DeleteEdge(p->m_in_edges_list.front()->m_from, p);
+        if (found == false) { // edge not found
+        }
+    }
+
+    // clear outgoing edges
+    while (p->m_out_edges_list.empty() == false) {
+        found = DeleteEdge(p, p->m_out_edges_list.front()->m_to);
+        if (found == false) { // edge not found
+        }
+    }
+
+    // remove node from nodelist
+    m_nodes_list.remove(p);
+
+    // decr. number of total nodes
+    if (m_total_nodes_num > 0) {
+        m_total_nodes_num--;
+    }
+
+    // clear node
+    FreeNode(p);
+
+    return;
+}
+
+/**
+ * remove edge between node from and node to
+ * return tru if edge deleted, false when edge not found
+ */
+bool LGraph::DeleteEdge(pLNode from, pLNode to)
+{
+    assert(from && from->m_graph == this);
+    assert(to && to->m_graph == this);
+
+    // delete self edge if specified
+    if (from->id() == to->id()) {
+        // this is a self edge
+        if (from->nselfedges() <= 0) {
+            // shouldnothappen
+            from->m_selfedges = 0;
+            return false;
+        }
+        from->m_selfedges--;
+        // update in graph data
+        if (from->m_graph->m_total_selfedges_num > 0) {
+            from->m_graph->m_total_selfedges_num--;
+        }
+        return true;
+    }
+
+    list<pLEdge>::iterator edge_iter;
+
+    // scan edge list
+    for (edge_iter = m_edges_list.begin();
+         edge_iter != m_edges_list.end();
+         edge_iter++) {
+        pLEdge pe = *edge_iter;
+        // if this is edge with from/to number
+        if (pe->m_from == from && pe->m_to == to) {
+            m_edges_list.erase(edge_iter);
+            // remove as outgoing edge at from node
+            pe->m_from->m_out_edges_list.remove(pe);
+            // remove as incoming edge at to node
+            pe->m_to->m_in_edges_list.remove(pe);
+            pe->m_from = NULL;
+            pe->m_to = NULL;
+            m_total_edges_num--;
+            FreeEdge(pe);
+            // edge is found and deleted
+            return true;
+        }
+    }
+
+    // return false if edge not found.
+    return false;
+}
+
+/**
+ * print graph data
+ */
+void LGraph::Dump()
+{
+    list<pLNode>::iterator node_iter;
+    list<pLEdge>::iterator edge_iter;
+
+    printf("Dumping graph id:%d (%d nodes, %d real nodes, %d dummy nodes, %d edges, %d horizontal edges, %d selfedges %d reversed edges)\n", id(), nnodes(), nrealnodes(), ndummynodes(), nedges(), nhoredges(), nselfedges(), nreversededges());
+    printf("Nodes:\n");
+    for (node_iter = m_nodes_list.begin();
+         node_iter != m_nodes_list.end();
+         node_iter++) {
+        pLNode pn = *node_iter;
+        if (pn) {
+            /* print single node */
+            pn->Dump();
+        }
+    }
+
+    // edge list does not have self edges
+    printf("Edges:\n");
+    for (edge_iter = m_edges_list.begin();
+         edge_iter != m_edges_list.end();
+         edge_iter++) {
+        pLEdge pe = *edge_iter;
+        if (pe) {
+            /* print single edge */
+            pe->Dump();
+        }
+    }
+
+    return;
 }
 
 /* end. */

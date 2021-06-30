@@ -78,6 +78,15 @@
 - fixed: updated addedge in test programs
 - fixed: added edge type 1 marking and counter
 - fixed: double space the graph then same edges will be multiple edges instead of one
-- 
+- fixed: added type 1 edges output graph data
+- fixed: added type 1 edge in c interface
+- test8 type 1 crossings count
+- fixed: init of placement algo
+- fixed: memleak in order in layout fixed.
+- fixed: valgrind error LEdge.cpp line 129
+- fixed: valgrind error Graph.cpp 218
+- fixed: made the src easier to use
+- fixed: all valgrind issues and memory handling is oke now
+- fixed: sorted in/out edges
 
 

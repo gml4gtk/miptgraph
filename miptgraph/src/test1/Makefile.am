@@ -30,6 +30,11 @@ all: libs
 	make test7
 	make test8
 
+#
+test:
+	make clean
+	make output
+
 # generate output files
 output: all
 	./test1 >test1-output.txt
@@ -43,43 +48,40 @@ output: all
 
 # generate svg image data
 test1:
-	$(CXX) test1.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test1
+	$(CXX) test1.cpp ../Layout/.libs/libmiptgraphlayout.a -o test1
 
 # run two graph layout at once
 test2:
-	$(CXX) test2.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test2
+	$(CXX) test2.cpp ../Layout/.libs/libmiptgraphlayout.a -o test2
 
 # graph with a cycle
 test3:
-	$(CXX) test3.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test3
+	$(CXX) test3.cpp ../Layout/.libs/libmiptgraphlayout.a -o test3
 
 # graph with no edges
 test4:
-	$(CXX) test4.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test4
+	$(CXX) test4.cpp ../Layout/.libs/libmiptgraphlayout.a -o test4
 
 # re-layout
 test5:
-	$(CXX) test5.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test5
+	$(CXX) test5.cpp ../Layout/.libs/libmiptgraphlayout.a -o test5
 
 # run c++ from c
 # or: $(CC) `pkg-config --libs --cflags gtk+-2.0` -I. -I.. test6.c -c -o test6.o
 test6:
 	$(CC) -I. -I.. test6.c -c -o test6.o
-	$(CXX) test6.o ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test6
+	$(CXX) test6.o ../Layout/.libs/libmiptgraphlayout.a -o test6
 
 # graph with nodes with variable sizes
 test7:
-	$(CXX) test7.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test7
+	$(CXX) test7.cpp ../Layout/.libs/libmiptgraphlayout.a -o test7
 
 # graph with type1 edges
 test8:
-	$(CXX) test8.cpp ../Layout/.libs/libmiptgraphlayout.a ../Graph/.libs/libmiptgraphgraph.a -o test8
+	$(CXX) test8.cpp ../Layout/.libs/libmiptgraphlayout.a -o test8
 
 # this depends on these libs
-libs: graphlib layoutlib
-
-graphlib:
-	cd ../Graph && make
+libs: layoutlib
 
 layoutlib:
 	cd ../Layout && make
@@ -96,10 +98,10 @@ clean:
 	rm -v -f test6
 	rm -v -f test7
 	rm -v -f test8
-	rm -v -f *.output
+	rm -v -f *.txt
+	rm -v -f *.o
 
 cleaner:
-	make clean
 	rm -v -f -r -d .deps
 	rm -v -f -r -d .libs
 	rm -v -f *.o
@@ -107,5 +109,14 @@ cleaner:
 	rm -v -f *.la
 	rm -v -f Makefile
 	rm -v -f Makefile.in
+	rm -v -f test1
+	rm -v -f test2
+	rm -v -f test3
+	rm -v -f test4
+	rm -v -f test5
+	rm -v -f test6
+	rm -v -f test7
+	rm -v -f test8
+	rm -v -f *.output
 
 # end.

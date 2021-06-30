@@ -13,21 +13,19 @@ added edge in g2 between node 3 and node 4 with id 4
 before layout
 Dumping graph id:2 (5 nodes, 5 real nodes, 0 dummy nodes, 5 edges, 0 horizontal edges, 0 selfedges 0 reversed edges)
 Nodes:
-Node id 0: (0 self-edges size (30,20))
-  In  edges:
-  Out edges: 0->1
-Node id 1: (0 self-edges size (30,20))
-  In  edges: 0->1 3->1
-  Out edges: 1->2
-Node id 2: (0 self-edges size (30,20))
-  In  edges: 1->2
-  Out edges: 2->3
-Node id 3: (0 self-edges size (30,20))
-  In  edges: 2->3
-  Out edges: 3->1 3->4
-Node id 4: (0 self-edges size (30,20))
-  In  edges: 3->4
-  Out edges:
+Node id 0: (0 self-edges size (10,10) 0 in-edges 1 out-edges)
+  1 Out edges: 0->1
+Node id 1: (0 self-edges size (10,10) 2 in-edges 1 out-edges)
+  2 In  edges: 0->1 3->1
+  1 Out edges: 1->2
+Node id 2: (0 self-edges size (10,10) 1 in-edges 1 out-edges)
+  1 In  edges: 1->2
+  1 Out edges: 2->3
+Node id 3: (0 self-edges size (10,10) 1 in-edges 2 out-edges)
+  1 In  edges: 2->3
+  2 Out edges: 3->1 3->4
+Node id 4: (0 self-edges size (10,10) 1 in-edges 0 out-edges)
+  1 In  edges: 3->4
 Edges:
 Edge id 0: 0->1 reversed=0 horizontal=0
 Edge id 1: 1->2 reversed=0 horizontal=0
@@ -55,12 +53,15 @@ Level rank 7 has these 1 nodes:
   id:11(28,280)
 Level rank 8 has these 1 nodes:
   id:4(23,320)
-between level 0 and level 1 are 0 crossings
-between level 1 and level 2 are 0 crossings
 between level 2 and level 3 are 0 crossings
+at rank 2 found 0 crossings and expected 0 crossings
 between level 3 and level 4 are 0 crossings
+at rank 3 found 0 crossings and expected 0 crossings
 between level 4 and level 5 are 0 crossings
+at rank 4 found 0 crossings and expected 0 crossings
 between level 5 and level 6 are 0 crossings
+at rank 5 found 0 crossings and expected 0 crossings
+}
 Graph has 1 starter nodes
 Ordering::Dump() there are 9 levels
 Level rank 0 has these 1 nodes:
@@ -85,42 +86,40 @@ Final Crossings: 0
 after layout of graph 2 with dummy nodes and changed edges
 Dumping graph id:2 (12 nodes, 5 real nodes, 7 dummy nodes, 12 edges, 0 horizontal edges, 0 selfedges 1 reversed edges)
 Nodes:
-Node id 0: (0 self-edges size (30,20))
-  In  edges:
-  Out edges: 0->5
-Node id 1: (0 self-edges size (30,20))
-  In  edges: 5->1
-  Out edges: 1->6 1->8
-Node id 2: (0 self-edges size (30,20))
-  In  edges: 6->2
-  Out edges: 2->7
-Node id 3: (0 self-edges size (30,20))
-  In  edges: 7->3 10->3
-  Out edges: 3->11
-Node id 4: (0 self-edges size (30,20))
-  In  edges: 11->4
-  Out edges:
-Node id 5: (0 self-edges size (1,1))
-  In  edges: 0->5
-  Out edges: 5->1
-Node id 6: (0 self-edges size (1,1))
-  In  edges: 1->6
-  Out edges: 6->2
-Node id 7: (0 self-edges size (1,1))
-  In  edges: 2->7
-  Out edges: 7->3
-Node id 8: (0 self-edges size (1,1))
-  In  edges: 1->8
-  Out edges: 8->9
-Node id 9: (0 self-edges size (1,1))
-  In  edges: 8->9
-  Out edges: 9->10
-Node id 10: (0 self-edges size (1,1))
-  In  edges: 9->10
-  Out edges: 10->3
-Node id 11: (0 self-edges size (1,1))
-  In  edges: 3->11
-  Out edges: 11->4
+Node id 0: (0 self-edges size (10,10) 0 in-edges 1 out-edges)
+  1 Out edges: 0->5
+Node id 1: (0 self-edges size (10,10) 1 in-edges 2 out-edges)
+  1 In  edges: 5->1
+  2 Out edges: 1->8 1->6
+Node id 2: (0 self-edges size (10,10) 1 in-edges 1 out-edges)
+  1 In  edges: 6->2
+  1 Out edges: 2->7
+Node id 3: (0 self-edges size (10,10) 2 in-edges 1 out-edges)
+  2 In  edges: 10->3 7->3
+  1 Out edges: 3->11
+Node id 4: (0 self-edges size (10,10) 1 in-edges 0 out-edges)
+  1 In  edges: 11->4
+Node id 5: (0 self-edges size (1,1) 1 in-edges 1 out-edges)
+  1 In  edges: 0->5
+  1 Out edges: 5->1
+Node id 6: (0 self-edges size (1,1) 1 in-edges 1 out-edges)
+  1 In  edges: 1->6
+  1 Out edges: 6->2
+Node id 7: (0 self-edges size (1,1) 1 in-edges 1 out-edges)
+  1 In  edges: 2->7
+  1 Out edges: 7->3
+Node id 8: (0 self-edges size (1,1) 1 in-edges 1 out-edges)
+  1 In  edges: 1->8
+  1 Out edges: 8->9
+Node id 9: (0 self-edges size (1,1) 1 in-edges 1 out-edges)
+  1 In  edges: 8->9
+  1 Out edges: 9->10
+Node id 10: (0 self-edges size (1,1) 1 in-edges 1 out-edges)
+  1 In  edges: 9->10
+  1 Out edges: 10->3
+Node id 11: (0 self-edges size (1,1) 1 in-edges 1 out-edges)
+  1 In  edges: 3->11
+  1 Out edges: 11->4
 Edges:
 Edge id 5: 0->5 reversed=0 horizontal=0
 Edge id 6: 5->1 reversed=0 horizontal=0

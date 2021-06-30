@@ -713,6 +713,7 @@ static void do_layout_all_copyfrom(struct usrgraph *g)
 	int ecolor = 0;
 	char *elabel = NULL;
 	struct usredge *ue = NULL;
+	int type1 = 0;
 	if (g == NULL) {
 		return;
 	}
@@ -805,6 +806,7 @@ static void do_layout_all_copyfrom(struct usrgraph *g)
 				split = cmipt_edgeissplit(ret);
 				splithead = cmipt_edgeisheadsplit(ret);
 				splittail = cmipt_edgeistailsplit(ret);
+				type1 = cmipt_edgeistype1(ret);
 				fn = uniqdrawnode_lid(fln);
 				tn = uniqdrawnode_lid(tln);
 				if (fn && tn) {
@@ -819,6 +821,7 @@ static void do_layout_all_copyfrom(struct usrgraph *g)
 					en->tn = tn;
 					en->ecolor = ecolor;
 					en->elabel = elabel;
+					en->type1 = type1;
 					if (g->drawedgelist == NULL) {
 						g->drawedgelist = en;
 						g->drawedgelistend = en;
@@ -1196,6 +1199,10 @@ static void on_top_level_window_drawingarea1_expose_event_edges(cairo_t * crp)
 			cairo_set_line_width(crp, 0.9 /* DEFAULT_EDGE_THICKNESS */ );
 
 			ecolor = de->ecolor;
+
+			if (de->type1) {
+				ecolor = 0x00ff0000;
+			}
 
 			/* black or colored line */
 			r = (ecolor & 0x00ff0000) >> 16;

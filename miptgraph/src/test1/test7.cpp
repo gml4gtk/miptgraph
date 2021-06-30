@@ -122,7 +122,7 @@ int main(int argc, char* argv[])
     int maxy = 0;
 
     /* print the node positioning */
-    for (list<pNode>::iterator node_iter = g.nodes_list()->begin();
+    for (list<pLNode>::iterator node_iter = g.nodes_list()->begin();
          node_iter != g.nodes_list()->end();
          node_iter++) {
         unsigned int rank = ((LNode*)(*node_iter))->Rank();
@@ -149,7 +149,7 @@ int main(int argc, char* argv[])
     printf("%s\n", "    .small { font: italic 15px sans-serif; }");
     printf("%s\n", "  </style>");
 
-    list<pEdge>::iterator edge_iter;
+    list<pLEdge>::iterator edge_iter;
 
     double xf = 0;
     double yf = 0;
@@ -159,7 +159,7 @@ int main(int argc, char* argv[])
     for (edge_iter = g.edges_list()->begin();
          edge_iter != g.edges_list()->end();
          edge_iter++) {
-        pEdge pe = *edge_iter;
+        pLEdge pe = *edge_iter;
         if (pe) {
             /* get from, to coords of nodes in this edge */
             xf = ((pLNode)(*edge_iter)->from())->getX();
@@ -182,7 +182,7 @@ int main(int argc, char* argv[])
         }
     }
 
-    for (list<pNode>::iterator node_iter = g.nodes_list()->begin();
+    for (list<pLNode>::iterator node_iter = g.nodes_list()->begin();
          node_iter != g.nodes_list()->end();
          node_iter++) {
         double x = ((LNode*)(*node_iter))->getX();

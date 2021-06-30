@@ -33,12 +33,17 @@
 #ifndef LAYOUT_H
 #define LAYOUT_H
 
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <algorithm>
+#include <assert.h>
+#include <list>
+#include <map>
+#include <vector>
+#include <iostream>
 #include <utility>
 
-#include "../Graph/predecls.h"
-
+using namespace std;
 
 class LGraph;
 class LNode;

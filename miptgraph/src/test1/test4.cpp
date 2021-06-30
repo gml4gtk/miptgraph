@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 
     // Creating a new graph
     for (int i = 0; i < len2; i++) {
-        p2[i] = (pLNode)g2.AddNode();
+        p2[i] = g2.AddNode();
         printf("added node in g2 p2[%d] with id %d\n", i, p2[i]->id());
     }
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
     /* nodes in graph 2 are 0..4 */
 
     /* 0->0 self-edge is not in edge list */
-    ee = (pLEdge)g2.AddEdge(p2[0], p2[0], NULL);
+    ee = g2.AddEdge(p2[0], p2[0], NULL);
     printf("added edge in g2 with id %d between node %d and node %d with id %d\n", g2.id(), ee->from()->id(), ee->to()->id(), ee->id());
 
     /* graph has no edges */
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
     printf("after layout of graph 2 with optional dummy nodes and changed edges\n");
     g2.Dump();
 
-    for (list<pNode>::iterator node_iter = g2.nodes_list()->begin();
+    for (list<pLNode>::iterator node_iter = g2.nodes_list()->begin();
          node_iter != g2.nodes_list()->end();
          node_iter++) {
         double x = ((LNode*)(*node_iter))->getX();
@@ -101,6 +101,8 @@ int main(int argc, char* argv[])
     }
 
     g2.Destroy();
+
+    delete ee;
     delete[] p2;
 
     return (0);

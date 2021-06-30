@@ -53,7 +53,7 @@ extern "C" void* cmipt_deletegraph(void* g)
     pLGraph pg = NULL;
     if (g) {
         pg = (pLGraph)g;
-        delete pg;
+        pg->Destroy();
     }
     return (NULL);
 }
@@ -471,6 +471,24 @@ extern "C" int cmipt_edgeisheadsplit(void* e)
     if (e) {
         p = (pLEdge)e;
         status = p->IsHeadSplitEdge();
+        if (status == true) {
+            ret = 1;
+        } else {
+            ret = 0;
+        }
+    }
+    return (ret);
+}
+
+/* return if edge is type 1 edge */
+extern "C" int cmipt_edgeistype1(void* e)
+{
+    pLEdge p = NULL;
+    bool status = false;
+    int ret = -1;
+    if (e) {
+        p = (pLEdge)e;
+        status = p->isconflict();
         if (status == true) {
             ret = 1;
         } else {

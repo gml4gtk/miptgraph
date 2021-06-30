@@ -1,4 +1,7 @@
 #!/bin/sh
+# pkg-config --cflags gtk+-3.0
+# pkg-config --cflags gtk+-2.0
+# pkg-config --cflags gtk+-1.0
 # (or use sh -x to see what is going on)
 #
 # /*

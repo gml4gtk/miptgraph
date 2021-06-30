@@ -21,7 +21,6 @@
 
 # the C++ mipt graph lib
 miptlib1 = ../../Layout/.libs/libmiptgraphlayout.a
-miptlib2 = ../../Graph/.libs/libmiptgraphgraph.a
 
 #
 bin_PROGRAMS = miptgml
@@ -56,7 +55,7 @@ miptgml$(EXEEXT): $(miptgml_SOURCES)
 	rm -v -f ./*.o
 	rm -v -f ./miptgml
 	$(CC) -c $(miptgml_CFLAGS) $(miptgml_SOURCES) -I. -I.. -I../..
-	$(CXX) *.o $(miptgml_tolink) $(miptlib1) $(miptlib2) -o miptgml
+	$(CXX) *.o $(miptgml_tolink) $(miptlib1) -o miptgml
 
 #
 indent:

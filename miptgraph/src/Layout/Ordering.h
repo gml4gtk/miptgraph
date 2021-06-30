@@ -44,7 +44,7 @@ private:
     /**
      * list of nodes at order
      */
-    vector<vector<pLNode>> order_vector;
+    vector< vector < pLNode > > order_vector;
 
 
 public:
@@ -56,36 +56,36 @@ public:
     /**
      * total number of crossings at level
      */
-    vector<int> m_crossings_num;
+    vector< int > m_crossings_num;
 
     /**
      * total number of inner-inner edge crossings at level Type 2 conflict
      */
-    vector<int> m_iicrossings_num;
+    vector< int > m_iicrossings_num;
 
     /**
      * total number of inner-noninner edge crossings at level Type 1 conflict
      */
-    vector<int> m_ircrossings_num;
+    vector< int > m_ircrossings_num;
 
     /**
      * total number of noninner-noninner edge crossings at level Type 0 conflict
      */
-    vector<int> m_rrcrossings_num;
+    vector< int > m_rrcrossings_num;
 
     /**
      * The adj_position function returns an ordered array
      * of the present positions of the nodes adjacent to node.
      * incoming edges to node
      */
-    vector<int> AdjInPositions(pLNode node);
+    vector< int > AdjInPositions(pLNode node);
 
     /**
      * The adj_position function returns an ordered array
      * of the present positions of the nodes adjacent to node.
      * outgoing edges from node
      */
-    vector<int> AdjOutPositions(pLNode node);
+    vector< int > AdjOutPositions(pLNode node);
 
     friend class LGraph;
 };

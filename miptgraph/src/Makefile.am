@@ -20,7 +20,7 @@
 #
 
 # dirs with makefile.am
-SUBDIRS = . Graph Layout test1
+SUBDIRS = . Layout test1
 
 cleaner:
 	rm -v -f *.output

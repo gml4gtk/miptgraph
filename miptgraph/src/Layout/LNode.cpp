@@ -40,6 +40,9 @@
  */
 int LNode::Rank()
 {
+    pLEdge curedge;
+    pLNode fn;
+
     // the initial undefined value for rank is -1
 
     // If rank is determined before.
@@ -61,21 +64,19 @@ int LNode::Rank()
         int res = 0;
         int temp = 0;
         // scan incomig edges
-        for (list<pEdge>::iterator edge_iter = in_edges_list()->begin();
+        for (list<pLEdge>::iterator edge_iter = in_edges_list()->begin();
              edge_iter != in_edges_list()->end();
              edge_iter++) {
-            if ((pLNode)(*edge_iter)) {
-                if (((pLNode)(*edge_iter)->from())) {
-                    temp = (((pLNode)(*edge_iter)->from())->Rank() + 1);
-                    // set at max
-                    if (temp > res) {
-                        res = temp;
-                    }
-                } else {
-                    printf("todo\n");
+            curedge = (*edge_iter);
+            fn = curedge->from();
+            if (fn) {
+                temp = (fn->Rank() + 1);
+                // set at max
+                if (temp > res) {
+                    res = temp;
                 }
             } else {
-                printf("todo0\n");
+                printf("nil fn in incoming edge at node %d and tn is %p\n", (int)this->id(), (void*)curedge->to());
             }
         }
         // the resulting y level
@@ -194,12 +195,15 @@ LNode::Median(Ordering order, bool direction, bool bary)
  */
 bool LNode::IsAdjacentToNode(pLNode node)
 {
-    for (list<pEdge>::iterator edge_iter = out_edges_list()->begin();
+    pLEdge curedge;
+
+    for (list<pLEdge>::iterator edge_iter = out_edges_list()->begin();
          edge_iter != out_edges_list()->end();
          edge_iter++) {
         // skip horizontal edges
-        if ((*edge_iter)->IsHedge() == false) {
-            if ((pLNode)((*edge_iter)->to()) == node) {
+        curedge = (*edge_iter);
+        if (curedge->IsHedge() == false) {
+            if (curedge->to() == node) {
                 return true;
             }
         }
@@ -212,6 +216,194 @@ bool LNode::IsAdjacentToNode(pLNode node)
  */
 LNode::~LNode()
 {
+}
+
+/**
+ * add node to graph
+ */
+LNode::LNode(pLGraph graph)
+{
+    assert(graph);
+
+    // node belongs to this graph
+    m_graph = graph;
+
+    // set node uniq number
+    m_id = graph->next_node_id;
+
+    // incoming edges to this node
+    m_in_edges_list.clear();
+
+    // outgoing edges from this node
+    m_out_edges_list.clear();
+
+    // number of self-edges at this node
+    m_selfedges = 0;
+
+    // x size
+    nxsize = 30;
+
+    // y size
+    nysize = 20;
+
+    // update graph node amount
+    graph->m_total_nodes_num++;
+
+    /// update next node number
+    graph->next_node_id++;
+
+    /// add node to graph
+    graph->m_nodes_list.push_back(this);
+
+    x = -1; // no x coord
+    y = -1; // no y coord
+    x2 = -1; // no x coord
+    y2 = -1; // no y coord
+    nxsize = 10; // default node x size
+    nysize = 10; // default node y size
+    rank = -1; // no rank
+    pos = -1; // no x pos
+    median = 0.0; // no barycenter value
+    we_were_here = false;
+    dummy = false; // this is a real node
+    entry = false; // not startnode
+    origfrom = NULL; // edge point
+    origto = NULL; // edge point
+}
+
+/**
+ * print node info with in/out edges
+ */
+void LNode::Dump()
+{
+    list<pLEdge>::iterator edge_iter;
+    pLEdge pe;
+
+    printf("Node id %d: (%d self-edges size (%d,%d) %d in-edges %d out-edges)\n", id(), nselfedges(), getxsize(), getysize(), (int)in_edges_list()->size(), (int)out_edges_list()->size());
+
+    if (in_edges_list()->size() > 0) {
+        printf("  %d In  edges:", (int)in_edges_list()->size());
+
+        for (edge_iter = m_in_edges_list.begin();
+             edge_iter != m_in_edges_list.end();
+             edge_iter++) {
+            pe = (*edge_iter);
+            if (pe) {
+                printf(" ");
+                pe->Print();
+            }
+        }
+        printf("\n");
+    }
+
+    if (out_edges_list()->size() > 0) {
+        printf("  %d Out edges:", (int)out_edges_list()->size());
+        for (edge_iter = out_edges_list()->begin();
+             edge_iter != out_edges_list()->end();
+             edge_iter++) {
+            pe = (*edge_iter);
+            if (pe) {
+                printf(" ");
+                pe->Print();
+            }
+        }
+        printf("\n");
+    }
+
+    return;
+}
+
+/**
+ * compare from positions
+ */
+bool ComparePointerIn(pLEdge e1, pLEdge e2)
+{
+    return e1->from()->getPos() < e2->from()->getPos();
+}
+
+/**
+ * sort in edges
+ */
+void LNode::NodeSortIn()
+{
+    vector<pLEdge> edges_list;
+    list<pLEdge>::iterator edge_iter;
+    pLEdge curedge;
+    size_t i = 0;
+
+    if (in_edges_list()->size() == 0) {
+        return;
+    }
+
+    // copy edges
+    for (list<pLEdge>::iterator edge_iter = in_edges_list()->begin();
+         edge_iter != in_edges_list()->end();
+         edge_iter++) {
+        curedge = (*edge_iter);
+        edges_list.push_back(curedge);
+    }
+
+    stable_sort(edges_list.begin(),
+        edges_list.end(),
+        ComparePointerIn);
+
+    m_in_edges_list.clear();
+
+    // copy edges back
+    for (i = 0; i < edges_list.size(); i++) {
+        curedge = edges_list[i];
+        m_in_edges_list.push_back(curedge);
+    }
+
+    edges_list.clear();
+
+    return;
+}
+
+/**
+ * compare to positions
+ */
+bool ComparePointerOut(pLEdge e1, pLEdge e2)
+{
+    return e1->to()->getPos() < e2->to()->getPos();
+}
+
+/**
+ * sort out edges
+ */
+void LNode::NodeSortOut()
+{
+    vector<pLEdge> edges_list;
+    list<pLEdge>::iterator edge_iter;
+    pLEdge curedge;
+    size_t i = 0;
+
+    if (out_edges_list()->size() == 0) {
+        return;
+    }
+
+    // copy edges
+    for (list<pLEdge>::iterator edge_iter = out_edges_list()->begin();
+         edge_iter != out_edges_list()->end();
+         edge_iter++) {
+        curedge = (*edge_iter);
+        edges_list.push_back(curedge);
+    }
+
+    stable_sort(edges_list.begin(),
+        edges_list.end(),
+        ComparePointerOut);
+
+    m_out_edges_list.clear();
+
+    // copy edges back
+    for (i = 0; i < edges_list.size(); i++) {
+        curedge = edges_list[i];
+        m_out_edges_list.push_back(curedge);
+    }
+
+    edges_list.clear();
+
     return;
 }
 
