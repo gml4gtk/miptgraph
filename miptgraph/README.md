@@ -30,7 +30,10 @@ To compile this C++ with emscripten or otherwise to wasm webassembly should be p
 The user interface program must copy some graph data to/from this library to make sure it does not depend on qt5  
 Because multiple graphs can be layouted independent at once it can be used to layout bigger graph with subgraphs  
 There are almost no C++ libraries for graph layout with sugiyama algorithm but other GPL Free ones are ogdf, graphlhet and igraph  
-
+For drawing the flowcanvs or ganv C++ gtk+ drawing routines can be used for a good looking image  
+  
+Note that the only way to do good, efficient, and system-level and portable C++ ends up to limit yourself to all the things that are basically available in C.  
+  
 Most so called graph layout programs are only spring embedder layout or drawing programs.  
 
 Other software implementing sugiyama barycenter graph algorithm are  
@@ -75,7 +78,7 @@ typescript, MIT, d3 dag ![d3-dag](https://github.com/erikbrinkman/d3-dag)
 ![screenshot2](./screenshot2.png)
 ![screenschotmiptgml](./src/test2/screenshot.png)
 
-![gplv3](./gplv3-with-text-84x42.png)
+![gplv3](./gplv3.png)
 
 
 SPDX-License-Identifier: GPL-3.0+  

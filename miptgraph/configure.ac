@@ -106,6 +106,28 @@ AC_COPYRIGHT([
 
 AC_CONFIG_FILES([Makefile src/Makefile src/Layout/Makefile src/test1/Makefile])
 
+# set here cflags
+CFLAGS="$CFLAGS \
+	-Wall \
+	-Wextra \
+	-pedantic"
+
+# option here to use asan instead of valgrind
+# https://github.com/google/sanitizers/wiki/AddressSanitizer
+CFLAGSASAN="$CFLAGS \
+	-fsanitize=address \
+	-fsanitize=undefined \
+	-fsanitize-recover=address \
+	-fsanitize=bounds \
+	-fsanitize=vptr \
+	-fsanitize=enum \
+	-fsanitize=signed-integer-overflow \
+	-fsanitize=null \
+	-fsanitize=return \
+	-fsanitize=integer-divide-by-zero \
+	-fsanitize=unreachable \
+	-fsanitize=alignment"
+
 AC_OUTPUT
 
 AC_MSG_NOTICE([
